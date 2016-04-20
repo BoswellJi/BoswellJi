@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		div{width:50px;height: 50px;border-radius:100%;position:absolute;left:0;}
+		.div1{background:red;top:0;}
+		.div2{background: green;top:60px;}
+		.div3{background:blue;top:120px;}
+	</style>
+</head>
+<body>
+	<div class="div1"></div>
+	<div class="div2"></div>
+	<div class="div3"></div>
+</body>
+<script type="text/javascript">
+	var div1=document.getElementsByClassName("div1")[0];
+	var div2=document.getElementsByClassName("div2")[1];
+	var div3=document.getElementsByClassName("div3")[2];
+
+	function animat(obj,target,backcall){
+		var iNow=parseInt(pos(obj,'left'));
+		setTimeout(function(){
+			if(iNow===target){
+				backcall && backcall();
+			}else{
+				if(iNow<target){
+					iNow++;
+				}else{
+					iNow--;
+				}
+
+				obj.style.left=iNow+"px";
+				animat(obj,target,backcall)
+			}
+		},13);
+
+	}
+
+	animat(div1,200,function(){
+		animat(div2,300,function(){
+			animat(div3,400,function(){
+				//
+			})
+		})
+	})
+
+	function pos(obj,attr){
+		if(window.getComputedStyle){
+			return window.getComputedStyle(obj,false)[attr];
+		}else{
+			return obj.currentStyle[attr];
+		}
+	}
+</script>
+</html>

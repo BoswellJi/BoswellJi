@@ -1,0 +1,351 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"bac",
+				"backcall〔argument〕"
+			],
+			[
+				"ani",
+				"animat〔function〕"
+			],
+			[
+				"an",
+				"animate	.animate() with callback"
+			],
+			[
+				"ba",
+				"backcall"
+			],
+			[
+				"get",
+				"getComputedStyle"
+			],
+			[
+				"fun",
+				"function〔keyword〕"
+			],
+			[
+				"onm",
+				"onmouseup〔function〕"
+			],
+			[
+				"d",
+				"document"
+			],
+			[
+				"dif",
+				"diffY〔variable〕"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"bacl",
+				"background-color"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"di",
+				"diffX"
+			],
+			[
+				"no",
+				"nowrap"
+			],
+			[
+				"wr",
+				"word-wrap"
+			],
+			[
+				"text-",
+				"text-overflow"
+			],
+			[
+				"te",
+				"table-cell"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"fnt",
+				"font-size"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"im",
+				"important"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"in",
+				"inline-block"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "inst",
+		"selected_items":
+		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"About"
+			],
+			[
+				"git s",
+				"Git: Show"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Local Dependency"
+			],
+			[
+				"pin",
+				"Package Control: Install Package"
+			],
+			[
+				"e",
+				"Plugin Development: Profile Events"
+			]
+		],
+		"width": 528.0
+	},
+	"console":
+	{
+		"height": 642.0,
+		"history":
+		[
+			"import  urllib.request,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler()));open(os.path.join(ipp,pf),'wb').write(urllib.request.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/E/nodejs/express"
+	],
+	"file_history":
+	[
+		"/C/Users/Administrator/AppData/Roaming/npm/node_modules/express-generator/templates/jade/index.jade",
+		"/C/Users/Administrator/AppData/Roaming/npm/node_modules/express-generator/templates/hbs/index.hbs",
+		"/C/Users/Administrator/AppData/Roaming/npm/node_modules/express-generator/templates/jade/layout.jade",
+		"/C/Users/Administrator/AppData/Roaming/npm/node_modules/express-generator/templates/ejs/index.ejs",
+		"/C/Users/Administrator/AppData/Roaming/npm/node_modules/express-generator/templates/hbs/layout.hbs",
+		"/C/Users/Administrator/AppData/Roaming/npm/node_modules/express-generator/templates/hogan/index.hjs",
+		"/C/Users/Administrator/AppData/Roaming/npm/node_modules/express-generator/bin/express",
+		"/C/Users/Administrator/AppData/Roaming/npm/node_modules/express-generator/package.json",
+		"/C/Users/Administrator/AppData/Roaming/npm/node_modules/express-generator/templates/js/app.js",
+		"/C/Users/Administrator/AppData/Roaming/npm/node_modules/express-generator/templates/js/routes/index.js",
+		"/E/nodejs/nodejs-first/process/process-first.js",
+		"/E/nodejs/learn.html",
+		"/E/nodejs/node_second/index.html",
+		"/E/nodejs/node_second/promise.js",
+		"/E/nodejs/nodejs-first/http/node_rep.js",
+		"/E/nodejs/nodejs-first/http/request.js",
+		"/E/nodejs/nodejs-first/event/eventEmitter.js",
+		"/E/nodejs/nodejs-first/http/createServer.js",
+		"/E/nodejs/nodejs-first/http/call_apply.js",
+		"/E/我毕业啦/毕业项目/node_modules/bootstrap/package.json",
+		"/E/nodejs/nodejs-first/server.js",
+		"/E/nodejs/nodejs-first/http/context.js",
+		"/E/css3/sd_tab/3d.html",
+		"/E/react/react-demos/README.md",
+		"/E/react/node_modules/webpack/package.json",
+		"/C/Users/Administrator/Desktop/5653c4f900013c5900000000/css/normal_mobile.css",
+		"/C/Users/Administrator/Desktop/5653c4f900013c5900000000/css/normal_flex.css",
+		"/C/Users/Administrator/Desktop/5653c4f900013c5900000000/README.md",
+		"/E/js效果揭秘/drag/drag.html",
+		"/E/js效果揭秘/lunbaotu/lunbotu.html",
+		"/E/js效果揭秘/lunbaotu/css/lunbotu.css",
+		"/E/js效果揭秘/lunbaotu/js/mod1.js",
+		"/E/js效果揭秘/lunbaotu/js/lunbotu.js",
+		"/E/js效果揭秘/jquery/README.md",
+		"/E/git/learn.sublime-project",
+		"/E/前端练习/焦点图.html",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 3/Packages/Git/Git.sublime-settings",
+		"/E/git/learngit/git第二课.txt",
+		"/E/移动端与pc端css布局/弹性伸缩布局/弹性伸缩布局2-混合版本.html",
+		"/E/移动端与pc端css布局/弹性伸缩布局/弹性伸缩布局1.html",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Administrator/.ssh/id_rsa.pub",
+		"/E/js组件大全/轮播组件/1.html",
+		"/E/git/learngit/git第一课.txt",
+		"/E/git/learngit/LICENSE",
+		"/E/git/git第二课.txt",
+		"/E/git/git第一课.txt",
+		"/C/Users/Administrator/Desktop/1.html"
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"d"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 120.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "express.sublime-project",
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"E:\\nodejs\\nodejs.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
