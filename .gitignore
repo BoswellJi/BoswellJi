@@ -1,6 +1,6 @@
-#sublime 
+# sublime 
 *.sublime-project
 *.sublime-workspace
 
-#忽略文件或者目录
+# 略文件或者目录
 express
