@@ -107,32 +107,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "nodejs-first/fs.js",
-			"settings":
-			{
-				"buffer_size": 797,
-				"line_ending": "Windows",
-				"name": "fs.js"
-			}
-		},
-		{
-			"file": "nodejs-first/2.txt",
-			"settings":
-			{
-				"buffer_size": 3,
-				"line_ending": "Windows",
-				"name": "2.txt"
-			}
-		},
-		{
-			"file": "nodejs-first/1.txt",
-			"settings":
-			{
-				"buffer_size": 3,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -141,10 +115,30 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
-		"last_filter": "inst",
+		"height": 375.0,
+		"last_filter": "git co",
 		"selected_items":
 		[
+			[
+				"git co",
+				"Git: Commit"
+			],
+			[
+				"git add",
+				"Git: Add All"
+			],
+			[
+				"git push",
+				"Git: Push"
+			],
+			[
+				"git stat",
+				"Git: Status"
+			],
+			[
+				"git inti",
+				"Git: Init"
+			],
 			[
 				"inst",
 				"Package Control: Install Package"
@@ -174,7 +168,7 @@
 				"Plugin Development: Profile Events"
 			]
 		],
-		"width": 528.0
+		"width": 514.0
 	},
 	"console":
 	{
@@ -195,13 +189,18 @@
 	},
 	"expanded_folders":
 	[
-		"/E/nodejs",
-		"/E/nodejs/nodejs-first"
+		"/E/nodejs"
 	],
 	"file_history":
 	[
-		"/E/nodejs/nodejs-first/buffer/buffer1.js",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/E/nodejs/nodejs-first/fs.js",
+		"/E/nodejs/nodejs-first/main.js",
+		"/E/nodejs/nodejs-first/http/http.js",
+		"/E/nodejs/nodejs-first/module.js",
 		"/E/nodejs/nodejs-first/1.txt",
+		"/E/nodejs/nodejs-first/2.txt",
+		"/E/nodejs/nodejs-first/buffer/buffer1.js",
 		"/E/nodejs/nodejs-first/process/process-first.js",
 		"/E/nodejs/learn.html",
 		"/E/nodejs/node_second/index.html",
@@ -257,6 +256,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"创建读取流，将数据通过数据管道进行压缩，再将文件写到压缩文件中",
 			"d"
 		],
 		"highlight": true,
@@ -276,100 +276,8 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "nodejs-first/fs.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 797,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								771,
-								771
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"auto_name": "fs.js",
-							"is_xml": false,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 131.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "nodejs-first/2.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3,
-								3
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"auto_name": "2.txt",
-							"is_xml": false,
-							"syntax": "Packages/MarkdownEditing/Markdown.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "nodejs-first/1.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"is_xml": false,
-							"syntax": "Packages/MarkdownEditing/Markdown.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -412,6 +320,14 @@
 	{
 		"height": 0.0
 	},
+	"output.git-commit":
+	{
+		"height": 120.0
+	},
+	"output.git-init":
+	{
+		"height": 120.0
+	},
 	"pinned_build_system": "",
 	"project": "nodejs.sublime-project",
 	"replace":
@@ -436,7 +352,7 @@
 		[
 			[
 				"",
-				"E:\\sublimet file\\chajian.sublime-project"
+				"E:\\git\\learn.sublime-workspace"
 			]
 		],
 		"width": 380.0
@@ -458,7 +374,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 201.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
