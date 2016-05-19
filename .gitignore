@@ -3,4 +3,4 @@
 *.sublime-workspace
 
 # 略文件或者目录
-express
+/node_modules

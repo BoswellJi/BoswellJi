@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"Boo",
+				"BookSchema"
+			],
+			[
+				"ex",
+				"express"
+			],
+			[
 				"wr",
 				"writeStream"
 			],
@@ -107,6 +115,31 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "mongoose/cond.js",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows",
+				"name": "con.js"
+			}
+		},
+		{
+			"file": "express-first/app.js",
+			"settings":
+			{
+				"buffer_size": 496,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "node/.gitignore",
+			"settings":
+			{
+				"buffer_size": 1242,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -116,9 +149,21 @@
 	"command_palette":
 	{
 		"height": 375.0,
-		"last_filter": "git co",
+		"last_filter": "git pus",
 		"selected_items":
 		[
+			[
+				"git pus",
+				"Git: Push"
+			],
+			[
+				"git s",
+				"Git: Status"
+			],
+			[
+				"git push",
+				"Git: Push"
+			],
 			[
 				"git co",
 				"Git: Commit"
@@ -126,10 +171,6 @@
 			[
 				"git add",
 				"Git: Add All"
-			],
-			[
-				"git push",
-				"Git: Push"
 			],
 			[
 				"git stat",
@@ -146,10 +187,6 @@
 			[
 				"",
 				"About"
-			],
-			[
-				"git s",
-				"Git: Show"
 			],
 			[
 				"install",
@@ -189,10 +226,21 @@
 	},
 	"expanded_folders":
 	[
-		"/E/nodejs"
+		"/E/nodejs",
+		"/E/nodejs/node"
 	],
 	"file_history":
 	[
+		"/E/nodejs/mongoose/mongoose.js",
+		"/E/nodejs/mongoose/remove.js",
+		"/E/nodejs/mongoose/find.js",
+		"/E/nodejs/mongoose/insert.js",
+		"/E/nodejs/readme.md",
+		"/E/nodejs/package.json",
+		"/E/nodejs/express-first/app.js",
+		"/E/nodejs/express-first/package.json",
+		"/E/nodejs/express-first/router.js",
+		"/E/nodejs/.gitignore",
 		"/C/Users/Administrator/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
 		"/E/nodejs/nodejs-first/fs.js",
 		"/E/nodejs/nodejs-first/main.js",
@@ -256,6 +304,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"js",
 			"创建读取流，将数据通过数据管道进行压缩，再将文件写到压缩文件中",
 			"d"
 		],
@@ -276,8 +325,96 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "mongoose/cond.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"auto_name": "con.js",
+							"is_xml": false,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "express-first/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 496,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								225,
+								225
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "node/.gitignore",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1242,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1368.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -328,6 +465,10 @@
 	{
 		"height": 120.0
 	},
+	"output.git-push":
+	{
+		"height": 120.0
+	},
 	"pinned_build_system": "",
 	"project": "nodejs.sublime-project",
 	"replace":
@@ -347,9 +488,13 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "",
+		"last_filter": "mong",
 		"selected_items":
 		[
+			[
+				"mong",
+				"E:\\mongoDB\\mongodb.sublime-project"
+			],
 			[
 				"",
 				"E:\\git\\learn.sublime-workspace"
