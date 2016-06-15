@@ -116,27 +116,10 @@
 	"buffers":
 	[
 		{
-			"file": "mongoose/cond.js",
+			"file": "readme.md",
 			"settings":
 			{
-				"buffer_size": 0,
-				"line_ending": "Windows",
-				"name": "con.js"
-			}
-		},
-		{
-			"file": "express-first/app.js",
-			"settings":
-			{
-				"buffer_size": 496,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "node/.gitignore",
-			"settings":
-			{
-				"buffer_size": 1242,
+				"buffer_size": 557,
 				"line_ending": "Windows"
 			}
 		}
@@ -148,12 +131,12 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 375.0,
-		"last_filter": "git pus",
+		"height": 210.0,
+		"last_filter": "git push",
 		"selected_items":
 		[
 			[
-				"git pus",
+				"git push",
 				"Git: Push"
 			],
 			[
@@ -161,7 +144,23 @@
 				"Git: Status"
 			],
 			[
-				"git push",
+				"git pull",
+				"Git: Pull"
+			],
+			[
+				"git re",
+				"Git: Remote"
+			],
+			[
+				"git diff",
+				"Git: Diff"
+			],
+			[
+				"git sta",
+				"Git: Status"
+			],
+			[
+				"git pus",
 				"Git: Push"
 			],
 			[
@@ -226,21 +225,21 @@
 	},
 	"expanded_folders":
 	[
-		"/E/nodejs",
-		"/E/nodejs/node"
+		"/E/nodejs"
 	],
 	"file_history":
 	[
+		"/E/nodejs/readme.md",
+		"/E/nodejs/mongoose/cond.js",
+		"/E/nodejs/express-first/app.js",
+		"/E/nodejs/.gitignore",
 		"/E/nodejs/mongoose/mongoose.js",
 		"/E/nodejs/mongoose/remove.js",
 		"/E/nodejs/mongoose/find.js",
 		"/E/nodejs/mongoose/insert.js",
-		"/E/nodejs/readme.md",
 		"/E/nodejs/package.json",
-		"/E/nodejs/express-first/app.js",
 		"/E/nodejs/express-first/package.json",
 		"/E/nodejs/express-first/router.js",
-		"/E/nodejs/.gitignore",
 		"/C/Users/Administrator/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
 		"/E/nodejs/nodejs-first/fs.js",
 		"/E/nodejs/nodejs-first/main.js",
@@ -325,91 +324,34 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "mongoose/cond.js",
+					"file": "readme.md",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 557,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								243,
+								243
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
-							"auto_name": "con.js",
 							"is_xml": false,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+							"syntax": "Packages/MarkdownEditing/Markdown.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "express-first/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 496,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								225,
-								225
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "node/.gitignore",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 1242,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 1368.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -457,6 +399,10 @@
 	{
 		"height": 0.0
 	},
+	"output.git":
+	{
+		"height": 120.0
+	},
 	"output.git-commit":
 	{
 		"height": 120.0
@@ -465,7 +411,15 @@
 	{
 		"height": 120.0
 	},
+	"output.git-pull":
+	{
+		"height": 120.0
+	},
 	"output.git-push":
+	{
+		"height": 120.0
+	},
+	"output.git-remote":
 	{
 		"height": 120.0
 	},
@@ -488,16 +442,20 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "mong",
+		"last_filter": "",
 		"selected_items":
 		[
 			[
-				"mong",
-				"E:\\mongoDB\\mongodb.sublime-project"
+				"",
+				"E:\\fork\\bink2\\bink2.sublime-project"
 			],
 			[
-				"",
-				"E:\\git\\learn.sublime-workspace"
+				"ex",
+				"E:\\nodejs\\express\\express.sublime-workspace"
+			],
+			[
+				"mong",
+				"E:\\mongoDB\\mongodb.sublime-project"
 			]
 		],
 		"width": 380.0
