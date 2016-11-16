@@ -4,14 +4,6 @@
 		"selected_items":
 		[
 			[
-				"Boo",
-				"BookSchema"
-			],
-			[
-				"ex",
-				"express"
-			],
-			[
 				"wr",
 				"writeStream"
 			],
@@ -29,7 +21,7 @@
 			],
 			[
 				"an",
-				"animate	.animate() with callback"
+				"animate\t.animate() with callback"
 			],
 			[
 				"ba",
@@ -115,14 +107,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "readme.md",
-			"settings":
-			{
-				"buffer_size": 557,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -131,36 +115,40 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 210.0,
-		"last_filter": "git push",
+		"height": 38.0,
+		"last_filter": "pa",
 		"selected_items":
 		[
 			[
-				"git push",
-				"Git: Push"
+				"pa",
+				"Preferences: Browse Packages"
 			],
 			[
-				"git s",
-				"Git: Status"
+				"git push",
+				"Git: Push"
 			],
 			[
 				"git pull",
 				"Git: Pull"
 			],
 			[
-				"git re",
-				"Git: Remote"
-			],
-			[
-				"git diff",
-				"Git: Diff"
-			],
-			[
-				"git sta",
+				"git s",
 				"Git: Status"
 			],
 			[
-				"git pus",
+				"git stat",
+				"Git: Status"
+			],
+			[
+				"git p",
+				"Git: Push"
+			],
+			[
+				"git ",
+				"Git: Init"
+			],
+			[
+				"git pu",
 				"Git: Push"
 			],
 			[
@@ -170,10 +158,6 @@
 			[
 				"git add",
 				"Git: Add All"
-			],
-			[
-				"git stat",
-				"Git: Status"
 			],
 			[
 				"git inti",
@@ -204,7 +188,7 @@
 				"Plugin Development: Profile Events"
 			]
 		],
-		"width": 514.0
+		"width": 400.0
 	},
 	"console":
 	{
@@ -229,20 +213,32 @@
 	],
 	"file_history":
 	[
-		"/E/nodejs/readme.md",
-		"/E/nodejs/mongoose/cond.js",
-		"/E/nodejs/express-first/app.js",
-		"/E/nodejs/.gitignore",
-		"/E/nodejs/mongoose/mongoose.js",
-		"/E/nodejs/mongoose/remove.js",
-		"/E/nodejs/mongoose/find.js",
-		"/E/nodejs/mongoose/insert.js",
-		"/E/nodejs/package.json",
-		"/E/nodejs/express-first/package.json",
-		"/E/nodejs/express-first/router.js",
-		"/C/Users/Administrator/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
-		"/E/nodejs/nodejs-first/fs.js",
+		"/E/react+webpack/webpack-dev-boilerplate/webpack.prod.config.js",
+		"/E/blog/blog/public/2016/10/22/hello-world/index.html",
+		"/E/blog/blog/package.json",
+		"/E/blog/blog/public/index.html",
+		"/E/blog/blog/scaffolds/post.md",
+		"/E/blog/blog/db.json",
+		"/E/blog/blog/.gitignore",
+		"/E/reactLearn/readme.md",
+		"/E/reactLearn/READEM.MD",
+		"/E/reactLearn/ES6.MD",
+		"/E/reactLearn/src/css/index.css",
+		"/E/reactLearn/src/html/index.html",
+		"/E/reactLearn/src/js/main.js",
+		"/E/reactLearn/GIT.MD",
+		"/C/Users/Administrator/_netrc",
+		"/C/Users/Administrator.I6KYHHJFESOYTWH/_netrc",
+		"/E/reactLearn/src/js/index.jsx",
+		"/E/reactLearn/.gitignore",
+		"/E/web应用程序性能/web-application.sublime-project",
+		"/E/响应式布局/README.MD",
+		"/E/移动端与pc端css布局与交互/readme.md",
+		"/C/Users/Administrator.I6KYHHJFESOYTWH/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Administrator.I6KYHHJFESOYTWH/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/E/移动端与pc端css布局与交互/moblic-temp.html",
 		"/E/nodejs/nodejs-first/main.js",
+		"/E/nodejs/nodejs-first/fs.js",
 		"/E/nodejs/nodejs-first/http/http.js",
 		"/E/nodejs/nodejs-first/module.js",
 		"/E/nodejs/nodejs-first/1.txt",
@@ -289,11 +285,11 @@
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 23.0
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 104.0,
 		"where_history":
 		[
 		]
@@ -303,7 +299,6 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"js",
 			"创建读取流，将数据通过数据管道进行压缩，再将文件写到压缩文件中",
 			"d"
 		],
@@ -324,45 +319,14 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "readme.md",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 557,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								243,
-								243
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"is_xml": false,
-							"syntax": "Packages/MarkdownEditing/Markdown.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 23.0
 	},
 	"input":
 	{
@@ -417,7 +381,7 @@
 	},
 	"output.git-push":
 	{
-		"height": 120.0
+		"height": 98.0
 	},
 	"output.git-remote":
 	{
@@ -427,7 +391,7 @@
 	"project": "nodejs.sublime-project",
 	"replace":
 	{
-		"height": 0.0
+		"height": 42.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -447,15 +411,15 @@
 		[
 			[
 				"",
-				"E:\\fork\\bink2\\bink2.sublime-project"
+				"E:\\blog\\blog\\blog.sublime-project"
+			],
+			[
+				"rea",
+				"E:\\react\\reactjmz.sublime-project"
 			],
 			[
 				"ex",
-				"E:\\nodejs\\express\\express.sublime-workspace"
-			],
-			[
-				"mong",
-				"E:\\mongoDB\\mongodb.sublime-project"
+				"E:\\express\\express.sublime-project"
 			]
 		],
 		"width": 380.0
@@ -477,7 +441,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 201.0,
+	"side_bar_width": 200.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
