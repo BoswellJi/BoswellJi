@@ -1,3 +1,5 @@
+'use strict';
+
 // console.log(process.cwd()+'获取应用程序的当前绝对路径');
 // var path=process.cwd();
 // process.chdir(path+'/modeified path');  修改当前应用程序的路径
@@ -25,16 +27,16 @@
 // // 标注的输入流
 // process.stdin.resume();   //等待输入
 // process.stdin.on('data',function(data){   //触发data事件
-	 
+
 // 		process.stdout.write('haha'+data);  //标准输出流
-	
+
 // });
 
 // nextTick不需要等待callback方法执行完毕
 console.log('start');
-process.nextTick(() => {
+process.nextTick(function () {
 	debugger;
-  console.log('nextTick callback');
+	console.log('nextTick callback');
 });
 
 debugger;

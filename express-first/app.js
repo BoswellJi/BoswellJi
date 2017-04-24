@@ -1,27 +1,60 @@
 // 开启一个nodejs服务，监听81端口
-var express=require('express');
+const express=require('express');
+var swig=require('swig');
+const bodyParser=require('body-parser');
 var app=express();
-app.listen(81);
 
-//路由处理 ，  第一为路径，第二个为处理函数，第一个省略，说明所有的请求路径都会被他处理
-app.use();
+require('./config/express.js')(app);
 
 
-//静态文件路径,当请求路径为一个静态文件时，直接返回
-app.use(express.static(__dirname+'/public')); 
+// 设置静态文件托管
+// 请求以/public开头的就一后面方法处理
+app.use('/public',express.static(__dirname+'/public'));
 
-//只处理过来请求根路径的请求路径，
-app.get('/',function(res,req){    //路由 请求对象 响应对象
-	//从提交的请求中，查询信息
-	console.log(res.method);
-	console.log(res.baseUrl);
-	console.log(res.query);  //获取转换后的查询参数对象 url
-	console.log(res.query.id);
+/**
+ * 配置模板
+ * 1.定义模板引擎，使用swig.renderFile来解析html文件
+ * 2.设置模板存放目录
+ * 3.注册模板引擎
+ */
+// 第一个参数为模板后缀
+app.engine('html',swig.renderFile);
+// 第一个参数必须是views
+app.set('views',__dirname +'/views');
+// 第一个参数必须是view engine,第二个参数必须和app.engine的第一个参数定义的模板类型必须一致
+app.set('view engine','html');
+app.set('view cache', false);
+// To disable Swig's cache, do the following:
+swig.setDefaults({ cache: false });
 
-	//post
-	console.log(res.body);  //获取转换后的提交数据对象
 
-	
-	
-});
+// 定义不同部分的路由
+// app.use('/admin',require('./router/admin'));
+// app.use('/api',require('./router/api'));
+// app.use('/',require('./router/main'));
+
+// 设置body-parser,解析post请求的数据
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.listen(3001);
+// console.log('node server 。。。'+process.env.PORT);
+
+
+
+// const http=require('http');
+// const connect=require('connect');
+// const app=connect();
+
+// app.use(connect.logger());
+
+// app.use(function(req,res,next){
+// 	res.writeHead(200,{'Content-Type':'text/html'});
+// 	res.send('df');
+// 	res.end();
+// });
+
+// http.createServer(app).listen(3001);
+
+
 

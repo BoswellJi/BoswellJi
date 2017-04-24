@@ -53,3 +53,38 @@ express框架：
 项目的最佳实践：就是使用某项技术所采用的某种项目目录搭建方式，以及使用方式
 
 
+## javascipt
+- ecmascript
+- dom
+- bom
+
+## nodejs
+- ecmascript
+- http
+- os
+- file
+
+
+### npm
+```
+Router
+
+swig:模板引擎
+
+mysql:连接mysql数据库的包
+
+jugglingdb:数据库与实体的映射，orm框架
+
+```
+
+
+### 项目分模块
+```
+前端
+后端
+api
+
+app.use('/admin',require('./router/admin'));
+app.use('/api',require('./router/api'));
+app.use('/',require('./router/main'));
+```

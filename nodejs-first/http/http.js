@@ -1,5 +1,6 @@
-var http=require('http');
-http.createServer(function(request,respone){
+import http from 'http';
+http.createServer((request,respone)=>{
 	respone.writeHead(200,{'content-type':'text/plain'});
-	respone.
+	respone.send('df');
+	respone.end();
 });

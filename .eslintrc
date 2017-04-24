@@ -1,0 +1,15 @@
+{
+  "env": {
+    "es6": true
+  },
+  "rules": {
+    "semi": "off",
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": true, 
+      "optionalDependencies": false, 
+      "peerDependencies": false
+    }]
+    ,"quotes": ["error", "single", {"allowTemplateLiterals": true}]
+  },
+  "extends": "airbnb"
+}

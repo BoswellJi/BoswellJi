@@ -1,11 +1,36 @@
-//我擦，居然使用es6的语法
+'use strict';
+
+require('babel-polyfill');
+
+var _http = require('http');
+
+var _http2 = _interopRequireDefault(_http);
+
+var _url = require('url');
+
+var _url2 = _interopRequireDefault(_url);
+
+require('./event/eventEmitter.js');
+
+require('./util');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//定义常量
+
+
+// var route=require('./route.js');
+// var readHtml = require('./fs/readFs.js');
+// var writeHtml = require('./fs/writeFs.js');
+// const async = require('./async');
+
+var hostname = '127.0.0.1'; //我擦，居然使用es6的语法
 
 //nodejs提倡使用commonjs规范，所以，使用require函数来加载模块
 
 
 //因为nodejs为服务器端的js语言了，所以提供了适合于服务器端的api[对象]，
 //当然也就不需要在浏览器端的一些api了，但是语法还是相同的，也会有部分的api是通用的
-
 
 
 //nodejs中实现了commonjs的模块管理规范，并在这个模块管理规范的基础之上创造了npm，包【模块】管理工具，每一个包
@@ -46,41 +71,22 @@
 	
 */
 
-
 //加载模块
 
 
-import 'babel-polyfill';
-
-import http  from 'http';
-import url from 'url';
-
-
-// var route=require('./route.js');
-// var readHtml = require('./fs/readFs.js');
-// var writeHtml = require('./fs/writeFs.js');
-// const async = require('./async');
-
-import './event/eventEmitter.js';
-import './util';
-
-//定义常量
-const hostname = '127.0.0.1';
-const port = 5858;
-
+var port = 5858;
 
 //创建一个node服务
-http.createServer((req, res) => {
-    // var pathname = url.parse(req.url).pathname;
-    // pathname = pathname.replace(/\//, '');
-    // route[pathname](req,res);
-    // res.writeHead(200, {'Content-Type': 'text/html' });
-    // readHtml.readFile('./views/index.html',res);
-    // writeHtml.writeFile('./a.txt', 'nodejs');
-    // res.write('异步');
-    // readHtml.readImg('./images/a.png',res);
-    // res.end();
-}).listen(port, hostname, ()=> {
-    console.log(`Server running at http://${hostname}:${port}/`);
-
+_http2.default.createServer(function (req, res) {
+	// var pathname = url.parse(req.url).pathname;
+	// pathname = pathname.replace(/\//, '');
+	// route[pathname](req,res);
+	// res.writeHead(200, {'Content-Type': 'text/html' });
+	// readHtml.readFile('./views/index.html',res);
+	// writeHtml.writeFile('./a.txt', 'nodejs');
+	// res.write('异步');
+	// readHtml.readImg('./images/a.png',res);
+	// res.end();
+}).listen(port, hostname, function () {
+	console.log('Server running at http://' + hostname + ':' + port + '/');
 });
