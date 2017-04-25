@@ -1,15 +1,14 @@
 
-import gulp from 'gulp'
+import gulp from 'gulp';
 // import eslint from 'gulp-eslint'
 
-import babel from 'gulp-babel'
-// import sourcemaps from 'gulp-sourcemaps'
+import babel from 'gulp-babel';
 
-// 配置需要处理的文件目录和转码之后文件的存放目录
-const paramConfig = {
-  source: 'nodejs-first/**/*',
-  dest: 'build',
-}
+import gulpWebpack from 'gulp-webpack';
+
+import webpackConfig from './webpack.config.js';
+
+// import sourcemaps from 'gulp-sourcemaps'
 
 // gulp.task('lint', () => {
 //   // eslint配置，使用配置的文件目录。排除node_modules下的全部文件。
@@ -42,22 +41,26 @@ gulp.task('app', () => {
 })
 
 gulp.task('views', () => {
-  return gulp.src('express-first/views/**/*')  
-    .pipe()
+  return gulp.src('express-first/views/**/*')
     .pipe(gulp.dest('express-app/views'))
 })
 
 gulp.task('public', () => {
-  return gulp.src('express-first/public/**/*')  
-    .pipe()
+  return gulp.src(['express-first/public/css/**/*','express-first/public/js/**/*'])
+    .pipe(gulpWebpack(webpackConfig))
     .pipe(gulp.dest('express-app/public'))
+})
+
+gulp.task('image', () => {
+  return gulp.src('express-first/public/images/**/*')
+    .pipe(gulp.dest('express-app/public/images'))
 })
 
 gulp.task('nodeW',()=>{
 	gulp.watch('express-first/node/**/*',['node']);
 })
 
-gulp.task('viewW',()=>{
+gulp.task('viewsW',()=>{
 	gulp.watch('express-first/views/**/*',['views']);
 });
 
@@ -69,9 +72,10 @@ gulp.task('appW',()=>{
 	gulp.watch('express-first/app.js',['app']);
 })
 
-gulp.task('default', ['nodeW',
-'viewW',
-'publicW',
-'appW'], () => {
+gulp.task('imageW',()=>{
+  gulp.watch('express-first/app.js',['image']);
+})
+
+gulp.task('default', ['nodeW','viewsW','publicW','appW','imageW'], () => {
  console.log('gulp default task!')
 })

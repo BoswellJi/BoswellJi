@@ -1,15 +1,17 @@
+'use strict';
+
 // 开启一个nodejs服务，监听81端口
-const express=require('express');
-var swig=require('swig');
-const bodyParser=require('body-parser');
-var app=express();
+var express = require('express');
+var swig = require('swig');
+var bodyParser = require('body-parser');
+var app = express();
 
 // require('./node/config/express.js')(app);
 
 
 // 设置静态文件托管
 // 请求以/public开头的就一后面方法处理
-app.use('/public',express.static(__dirname+'/public'));
+app.use('/public', express.static(__dirname + '/public'));
 
 /**
  * 配置模板
@@ -18,15 +20,14 @@ app.use('/public',express.static(__dirname+'/public'));
  * 3.注册模板引擎
  */
 // 第一个参数为模板后缀
-app.engine('html',swig.renderFile);
+app.engine('html', swig.renderFile);
 // 第一个参数必须是views
-app.set('views',__dirname +'/views');
+app.set('views', __dirname + '/views');
 // 第一个参数必须是view engine,第二个参数必须和app.engine的第一个参数定义的模板类型必须一致
-app.set('view engine','html');
+app.set('view engine', 'html');
 app.set('view cache', false);
 // To disable Swig's cache, do the following:
 swig.setDefaults({ cache: false });
-
 
 // 定义不同部分的路由
 // app.use('/admin',require('./node/router/admin'));
@@ -41,10 +42,9 @@ app.listen(3001);
 // console.log('node server 。。。'+process.env.PORT);
 
 
-app.get('/',(req,res,next)=>{
-	res.render('index');
+app.get('/', function (req, res, next) {
+  res.render('index');
 });
-
 
 // const http=require('http');
 // const connect=require('connect');
@@ -59,6 +59,3 @@ app.get('/',(req,res,next)=>{
 // });
 
 // http.createServer(app).listen(3001);
-
-
-
