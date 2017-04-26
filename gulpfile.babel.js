@@ -43,13 +43,11 @@ gulp.task('app', () => {
 
 gulp.task('views', () => {
   return gulp.src('express-first/views/**/*')  
-    .pipe()
     .pipe(gulp.dest('express-app/views'))
 })
 
 gulp.task('public', () => {
   return gulp.src('express-first/public/**/*')  
-    .pipe()
     .pipe(gulp.dest('express-app/public'))
 })
 
@@ -57,7 +55,7 @@ gulp.task('nodeW',()=>{
 	gulp.watch('express-first/node/**/*',['node']);
 })
 
-gulp.task('viewW',()=>{
+gulp.task('viewsW',()=>{
 	gulp.watch('express-first/views/**/*',['views']);
 });
 
@@ -69,9 +67,6 @@ gulp.task('appW',()=>{
 	gulp.watch('express-first/app.js',['app']);
 })
 
-gulp.task('default', ['nodeW',
-'viewW',
-'publicW',
-'appW'], () => {
+gulp.task('default', ['nodeW', 'appW', 'publicW', 'viewsW'], () => {
  console.log('gulp default task!')
 })
