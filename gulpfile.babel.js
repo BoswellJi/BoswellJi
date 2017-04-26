@@ -47,7 +47,6 @@ gulp.task('views', () => {
 
 gulp.task('public', () => {
   return gulp.src(['express-first/public/css/**/*','express-first/public/js/**/*'])
-    .pipe(gulpWebpack(webpackConfig))
     .pipe(gulp.dest('express-app/public'))
 })
 
@@ -71,7 +70,6 @@ gulp.task('publicW',()=>{
 gulp.task('appW',()=>{
 	gulp.watch('express-first/app.js',['app']);
 })
-
 gulp.task('imageW',()=>{
   gulp.watch('express-first/app.js',['image']);
 })
