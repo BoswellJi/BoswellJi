@@ -4,7 +4,7 @@ var swig=require('swig');
 const bodyParser=require('body-parser');
 var app=express();
 
-require('./config/express.js')(app);
+// require('./node/config/express.js')(app);
 
 
 // 设置静态文件托管
@@ -29,9 +29,9 @@ swig.setDefaults({ cache: false });
 
 
 // 定义不同部分的路由
-// app.use('/admin',require('./router/admin'));
-// app.use('/api',require('./router/api'));
-// app.use('/',require('./router/main'));
+// app.use('/admin',require('./node/router/admin'));
+// app.use('/api',require('./node/router/api'));
+// app.use('/',require('./node/router/main'));
 
 // 设置body-parser,解析post请求的数据
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -40,6 +40,10 @@ app.use(bodyParser.json());
 app.listen(3001);
 // console.log('node server 。。。'+process.env.PORT);
 
+
+app.get('/',(req,res,next)=>{
+	res.render('index');
+});
 
 
 // const http=require('http');
