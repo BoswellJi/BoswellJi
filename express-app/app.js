@@ -1,17 +1,18 @@
 'use strict';
 
+var _morgan = require('morgan');
+
+var _morgan2 = _interopRequireDefault(_morgan);
+
+require('./node/utils/use');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 // 开启一个nodejs服务，监听81端口
 var express = require('express');
 var swig = require('swig');
 var bodyParser = require('body-parser');
 var app = express();
-
-// require('./node/config/express.js')(app);
-
-
-// 设置静态文件托管
-// 请求以/public开头的就一后面方法处理
-app.use('/public', express.static(__dirname + '/public'));
 
 /**
  * 配置模板
@@ -29,22 +30,24 @@ app.set('view cache', false);
 // To disable Swig's cache, do the following:
 swig.setDefaults({ cache: false });
 
+app.use((0, _morgan2.default)());
+
+// 设置静态文件托管
+// 请求以/public开头的就一后面方法处理
+app.use('/public', express.static(__dirname + '/public'));
+
 // 定义不同部分的路由
-// app.use('/admin',require('./node/router/admin'));
-// app.use('/api',require('./node/router/api'));
-// app.use('/',require('./node/router/main'));
+app.use('/admin', require('./node/router/admin'));
+app.use('/api', require('./node/router/api'));
+app.use('/', require('./node/router/main'));
 
 // 设置body-parser,解析post请求的数据
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.listen(3001);
+
 // console.log('node server 。。。'+process.env.PORT);
-
-
-app.get('/', function (req, res, next) {
-  res.render('index');
-});
 
 // const http=require('http');
 // const connect=require('connect');
