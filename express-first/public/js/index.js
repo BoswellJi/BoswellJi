@@ -1,3 +1,4 @@
 import '../css/index.css';
 
-'dfvffgfgdfvv'
+import anular from 'angular';
+console.log(angular);
