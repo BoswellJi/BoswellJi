@@ -12,7 +12,7 @@ import "babel-polyfill";
 const config = {
     entry: {
         index: './express-first/public/js/index.js'
-        // vender: ['angular', 'angular-ui-router']
+            // vender: ['angular', 'angular-ui-router']
     },
     //打包输出的文件
     output: {
@@ -21,26 +21,22 @@ const config = {
     },
     // 加载器
     module: {
-        loaders: [
-        {
+        loaders: [{
             test: /\.css$/,
-            loader: ExtractTextPlugin.extract('style','css!postcss')
-        },
-         {
+            loader: ExtractTextPlugin.extract('style', 'css!postcss')
+        }, {
             test: /\.js?$/,
             exclude: /node_modules/,
             loader: 'babel-loader?cacheDirectory'
-        }
-        // , {
-        //     test: /\.(png|jpg|gif|svg)$/i,
-        //     loader: 'url',
-        //     exclude: /node_modules/,
-        //     query: {
-        //         limit: 10,
-        //         name: 'images/[name].[hash:8].[ext]'
-        //     }
-        // }
-        ]
+        }, {
+            test: /\.(png|jpg|gif|svg)$/i,
+            loader: 'url',
+            exclude: /node_modules/,
+            query: {
+                limit: 10,
+                name: 'images/[name].[hash:8].[ext]'
+            }
+        }]
     },
     plugins: [
         new ExtractTextPlugin("css/style.bundle.css"),
