@@ -3,4 +3,7 @@ body{
 	margin: 0;
 	transition: all 1s;
 	background: url(/public/images/head.jpg);
+} .hello{
+	color: red;
 }
+/*# sourceMappingURL=style.bundle.css.map*/

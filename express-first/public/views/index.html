@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<link rel="stylesheet" href="/public/css/style.bundle.css" />
 </head>
 <body>
+	<!-- <hello></hello> -->
+	<a ui-sref="hello" ui-sref-active="active">Hello</a>
+    <a ui-sref="about" ui-sref-active="active">About</a>
+	<ui-view></ui-view>
 	<script src="/public/js/common.js"></script>
 	<script src="/public/js/bundle.js"></script>
 </body>
-</html>
+</html> 

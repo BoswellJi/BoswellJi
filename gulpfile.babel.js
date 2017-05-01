@@ -40,17 +40,14 @@ gulp.task('app', () => {
     .pipe(gulp.dest('express-app'))
 })
 
-gulp.task('views', () => {
-  return gulp.src('express-first/views/**/*')
-    .pipe(gulp.dest('express-app/views'))
-})
 
 gulp.task('public', () => {
   return gulp.src(['express-first/public/css/**/*','express-first/public/js/**/*'])
+    .pipe(gulpWebpack(webpackConfig))
     .pipe(gulp.dest('express-app/public'))
 })
 
-gulp.task('image', () => {
+gulp.task('images', () => {
   return gulp.src('express-first/public/images/**/*')
     .pipe(gulp.dest('express-app/public/images'))
 })
@@ -59,21 +56,20 @@ gulp.task('nodeW',()=>{
 	gulp.watch('express-first/node/**/*',['node']);
 })
 
-gulp.task('viewsW',()=>{
-	gulp.watch('express-first/views/**/*',['views']);
-});
 
 gulp.task('publicW',()=>{
-	gulp.watch('express-first/public/**/*',['public']);
+  gulp.watch(['express-first/public/css/**/*','express-first/public/js/**/*'],['public']);
 });
 
 gulp.task('appW',()=>{
 	gulp.watch('express-first/app.js',['app']);
 })
-gulp.task('imageW',()=>{
-  gulp.watch('express-first/app.js',['image']);
+
+gulp.task('imagesW',()=>{
+  gulp.watch('express-first/public/images/**/*',['images']);
 })
 
-gulp.task('default', ['nodeW','viewsW','publicW','appW','imageW'], () => {
+
+gulp.task('default', ['nodeW','publicW','appW','imagesW'], () => {
  console.log('gulp default task!')
 })

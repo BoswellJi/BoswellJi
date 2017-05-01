@@ -3,8 +3,8 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/user/register', function (req, res, next) {
-
+// app.use()指定了 只在/admin路径下的路由匹配
+router.get('/user', function (req, res, next) {
 	next();
 });
 
