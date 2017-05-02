@@ -11,7 +11,9 @@ import hello from './dircetive/hello.js';
 
 import one from './utils/test.js';
 
-const app=angular.module('app',[angularUiRouter,'ionic']);
+import ngInfiniteScroll from 'ng-infinite-scroll';
+
+const app=angular.module('app',[angularUiRouter,'ionic',ngInfiniteScroll]);
 
 
 
