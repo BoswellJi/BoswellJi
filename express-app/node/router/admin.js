@@ -12,3 +12,5 @@ var router = _express2.default.Router();
 router.get('/user', function (req, res, next) {
 	next();
 });
+
+module.exports = router;

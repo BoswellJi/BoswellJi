@@ -1,13 +1,13 @@
 // 开启一个nodejs服务，监听81端口
-import  express from 'express';
-import swig from 'swig';
-import bodyParser from 'body-parser';
+
+import express from'express';
+import swig from'swig';
+import bodyParser from'body-parser';
+import logger from 'morgan';
+// import './node/utils/use';
+
 
 const app=express();
-
-// 设置静态文件托管
-// 请求以/public开头的就一后面方法处理
-app.use('/public',express.static(__dirname+'/public'));
 
 /**
  * 配置模板
@@ -24,23 +24,28 @@ app.set('view engine','html');
 app.set('view cache', false);
 swig.setDefaults({ cache: false });
 
-// 定义不同部分的路由
-// app.use('/admin',require('./node/router/admin'));
-// app.use('/api',require('./node/router/api'));
+
+/**
+ * 中间件配置使用
+ */
+app.use(logger());
+// // 设置静态文件托管
+// // 请求以/public开头的就一后面方法处理
+app.use('/public',express.static(__dirname+'/public'));
+
+// // 定义不同部分的路由
+app.use('/admin',require('./node/router/admin'));
+app.use('/api',require('./node/router/api'));
 app.use('/',require('./node/router/main'));
 
-// 设置body-parser,解析post请求的数据
+// // 设置body-parser,解析post请求的数据
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+
 app.listen(3001);
+
 // console.log('node server 。。。'+process.env.PORT);
-
-
-// app.get('/',(req,res,next)=>{
-// 	res.render('index');
-// });
-
 
 // const http=require('http');
 // const connect=require('connect');

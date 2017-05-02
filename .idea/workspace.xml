@@ -2,16 +2,55 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33ab20cb-14b4-47f7-a99a-9ee9a642cc3d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/express-first/public/index.css" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-app/node/controller/homeController.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-app/node/utils/async/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-app/node/utils/event/eventEmitter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-app/node/utils/fs/projectFile.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-app/node/utils/fs/readFs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-app/node/utils/fs/writeFs.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-app/node/utils/http/call_apply.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-app/node/utils/http/context.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-app/node/utils/http/createServer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-app/node/utils/http/http.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-app/node/utils/http/modules/user.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-app/node/utils/http/node_rep.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-app/node/utils/http/request.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-app/node/utils/process/process-first.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-app/node/utils/route.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-app/node/utils/server.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-app/node/utils/use.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-app/node/utils/util/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-first/node/utils/http/call_apply.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/express-first/node/utils/use.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/express-app/app.js" afterPath="$PROJECT_DIR$/express-app/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/express-app/node/router/admin.js" afterPath="$PROJECT_DIR$/express-app/node/router/admin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/express-app/node/router/api.js" afterPath="$PROJECT_DIR$/express-app/node/router/api.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/express-app/node/router/main.js" afterPath="$PROJECT_DIR$/express-app/node/router/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/express-app/public/css/style.bundle.css" afterPath="$PROJECT_DIR$/express-app/public/css/style.bundle.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/express-app/public/js/common.js.map" afterPath="$PROJECT_DIR$/express-app/public/js/common.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/express-first/app.js" afterPath="$PROJECT_DIR$/express-first/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/express-first/node/router/admin.js" afterPath="$PROJECT_DIR$/express-first/node/router/admin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/express-first/node/router/api.js" afterPath="$PROJECT_DIR$/express-first/node/router/api.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/express-first/node/router/main.js" afterPath="$PROJECT_DIR$/express-first/node/router/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/express-first/public/js/index.js" afterPath="$PROJECT_DIR$/express-first/public/js/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/express-first/views/index.html" afterPath="$PROJECT_DIR$/express-first/views/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gulpfile.babel.js" afterPath="$PROJECT_DIR$/gulpfile.babel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/express-first/public/css/index.css" afterPath="$PROJECT_DIR$/express-first/public/css/index.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack.config.js" afterPath="$PROJECT_DIR$/webpack.config.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nodejs-first/async/index.js" afterPath="$PROJECT_DIR$/express-first/node/utils/async/index.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nodejs-first/event/eventEmitter.js" afterPath="$PROJECT_DIR$/express-first/node/utils/event/eventEmitter.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nodejs-first/fs/projectFile.js" afterPath="$PROJECT_DIR$/express-first/node/utils/fs/projectFile.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nodejs-first/fs/readFs.js" afterPath="$PROJECT_DIR$/express-first/node/utils/fs/readFs.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nodejs-first/fs/writeFs.js" afterPath="$PROJECT_DIR$/express-first/node/utils/fs/writeFs.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nodejs-first/http/call_apply.js" afterPath="$PROJECT_DIR$/express-first/node/controller/homeController.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nodejs-first/http/context.js" afterPath="$PROJECT_DIR$/express-first/node/utils/http/context.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nodejs-first/http/createServer.js" afterPath="$PROJECT_DIR$/express-first/node/utils/http/createServer.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nodejs-first/http/http.js" afterPath="$PROJECT_DIR$/express-first/node/utils/http/http.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nodejs-first/http/modules/user.js" afterPath="$PROJECT_DIR$/express-first/node/utils/http/modules/user.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nodejs-first/http/node_rep.js" afterPath="$PROJECT_DIR$/express-first/node/utils/http/node_rep.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nodejs-first/http/request.js" afterPath="$PROJECT_DIR$/express-first/node/utils/http/request.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nodejs-first/process/process-first.js" afterPath="$PROJECT_DIR$/express-first/node/utils/process/process-first.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nodejs-first/route.js" afterPath="$PROJECT_DIR$/express-first/node/utils/route.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nodejs-first/server.js" afterPath="$PROJECT_DIR$/express-first/node/utils/server.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/nodejs-first/util/index.js" afterPath="$PROJECT_DIR$/express-first/node/utils/util/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,7 +67,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/express-first/views/index.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -62,11 +101,29 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/express-first/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-              <folding>
-                <element signature="e#23#54#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="690">
+              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="11" column="31" lean-forward="true" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/express-app/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -74,8 +131,8 @@
       <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webpack.config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="43" column="6" lean-forward="true" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
+            <state relative-caret-position="1110">
+              <caret line="43" column="6" lean-forward="false" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -86,7 +143,7 @@
       <file leaf-file-name="gulpfile.babel.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gulpfile.babel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="985">
+            <state relative-caret-position="1140">
               <caret line="42" column="37" lean-forward="false" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -114,12 +171,12 @@
         <option value="$PROJECT_DIR$/gulpfile.babel.js" />
         <option value="$PROJECT_DIR$/express-first/public/css/index.css" />
         <option value="$PROJECT_DIR$/express-first/node/utils/connection.js" />
-        <option value="$PROJECT_DIR$/express-first/app.js" />
         <option value="$PROJECT_DIR$/express-first/node/router/main.js" />
         <option value="$PROJECT_DIR$/express-first/node/router/admin.js" />
         <option value="$PROJECT_DIR$/express-first/public/js/index.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
+        <option value="$PROJECT_DIR$/express-first/app.js" />
       </list>
     </option>
   </component>
@@ -160,7 +217,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -204,6 +260,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -295,6 +352,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -337,6 +400,7 @@
       <option name="presentableId" value="Default" />
       <updated>1493170411727</updated>
       <workItem from="1493172090388" duration="2950000" />
+      <workItem from="1493689126469" duration="149000" />
     </task>
     <task id="LOCAL-00001" summary="同步代码">
       <created>1493172411650</created>
@@ -349,33 +413,33 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2950000" />
+    <option name="totallyTimeSpent" value="3099000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982087" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug Logs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug Logs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38356164" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982087" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982087" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.128125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982087" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Salesforce" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Salesforce" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982087" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982087" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -388,32 +452,78 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="同步代码" />
     <MESSAGE value="Merge branch 'master' of github.com:dqrjmz/nodejs_learn&#10;&#10;# Conflicts:&#10;#&#9;express-app/app.js&#10;#&#9;express-app/views/index.html&#10;#&#9;express-first/public/index.css&#10;#&#9;express-first/views/index.html&#10;#&#9;gulpfile.babel.js&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of github.com:dqrjmz/nodejs_learn&#10;&#10;# Conflicts:&#10;#&#9;express-app/app.js&#10;#&#9;express-app/views/index.html&#10;#&#9;express-first/public/index.css&#10;#&#9;express-first/views/index.html&#10;#&#9;gulpfile.babel.js&#10;" />
+    <MESSAGE value="Merge branch 'master' of github.com:dqrjmz/nodejs_learn&#10;&#10;# Conflicts:&#10;#&#9;express-app/app.js&#10;#&#9;express-app/node/router/api.js&#10;#&#9;express-app/node/router/main.js&#10;#&#9;express-first/app.js&#10;#&#9;package.json&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of github.com:dqrjmz/nodejs_learn&#10;&#10;# Conflicts:&#10;#&#9;express-app/app.js&#10;#&#9;express-app/node/router/api.js&#10;#&#9;express-app/node/router/main.js&#10;#&#9;express-first/app.js&#10;#&#9;package.json&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/express-first/views/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="12" column="7" lean-forward="false" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/express-first/public/css/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/express-first/public/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/express-first/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1110">
+          <caret line="43" column="6" lean-forward="true" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gulpfile.babel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1140">
+          <caret line="42" column="37" lean-forward="false" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#607#631#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/readme.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="0">
             <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/express-first/public/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/express-first/public/index.css" />
     <entry file="file://$PROJECT_DIR$/express-first/node/router/api.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -431,7 +541,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="sourcemapFileViewerProvider">
@@ -442,7 +551,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -450,7 +558,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -494,35 +601,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="47" column="14" lean-forward="false" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webpack.config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="43" column="6" lean-forward="true" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
+        <state relative-caret-position="1110">
+          <caret line="43" column="6" lean-forward="false" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/express-app/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1122">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gulpfile.babel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="985">
+        <state relative-caret-position="1140">
           <caret line="42" column="37" lean-forward="false" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -539,13 +630,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="11" column="31" lean-forward="true" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/express-app/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/express-first/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding>
-            <element signature="e#23#54#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="690">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -6,3 +6,4 @@ router.get('/user',(req,res,next)=>{
 	next();
 });
 
+module.exports=router;

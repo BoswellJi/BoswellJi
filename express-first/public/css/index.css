@@ -2,5 +2,5 @@ body{
 	padding: 0;
 	margin: 0;
 	transition: all 1s;
-	background: url(/public/images/head.jpg);
+	background: url(/public/images/head.jpg); 
 }

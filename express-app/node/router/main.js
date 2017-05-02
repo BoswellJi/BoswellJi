@@ -10,5 +10,6 @@ var router = _express2.default.Router();
 
 router.get('/', function (req, res, next) {
 	res.render('index');
-	next();
 });
+
+module.exports = router;
