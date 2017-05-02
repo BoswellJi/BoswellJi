@@ -6,8 +6,8 @@ import bodyParser from'body-parser';
 import logger from 'morgan';
 // import './node/utils/use';
 
-
 const app=express();
+
 
 /**
  * 配置模板
@@ -18,7 +18,7 @@ const app=express();
 // 第一个参数为模板后缀
 app.engine('html',swig.renderFile);
 // 第一个参数必须是views
-app.set('views',__dirname +'/views');
+app.set('views',__dirname +'/public/views');
 // 第一个参数必须是view engine,第二个参数必须和app.engine的第一个参数定义的模板类型必须一致
 app.set('view engine','html');
 app.set('view cache', false);

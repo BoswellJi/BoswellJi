@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link href="https://cdn.bootcss.com/ionic/1.3.2/css/ionic.css" rel="stylesheet">
+	<link rel="stylesheet" href="/public/css/style.bundle.css" />
+</head>
+<body>
+	<!-- <hello></hello> -->
+	<a ui-sref="hello" ui-sref-active="active">Hello</a>
+    <a ui-sref="about" ui-sref-active="active">About</a>
+	<ui-view></ui-view>
+
+	<ion-view title="Home" hide-nav-bar="true">
+      <ion-scroll zooming="true" direction="xy" style="width: 500px; height: 500px">
+        <div style="width: 5000px; height: 5000px; background: url('http://www.runoob.com/try/demo_source/Europe_geological_map-en.jpg') repeat"></div>
+      </ion-scroll>
+    </ion-view>
+	<script src="https://cdn.bootcss.com/ionic/1.3.2/js/ionic.bundle.min.js"></script>
+	<script src="/public/js/common.js"></script>
+	<script src="/public/js/bundle.js"></script>
+</body>
+</html> 
