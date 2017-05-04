@@ -18,7 +18,7 @@
 import gulp from 'gulp';
 import babel from 'gulp-babel';
 import gulpWebpack from 'gulp-webpack';
-import webpackConfig from './webpack.config.js';
+import webpackConfig from './frontEnd.webpack.config.js';
 
 gulp.task('node', () => {
   return gulp.src('express-first/node/**/*')  
@@ -34,30 +34,25 @@ gulp.task('app', () => {
     // .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('express-app'))
 })
-
-
 gulp.task('public', () => {
   return gulp.src(['express-first/public/css/**/*','express-first/public/js/**/*'])
     .pipe(gulpWebpack(webpackConfig))
     .pipe(gulp.dest('express-app/public'))
 })
-
 gulp.task('images', () => {
   return gulp.src('express-first/public/images/**/*')
     .pipe(gulp.dest('express-app/public/images'))
 })
+
 gulp.task('nodeW',()=>{
 	gulp.watch('express-first/node/**/*',['node']);
 })
-
-
 gulp.task('publicW',()=>{
   gulp.watch(['express-first/public/css/**/*','express-first/public/js/**/*'],['public']);
 });
 gulp.task('appW',()=>{
 	gulp.watch('express-first/app.js',['app']);
 })
-
 gulp.task('imagesW',()=>{
   gulp.watch('express-first/public/images/**/*',['images']);
 })

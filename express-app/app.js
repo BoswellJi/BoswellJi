@@ -16,14 +16,19 @@ var _morgan = require('morgan');
 
 var _morgan2 = _interopRequireDefault(_morgan);
 
+var _router = require('./node/utils/router/router1.js');
+
+var _router2 = _interopRequireDefault(_router);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var app = (0, _express2.default)();
 // import './node/utils/use';
-
+// 
 
 // 开启一个nodejs服务，监听81端口
 
-var app = (0, _express2.default)();
+(0, _router2.default)(app);
 
 /**
  * 配置模板
@@ -49,9 +54,9 @@ app.use((0, _morgan2.default)());
 app.use('/public', _express2.default.static(__dirname + '/public'));
 
 // // 定义不同部分的路由
-app.use('/admin', require('./node/router/admin'));
-app.use('/api', require('./node/router/api'));
-app.use('/', require('./node/router/main'));
+// app.use('/admin',require('./node/router/admin'));
+// app.use('/api',require('./node/router/api'));
+// app.use('/',require('./node/router/main'));
 
 // // 设置body-parser,解析post请求的数据
 app.use(_bodyParser2.default.urlencoded({ extended: false }));

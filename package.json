@@ -52,9 +52,10 @@
     "webpack": "^1.15.0"
   },
   "scripts": {
-    "build": "gulp",
+    "del": "rm -rf express-app/",
+    "build": "set NODE_ENV=development && gulp",
     "server": "supervisor express-app/app.js",
-    "pro": "set NODE_ENV=production && gulp",
-    "dev": "set NODE_ENV=development && gulp"
+    "pro": "set NODE_ENV=production && webpack",
+    "dev": "set NODE_ENV=development && webpack"
   }
 }
