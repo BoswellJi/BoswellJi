@@ -13,7 +13,9 @@ import one from './utils/test.js';
 
 import ngInfiniteScroll from 'ng-infinite-scroll';
 
-const app=angular.module('app',[angularUiRouter,'ionic',ngInfiniteScroll]);
+
+//,[angularUiRouter,'ionic',ngInfiniteScroll
+const app=angular.module('app',[angularUiRouter]);
 
 
 
