@@ -13,12 +13,16 @@ import one from './utils/test.js';
 
 import ngInfiniteScroll from 'ng-infinite-scroll';
 
-const app=angular.module('app',[angularUiRouter,'ionic',ngInfiniteScroll]);
 
+// controller
+import oneController from './controller/oneController.js';
 
+const app=angular.module('app',[angularUiRouter,ngInfiniteScroll]);
+
+oneController(app);
 
 hello(app);
-
+  
 router(app);    
 
 
