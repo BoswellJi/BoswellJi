@@ -9,6 +9,8 @@ import "babel-polyfill";
 
 // 基础配置
 const config = {
+    target: 'web',
+    cache: true,
     entry: {
         index: './express-first/public/js/index.js',
         vender: ['angular', 'angular-ui-router']
@@ -16,13 +18,14 @@ const config = {
     //打包输出的文件
     output: {
         path: path.resolve(__dirname, "express-app/public"),
-        publicPath:'/public/',
+        publicPath: '/public/',
         filename: "js/bundle.js"
     },
     // 加载器
     module: {
         loaders: [{
             test: /\.css$/,
+            exclude: /node_modules/,
             loader: ExtractTextPlugin.extract('style', 'css!postcss')
         }, {
             test: /\.js?$/,
@@ -36,9 +39,10 @@ const config = {
                 limit: 10,
                 name: 'images/[name].[ext]'
             }
-        },{
-            test:/\.html/,
-            loader:'file',
+        }, {
+            test: /\.html/,
+            loader: 'file',
+            exclude: /node_modules/,
             query: {
                 name: 'views/[name].[ext]'
             }
@@ -47,7 +51,10 @@ const config = {
     //插件
     plugins: [
         new ExtractTextPlugin("css/style.bundle.css"),
-        new webpack.optimize.CommonsChunkPlugin('vender','js/common.js')
+        new webpack.optimize.CommonsChunkPlugin('vender', 'js/common.js'),
+        new webpack.ProvidePlugin({
+            angular: 'angular'
+        })
     ],
     //css预处理器
     postcss: function() {
@@ -55,30 +62,28 @@ const config = {
     },
     //
     resolve: {
-        extensions: ['', '.js', '.css', '.less'],
+        extensions: ['', '.js', '.css', '.less','.html'],
         alias: {
-                
+
         }
-    },
-    //源代码
-    devtool: 'source-map'
+    }
 }
 
 // 开发环境
 if (process.env.NODE_ENV === 'development') {
-    const pluginsArr=[
-        new webpack.optimize.CommonsChunkPlugin('vender','js/common.js')
+    config.devtool='source-map';
+    const pluginsArr = [
+
     ];
     config.plugins.concat(pluginsArr);
 }
 
 // 生产环境
 if (process.env.NODE_ENV === 'production') {
-    const pluginsArr=[
-        new webpack.optimize.CommonsChunkPlugin('vender','js/common.js')
-    ];
-    config.plugins.concat(pluginsArr);
+    config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+            test: /(\.jsx|\.js)$/,
+            compress: { warnings: false }
+        }));
 }
 
-module.exports = config;
-
+export default  config;

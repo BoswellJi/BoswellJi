@@ -5,8 +5,12 @@ import swig from'swig';
 import bodyParser from'body-parser';
 import logger from 'morgan';
 // import './node/utils/use';
+// 
+
+import router1 from './node/utils/router/router1.js';
 
 const app=express();
+router1(app);
 
 
 /**
@@ -34,9 +38,9 @@ app.use(logger());
 app.use('/public',express.static(__dirname+'/public'));
 
 // // 定义不同部分的路由
-app.use('/admin',require('./node/router/admin'));
-app.use('/api',require('./node/router/api'));
-app.use('/',require('./node/router/main'));
+// app.use('/admin',require('./node/router/admin'));
+// app.use('/api',require('./node/router/api'));
+// app.use('/',require('./node/router/main'));
 
 // // 设置body-parser,解析post请求的数据
 app.use(bodyParser.urlencoded({ extended: false }));
