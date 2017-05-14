@@ -6,19 +6,16 @@ import precss from 'precss';
 import autoprefixer from 'autoprefixer';
 import "babel-polyfill";
 
-
 // 基础配置
 const config = {
     target: 'web',
     cache: true,
     entry: {
-        index: './express-first/public/js/index.js',
-        vender: ['angular', 'angular-ui-router']
+        index: './express-first/public/js/index.js'
     },
     //打包输出的文件
     output: {
         path: path.resolve(__dirname, "express-app/public"),
-        //打包后的根路径
         publicPath: '/public/',
         filename: "js/bundle.js"
     },
@@ -47,15 +44,18 @@ const config = {
             query: {
                 name: 'views/[name].[ext]'
             }
+        }, {
+            test: /\.(eot|svg|ttf|woff|woff2|png)\w*/,
+            loader: 'file',
+            exclude: /node_modules/,
+            query:{
+                name:'fonts/[name].[ext]'
+            }
         }]
     },
     //插件
     plugins: [
-        new ExtractTextPlugin("css/style.bundle.css"),
-        new webpack.optimize.CommonsChunkPlugin('vender', 'js/common.js'),
-        new webpack.ProvidePlugin({
-            angular: 'angular'
-        })
+        new ExtractTextPlugin("css/style.bundle.css")
     ],
     //css预处理器
     postcss: function() {
@@ -63,32 +63,11 @@ const config = {
     },
     //
     resolve: {
-        extensions: ['', '.js', '.css', '.less','.html'],
+        extensions: ['', '.js', '.css', '.less', '.html'],
         alias: {
 
         }
     }
 }
 
-console.log(process.env.NODE_ENV=='development');
-console.log(process.env.NODE_ENV,typeof process.env.NODE_ENV);
-
-// 开发环境
-if (process.env.NODE_ENV == 'development') {
-    config.devtool='source-map';
-    const pluginsArr = [
-
-    ];
-    config.plugins.concat(pluginsArr);
-    console.log('df')
-}
-
-// 生产环境
-if (process.env.NODE_ENV === 'production') {
-    config.plugins.push(new webpack.optimize.UglifyJsPlugin({
-            test: /(\.jsx|\.js)$/,
-            compress: { warnings: false }
-        }));
-}
-
-export default  config;
+export default config;

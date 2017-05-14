@@ -13,14 +13,23 @@ import one from './utils/test.js';
 
 import ngInfiniteScroll from 'ng-infinite-scroll';
 
+// services
+import randoms from './services/random.service.js';
 
-//,[angularUiRouter,'ionic',ngInfiniteScroll
-const app=angular.module('app',[angularUiRouter]);
+
+console.log(randoms);
+
+// controller
 
 
+
+const app=angular.module('app',[angularUiRouter,randoms.name]);
+ 
+ import helloController from './controller/helloController.js';
+helloController(app);
 
 hello(app);
-
+  
 router(app);    
 
 

@@ -16,19 +16,18 @@ var _morgan = require('morgan');
 
 var _morgan2 = _interopRequireDefault(_morgan);
 
-var _router = require('./node/utils/router/router1.js');
-
-var _router2 = _interopRequireDefault(_router);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var app = (0, _express2.default)();
 // import './node/utils/use';
 // 
 
+// import router1 from './node/utils/router/router1.js';
+
 // 开启一个nodejs服务，监听81端口
 
-(0, _router2.default)(app);
+var app = (0, _express2.default)();
+// router1(app); 
+
 
 /**
  * 配置模板
@@ -49,14 +48,14 @@ _swig2.default.setDefaults({ cache: false });
  * 中间件配置使用
  */
 app.use((0, _morgan2.default)());
-// // 设置静态文件托管
+// // 设置静态文件托管 
 // // 请求以/public开头的就一后面方法处理
 app.use('/public', _express2.default.static(__dirname + '/public'));
 
-// // 定义不同部分的路由
-// app.use('/admin',require('./node/router/admin'));
-// app.use('/api',require('./node/router/api'));
-// app.use('/',require('./node/router/main'));
+// 定义不同部分的路由
+app.use('/admin', require('./node/router/admin'));
+app.use('/api', require('./node/router/api'));
+app.use('/', require('./node/router/main'));
 
 // // 设置body-parser,解析post请求的数据
 app.use(_bodyParser2.default.urlencoded({ extended: false }));

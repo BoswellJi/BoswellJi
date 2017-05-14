@@ -15,3 +15,21 @@
 ```
 预计两到三周内能够将项目重构结束投入生产环境；
 ```
+
+
+### 坑
+1. 依赖的路径如果不适用导入的方式，使用字符串，不会被webpack解析
+```
+templateUrl:'../views/index.html'
+
+使用
+import index from 'index.html'
+``` 
+
+2. 空格问题
+```
+build:set process.env.NODE_ENV=production && ...
+npm run build 时候process.env.NODE_ENV=='production' 为false
+因为production与&&之间有空格
+https://segmentfault.com/q/1010000007560766
+```
