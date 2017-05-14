@@ -16,7 +16,8 @@ export default (app) => {
         .state({
             name: 'about',
             url: '/about',
-            templateUrl: aboutPage
+            templateUrl: aboutPage,
+            controller:'one'
         });
     });
 }
