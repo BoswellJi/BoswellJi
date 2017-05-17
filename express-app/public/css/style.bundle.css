@@ -10,7 +10,7 @@ body{
 	margin: 0;
 	height: 100%;
 	transition: all 1s;
-	background: url(../images/head.jpg); 
+	background: url(/public/images/head.jpg); 
 }
 .warpper{
 	max-width: 750px;
@@ -81,3 +81,6 @@ body{
  * 3. 使用absolute模拟fixed
  */
 
+.hello{
+	color: red;
+}
