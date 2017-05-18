@@ -7,10 +7,10 @@ import logger from 'morgan';
 // import './node/utils/use';
 // 
 
-import router1 from './node/utils/router/router1.js';
+// import router1 from './node/utils/router/router1.js';
 
 const app=express();
-router1(app);
+// router1(app); 
 
 
 /**
@@ -33,14 +33,14 @@ swig.setDefaults({ cache: false });
  * 中间件配置使用
  */
 app.use(logger());
-// // 设置静态文件托管
+// // 设置静态文件托管 
 // // 请求以/public开头的就一后面方法处理
 app.use('/public',express.static(__dirname+'/public'));
 
-// // 定义不同部分的路由
-// app.use('/admin',require('./node/router/admin'));
-// app.use('/api',require('./node/router/api'));
-// app.use('/',require('./node/router/main'));
+// 定义不同部分的路由
+app.use('/admin',require('./node/router/admin'));
+app.use('/api',require('./node/router/api'));
+app.use('/',require('./node/router/main'));
 
 // // 设置body-parser,解析post请求的数据
 app.use(bodyParser.urlencoded({ extended: false }));

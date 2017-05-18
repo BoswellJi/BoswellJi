@@ -18,6 +18,7 @@ const config = {
     //打包输出的文件
     output: {
         path: path.resolve(__dirname, "express-app/public"),
+        //打包后的根路径
         publicPath: '/public/',
         filename: "js/bundle.js"
     },
@@ -69,13 +70,17 @@ const config = {
     }
 }
 
+console.log(process.env.NODE_ENV=='development');
+console.log(process.env.NODE_ENV,typeof process.env.NODE_ENV);
+
 // 开发环境
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV == 'development') {
     config.devtool='source-map';
     const pluginsArr = [
 
     ];
     config.plugins.concat(pluginsArr);
+    console.log('df')
 }
 
 // 生产环境

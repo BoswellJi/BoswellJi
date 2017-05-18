@@ -17,7 +17,7 @@ module.exports={
 		}
 		return recall;
 	},
-	login:function(req,res){
+	login:function(req,res){ 
 		 
 		// if(typeof url.parse(req.url).query!='null'){
 		// 	console.log(url.parse(req.url).query);

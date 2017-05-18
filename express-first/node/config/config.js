@@ -11,4 +11,4 @@ module.exports={
         pool: true,
         connectionLimit: 100
 	}
-}
+} 

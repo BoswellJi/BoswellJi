@@ -13,6 +13,7 @@
     "jade": "^1.11.0",
     "jugglingdb": "^2.0.0-rc8",
     "jugglingdb-mysql": "^0.2.3",
+    "lodash": "^4.17.4",
     "markdown": "^0.5.0",
     "mongoose": "^4.4.17",
     "morgan": "^1.8.1",
@@ -40,6 +41,7 @@
     "eslint-plugin-react": "^6.10.3",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.11.1",
+    "font-loader": "^0.1.2",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-eslint": "^3.0.1",
@@ -53,9 +55,9 @@
   },
   "scripts": {
     "del": "rm -rf express-app/",
-    "build": "set NODE_ENV=development && gulp",
+    "build": "set NODE_ENV=development&& gulp",
     "server": "supervisor express-app/app.js",
-    "pro": "set NODE_ENV=production && webpack",
-    "dev": "set NODE_ENV=development && webpack"
+    "pro": "set NODE_ENV=production&& webpack",
+    "dev": "set NODE_ENV=development&& webpack --watch --colors"
   }
 }
