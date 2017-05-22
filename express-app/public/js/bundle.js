@@ -88,17 +88,10 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	console.log(_randomService2.default);
-
-	// controller
-
-	// controller
-
-
 	// services
-
-
 	var app = _angular2.default.module('app', [_angularUiRouter2.default, _randomService2.default]);
+
+	// controller
 
 	(0, _helloController2.default)(app);
 
@@ -107,6 +100,12 @@
 	(0, _hello2.default)(app);
 
 	(0, _router2.default)(app);
+
+	/**
+	 * onclick="document.getElementById('showscroll').scrollIntoView();"
+	 *
+	 * scrollIntoView()相当于锚点跳转
+	 */
 
 /***/ }),
 /* 1 */
@@ -38849,11 +38848,11 @@
 	});
 
 	exports.default = function (app) {
-		app.controller('helloController', ['$scope', 'random', function ($scope, random) {
+		app.controller('helloController', ['$scope', function ($scope) {
 			//new random('jmz',21).random();
 			console.log('f');
 			$scope.name = 'jmz';
-			console.log(random);
+			$scope.age = 24;
 		}]);
 	};
 

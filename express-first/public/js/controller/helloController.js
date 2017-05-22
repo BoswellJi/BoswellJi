@@ -1,9 +1,9 @@
 export default (app)=>{
-	app.controller('helloController',['$scope','random',($scope,random)=>{
+	app.controller('helloController',['$scope',($scope)=>{
 		//new random('jmz',21).random();
 		console.log('f');
 		$scope.name='jmz';
-		console.log(random);
+		$scope.age=24;
 	}]);
 }
 

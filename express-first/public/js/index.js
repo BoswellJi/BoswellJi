@@ -2,7 +2,7 @@ import '../css/index.css';
 
 
 import angular from 'angular';
-import angularUiRouter from 'angular-ui-router';
+import angularUiRouter from 'angular-ui-router'; 
 
 import '../views/index.html';
 import router from './router/router.js';
@@ -17,11 +17,6 @@ import ngInfiniteScroll from 'ng-infinite-scroll';
 import randoms from './services/random.service.js';
 
 
-
-console.log(randoms);
-
-// controller
-
 // controller
 import oneController from './controller/oneController.js';
 
@@ -31,9 +26,7 @@ const app=angular.module('app',[angularUiRouter,randoms]);
  import helloController from './controller/helloController.js';
 helloController(app);
 
-
 oneController(app);
-
 
 hello(app);
   
@@ -41,3 +34,8 @@ router(app);
 
 
 
+/**
+ * onclick="document.getElementById('showscroll').scrollIntoView();"
+ *
+ * scrollIntoView()相当于锚点跳转
+ */

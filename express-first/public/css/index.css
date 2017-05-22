@@ -1,8 +1,84 @@
+*{
+	/* 可以使得元素恢复弹性 */
+	-webkit-overflow-scrolling: touch;
+}
+html{
+	height: 100%;
+}
 body{
 	padding: 0;
 	margin: 0;
+	height: 100%;
 	transition: all 1s;
 	background: url(../images/head.jpg); 
 }
+.warpper{
+	max-width: 750px;
+	height: 400px;
+	overflow-y: scroll;
+	margin: 0 auto;
+}
+.name{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 50px;
+	-webkit-overflow-scrolling: touch
+}
+.more{
+	position: relative;
+	height: 100%;
+	background: yellow;
+	-webkit-overflow-scrolling: touch;
+	/* transform: translate3d(20px, 20px, 0px) */
+}
+.fixed{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	background: red;
+	color: #fff;
+	-webkit-overflow-scrolling: touch
+}
+.top{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 50px;
+	background: green;
+	z-index: 10;
+	font-size: 16px;
+}
+[data-dpr='1'] .top{
+	font-size: 16px;
+}
+[data-dpr='2'] .top{
+	font-size: 32px;
+}
+[data-dpr='3'] .top{
+	font-size: 48px;
+}
+
+/**
+ * fixed失效
+ * 1.ios下的input获取焦点时候
+ *
+ * 2.ios下的iframe中的fixed
+ *
+ * 3.android某些机子
+ *
+ * 4.fixed元素的父元素有transform属性
+ */
+
+
+/**
+ * 方案
+ * 1. input获取焦点后，fixed元素改为absolute
+ * 2. 将整个页面放进div中，div与body齐高，body,html高宽设置为100%；
+ * 3. 使用absolute模拟fixed
+ */
 
   
