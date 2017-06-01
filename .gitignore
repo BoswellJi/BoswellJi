@@ -5,3 +5,5 @@
 # 略文件或者目录
 /node_modules
 /build
+
+/express-first/public/js/lib/vendor
