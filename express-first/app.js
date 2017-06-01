@@ -12,7 +12,7 @@ import logger from 'morgan';
 const app=express();
 // router1(app); 
 
-
+console.log('df');
 /**
  * 配置模板
  * 1.定义模板引擎，使用swig.renderFile来解析html文件
