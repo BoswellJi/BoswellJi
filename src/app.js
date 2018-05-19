@@ -8,6 +8,7 @@ var request = require('request');
 var url = require('url');
 var path=require('path');
 var swig=require('swig');
+var ws=require('./mod/ws');
 
 // 创建 application/x-www-form-urlencoded 编码解析
 var urlencodedParser = bodyParser.urlencoded({
@@ -38,6 +39,9 @@ app.set('views',__dirname +'/view');
 app.set('view engine','html');
 app.set('view cache', false);
 swig.setDefaults({ cache: false });
+
+ws.wx();
+// wx();
 
 app.get('/', function (req, res1) {
     res1.sendFile(__dirname + '/view/index.html');
