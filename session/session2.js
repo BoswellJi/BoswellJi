@@ -7,7 +7,8 @@ app.listen(5000);
 // 按照上面的解释，设置 session 的可选参数
 app.use(session({
   secret: 'recommand 128 bytes random string', // 建议使用 128 个字符的随机字符串
-  cookie: { maxAge: 60 * 1000 }
+  cookie: { maxAge: 60 * 1000 },
+  name:'jmz'
 }));
 
 app.get('/', function (req, res) {

@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "name": "启动程序",
-            "program": "${workspaceFolder}\\http\\http4.js"
+            "program": "${workspaceFolder}\\http\\http5.js"
         }
     ]
 }

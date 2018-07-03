@@ -3,8 +3,6 @@ var url = require('url');
 var items = [];
 
 var httpServer = http.createServer(function (req, res) {
-
-
     switch (req.method) {
         case 'POST':
             // ascill utf-8 
@@ -48,6 +46,4 @@ var httpServer = http.createServer(function (req, res) {
             }
             break;
     }
-
-
 }).listen(3000);
