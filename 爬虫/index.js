@@ -5,6 +5,7 @@ var iconv = require('iconv-lite');
 var url = 'http://www.ygdy8.net/html/gndy/dyzz/index.html';
 
 /**
+ * 
  * get http请求的便捷方式，自动调用res.end();相比request()方法来说
  */
 http.get(url, function (res) {
