@@ -1,0 +1,121 @@
+<script>
+    function LinkedList() {
+        var Node = function (el) {
+            this.element = el;
+            this.next = null;
+        }
+        var length = 0;
+        // 头指针
+        var head = null;
+
+        this.append = function (el) {
+            var node = new Node(el),
+                current;
+            if (head === null) {
+                head = node;
+            } else {
+                current = head;
+                // 知道当前节点为最后一个，没有next
+                while (current.next) {
+                    current = current.next;
+                }
+                current.next = node;
+            }
+            length++;
+        }
+
+        this.insert = function (pos, el) {
+            if (pos > -1 && pos <= length) {
+                var node = new Node(el),
+                    current = head,
+                    previous,
+                    index = 0;
+
+                if (pos === 0) {
+                    // 将head的索引给元素
+                    node.next = current;
+                    // 将新元素作为head的索引
+                    head = node;
+                } else {
+                    while (index++ < pos) {
+                        // 索引位置的交换
+                        previous = current;
+                        // 
+                        current = current.next;
+                    }
+                    node.next = current;
+                    previous.next = node;
+                }
+                length++;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        this.removeAt = function (pos) {
+            // 0 到 length-1
+            if (pos > -1 && pos < length) {
+                var current = head,
+                    previous,
+                    index;
+
+                if (pos === 0) {
+                    head = current.next;
+                } else {
+                    // 获取该位置的上个节点一下个节点
+                    while (index++ < pos) {
+                        previous = current;
+                        current = current.next;
+                    }
+                    // 将上个节点指向下个节点
+                    previous.next = current.next;
+                }
+                length--;
+                return current.element;
+            } else {
+                return null;
+            }
+        }
+
+        this.remove = function (el) {
+            var index = this.indexOf(el);
+            return this.removeAt(index);
+        }
+
+        this.indexOf = function (el) {
+            var current = head,
+                index = -1;
+            while (current) {
+                if (el === current.el) {
+                    return index;
+                }
+                index++;
+                current = current.next;
+            }
+            return -1;
+        }
+
+        this.isEmpty = function () {
+            return length === 0;
+        }
+
+        this.size = function () {
+            return length;
+        }
+
+        this.toString = function () {
+            var current = head,
+                string = '';
+            while (current) {
+                string = current.el;
+                current = current.next;
+            }
+            return string;
+        }
+
+        this.getHead = function () { 
+            return head;
+        }
+    }
+</script>

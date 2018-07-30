@@ -1,0 +1,19 @@
+<script>
+    function ArrayList(){
+        var array=[];
+
+        var swap=function(i1,i2){
+            var aux=array[i1];
+            array[i1]=array[i2];
+            array[i2]=aux;
+        }
+
+        this.insert=function(item){
+            array.push(item);
+        }
+
+        this.toString=function(){
+            return array.join();
+        }
+    }
+</script>
