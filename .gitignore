@@ -7,3 +7,6 @@
 /build
 
 /express-first/public/js/lib/vendor
+
+.vscode
+.idea
