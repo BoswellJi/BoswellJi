@@ -1,0 +1,84 @@
+Html Webpack Plugin:
+<pre>
+  TypeError: compilation.templatesPlugin is not a function
+  
+  - SetVarMainTemplatePlugin.js:14 SetVarMainTemplatePlugin.apply
+    [nodejs_learn]/[webpack]/lib/SetVarMainTemplatePlugin.js:14:14
+  
+  - Tapable.js:71 Compilation.apply
+    [v9.4.0]/[webpack]/[tapable]/lib/Tapable.js:71:16
+  
+  - util.js:47 Compilation.deprecated [as apply]
+    internal/util.js:47:15
+  
+  - LibraryTemplatePlugin.js:35 LibraryTemplatePlugin.<anonymous>
+    [nodejs_learn]/[webpack]/lib/LibraryTemplatePlugin.js:35:17
+  
+  
+  - Hook.js:35 SyncHook.lazyCompileHook [as _call]
+    [v9.4.0]/[webpack]/[tapable]/lib/Hook.js:35:21
+  
+  - Compiler.js:503 Compiler.newCompilation
+    [v9.4.0]/[webpack]/lib/Compiler.js:503:30
+  
+  - Compiler.js:540 hooks.beforeCompile.callAsync.err
+    [v9.4.0]/[webpack]/lib/Compiler.js:540:29
+  
+  
+  - Hook.js:35 AsyncSeriesHook.lazyCompileHook [as _callAsync]
+    [v9.4.0]/[webpack]/[tapable]/lib/Hook.js:35:21
+  
+  - Compiler.js:535 Compiler.compile
+    [v9.4.0]/[webpack]/lib/Compiler.js:535:28
+  
+  - Compiler.js:281 Compiler.runAsChild
+    [v9.4.0]/[webpack]/lib/Compiler.js:281:8
+  
+  - compiler.js:75 Promise
+    [nodejs_learn]/[html-webpack-plugin]/lib/compiler.js:75:19
+  
+  - new Promise
+  
+  - compiler.js:74 Object.compileTemplate
+    [nodejs_learn]/[html-webpack-plugin]/lib/compiler.js:74:10
+  
+  - index.js:71 
+    [nodejs_learn]/[html-webpack-plugin]/index.js:71:42
+  
+  
+  - Hook.js:35 AsyncParallelHook.lazyCompileHook [as _callAsync]
+    [v9.4.0]/[webpack]/[tapable]/lib/Hook.js:35:21
+  
+  - Compiler.js:542 hooks.beforeCompile.callAsync.err
+    [v9.4.0]/[webpack]/lib/Compiler.js:542:20
+  
+  
+  - Hook.js:35 AsyncSeriesHook.lazyCompileHook [as _callAsync]
+    [v9.4.0]/[webpack]/[tapable]/lib/Hook.js:35:21
+  
+  - Compiler.js:535 Compiler.compile
+    [v9.4.0]/[webpack]/lib/Compiler.js:535:28
+  
+  - Watching.js:77 compiler.hooks.watchRun.callAsync.err
+    [v9.4.0]/[webpack]/lib/Watching.js:77:18
+  
+  
+  - Hook.js:35 AsyncSeriesHook.lazyCompileHook [as _callAsync]
+    [v9.4.0]/[webpack]/[tapable]/lib/Hook.js:35:21
+  
+  - Watching.js:40 Watching._go
+    [v9.4.0]/[webpack]/lib/Watching.js:40:32
+  
+  - Watching.js:32 Watching.compiler.readRecords.err
+    [v9.4.0]/[webpack]/lib/Watching.js:32:9
+  
+  - Compiler.js:402 Compiler.readRecords
+    [v9.4.0]/[webpack]/lib/Compiler.js:402:11
+  
+  - Watching.js:29 new Watching
+    [v9.4.0]/[webpack]/lib/Watching.js:29:17
+  
+  - Compiler.js:201 Compiler.watch
+    [v9.4.0]/[webpack]/lib/Compiler.js:201:10
+  
+</pre><script type="text/javascript" src="main.js"></script>

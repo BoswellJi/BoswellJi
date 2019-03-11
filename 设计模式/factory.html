@@ -1,0 +1,32 @@
+<!-- 工厂模式 -->
+<script>
+  class Cat {
+    constructor(options) {
+      this.name = options.name || 'cat1';
+    }
+  }
+
+  class Dog {
+    constructor(options) {
+      this.name = options.name || 'dog1';
+    }
+  }
+
+  class Animal {
+    createAn(options) {
+      if (options.type === 'cat') {
+        return new Cat(options);
+      } else if (options.type === 'dog') {
+        return new Cat(options);
+      }
+    }
+  }
+
+  const an = new Animal().createAn({
+    type: 'cat',
+    name: 'hhh'
+  }).name;
+
+  console.log(obj.name);
+
+</script>

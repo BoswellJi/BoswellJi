@@ -1,4 +1,4 @@
-
+// 观察者模式
 const observer = (() => {
     let message = {};
     return {
