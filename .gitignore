@@ -6,8 +6,6 @@
 /node_modules
 /build
 
-/express-first/public/js/lib/vendor
-
 .vscode
 .idea
 .package-lock.json
