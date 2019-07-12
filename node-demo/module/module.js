@@ -1,7 +1,3 @@
-(function(modules){
-    function add(a,b){
-        return a+b;
-    }
-    modules.exports=add;
-    return modules;
-})
+const mod1 = require('./mod1');
+
+mod1.name='jmz'
