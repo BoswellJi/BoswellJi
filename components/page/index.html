@@ -1,0 +1,67 @@
+<style>
+  ul {
+    display: flex;
+    list-style: none;
+  }
+
+  li {
+    width: 50px;
+    padding: 10px;
+    border: 1px solid #000;
+    text-align: center;
+  }
+</style>
+
+<div></div>
+
+<script>
+  const div = document.getElementsByTagName('div')[0];
+  const pageTotal = 103;
+  let currentPage = 1;
+  let currentIndex = 0;
+  let firstIndexPage = 1;
+  let lastIndexPage = 10;
+
+  function render() {
+    div.innerHTML = '';
+    const ul = document.createElement('ul');
+    if (pageTotal <= 10) {
+      for (let i = 0; i < 10; i++) {
+        const li = document.createElement('li');
+        li.innerText = i + 1;
+        ul.appendChild(li);
+      }
+    } else if (pageTotal > 10) {
+      let arr = [];
+      // 点击左边部分
+      if (currentIndex <= 5) {
+        // 左边多出>=5,将当前页码放中间
+        if (currentPage - 6 >= currentIndex+1) {
+          arr = [currentPage - 5, currentPage - 4, currentPage - 3, currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2, currentPage + 3, currentPage + 4];
+          // 
+        } else if (currentPage - 6 < currentIndex+1) {
+          arr = [currentPage - 5-(currentIndex+1), currentPage - 4, currentPage - 3, currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2, currentPage + 3, currentPage + 4];
+        }
+
+      }
+      for (let i = 0; i < 10; i++) {
+        const li = document.createElement('li');
+        li.innerText = i + 1;
+        ul.appendChild(li);
+      }
+    }
+
+    div.appendChild(ul);
+  }
+
+  div.addEventListener('click', (e) => {
+    const lis = div.getElementsByTagName('li');
+    firstIndexPage = lis[0].innerText;
+    lastIndexPage = lis[lis.length - 1].innerText
+    currentPage = e.target.innerText;
+    currentIndex = [].indexOf.call(lis, e.target);
+    render();
+  });
+
+  render();
+</script>
