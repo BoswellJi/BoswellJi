@@ -1,149 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
-    * {
-      padding: 0;
-      margin: 0;
+    .swiper{
+      display: flex;
+      width: 300px;
+      border: 1px solid red;
     }
 
-    .warpper {
-      width: 100%;
-      height: 300px;
-      overflow: hidden;
-    }
 
-    .box {
-      position: relative;
-      height: 300px;
-      transition: all  0.3s cubic-bezier(.21,1.93,.53,.64);
-    }
 
-    .item {
-      position: absolute;
-      background: red;
-    }
   </style>
 </head>
-
 <body>
-  <div class="warpper">
-    <div class="box">
-      <div class="item" style="background: red;"></div>
-      <div class="item" style="background: yellow;"></div>
-      <div class="item" style="background: green;"></div>
-      <div class="item" style="background: grey;"></div>
-      <div class="item" style="background: red;"></div>
-    </div>
+  <div class="swiper">
+    <ul>
+      <li>a</li>
+      <li>a</li>
+      <li>a</li>
+    </ul>
   </div>
-
-  <script>
-    
-
-    function Swiper(option) {
-      this.item = document.querySelectorAll('.item');
-      this.warpper = document.querySelector('.warpper');
-      this.box = document.querySelector('.box');
-      this.startX = 0;
-      this.prevPos = 0;
-      this.diffX = 0;
-      this.index = option.index;
-      this.len = 5;
-      this.startTime = null;
-      this.endTime = null;
-    }
-
-    Swiper.prototype = {
-      init: function () {
-        this.layout();
-        this.bindEvent();
-      },
-      layout: function () {
-        var w = this.warpper.offsetWidth;
-        var h = this.warpper.offsetHeight;
-
-        this.box.style.width = w * this.len + 'px';
-        this.prevPos = -this.index * w;
-        this.pos();
-
-        for (var i = 0; i < this.len; i++) {
-          this.item[i].style.width = w + 'px';
-          this.item[i].style.height = h + 'px';
-          this.item[i].style.left = i * w + 'px';
-        }
-      },
-      bindEvent: function () {
-        this.warpper.addEventListener('touchstart', function (e) {
-          this.startX = e.touches[0].pageX;
-          this.startTime = new Date();
-        }.bind(this), false);
-
-        this.warpper.addEventListener('touchmove', function (e) {
-          this.diffX = e.touches[0].pageX - this.startX;
-          this.pos();
-        }.bind(this), false);
-
-        this.warpper.addEventListener('touchend', function (e) {
-          this.endTime = new Date();
-          var diffTime = this.endTime - this.startTime;
-          if (diffTime < 300) {
-            if (this.diffX > 0) {
-              if (this.index > 0) {
-                this.diffX = this.warpper.offsetWidth;
-                this.index--;
-              } else {
-                this.diffX = this.prevPos;
-              }
-            } else {
-              if (this.index < 4) {
-                this.diffX = -this.warpper.offsetWidth;
-                this.index++;
-              } else {
-                this.diffX = 0;
-                this.index = 4;
-              }
-            }
-          } else {
-            if (this.diffX > 0 && this.diffX < this.warpper.offsetWidth / 2) {
-              this.diffX = 0;
-            } else if (this.diffX < 0 && this.diffX > - this.warpper.offsetWidth / 2) {
-              this.diffX = 0;
-            } else if (this.diffX > this.warpper.offsetWidth / 2) {
-              if (this.index > 0) {
-                this.diffX = this.warpper.offsetWidth;
-                this.index--;
-              } else {
-                this.diffX = this.prevPos;
-              }
-            } else if (this.diffX < -this.warpper.offsetWidth / 2) {
-              if (this.index < 4) {
-                this.diffX = -this.warpper.offsetWidth;
-                this.index++;
-              } else {
-                this.diffX = 0;
-                this.index = 4;
-              }
-            }
-          }
-          this.pos();
-          this.prevPos += this.diffX;
-        }.bind(this), false);
-      },
-      nextPage:function(){},
-      pos:function(){
-        this.box.style.cssText = 'transform:translateX(' + (this.prevPos + this.diffX) + 'px)';
-      },
-    };
-
-    new Swiper({
-      index:2
-    }).init();
-  </script>
 </body>
-
 </html>
