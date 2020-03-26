@@ -5,7 +5,7 @@
 # 略文件或者目录
 /node_modules
 /build
-/weex/node_modules
+node_modules
 
 .vscode
 .idea
