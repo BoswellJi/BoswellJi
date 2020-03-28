@@ -4,17 +4,9 @@ import App from './App.vue'
 Vue.config.productionTip = false
 
 new Vue({
+  created() {
+    console.log('Vue', this);
+  },
   render: h => h(App),
 }).$mount('#app')
 
-
-@warp
-class Test1 {
-
-}
-
-function warp() {
-  console.log(arguments);
-}
-
-new Test1();

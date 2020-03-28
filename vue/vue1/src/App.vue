@@ -7,22 +7,7 @@
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
-import "reflect-metadata";
-
-
-@Desc()
-class Test {
-  constructor(name, age) {
-    this.name = name;
-    this.age = age;
-  }
-}
-
-function Desc(){
-  return function(t){
-    console.log(Reflect.getMetadata('design:paramtypes', t));
-  }
-}
+// import "reflect-metadata";
 
 export default {
   name: "App",
@@ -30,8 +15,7 @@ export default {
     HelloWorld
   },
   created() {
-    const testMeta = Reflect.getMetadata('design:paramtypes',Test);
-    console.log(testMeta);
+    console.log("App", this);
   }
 };
 </script>
