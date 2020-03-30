@@ -1,4 +1,11 @@
-// 观察者模式
+/**
+ * 观察者模式(发布者-订阅者 模式)
+ * 元素: 观察者和被观察者  (发布者和订阅者)
+ * 
+ * 订阅者获取信息的方式:
+ * 1. 推: 由发布者进行传递
+ * 2. 拉: 由订阅者自行拉取
+ */
 const observer = (() => {
     let message = {};
     return {
@@ -67,7 +74,7 @@ class MyVue {
 
         // 消息队列
         this.directives = {};
-
+        // 现创建响应式系统
         this.observer(this.data);
         this.complie(this.el);
     }
@@ -136,7 +143,7 @@ class MyVue {
 
             if (node.hasAttribute('v-text')) {
                 let vText = node.getAttribute('v-text');
-                // 将指令操作，反倒对应的data key中
+                // 将指令操作添加到对应的队列
                 this.directives[vText].push(new Watcher('text', node, this, vText, 'innerHTML'));
             }
 
@@ -161,12 +168,31 @@ class Watcher {
         this.vm = vm;
         this.exp = exp;
         this.attr = attr;
-    
+
         //更新操作
         this.update();
     }
 
-    update(){
-        this.el[this.attr]=this.vm.data[this.exp]
+    update() {
+        this.el[this.attr] = this.vm.data[this.exp]
     }
 }
+
+// 可观察构造函数 Observable
+function Observable() { }
+
+Observable.prototype = {
+    subscriberCustomer(subscriber) { },
+    unSubscriberCustomer(subscriber) { },
+    deliver(news) { }
+};
+
+function Subscriber(news) { }
+
+// addEventListener 添加事件监听器
+
+const divObj = document.createElement('div');
+// 注册对divObj对象的click事件的监听器
+divObj.addEventListener('click', function () { }, false);
+divObj.addEventListener('click', function () { }, false);
+divObj.addEventListener('click', function () { }, false);
