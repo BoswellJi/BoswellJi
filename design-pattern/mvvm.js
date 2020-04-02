@@ -86,6 +86,8 @@ class Dep {
 
 Dep.target = null;
 
+
+// model
 const data = {
   name: 'jmz',
   age: 25,
