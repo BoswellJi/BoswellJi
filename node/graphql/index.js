@@ -1,7 +1,5 @@
 const { graphql, buildSchema, GraphQLList, GraphQLFloat } = require('graphql');
 
-
-
 /**
  * Int
  * Float

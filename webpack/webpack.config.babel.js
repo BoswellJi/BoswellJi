@@ -1,11 +1,9 @@
 import webpack from 'webpack';
 import path from 'path';
 import ExtractTextPlugin from "extract-text-webpack-plugin";
-import CommonsChunkPlugin from "webpack/lib/optimize/CommonsChunkPlugin";
 import precss from 'precss';
 import autoprefixer from 'autoprefixer';
 import "babel-polyfill";
-
 
 // 基础配置
 const config = {
@@ -70,9 +68,6 @@ const config = {
     }
 }
 
-console.log(process.env.NODE_ENV=='development');
-console.log(process.env.NODE_ENV,typeof process.env.NODE_ENV);
-
 // 开发环境
 if (process.env.NODE_ENV == 'development') {
     config.devtool='source-map';
@@ -91,4 +86,4 @@ if (process.env.NODE_ENV === 'production') {
         }));
 }
 
-export default  config;
+exports.module = config;
