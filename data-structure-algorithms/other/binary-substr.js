@@ -16,30 +16,6 @@ function binarySubstr(value) {
   return n;
 }
 
-const a = s => {
-  const sA = s.split('');
-  const zeroStack = [];
-  const oneStack = [];
-  let result = 0;
-  sA.forEach(char => {
-    if (char === '0') {
-      zeroStack.push('0');
-      if (oneStack.length > 0) {
-        oneStack.pop();
-        result++;
-      }
-    }
-    if (char === '1') {
-      oneStack.push('1');
-      if (zeroStack.length > 0) {
-        zeroStack.pop();
-        result++;
-      }
-    }
-  });
-  return result;
-}
-
 console.log(binarySubstr('00011000110'));
 
 // 0101
