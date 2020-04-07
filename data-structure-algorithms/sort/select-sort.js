@@ -1,5 +1,8 @@
-function xuanZe(arr) {
-
+/**
+ * 选择排序
+ * @param {*} arr 
+ */
+function selectSort(arr) {
   if (!arr || !(arr instanceof Array)) {
     throw new TypeError('非数组类型');
   }
@@ -16,7 +19,8 @@ function xuanZe(arr) {
     arr[minIndex] = arr[i];
     arr[i] = temp;
   }
-  console.log(arr);
+  
+  return arr;
 }
 
-xuanZe([1, 2, 3, 2, 1, 2, 34, 1]);
+console.log(selectSort([1, 2, 3, 2, 1, 2, 34, 1]));
