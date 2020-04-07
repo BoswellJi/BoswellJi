@@ -1,24 +1,26 @@
-// {/* <script> */}
-    function Queue() {
-        var items = [];
-        this.enqueue = function (el) {
-            items.push(el);
-        }
+/**
+ * 队列数据结构
+ * 1. 先入先出
+ */
 
-        this.dequeue = function () {
-            return items.shift();
-        }
+function Queue() {
+    this.items = [];
+}
 
-        this.front = function () {
-            return items[0];
-        }
-
-        this.isEmpty = function () {
-            return items.length === 0
-        }
-
-        this.size=function(){
-            return items.length;
-        }
-    }
-// {/* </script> */}
+Queue.prototype = {
+    enqueue(el) {
+        this.items.push(el);
+    },
+    dequeue() {
+        return this.items.shift();
+    },
+    front() {
+        return this.items[0];
+    },
+    isEmpty() {
+        return this.items.length === 0
+    },
+    size() {
+        return this.items.length;
+    },
+};

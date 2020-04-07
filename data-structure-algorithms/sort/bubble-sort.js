@@ -3,9 +3,9 @@
  * 冒泡排序：
  * 比较 len-1次
  * 每次都会把最大的放最后
+ * @param {} arr
  */
-
-function maoPao(arr) {
+function bubbleSort(arr) {
     for (let i = 0, len = arr.length; i < len; i++) {
         for (let j = 0; j < len - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
@@ -15,7 +15,7 @@ function maoPao(arr) {
             }
         }
     }
-    console.log(arr);
+    return arr;
 }
 
-maoPao([1, 2, 3, 1, 1, 34]);
+console.log(bubbleSort([1, 2, 3, 1, 1, 34]));
