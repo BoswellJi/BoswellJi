@@ -8,3 +8,5 @@ declare namespace GreetingLib {
       color?: string;
   }
 }
+
+declare let nameSelf: string;

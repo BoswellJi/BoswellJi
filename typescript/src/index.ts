@@ -8,3 +8,4 @@ Vue;
 _;
 
 
+nameSelf;
