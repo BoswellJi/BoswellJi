@@ -1,16 +1,14 @@
-
-
-const { GraphQLList,GraphQLID,GraphQLNonNull } = require('graphql');
+const { GraphQLList, GraphQLID, GraphQLNonNull } = require('graphql');
 
 module.exports = {
-  type:
-  args:{
-    id:{
+  type: '',
+  args: {
+    id: {
       name: 'id',
       type: new GraphQLNonNull(GraphQLID)
     }
   },
-  resolve(root,params,ctx,options){
-    return ;
+  resolve(root, params, ctx, options) {
+    return;
   }
 }

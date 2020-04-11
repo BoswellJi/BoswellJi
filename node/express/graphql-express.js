@@ -30,11 +30,9 @@ app.listen(4000, () => {
   console.log('4000...');
 })
 
-
 const PatchSizeEnum = new GraphQLEnum({
   
 });
-
 
 const missionType = new GraphQLObjectType({
   name: 'Mission',
