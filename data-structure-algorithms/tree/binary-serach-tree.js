@@ -1,93 +1,97 @@
+/**
+ * 二叉查找树
+ * 1. 左子树节点数据 小于 父节点数据
+ * 2. 右子树节点数据 大于 父节点数据
+ */
+
+function Node(key) {
+    this.key = key;
+    this.left = null;
+    this.right = null;
+}
+
 function BinarySearchTree() {
-    var Node = function (key) {
-        this.key = key;
-        this.left = null;
-        this.right = null;
-    }
+    this.root = null;
+}
 
-    var root = null;
-
+BinarySearchTree.prototype = {
     /**
     *  插入新节点
-    *   @param {Node} node 父级节点
-        @param {Node} newNode 插入的新节点
+    *  @param {Node} node 父级节点
+    *  @param {Node} newNode 插入的新节点
     */
-    var insertNode = function (node, newNode) {
+    insertNode(node, newNode) {
         if (newNode.key < node.key) {
             if (node.left === null) {
                 node.left = newNode;
             } else {
-                insertNode(node.left, newNode);
+                this.insertNode(node.left, newNode);
             }
         } else {
             if (node.right === null) {
                 node.right = newNode;
             } else {
-                insertNode(node.right, newNode);
+                this.insertNode(node.right, newNode);
             }
         }
-    }
-
-    //插入数据
-    this.insert = function (key) {
-        var newNode = new Node(key);
-
-        if (root === null) {
-            root = newNode;
-        } else {
-            insertNode(root, newNode);
-        }
-    }
-
-    var inOrderTraverse = function (node, cb) {
-        if (node !== null) {
-            inOrderTraverse(node.left, cb);
-            cb(node.key);
-            inOrderTraverse(node.right, cb);
-        }
-    }
-
-    // 中序遍历
-    // 从左树中遍历，找到最小的开始
-    this.inOrderTraverse = function (cb) {
-        inOrderTraverse(root, cb);
-    }
-
-    var preOrderTraverse = function (node, cb) {
-        if (node !== null) {
-            cb(node.key);
-            preOrderTraverse(node.left, cb);
-            preOrderTraverse(node.right, cb);
-        }
-    }
-
-    // 先序遍历
-    // 从根节点开始，先访问左侧节点，在访问右侧节点
-    this.preOrderTraverse = function (cb) {
-        preOrderTraverse(root, cb);
-    }
-
-    var postOrderTraverse = function (node, cb) {
-        if (node !== null) {
-            postOrderTraverse(node.left, cb);
-            postOrderTraverse(node.right, cb);
-            cb(node.key);
-        }
-    }
-
-    // 后序遍历
-    // 从根节点开始首先遍历左树，然后遍历右树，最后是根节点
-    this.postOrderTraverse = function (cb) {
-        postOrderTraverse(root, cb);
-    }
-
+    },
     /**
-    搜索树中的值
-    1. 最小值
-    2. 最大值
-    3、 搜索特定的值
-    */
-    var minNode = function (node) {
+     * 插入树节点
+     * 1. 插入节点，需要从根节点开始进行查找
+     * @param {*} key 
+     */
+    insert(key) {
+        var newNode = new Node(key);
+        if (this.root === null) {
+            this.root = newNode;
+        } else {
+            this.insertNode(this.root, newNode);
+        }
+    },
+    /**
+     * 中序遍历
+     * 1. 从左树中遍历，找到最小的开始
+     * @param {*} node 
+     * @param {*} cb 
+     */
+    inOrderTraverse(node, cb) {
+        if (node !== null) {
+            this.inOrderTraverse(node.left, cb);
+            cb(node.key);
+            this.inOrderTraverse(node.right, cb);
+        }
+    },
+    /**
+     * 先序遍历
+     * 1. 从根节点开始，先访问左侧节点，在访问右侧节点
+     * @param {*} node 
+     * @param {*} cb 
+     */
+    preOrderTraverse(node, cb) {
+        if (node !== null) {
+            cb(node.key);
+            this.preOrderTraverse(node.left, cb);
+            this.preOrderTraverse(node.right, cb);
+        }
+    },
+    /**
+     * 后序遍历
+     * 1. 从根节点开始首先遍历左树，然后遍历右树，最后是根节点
+     * @param {*} node 
+     * @param {*} cb 
+     */
+    postOrderTraverse(node, cb) {
+        if (node !== null) {
+            this.postOrderTraverse(node.left, cb);
+            this.postOrderTraverse(node.right, cb);
+            cb(node.key);
+        }
+    },
+    /**
+     * 最小值节点（最左边的左子树
+     * @param {*} node 
+     */
+    minNode(node) {
         if (node) {
             while (node && node.left !== null) {
                 node = node.left;
@@ -95,12 +99,12 @@ function BinarySearchTree() {
             return node.key;
         }
         return null;
-    }
-    this.min = function () {
-        return minNode(root);
-    }
-
-    var maxNode = function (node) {
+    },
+    /**
+     * 最大值节点（最右边的右子树
+     * @param {*} node 
+     */
+    maxNode(node) {
         if (node) {
             while (node && node.right != null) {
                 node = node.right;
@@ -108,273 +112,107 @@ function BinarySearchTree() {
             return node.key;
         }
         return null;
-    }
-    this.max = function () {
-        return maxNode(root);
-    }
-
-    var findNode = function (node, key) {
+    },
+    /**
+     * 查找节点
+     * @param {*} node 查询从根节点开始
+     * @param {*} key 
+     */
+    findNode(node, key) {
         if (node) {
             if (key < node.key) {
-                return findNode(node.left, key);
+                return this.findNode(node.left, key);
             } else if (key > node.key) {
-                return findNode(node.right, key);
+                return this.findNode(node.right, key);
             } else {
-                return true;
+                return node;
             }
         } else {
             return false;
         }
-    }
-
-    this.find = function (key) {
-        return findNode(root, key);
-    }
-
-    var findMinNode = function (node) {
-        if (node) {
-            while (node && node.left !== null) {
-                node = node.left;
-            }
-            return node;
-        }
-        return null;
-    }
-
-    var removeNode = function (node, key) {
+    },
+    /**
+     * 删除节点
+     * @param {*} node 先查找，找到再删除，从根节点开始
+     * @param {*} key 
+     */
+    removeNode(node, key) {
         if (node) {
             if (key < node.key) {
-                node.left = removeNode(node.left, key);
+                node.left = this.removeNode(node.left, key);
                 return node;
             } else if (key > node.key) {
-                node.right = removeNode(node.right, key);
+                node.right = this.removeNode(node.right, key);
             } else {
+                // 没有子节点（左右子树
                 if (node.left === null && node.right === null) {
                     node = null;
                     return node;
                 }
-
+                // 没有左子树（将节点的右子树直接替换
                 if (node.left === null) {
                     node = node.right;
                     return node;
                 }
-
+                // 没有右子树（将节点的左子树直接替换
                 if (node.right === null) {
                     node = node.left;
                     return node;
                 }
-
-                var aux = findMinNode(node.right);
+                // 有左子树，有右子树（找到右子树最小节点
+                // 查找待删除节点 （左子树上最大值 或者 右子树上最小值）
+                var aux = this.minNode(node.right);
                 node.key = aux.key;
-                node.right = removeNode(node.right, aux.key);
+                // 删掉找到的节点
+                node.right = this.removeNode(node.right, aux.key);
                 return node;
             }
         } else {
             return null;
         }
-    }
+    },
+};
 
-    this.remove = function (key) {
-        root = removeNode(root, key);
-    }
-}
+var binTree = new BinarySearchTree();
+binTree.insert(6);
+binTree.insert(2);
+binTree.insert(3);
+binTree.insert(4);
+binTree.insert(5);
+binTree.insert(7);
+binTree.insert(7);
+binTree.insert(8);
+binTree.insert(9);
 
-// var binTree = new BinarySearchTree();
-// binTree.insert(6);
-// binTree.insert(2);
-// binTree.insert(3);
-// binTree.insert(4);
-// binTree.insert(7);
+binTree.removeNode(binTree.root,0);
 
-// function printNode(val) {
-//     console.log(val);
-// }
-// binTree.remove(6);
-// binTree.inOrderTraverse(printNode);
-// binTree.preOrderTraverse(printNode);
-// binTree.postOrderTraverse(printNode);
-
-function show() {
-    return this.data;
-}
-
-/**
- * 树节点
- * @param {*} data 节点内容
- * @param {*} left 左节点引用
- * @param {*} right 右节点引用
+/**tree
+ *                  6
+ *     2                  7
+ *       3                      9
+ *          4               8
+ *             5
  */
-function Node(data, left, right) {
-    this.data = data;
-    this.left = left;
-    this.right = right;
-    this.show = show;
+function printNode(val) {
+    console.log(val);
 }
 
+console.log('中序遍历');
 /**
- * 新增元素
- * @param {*} data 节点数据
+ * 从小到大升序遍历
  */
-function insert(data) {
-    const node = new Node(data, null, null);
-    if (this.root === null) {
-        this.root = node;
-    } else {
-        let current = this.root;
-        let parent;
-        while (true) {
-            parent = current;
-            if (data < current.data) {
-                current = current.left;
-                if (current === null) {
-                    parent.left = node;
-                }
-                break;
-            } else {
-                current = current.right;
-                if (current == null) {
-                    parent.right = node;
-                    break;
-                }
-            }
-        }
-    }
-}
+binTree.inOrderTraverse(binTree.root, printNode);
 
+console.log('先序遍历');
 /**
- * 中序遍历
- * @param {*} node 节点
+ * 1. 根节点
+ * 2. 左右子树，都是从小到大（从左子树开始
  */
-function inOrder(node) {
-    if (node != null) {
-        inOrder(node.left);
-        console.log(node.show());
-        inOrder(node.right);
-    }
-}
+binTree.preOrderTraverse(binTree.root, printNode);
 
+console.log('后序遍历');
 /**
- * 先序遍历
- * @param {*} node 树节点
+ * 1. 左右子树都是从大到小（从左子树开始
+ * 2. 根节点
  */
-function preOrder(node) {
-    if (node !== null) {
-        console.log(node.show());
-        preOrder(node.left);
-        preOrder(node.right);
-    }
-}
-
-/**
- * 后序遍历
- * @param {*} node 树节点
- */
-function postOrder(node) {
-    if (node !== null) {
-        preOrder(node.left);
-        preOrder(node.right);
-        console.log(node.show());
-    }
-}
-
-/* 获取最大值 */
-function getMax() {
-    var current = this.root;
-    while (current.right != null) {
-        current = current.right;
-    }
-    return current.data;
-}
-
-/* 获取最小值 */
-function getMin() {
-    var current = this.root;
-    while (current.left != null) {
-        current = current.left;
-    }
-    return current.data;
-}
-
-/**
- * 查找特定的值
- * @param {*} data 节点数据
- */
-function find(data) {
-    let current = this.root;
-    while (current !== null) {
-        if (current.data === data) {
-            return current;
-        } else if (data < current.data) {
-            current = current.left;
-        } else if (data > current.data) {
-            current = current.right;
-        }
-    }
-    return null;
-}
-
-/**
- * 删除树的节点
- * @param {*} node 节点
- * @param {*} data 节点数据
- */
-function removeNode(node, data) {
-    if (node == null) {
-        return null;
-    }
-    // 当前节点是要找的节点
-    if (data === node.data) {
-        // 没有子节点
-        if (node.left === null && node.right === null) {
-            return null;
-        }
-        if (node.left === null) {
-            return node.right;
-        }
-        if (node.right === null) {
-            return node.left;
-        }
-        // 有两个子节点的节点
-        const tempNode = getSmallest(node.right);
-        node.data = tempNode.data;
-        node.right = removeNode(node.right, tempNode.data);
-        return node;
-    } 
-    // 查找节点
-    else if (data < node.data) {
-        node.left = removeNode(node.left, data);
-        return node;
-    } else {
-        node.right = removeNode(node.right, data);
-        return node;
-    }
-}
-
-function remove(data) {
-    root = removeNode(this.root, data);
-}
-
-function BST() {
-    this.root = null;
-    this.insert = insert;
-    this.inOrder = inOrder;
-    this.preOrder = preOrder;
-    this.postOrder = postOrder;
-    this.getMin = getMin;
-    this.getMax = getMax;
-    this.find = find;
-}
-
-
-const nums = new BST();
-nums.insert(1);
-nums.insert(2);
-nums.insert(3);
-nums.insert(4);
-nums.insert(5);
-// nums.inOrder(nums.root);
-// console.log(nums.getMax());
-// console.log(nums.getMin());
-// nums.preOrder(nums.root);
-// nums.postOrder(nums.root);
-// console.log(nums.find(1));
+binTree.postOrderTraverse(binTree.root, printNode);

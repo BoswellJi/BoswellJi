@@ -27,11 +27,6 @@ const schema = new GraphQLSchema({
 });
 
 let query = `{hello}`;
-
-// graphql(schema, query).then((res) => {
-//   console.log(res);
-// });
-
 query = `{age,sex}`;
 
 graphql(schema, query).then(res => {

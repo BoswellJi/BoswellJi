@@ -1,19 +1,32 @@
 
 function Graph() {
-    var vertices = [];
-    var adjList = new Dictionary();
+    this.vertices = [];
+    this.adjList = new Dictionary();
+    this.time = 0;
+}
 
-    this.addVertex = function (v) {
+Graph.prototype = {
+    /**
+     * 添加顶点
+     * @param {*} v 
+     */
+    addVertex(v) {
         vertices.push(v);
         adjList.set(v, []);
-    }
-
-    this.addEdge = function (v, w) {
+    },
+    /**
+     * 添加边
+     * @param {*} v 
+     * @param {*} w 
+     */
+    addEdge(v, w) {
         adjList.get(v).push(w);
         adjList.get(w).push(v);
-    }
-
-    this.toString = function () {
+    },
+    /**
+     * 展示图
+     */
+    toString = function () {
         var s = '';
         for (var i = 0; i < vertices.length; i++) {
             s + vertices[i] + '->';
@@ -24,17 +37,23 @@ function Graph() {
             s += '\n';
         }
         return s;
-    }
-
-    var initializeColor = function () {
+    },
+    /**
+     * 
+     */
+    initializeColor() {
         var color = [];
         for (var i = 0; i < vertices.length; i++) {
             color[vertices[i]] = 'white';
         }
         return color;
-    }
-
-    this.bfs = function (v, cb) {
+    },
+    /**
+     * 广度优先搜索
+     * @param {*} v 
+     * @param {*} cb 
+     */
+    bfs(v, cb) {
         var color = initializeColor(),
             queue = new Queue();
         queue.enqueue(v);
@@ -52,9 +71,8 @@ function Graph() {
             color[u] = 'black';
             cb && cb(u);
         }
-    }
-
-    var dfsVisit = function (u, color, cb) {
+    },
+    dfsVisit(u, color, cb) {
         color[u] = 'grey';
         cb && cb(u);
         var neighbors = adjList.get(u);
@@ -65,21 +83,23 @@ function Graph() {
             }
         }
         color[u] = 'black';
-    }
-
-    this.dfs = function (cb) {
+    },
+    /**
+     * 深度优先遍历
+     * @param {*} cb 
+     */
+    dfs(cb) {
         var color = initializeColor();
         for (var i = 0; i < vertices.length; i++) {
             if (color[vertices[i]] === 'white') {
                 dfsVisit(vertices[i], color, cb);
             }
         }
-    }
-
+    },
     /**
      * 最短路径问题
      */
-    this.BFS = function (v) {
+    BFS(v) {
         var color = initializeColor(),
             queue = new Queue(),
             d = [],
@@ -107,9 +127,8 @@ function Graph() {
             distances: d,
             predecessors: pred
         }
-    }
-
-    var DFSVisit = function (u, color, d, f, p) {
+    },
+    DFSVisit(u, color, d, f, p) {
         color[u] = 'grey';
         d[u] = ++time;
         var neighbors = adjList.get(u);
@@ -122,10 +141,8 @@ function Graph() {
         }
         color[u] = 'black';
         f[u] = ++time;
-    }
-
-    var time = 0;
-    this.DFS = function () {
+    },
+    DFS() {
         var color = initializeColor(),
             d = [],
             f = [],
@@ -142,7 +159,7 @@ function Graph() {
             predecessors: p
         }
     }
-}
+};
 
 var g = new Graph();
 g.addVertex(1);

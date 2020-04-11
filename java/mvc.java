@@ -58,7 +58,7 @@
     }
 }
 
-public class MVCPatternDemo{
+public class Mvc{
     public static void main(String[] args){
         Student model = studentDatabase();
         StudentView view = new StudentView();
