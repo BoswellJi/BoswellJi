@@ -54,7 +54,7 @@ class Football extends Game {
 
 }
 
-public class Template {
+public class TemplateDemo {
   public static void main(String[] args) {
     Game game = new Circket();
     game.play();
