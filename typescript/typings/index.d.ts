@@ -10,3 +10,7 @@ declare namespace GreetingLib {
 }
 
 declare let nameSelf: string;
+
+declare module mod1{
+   const name1: string;
+}
