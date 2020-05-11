@@ -7,17 +7,14 @@ function drawRoundRect({
   radius,
   ctx
 }) {
-  ctx.beginPath();
+  ctx.save();
   color && (ctx.fillStyle = color);
-  ctx.arc(x + radius, y + radius, radius, Math.PI, Math.PI * 3 / 2);
-  ctx.lineTo(w - radius + x, y);
-  ctx.arc(w - radius + x, radius + y, radius, Math.PI * 3 / 2, Math.PI * 2);
-  ctx.lineTo(w + x, h + y - radius);
-  ctx.arc(w - radius + x, h - radius + y, radius, 0, Math.PI * 1 / 2);
-  ctx.lineTo(radius + x, h + y);
-  ctx.arc(radius + x, h - radius + y, radius, Math.PI * 1 / 2, Math.PI);
+  ctx.translate(x, y);
+  drawRoundRectPath({
+    ctx, w, h, radius
+  });
   ctx.fill();
-  ctx.closePath();
+  ctx.restore();
 }
 
 function drawRect({
@@ -73,11 +70,11 @@ function drawImage({
   circularBeadH,
   imgType = 1
 }) {
-  let tempUrl = typeof url === 'object'?;
+  let tempUrl = typeof url === 'object' ? '' : '';
   if (imgType === 1) {
     const {
       path
-    } = await getImage({
+    } = getImage({
       src: url
     });
     tempUrl = path;
@@ -100,8 +97,8 @@ function drawImage({
     drawRoundRect({
       x,
       y,
-      width: w,
-      height: circularBeadH,
+      w: w,
+      h: circularBeadH,
       radius: 10,
       ctx
     });
@@ -112,11 +109,66 @@ function drawImage({
   ctx.restore();
 }
 
+function strokeRoundRect({
+  ctx,
+  x,
+  y,
+  w,
+  h,
+  radius,
+  lineW,
+  color
+}) {
+  if (2 * radius > w || 2 * radius > h) { return false; }
+
+  ctx.save();
+  ctx.translate(x, y);
+  drawRoundRectPath({
+    ctx, w, h, radius
+  });
+  ctx.lineWidth = lineW || 1;
+  color && (ctx.strokeStyle = color);
+  ctx.stroke();
+  ctx.restore();
+}
+
+function drawRoundRectPath({
+  ctx,
+  w,
+  h,
+  radius
+}) {
+  ctx.beginPath();
+  ctx.arc(w - radius, h - radius, radius, 0, Math.PI / 2);
+  ctx.lineTo(radius, h);
+  ctx.arc(radius, h - radius, radius, Math.PI / 2, Math.PI);
+  ctx.lineTo(0, radius);
+  ctx.arc(radius, radius, radius, Math.PI, Math.PI * 3 / 2);
+  ctx.lineTo(w - radius, 0);
+  ctx.arc(w - radius, radius, radius, Math.PI * 3 / 2, Math.PI * 2);
+  ctx.lineTo(w, h - radius);
+  ctx.closePath();
+}
+
 function main() {
   var canvas = document.querySelector('#canvas'),
-    ctx = canvas.getContext('2d');
-  canvas.style.background = 'black';
+    viewport = document.documentElement;
 
+  ctx = canvas.getContext('2d');
+  canvas.style.cssText = 'background:black;';
+  canvas.width = viewport.clientWidth;
+  canvas.height = viewport.clientHeight;
+
+  ctx.save();
+  strokeRoundRect({
+    ctx,
+    x: 10,
+    y: 10,
+    w: 30,
+    h: 30,
+    radius: 10,
+  });
+  ctx.clip();
   drawRoundRect({
     color: 'red',
     x: 10,
@@ -126,6 +178,7 @@ function main() {
     radius: 10,
     ctx
   });
+  ctx.restore();
 
   drawRect({
     color: 'yellow',
