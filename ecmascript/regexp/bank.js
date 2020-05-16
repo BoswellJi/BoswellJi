@@ -1443,3 +1443,34 @@ const bankcardList = [{
     cardType: "DC"
   }]
 }]
+
+
+/**
+     * 根据银行卡号码查找对应银行
+     * @param {String} number
+     */
+function findBankType(number) {
+  let cardType = [],
+    tempCardType = [],
+    card = [];
+
+  card = bankcardList.filter(item => {
+    tempCardType = item.patterns.filter(item1 => {
+      const flag = item1.reg.test(number);
+      return flag;
+    });
+    if (tempCardType[0]) {
+      cardType = tempCardType;
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  return {
+    bankName: card[0] && card[0].bankName,
+    cardType: cardType[0] && cardType[0].cardType
+  };
+}
+
+console.log(findBankType('145487654567'));
