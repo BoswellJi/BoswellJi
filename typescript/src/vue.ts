@@ -7,3 +7,7 @@ Vue.use(() => {
 Vue.use({
   install:function(){}
 });
+
+function vue(){
+  
+}

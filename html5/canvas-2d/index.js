@@ -786,25 +786,152 @@ function draw() {
   ctx.stroke();
   ctx.restore();
 
-  ctx.strokeText('点3',70,20);
-  ctx.strokeText('点1',130,30);
-  ctx.strokeText('点2',130,80);
+  ctx.strokeText('点3', 70, 20);
+  ctx.strokeText('点1', 130, 30);
+  ctx.strokeText('点2', 130, 80);
 
-  ctx.strokeText('所以，根据半径，确定点1和点2位置',230,80);
+  ctx.strokeText('所以，根据半径，确定点1和点2位置', 230, 80);
 }
 
-// 圆角
-// function draw(x, y, w, h, r) {
-//   ctx.beginPath();
-//   ctx.moveTo(x + r, y);
-//   ctx.arcTo(x + w, y, x + w, y + r, r);
-//   ctx.lineTo(x + w, y + h - r);
-//   ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
-//   ctx.lineTo(x + r, y + h);
-//   ctx.arcTo(x, y + h, x, y + h - r, r);
-//   ctx.lineTo(x, y + r);
-//   ctx.arcTo(x, y, x + r, y, r);
-//   ctx.stroke();
-// }
+/**
+ * 绘制二次贝塞尔曲线
+ */
+function draw() {
+  ctx.beginPath();
+  ctx.moveTo(100, 100);
+  ctx.quadraticCurveTo(20, 50, 200, 200);
+  ctx.stroke();
 
-draw(10, 10, 200, 200, 40);
+  ctx.beginPath();
+  ctx.strokeStyle = 'red';
+  ctx.setLineDash([5]);
+  ctx.moveTo(100, 100);
+  ctx.lineTo(20, 50);
+  ctx.lineTo(200, 200);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.fillStyle = 'blue';
+  ctx.rect(100, 100, 10, 10);
+  ctx.rect(20, 50, 10, 10);
+  ctx.rect(200, 200, 10, 10);
+  ctx.fill();
+}
+
+function draw() {
+  ctx.moveTo(100, 100);
+  ctx.bezierCurveTo(50, 120, 200, 200, 300, 300);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.strokeStyle = 'red';
+  ctx.setLineDash([5]);
+  ctx.moveTo(100, 100);
+  ctx.lineTo(50, 120);
+  ctx.lineTo(200, 200);
+  ctx.lineTo(300, 300);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.fillStyle = 'blue';
+  ctx.rect(100, 100, 10, 10);
+  ctx.rect(50, 120, 10, 10);
+  ctx.rect(200, 200, 10, 10);
+  ctx.rect(300, 300, 10, 10);
+  ctx.fill();
+}
+
+function draw() {
+
+  ctx.save();
+  ctx.strokeStyle = 'red';
+  ctx.rect(100, 100, 100, 100);
+  ctx.stroke();
+  ctx.restore();
+
+  ctx.beginPath();
+
+
+  /**
+   *  {
+   *  a c e
+   *  b d f
+   *  0 0 1
+   * }
+   *  
+   *  a,d 为缩放
+   *  e,f 为平移
+   *  
+   * 
+   */
+
+  // 变形 a,b,c,d,e,f
+
+  // 缩放坐标系
+  // ctx.transform(3,0,0,3,0,0);
+
+  // 平移坐标系
+  // ctx.transform(1,0,0,1,50,50);
+
+  // 旋转坐标系
+  // ctx.transform(Math.cos(Math.PI * 2 / 360 * 30), Math.sin(Math.PI * 2 / 360 * 30), -Math.sin(Math.PI * 2 / 360 * 30), Math.cos(Math.PI * 2 / 360 * 30), 0, 0);
+
+  // **  setTransform 的操作，不会再上一次的结果上进行； transform 的操作，会在上一次的基础之上进行；
+
+  // 倾斜坐标系
+  ctx.transform();
+
+
+  // 先描述形状
+  ctx.rect(100, 100, 100, 100);
+
+  // 使用画笔进行绘制
+  ctx.stroke();
+}
+
+function draw() {
+  ctx.fillStyle = 'red';
+  ctx.rect(100, 100, 100, 100);
+  ctx.fill();
+
+  // 新添加到画布上的颜色，是如何与画布上已有的颜色组合的
+  // ctx.globalCompositeOperation = 'source-over';
+  // ctx.globalCompositeOperation = 'copy';
+  // ctx.globalCompositeOperation = 'darker';
+  // ctx.globalCompositeOperation = 'destination-atop';
+  // ctx.globalCompositeOperation = 'destination-out';
+  // ctx.globalCompositeOperation = 'destination-over';
+  ctx.globalCompositeOperation = 'lighter';
+
+  ctx.beginPath();
+  ctx.fillStyle = 'blue';
+  ctx.rect(120, 120, 120, 120);
+  ctx.fill();
+}
+
+/**
+ * 图片的灰度控制：
+ * 1. pixel = [2,2,2]
+ * const grayscale = pixel[0] * .3 + pixel[1] * .59 + pixel[2] * .11;
+ * 每个像素 4个字节，每个字节（8位无符号整型 0-255
+ * 将每个像素的每个色值都赋值为 grayscale，就形成了图片的灰度控制
+ */
+
+
+/**
+ * 阴影
+ */
+function draw() {
+  ctx.shadowBlur = 10;
+  ctx.shadowColor = 'red';
+  ctx.shadowOffsetX = 10;
+  ctx.shadowOffsetY = 10;
+
+  ctx.beginPath();
+  ctx.fillStyle = 'red';
+  ctx.rect(100, 100, 100, 100);
+  ctx.fill();
+}
+
+
+draw();
