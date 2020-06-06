@@ -32,5 +32,5 @@ const proxy = new Proxy({
 proxy.name = 'jmz';
 // console.log(proxy.name);
 
-console.log(proxy.say());
+// console.log(proxy.say());
 

@@ -1,3 +1,1 @@
-import 'lodash';
-import 'reflect-metadata';
-import './mod';
+import './vue';

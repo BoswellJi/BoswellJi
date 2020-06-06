@@ -38,4 +38,4 @@ function twoNumSubstr(str1, str2) {
   }
 }
 
-console.log(twoNumSubstr('abcda', 'abcad'));
+console.log(twoNumSubstr('aabbhjbfc', 'aabbcccc'));

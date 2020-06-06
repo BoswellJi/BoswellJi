@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>transform</title>
+  <style>
+    .arrow{
+      display: inline-block;
+      border: 1px solid #333;
+      color: #999;
+      transform:translateY(0) rotateZ(90deg) ;
+      animation: upDown linear 1s infinite;
+      cursor: pointer;
+    }
+
+    @keyframes upDown{
+      0%{
+        transform:translateY(0) rotateZ(90deg) ;
+      }
+      25%{
+        transform:translateY(10px) rotateZ(90deg) ;
+      }
+      50%{
+        transform:translateY(0) rotateZ(90deg) ;
+      }
+      75%{
+        transform:translateY(-10px) rotateZ(90deg) ;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="arrow">
+    >>
+  </div>
+</body>
+</html>
