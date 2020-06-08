@@ -818,6 +818,9 @@ function draw() {
   ctx.fill();
 }
 
+/**
+ * 三次贝塞尔曲线
+ */
 function draw() {
   ctx.moveTo(100, 100);
   ctx.bezierCurveTo(50, 120, 200, 200, 300, 300);
@@ -841,6 +844,9 @@ function draw() {
   ctx.fill();
 }
 
+/**
+ * 变形
+ */
 function draw() {
 
   ctx.save();
@@ -859,8 +865,9 @@ function draw() {
    *  0 0 1
    * }
    *  
-   *  a,d 为缩放
-   *  e,f 为平移
+   *  a,d 缩放
+   *  e,f 平移
+   *  b,c 旋转
    *  
    * 
    */
@@ -889,18 +896,21 @@ function draw() {
   ctx.stroke();
 }
 
+/**
+ * 颜色合成（新绘制的颜色与画布上的颜色的合成
+ */
 function draw() {
   ctx.fillStyle = 'red';
   ctx.rect(100, 100, 100, 100);
   ctx.fill();
 
   // 新添加到画布上的颜色，是如何与画布上已有的颜色组合的
-  // ctx.globalCompositeOperation = 'source-over';
-  // ctx.globalCompositeOperation = 'copy';
-  // ctx.globalCompositeOperation = 'darker';
-  // ctx.globalCompositeOperation = 'destination-atop';
-  // ctx.globalCompositeOperation = 'destination-out';
-  // ctx.globalCompositeOperation = 'destination-over';
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.globalCompositeOperation = 'copy';
+  ctx.globalCompositeOperation = 'darker';
+  ctx.globalCompositeOperation = 'destination-atop';
+  ctx.globalCompositeOperation = 'destination-out';
+  ctx.globalCompositeOperation = 'destination-over';
   ctx.globalCompositeOperation = 'lighter';
 
   ctx.beginPath();
@@ -916,7 +926,23 @@ function draw() {
  * 每个像素 4个字节，每个字节（8位无符号整型 0-255
  * 将每个像素的每个色值都赋值为 grayscale，就形成了图片的灰度控制
  */
+function draw() {
+  ctx.fillStyle = 'red';
+  ctx.rect(0, 0, 100, 100);
+  ctx.fill();
 
+  const imageData = ctx.getImageData(0, 0, 100, 100),
+    px = imageData.data;
+
+  for (let i = 0, len = px.length; i < len; i += 4) {
+    const grayscale = px[i] * .3 + px[i + 1] * .59 + px[i + 2] * .11;
+    px[i] = grayscale;
+    px[i + 1] = grayscale;
+    px[i + 2] = grayscale;
+  }
+
+  ctx.putImageData(imageData, 200, 0);
+}
 
 /**
  * 阴影
@@ -933,5 +959,66 @@ function draw() {
   ctx.fill();
 }
 
+/**
+ * 颜色反转
+ */
+function draw() {
+  ctx.fillStyle = 'red';
+  ctx.rect(0, 0, 100, 100);
+  ctx.fill();
+
+  const imageData = ctx.getImageData(0, 0, 100, 100),
+    px = imageData.data;
+
+  for (let i = 0, len = px.length; i < len; i += 4) {
+    px[i] = 255 - px[i];
+    px[i + 1] = 255 - px[i + 1];
+    px[i + 2] = 255 - px[i + 2];
+  }
+
+  ctx.putImageData(imageData, 200, 0);
+}
+
+/**
+ * 径向渐变
+ */
+function draw() {
+  const grd = ctx.createRadialGradient(100, 100, 10, 100, 100, 20);
+  grd.addColorStop(0, 'red');
+  grd.addColorStop(0.2, 'yellow');
+  grd.addColorStop(1, 'blue');
+  ctx.fillStyle = grd;
+  ctx.fillRect(0, 0, 200, 200);
+}
+
+/**
+ * 线性渐变
+ */
+function draw() {
+  // x1,y1 x2,y2 之间做渐变
+
+  const grd = ctx.createLinearGradient(100, 0, 150, 0);
+  grd.addColorStop(0.2, 'red');
+  grd.addColorStop(0.8, 'blue');
+  ctx.fillStyle = grd;
+  ctx.fillRect(0, 0, 200, 200);
+
+  // 平移: ctx.transform(1,0,0,1,x,y);
+  // 缩放：ctx.transform(x,0,0,y,0,0);
+  // 倾斜: ctx.transform(1,x,y,1,0,0);
+  // 旋转：ctx.transform(cos,sin,-sin,cos,0,0);
+  // ctx.transform(2, 0, 1, 1, 200, 200);
+
+  const deg = Math.PI * 2 / 360;
+
+  ctx.save();
+  ctx.transform(Math.cos(10 * deg), Math.sin(10 * deg), -Math.sin(10 * deg), Math.cos(10 * deg), 0, 0);
+  const grd1 = ctx.createLinearGradient(100, 0, 150, 0);
+  grd1.addColorStop(0.2, 'red');
+  grd1.addColorStop(0.8, 'blue');
+  ctx.fillStyle = grd1;
+  ctx.fillRect(0, 0, 200, 200);
+  
+}
 
 draw();
