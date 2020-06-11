@@ -13,16 +13,35 @@ const typedArray = new Uint8Array([256,2]);
 
 const int8Array = new Int8Array([127]);
 
-console.log(int8Array,int8Array.BYTES_PER_ELEMENT);
+// console.log(int8Array,int8Array.BYTES_PER_ELEMENT);
 
 // console.log(Math.pow(2,6)+Math.pow(2,5)+Math.pow(2,4)+Math.pow(2,3)+Math.pow(2,2)+Math.pow(2,1)+Math.pow(2,1));
 
 // 字节序：数值在内存中的表示方式
 
-// ArrayBuffer 和字符串的相互转换
+/**
+ * ArrayBuffer 和字符串的相互转换 
+ * 1. TextDecoder 解码器
+ * 2. TextEnCoder 编码器
+ * 
+ * @param {*} buffer 
+ * @param {*} encoding 
+ */
 function ab2str(buffer,encoding){
   const decoder = new TextDecoder(encoding);
   return decoder.decode(buffer);
 }
 
-console.log(ab2str(buffer,'utf8'));
+/**
+ * 将字符串编码位 BufferArray 对象
+ * @param {*} text 
+ */
+function str2ab(text){
+  const encoder = new TextEncoder();
+  return encoder.encode(text);
+}
+
+const abJmz = str2ab('jmz'),
+  strJmz = ab2str(abJmz);
+
+console.log(strJmz);

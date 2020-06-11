@@ -247,9 +247,6 @@ function rect() {
   // layer.append(path);
 }
 
-const ctx = document.getElementById('canvas').getContext('2d'),
-  text = document.getElementById('text');
-
 /**
  * 填充矩形
  */
@@ -1018,7 +1015,258 @@ function draw() {
   grd1.addColorStop(0.8, 'blue');
   ctx.fillStyle = grd1;
   ctx.fillRect(0, 0, 200, 200);
-  
+}
+
+
+/**
+ * 文本的 
+ * textBaseline
+ * textAlign
+ */
+function draw() {
+  // textAlign
+  ctx.save();
+  ctx.fillStyle = 'red';
+  ctx.font = '30px sans-serif';
+  ctx.textAlign = 'start';
+  ctx.fillText('jmz start', 100, 100);
+  ctx.restore();
+
+  ctx.save();
+  ctx.fillStyle = 'red';
+  ctx.font = '30px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('jmz center', 100, 150);
+  ctx.restore();
+
+  ctx.save();
+  ctx.fillStyle = 'red';
+  ctx.font = '30px sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('jmz left', 100, 200);
+  ctx.restore();
+
+  ctx.save();
+  ctx.fillStyle = 'red';
+  ctx.font = '30px sans-serif';
+  ctx.textAlign = 'right';
+  ctx.fillText('jmz right', 100, 250);
+  ctx.restore();
+
+  ctx.save();
+  ctx.fillStyle = 'red';
+  ctx.font = '30px sans-serif';
+  ctx.textAlign = 'end';
+  ctx.fillText('jmz end', 100, 300);
+  ctx.restore();
+
+  // textBaseline
+  ctx.save();
+  ctx.fillStyle = 'red';
+  ctx.font = '30px sans-serif';
+  ctx.textBaseline = 'top';
+  ctx.fillText('jmz top', 200, 100);
+  ctx.restore();
+
+  ctx.save();
+  ctx.fillStyle = 'red';
+  ctx.font = '30px sans-serif';
+  ctx.textBaseline = 'hanging';
+  ctx.fillText('jmz hanging', 200, 150);
+  ctx.restore();
+
+  ctx.save();
+  ctx.fillStyle = 'red';
+  ctx.font = '30px sans-serif';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('jmz middle', 200, 200);
+  ctx.restore();
+
+  ctx.save();
+  ctx.fillStyle = 'red';
+  ctx.font = '30px sans-serif';
+  ctx.textBaseline = 'alphabetic';
+  ctx.fillText('jmz alphabetic', 200, 250);
+  ctx.restore();
+
+  ctx.save();
+  ctx.fillStyle = 'red';
+  ctx.font = '30px sans-serif';
+  ctx.textBaseline = 'ideographic';
+  ctx.fillText('jmz ideographic', 200, 300);
+  ctx.restore();
+
+  ctx.save();
+  ctx.fillStyle = 'red';
+  ctx.font = '30px sans-serif';
+  ctx.textBaseline = 'bottom';
+  ctx.fillText('jmz bottom', 200, 350);
+  ctx.restore();
+
+
+  // TextMetrics
+  ctx.font = 'italic bold 20px sans-serif';
+  const info = ctx.measureText('jmz');
+  ctx.fillText(`字体：italic bold 20px sans-serif -》jmz: width - ${info.width}`, 400, 100);
+
+  ctx.globalAlpha = 0.4;
+
+  // textAlign
+  ctx.beginPath();
+  ctx.fillStyle = 'black';
+  ctx.fillRect(100, 100, 10, 10);
+  ctx.beginPath();
+  ctx.fillStyle = 'black';
+  ctx.fillRect(100, 150, 10, 10);
+  ctx.beginPath();
+  ctx.fillStyle = 'black';
+  ctx.fillRect(100, 200, 10, 10);
+  ctx.beginPath();
+  ctx.fillStyle = 'black';
+  ctx.fillRect(100, 250, 10, 10);
+  ctx.beginPath();
+  ctx.fillStyle = 'black';
+  ctx.fillRect(100, 300, 10, 10);
+
+  // textBaseline
+  ctx.beginPath()
+  ctx.fillStyle = 'black';
+  ctx.fillRect(200, 100, 10, 10);
+  ctx.beginPath();
+  ctx.fillStyle = 'black';
+  ctx.fillRect(200, 150, 10, 10);
+  ctx.beginPath();
+  ctx.fillStyle = 'black';
+  ctx.fillRect(200, 200, 10, 10);
+  ctx.beginPath();
+  ctx.fillStyle = 'black';
+  ctx.fillRect(200, 250, 10, 10);
+  ctx.beginPath();
+  ctx.fillStyle = 'black';
+  ctx.fillRect(200, 300, 10, 10);
+  ctx.beginPath();
+  ctx.fillStyle = 'black';
+  ctx.fillRect(200, 350, 10, 10);
+
+  canvas.toBlob(function (e) {
+    console.log(e);
+  }, 'image/png', 1);
+
+  const url = canvas.toDataURL('image/png', 1);
+  const image = new Image();
+  image.src = url;
+  document.body.appendChild(image);
+}
+
+function draw() {
+  const cx = 100,
+    cy = 100,
+    r = 50,
+    cr = 4;
+
+  // 钟环
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  ctx.stroke();
+
+  // 圆心
+  ctx.beginPath();
+  ctx.save();
+  ctx.fillStyle = 'black';
+  ctx.arc(cx, cy, cr, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+
+  ctx.beginPath();
+  const innerx = 40 + 40 * Math.cos(Math.PI * 2 / 360 * 0),
+    innery = 40 + 40 * Math.sin(Math.PI * 2 / 360 * 0),
+    outx = 50 + 50 * Math.cos(Math.PI * 2 / 360 * 0),
+    outy = 50 + 50 * Math.sin(Math.PI * 2 / 360 * 0);
+
+  // ctx.moveTo();
+  // ctx.lineTo();
+
+  canvas.toBlob(function (blob) {
+    const url = URL.createObjectURL(blob),
+      image = new Image();
+    image.src = url;
+
+    image.onload = function () {
+      // 释放资源，释放对 url 对象的引用
+      URL.revokeObjectURL(url);
+    }
+
+    document.body.appendChild(image);
+  });
+}
+
+/**
+ * offscreen canvas: 离屏canvas
+ * 1. 也叫缓冲canvas-> buffer
+ */
+
+function draw() {
+  const offscreen = document.createElement('canvas');
+
+  ctx.clearRect(0, 0, cw, ch);
+  ctx.save();
+  ctx.fillStyle = 'rgba(255,255,255,0.8)';
+  ctx.fillRect(0, 0, cw, ch);
+
+}
+
+
+/**
+ * 变换坐标系
+ * 1. translate
+ * 2. rotate
+ * 3. scale
+ */
+function draw() {
+
+  ctx.translate(100, 100);
+
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(0, 500);
+  ctx.closePath();
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(500, 0);
+  ctx.closePath();
+  ctx.stroke();
+
+  for (let i = 0; i < 500; i += 5) {
+    ctx.beginPath();
+    if (i % 50 === 0) {
+      ctx.strokeStyle = 'red';
+    } else {
+      ctx.strokeStyle = 'black';
+    }
+    ctx.moveTo(0, i);
+    ctx.lineTo(-5, i);
+    ctx.stroke();
+    ctx.closePath();
+
+    ctx.beginPath();
+    ctx.moveTo(i, 0);
+    ctx.lineTo(i, -5);
+    ctx.stroke();
+    ctx.closePath();
+  }
+
+  for (let i = 0; i < 500; i += 50) {
+    ctx.textBaseline = 'bottom';
+    ctx.textAlign = 'center';
+    ctx.fillText(i, i, -5);
+
+    ctx.textBaseline = 'middle';
+    ctx.textAlign = 'right';
+    ctx.fillText(i, -5, i);
+  }
+
 }
 
 draw();
