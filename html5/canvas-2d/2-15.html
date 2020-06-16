@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2-15</title>
+  <style>
+    body {
+      background: #eee;
+    }
+
+    #controls {
+      position: absolute;
+      left: 25px;
+      top: 25px
+    }
+
+    #canvas {
+      background: #fff;
+      cursor: pointer;
+      margin-left: 10px;
+      margin-top: 10px;
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas" width="600" height="400"></canvas>
+  <div id="controls">
+    stroke color:
+    <select id="strokeStyleSelect">
+      <option value="red">red</option>
+      <option value="green">green</option>
+      <option value="blue">blue</option>
+    </select>
+    guidewires:
+    <input type="checkbox" id="guidewireCheckbox" checked />
+    <input type="button" value="Erase all" id="eraseAllButton" />
+  </div>
+  <script>
+    let canvas = document.querySelector('#canvas'),
+      eraseAllButton = document.querySelector('#eraseAllButton'),
+      strokeStyleSelect = document.querySelector('#strokeStyleSelect'),
+      guidewireCheckbox = document.querySelector('#guidewireCheckbox'),
+      drawingSurfaceImageData,
+      ctx = canvas.getContext('2d'),
+      // 记录鼠标按下
+      mousedown = {},
+      rubberbandRect = {},
+      // 是否正在拖拽
+      dragging,
+      guidewires = guidewireCheckbox.checked;
+
+    function windowToCanvas(x, y) {
+      const bbox = canvas.getBoundingClientRect();
+      return {
+        x: x - bbox.left * (canvas.width / bbox.width),
+        y: y - bbox.top * (canvas.height / bbox.height)
+      };
+    }
+
+    function saveDrawingSurface() {
+      drawingSurfaceImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    }
+
+    function restoreDrawingSurface() {
+      console.log(drawingSurfaceImageData);
+      ctx.putImageData(drawingSurfaceImageData, 0, 0);
+    }
+
+    function updateRubberbandRectangle(loc) {
+      rubberbandRect.width = Math.abs(loc.x - mousedown.x);
+      rubberbandRect.height = Math.abs(loc.y - mousedown.y);
+
+      if (loc.x > mousedown.x) {
+        rubberbandRect.left = mousedown.x;
+      } else {
+        rubberbandRect.left = loc.x;
+      }
+
+      if (loc.y > mousedown.y) {
+        rubberbandRect.top = mousedown.y;
+      } else {
+        rubberbandRect.top = loc.y;
+      }
+    }
+
+    function drawRubberbandShape(loc) {
+      ctx.beginPath();
+      ctx.moveTo(mousedown.x, mousedown.y);
+      ctx.lineTo(loc.x, loc.y);
+      ctx.stroke();
+    }
+
+    function updateRubberband(loc) {
+      updateRubberbandRectangle(loc)
+      drawRubberbandShape(loc);
+    }
+
+    function drawHorizontalLine(y) {
+      ctx.beginPath();
+      ctx.moveTo(0, y + 0.5);
+      ctx.lineTo(canvas.width, y + 0.5);
+      ctx.stroke();
+    }
+
+    function drawVerticalLine(x) {
+      ctx.beginPath();
+      ctx.moveTo(x + 0.5, 0);
+      ctx.lineTo(x + 0.5, ctx.canvas.height);
+      ctx.stroke();
+    }
+
+    function drawGuidewires(x, y) {
+      ctx.save();
+      ctx.strokeStyle = 'rgba(0,0,230,0.4)';
+      ctx.lineWidth = 0.5;
+      drawVerticalLine(x);
+      drawHorizontalLine(y);
+      ctx.restore();
+    }
+
+    function drawGrid(color, stepx, stepy) {
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 0.5;
+
+      for (let i = stepx + 0.5; i < cw; i += stepx) {
+        ctx.beginPath();
+        ctx.moveTo(i, 0);
+        ctx.lineTo(i, ch);
+        ctx.stroke();
+      }
+
+      for (let i = stepy + 0.5; i < ch; i += stepy) {
+        ctx.beginPath();
+        ctx.moveTo(0, i);
+        ctx.lineTo(cw, i);
+        ctx.stroke();
+      }
+    }
+
+    canvas.addEventListener('mousedown', function (e) {
+      var loc = windowToCanvas(e.clientX, e.clientY);
+      e.preventDefault();
+      saveDrawingSurface();
+      mousedown.x = loc.x;
+      mousedown.y = loc.y;
+      dragging = true;
+    });
+
+    canvas.addEventListener('mousemove', function (e) {
+      var loc;
+
+      if (dragging) {
+        e.preventDefault();
+        loc = windowToCanvas(e.clientX, e.clientY);
+        restoreDrawingSurface();
+        updateRubberband(loc);
+
+        if (guidewires) {
+          drawGuidewires(loc.x, loc.y)
+        }
+      }
+    });
+
+    canvas.addEventListener('mouseup', function (e) {
+      loc = windowToCanvas(e.clientX, e.clientY);
+      restoreDrawingSurface();
+      updateRubberband(loc);
+      dragging = false;
+    });
+
+    eraseAllButton.addEventListener('click', function (e) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawGrid('lightgray', 10, 10);
+      saveDrawingSurface();
+    });
+
+    strokeStyleSelect.addEventListener('change', function (e) {
+      ctx.strokeStyle = strokeStyleSelect.value;
+    });
+
+    guidewireCheckbox.addEventListener('change', function (e) {
+      guidewires = guidewireCheckbox.checked;
+    });
+
+    ctx.strokeStyle = strokeStyleSelect.value;
+  </script>
+</body>
+
+</html>

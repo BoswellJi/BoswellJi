@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas" width="800" height="800"></canvas>
+
+  <script>
+    const canvas = document.querySelector('#canvas'),
+      ctx = canvas.getContext('2d');
+
+    function TextCursor(width, fillStyle) {
+      this.fillStyle = fillStyle || 'rgba(0,0,0,0.5)';
+      this.width = width || 2;
+      this.left = 0;
+      this.top = 0;
+      this.text = '';
+      this.caret = 0;
+    }
+
+    TextCursor.prototype = {
+      getHeight: function (ctx) {
+        const h = ctx.measureText('W').width;
+        return h + h / 6;
+      },
+      createPath: function (ctx) {
+        ctx.beginPath();
+        ctx.rect(this.left, this.top, this.width, this.getHeight(ctx));
+      },
+      insert: function (text) {
+        this.text = this.text.substr(0, this.caret) + text + this.text.substr(this.caret);
+        this.caret += text.length;
+      },
+      removeCharecterBeforeCaret: function () {
+        if (this.caret === 0) {
+          return;
+        }
+
+        this.text = this.text.substring(0, this.caret - 1) + this.text.substring(this.caret);
+        this.caret--;
+      },
+      getWidth: function (ctx) {
+        return ctx.measureText(this.text).width;
+      },
+      draw: function (ctx, left, bottom) {
+        ctx.save();
+        ctx.textAlign = 'start';
+        ctx.textBaseline = 'bottom';
+        ctx.strokeText(this.text, this.left, this.bottom);
+        ctx.fillText(this.text, this.left, this.bottom);
+        ctx.restore();
+      },
+      erase: function (ctx, imageData) {
+        ctx.putImageData(imageData, 0, 0, this.left, this.top, this.width, this.getHeight(ctx));
+      }
+    };
+
+    function windowToCanvas(x, y) {
+      const bbox = canvas.getBoundingClientRect();
+      return {
+        x: x - bbox.left * (canvas.width / bbox.width),
+        y: y - bbox.top * (canvas.height / bbox.height)
+      };
+    }
+
+    const cursor = new TextCursor();
+    let drawingSurfaceImageData,
+      blinkingInterval;
+
+    /**
+    * 获取画布的像素
+    */
+    function saveDrawingSurface() {
+      drawingSurfaceImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    }
+
+    function moveCursor(loc) {
+      cursor.erase(ctx, drawingSurfaceImageData);
+      cursor.draw(ctx, loc.x, loc.y);
+
+      // 闪烁开始
+      if (!blinkingInterval) {
+        blinkCursor(loc);
+      }
+    }
+
+    /**
+    * 鼠标光标闪烁
+    */
+    function blinkCursor(loc) {
+      blinkingInterval = setInterval(function () {
+        // 清除
+        cursor.erase(ctx, drawingSurfaceImageData);
+
+        setTimeout(function () {
+          // 重画
+          cursor.draw(ctx, cursor.left, cursor.top + cursor.getHeight(ctx));
+        }, 500);
+      }, 500 + 500);
+    }
+
+    canvas.addEventListener('mousedown', function (e) {
+      // 获取当前光标的坐标
+      const loc = windowToCanvas(e.clientX, e.clientY);
+      moveCursor(loc);
+    });
+
+    saveDrawingSurface();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas" width="800" height="800"></canvas>
+
+  <script>
+    const canvas = document.querySelector('#canvas'),
+      ctx = canvas.getContext('2d'),
+      textFillStyle = 'rgba(100,130,240,0.5)',
+      textStrokeStyle = 'rgba(200,0,0,0.7)',
+      textSize = 64,
+      circle = {
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        radius: 200
+      };
+
+    function drawCircularText(string, startAngle, endAngle) {
+      var radius = circle.radius,
+        angleDecrement = (startAngle - endAngle) / (string.length - 1),
+        angle = parseFloat(startAngle),
+        index = 0,
+        character;
+
+      ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
+      ctx.stroke();
+
+      ctx.save();
+      ctx.fillStyle = textFillStyle;
+      ctx.textStrokeStyle = textStrokeStyle;
+      ctx.font = textSize + 'px Lucida Sans';
+
+      while (index + 1 < string.length) {
+        character = string.charAt(index);
+        ctx.save();
+        ctx.beginPath();
+        // 平移坐标系，到圆周上的坐标
+        ctx.translate(circle.x + Math.cos(angle) * radius, circle.y - Math.sin(angle) * radius);
+        ctx.rotate(Math.PI * 2 / 360 - angle);
+        ctx.fillText(character, 0, 0);
+        angle -= angleDecrement;
+        index++;
+        ctx.restore();
+      }
+      ctx.restore();
+    }
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    drawCircularText('jmzshiyigeshuaige', 0,Math.PI * 2);
+  </script>
+</body>
+
+</html>
