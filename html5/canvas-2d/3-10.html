@@ -8,30 +8,75 @@
 </head>
 
 <body>
+  Arial:
+  <select id="fontSelect">
+    <option value="Arial">Arial</option>
+    <option value="Arial">Arial</option>
+    <option value="Arial">Arial</option>
+  </select>
+  sizeSelect:
+  <select id="sizeSelect">
+    <option value="10">10</option>
+    <option value="20">20</option>
+    <option value="30">30</option>
+    <option value="60">60</option>
+  </select>
+  fillStyleSelect:
+  <select id="fillStyleSelect">
+    <option value="red">red</option>
+    <option value="blue">blue</option>
+    <option value="green">green</option>
+  </select>
+  strokeStyleSelect:
+  <select id="strokeStyleSelect">
+    <option value="red">red</option>
+    <option value="blue">blue</option>
+    <option value="green">green</option>
+  </select>
   <canvas id="canvas" width="800" height="800"></canvas>
 
   <script>
-    const canvas = document.querySelector('#canvas'),
-      ctx = canvas.getContext('2d');
 
     function TextCursor(width, fillStyle) {
       this.fillStyle = fillStyle || 'rgba(0,0,0,0.5)';
       this.width = width || 2;
       this.left = 0;
       this.top = 0;
-      this.text = '';
-      this.caret = 0;
     }
 
     TextCursor.prototype = {
       getHeight: function (ctx) {
         const h = ctx.measureText('W').width;
-        return h + h / 6;
+        // 高度为小数，导致绘制时出现误差
+        return Math.floor(h + h / 6);
       },
       createPath: function (ctx) {
         ctx.beginPath();
         ctx.rect(this.left, this.top, this.width, this.getHeight(ctx));
       },
+      draw: function (ctx, left, bottom) {
+        ctx.save();
+        this.left = left;
+        this.top = bottom - this.getHeight(ctx);
+        this.createPath(ctx);
+        ctx.fillStyle = this.fillStyle;
+        ctx.fill();
+        ctx.restore();
+      },
+      erase: function (ctx, imageData) {
+        // 清除光标，将快照中的某个特定矩形区域范围内的图像复制会canvas
+        ctx.putImageData(imageData, 0, 0, this.left, this.top, this.width, this.getHeight(ctx));
+      }
+    };
+
+    const TextLine = function (x, y) {
+      this.text = '';
+      this.left = x;
+      this.bottom = y;
+      this.caret = 0;
+    }
+
+    TextLine.prototype = {
       insert: function (text) {
         this.text = this.text.substr(0, this.caret) + text + this.text.substr(this.caret);
         this.caret += text.length;
@@ -40,14 +85,18 @@
         if (this.caret === 0) {
           return;
         }
-
         this.text = this.text.substring(0, this.caret - 1) + this.text.substring(this.caret);
         this.caret--;
       },
       getWidth: function (ctx) {
         return ctx.measureText(this.text).width;
       },
-      draw: function (ctx, left, bottom) {
+      getHeight: function (ctx) {
+        const h = ctx.measureText('W').width;
+        // 高度为小数，导致绘制时出现误差
+        return Math.floor(h + h / 6);
+      },
+      draw(ctx) {
         ctx.save();
         ctx.textAlign = 'start';
         ctx.textBaseline = 'bottom';
@@ -55,61 +104,365 @@
         ctx.fillText(this.text, this.left, this.bottom);
         ctx.restore();
       },
-      erase: function (ctx, imageData) {
-        ctx.putImageData(imageData, 0, 0, this.left, this.top, this.width, this.getHeight(ctx));
+      erase(ctx, imageData) {
+        ctx.putImageData(imageData, 0, 0);
       }
     };
 
+    const Paragraph = function (ctx, left, top, imageData, cursor) {
+      this.context = ctx;
+      this.drawingSurface = imageData;
+      this.left = left;
+      this.top = top;
+      this.lines = [];
+      this.activeLine = undefined;
+      this.cursor = cursor;
+      this.blinkingInterval = undefined;
+    }
+
+    Paragraph.prototype = {
+      /**
+      * 光标位置是否在段落中
+      */
+      isPointInside(loc) {
+        // 画布渲染上下文
+        let c = this.context;
+        // 开始画矩形
+        c.beginPath();
+        c.rect(this.left, this.top, this.getWidth(), this.getHeight());
+        // 点是否在路径当中
+        return c.isPointInPath(loc.x, loc.y);
+      },
+      getHeight() {
+        let h = 0;
+        this.lines.forEach(item => {
+          h += item.getHeight(this.context);
+        });
+        return h;
+      },
+      getWidth() {
+        let w = 0,
+          widest = 0;
+
+        this.lines.forEach(item => {
+          w = item.getWidth(this.context);
+          if (w > widest) {
+            widest = w;
+          }
+        });
+      },
+      draw() {
+        this.lines.forEach(item => {
+          item.draw(this.context);
+        });
+      },
+      erase(ctx, imageData) {
+        ctx.putImageData(imageData, 0, 0);
+      },
+      addLine: function (line) {
+        this.lines.push(line);
+        this.activeLine = line;
+        this.moveCursor(line.left, line.bottom);
+      },
+      moveCursor(x, y) {
+        this.cursor.erase(this.context, this.drawingSurface);
+        this.cursor.draw(this.context, x, y);
+        if (!this.blinkingInterval) {
+          this.blinkCursor(x, y);
+        }
+      },
+      moveCursorCloseTo(x, y) {
+        const line = this.getLine(y);
+        if (line) {
+          line.caret = this.getColumn(line, x);
+          this.activeLine = line;
+          this.moveCursor(line.getCaretX(ctx), line.bottom);
+        }
+      },
+      getLine(y) {
+        var line;
+        for (let i = 0; i < this.lines.length; i++) {
+          line = this.lines[i];
+          if (y > line.bottom - line.getHeight(ctx) && y < line.bottom) {
+            return line;
+          }
+        }
+        return;
+      },
+      insert(text) {
+        this.erase(this.context, this.drawingSurface);
+        this.activeLine.insert(text);
+
+        let t = this.activeLine.text.substring(0, this.activeLine.caret),
+          w = this.context.measureText(t).width;
+
+        this.moveCursor(this.activeLine.left + w, this.activeLine.bottom);
+        this.draw(this.context);
+      },
+      blinkCursor(x, y) {
+        let self = this,
+          blinkOut = 200,
+          blinkInterval = 900;
+
+        this.blinkingInterval = setInterval(function (e) {
+          cursor.erase(ctx, self.drawingSurface);
+
+          setTimeout(function () {
+            cursor.draw(ctx, cursor.left, cursor.top + cursor.getHeight(ctx));
+          }, blinkOut);
+        }, blinkInterval);
+      },
+      moveLinesDown(start) {
+        for (let i = start; i < this.lines.length; i++) {
+          line = this.lines[i];
+          line.bottom += line.getHeight(this.context);
+        }
+      },
+      newLine() {
+        let textBeforeCursor = this.activeLine.text.substring(0, this.activeLine.caret),
+          height = this.context.measureText('W').width +
+            this.context.measureText('W').width / 6,
+          bottom = this.activeLine.bottom + height,
+          activeIndex,
+          line;
+
+        this.erase(this.context, this.drawingSurface);
+        this.activeLine.text = textBeforeCursor;
+
+        line = new TextLine(this.activeLine.left, bottom);
+        activeIndex = this.lines.indexOf(this.activeLine);
+
+        this.lines.splice(activeIndex + 1, 0, line);
+        this.activeLine = line;
+        this.activeLine.caret = 0;
+
+        activeIndex = this.lines.indexOf(this.activeLine);
+        for (let i = 0; i < this.lines.length; i++) {
+          line = this.lines[i];
+          line.bottom += height;
+        }
+
+        this.draw();
+        this.cursor.draw(this.context, this.activeLine.left, this.activeLine.bottom);
+      },
+      backspace() {
+        let lastActiveLine,
+          activeIndex,
+          t,
+          w;
+
+        this.context.save();
+        if (this.activeLine.caret === 0) {
+          if (!this.activeLineIsTopLine) {
+            this.earse();
+            this.moveUpOneLine();
+            this.draw();
+          }
+        } else {
+          this.context.fillStyle = fillStyleSelect.value;
+          this.context.strokeStyle = strokeStyleSelect.value;
+          this.activeLine.erase(this.context, drawingSurfaceImageData);
+          this.activeLine.removeCharecterBeforeCaret();
+
+          t = this.activeLine.text.slice(0, this.activeLine.caret);
+          w = this.context.measureText(t).width;
+
+          this.moveCursor(this.activeLine.left + w, this.activeLine.bottom);
+          this.activeLine.draw(this.context);
+        }
+        ctx.restore();
+      },
+      getColumn(line, x) {
+        let found = false,
+          before,
+          after,
+          closest,
+          tmpLine,
+          column;
+
+        tmpLine = new TextLine(line.left, line.bottom);
+        tmpLine.insert(line.text);
+
+        while (!found && tmpLine.text.length > 0) {
+          before = tmpLine.left + tmpLine.getWidth(ctx);
+          tmpLine.removeCharecterBeforeCaret();
+          after = tmpLine.left + tmpLine.getWidth(ctx);
+
+          if (after < x) {
+            closest = x - after < before - x ? after : before;
+            column = closest === before ? tmpLine.text.length + 1 : tmpLine.text.length;
+            found = true;
+          }
+        }
+        return column;
+      },
+      activeLineIsOutOfText() {
+        return this.lines[0] == this.activeLine;
+      },
+      activeLineIsTopLine() {
+        return this.lines[0] === this.activeLine;
+      },
+      moveUpOneLine() {
+        let lastActiveText, line, before, after;
+
+        lastActiveLine = this.activeLine;
+        lastActiveText = '' + lastActiveLine.text;
+
+        activeIndex = this.lines.indexOf(this.activeLine);
+        this.activeLine = this.lines[activeIndex - 1];
+        this.activeLine.caret = this.activeLine.text.length;
+
+        this.lines.splice(activeIndex, 1);
+        this.moveCursor(this.activeLine.left + this.activeLine.getWidth(this.context), this.activeLine.bottom);
+
+        this.activeLine.text += lastActiveText;
+        for (let i = activeIndex; i < this.line.length; i++) {
+          line = this.lines[i];
+          line.bottom -= line.getHeight(this.context);
+        }
+      }
+    }
+
+    const canvas = document.querySelector('#canvas'),
+      fontSelect = document.querySelector('#fontSelect'),
+      sizeSelect = document.querySelector('#sizeSelect'),
+      strokeStyleSelect = document.querySelector('#strokeStyleSelect'),
+      fillStyleSelect = document.querySelector('#fillStyleSelect'),
+      ctx = canvas.getContext('2d'),
+      cursor = new TextCursor(),
+      blinkOn = 500,
+      blinkOff = 500;
+
+    let drawingSurfaceImageData,
+      blinkingInterval,
+      line,
+      paragraph;
+
+    function setFont() {
+      ctx.font = sizeSelect.value + 'px ' + fontSelect.value;
+    }
+
     function windowToCanvas(x, y) {
       const bbox = canvas.getBoundingClientRect();
+      // 根据可能的缩放比
       return {
         x: x - bbox.left * (canvas.width / bbox.width),
         y: y - bbox.top * (canvas.height / bbox.height)
       };
     }
 
-    const cursor = new TextCursor();
-    let drawingSurfaceImageData,
-      blinkingInterval;
-
-    /**
-    * 获取画布的像素
-    */
-    function saveDrawingSurface() {
-      drawingSurfaceImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    }
-
     function moveCursor(loc) {
       cursor.erase(ctx, drawingSurfaceImageData);
+      saveDrawingSurface();
+      ctx.putImageData(drawingSurfaceImageData, 0, 0);
       cursor.draw(ctx, loc.x, loc.y);
-
       // 闪烁开始
-      if (!blinkingInterval) {
-        blinkCursor(loc);
-      }
+      blinkCursor(loc);
     }
 
     /**
     * 鼠标光标闪烁
     */
     function blinkCursor(loc) {
+      clearInterval(blinkingInterval);
       blinkingInterval = setInterval(function () {
         // 清除
         cursor.erase(ctx, drawingSurfaceImageData);
 
         setTimeout(function () {
-          // 重画
-          cursor.draw(ctx, cursor.left, cursor.top + cursor.getHeight(ctx));
-        }, 500);
-      }, 500 + 500);
+          if (cursor.left === loc.x && cursor.top + cursor.getHeight(ctx) === loc.y) {
+            cursor.draw(ctx, cursor.left, cursor.top + cursor.getHeight(ctx));
+          }
+
+        }, blinkOff);
+      }, blinkOn + blinkOff);
     }
 
     canvas.addEventListener('mousedown', function (e) {
       // 获取当前光标的坐标
       const loc = windowToCanvas(e.clientX, e.clientY);
+
+      let fontHeight = ctx.measureText('W').width,
+        line;
+      // 消除光标
+      cursor.erase(ctx, drawingSurfaceImageData);
+      // 保存画布快照
+      saveDrawingSurface();
+      // 是否存在段落实例，并且是否光标在路径之内
+      if (paragraph && paragraph.isPointInside(loc)) {
+        paragraph.moveCursorCloseTo(loc.x, loc.y);
+      } else {
+        // 获取字体的宽度
+        fontHeight = ctx.measureText('W').width,
+          // 字体的高度等于宽度+宽度的/6
+          fontHeight += fontHeight / 6;
+        // 实例化断落类
+        paragraph = new Paragraph(ctx, loc.x, loc.y - fontHeight, drawingSurfaceImageData, cursor);
+        // 给段落添加线段
+        paragraph.addLine(new TextLine(loc.x, loc.y));
+      }
+      // 移动光标
       moveCursor(loc);
     });
 
+    /**
+    * 获取画布的像素
+    */
+    function saveDrawingSurface() {
+      // 获取快照图像的数据
+      drawingSurfaceImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    }
+
+    fillStyleSelect.addEventListener('change', function (e) {
+      cursor.fillStyle = fillStyleSelect.value;
+      ctx.fillStyle = fillStyleSelect.value;
+    });
+
+    strokeStyleSelect.addEventListener('change', function (e) {
+      cursor.strokeStyle = strokeStyleSelect.value;
+      ctx.strokeStyle = strokeStyleSelect.value;
+    });
+
+    // key event handlers
+    document.addEventListener('keydown', function (e) {
+      const keyCode = e.keyCode;
+      if (keyCode == 8 || keyCode == 13) {
+        e.preventDefault();
+      }
+
+      if (keyCode == 8) {
+        // 删除
+        paragraph.backspace();
+      } else if (keyCode == 13) {
+        // 回车
+        paragraph.newLine();
+      }
+    });
+
+    document.addEventListener('keypress', function (e) {
+      const key = String.fromCharCode(e.which),
+        keyCode = e.keyCode;
+
+      if (keyCode !== 8 && !e.ctrlKey && !e.metaKey) {
+        e.preventDefault();
+
+        ctx.fillStyle = fillStyleSelect.value;
+        ctx.strokeStyle = strokeStyleSelect.value;
+        paragraph.insert(key);
+      }
+    });
+
+    fontSelect.addEventListener('change', setFont);
+    sizeSelect.addEventListener('change', setFont);
+
+    cursor.fillStyle = fillStyleSelect.value;
+    cursor.strokeStyle = strokeStyleSelect.value;
+
+    ctx.fillStyle = fillStyleSelect.value;
+    ctx.strokeStyle = strokeStyleSelect.value;
+    ctx.lineWidth = 2;
+
+    // drawBackground();
     saveDrawingSurface();
   </script>
 </body>
