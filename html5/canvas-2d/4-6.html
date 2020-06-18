@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    body {
+      background: rgba(100, 145, 250, 0.3);
+    }
+
+    #scaleSlider {
+      vertical-align: 10px;
+      width: 100px;
+      margin-left: 90px;
+    }
+
+    #canvas {
+      margin: 10px 20px 0;
+      border: thin solid #aaa;
+      cursor: crosshair;
+    }
+
+    #controls {
+      margin-left: 15px;
+      padding: 0;
+    }
+
+    #scaleOutput {
+      position: absolute;
+      width: 60px;
+      height: 30px;
+      margin-left: 10px;
+      vertical-align: center;
+      text-align: center;
+      color: blue;
+      font: 18px Arial;
+      text-shadow: 2px 2px 5px rgba(100, 140, 250, 0.8);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="controls">
+    <output id="scaleOutput">1.0</output>
+    <input type="range" min="1" max="3" step="0.01" value="1" id="scaleSlider" />
+  </div>
+
+  <canvas id="canvas" width="800" height="520"></canvas>
+
+  <script>
+
+    let canvas = document.querySelector('#canvas'),
+      ctx = canvas.getContext('2d'),
+      image = new Image(),
+      scaleSlider = document.querySelector('#scaleSlider'),
+      scaleOutput = document.querySelector('#scaleOutput'),
+      scale = 1,
+      minScale = 1,
+      glassSize = 150
+      maxScale = 3;
+
+    function drawScaled() {
+      const w = canvas.width,
+        h = canvas.height,
+        // 缩放画布大小(缩放图片，就是缩放画布使得图片放大)
+        sw = w * scale,
+        sh = h * scale;
+      // 清空画布
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+      drawWatermark();
+
+      // 将图片绘制到画布中心，随着画布的放大，图片的绘制返回也被放大，canvas 绘制canvas的效率不是很高
+      ctx.drawImage(canvas, -sw / 2 + w / 2, -sh / 2 + h / 2, sw, sh);
+    }
+
+    function drawScaleText(value) {
+      // 缩放的大小，去掉小数
+      const text = parseFloat(value).toFixed();
+      // 计算缩放比
+      let percent = parseFloat(value - minScale) / parseFloat(maxScale - minScale);
+
+      // 答应缩放比
+      scaleOutput.innerText = text;
+      // 比例不能比0.35好小
+      percent = percent < 0.35 ? 0.35 : percent;
+      // 这只字体的大小
+      scaleOutput.style.fontSize = percent * maxScale + 'em';
+    }
+    function drawWatermark() {
+      let lineOne = 'Copyright',
+        lineTwo = 'Acme Inc',
+        textMetrics,
+        fontHeight = 128;
+
+      ctx.save();
+      // 设置字体样式
+      ctx.font = fontHeight + 'px Arial';
+      // 获取字体信息
+      textMetrics = ctx.measureText(lineOne);
+      // 半透明
+      ctx.globalAlpha = 0.6;
+      // 移动坐标原点，
+      ctx.translate(canvas.width / 2, canvas.height / 2 - fontHeight / 2);
+
+      // ctx.textAlign = 'center'
+      // 让文本居中
+      ctx.fillText(lineOne, -textMetrics.width / 2, 0);
+      ctx.strokeText(lineOne, -textMetrics.width / 2, 0);
+
+      // 获取第一行文本信息
+      textMetrics = ctx.measureText(lineTwo);
+      ctx.fillText(lineOne, -textMetrics.width / 2, fontHeight);
+      ctx.strokeText(lineTwo, -textMetrics.width / 2, fontHeight);
+      ctx.restore();
+    }
+
+    scaleSlider.addEventListener('change', function (e) {
+      // 范围控件进行缩放
+      scale = e.target.value;
+      // 比较最小的缩放比，不能比最小的还小
+      if (scale < minScale) {
+        scale = minScale;
+        // 不能比最大的还大
+      } else if (scale > maxScale) {
+        scale = maxScale;
+      }
+      drawScaleText(scale);
+      drawScaled();
+    })
+
+    ctx.fillStyle = 'red';
+    ctx.strokeStyle = 'yellow';
+    ctx.shadowColor = 'rgba(50,50,50,1)';
+    ctx.shadowOffsetX = 5;
+    ctx.shadowOffsetY = 5;
+    ctx.shadowBlur = 10;
+
+    image.src = './anatomy-of-a-frame.jpg';
+    image.addEventListener('load', function (e) {
+      drawScaled();
+      drawWatermark();
+      drawScaleText(scaleSlider.value);
+    });
+  </script>
+</body>
+
+</html>

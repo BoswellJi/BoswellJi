@@ -38,7 +38,7 @@
   <script>
 
     function TextCursor(width, fillStyle) {
-      this.fillStyle = fillStyle || 'rgba(0,0,0,0.5)';
+      this.fillStyle = fillStyle || 'rgba(0,0,0,1)';
       this.width = width || 2;
       this.left = 0;
       this.top = 0;
@@ -51,13 +51,16 @@
         return Math.floor(h + h / 6);
       },
       createPath: function (ctx) {
+        // 创建矩形路径，坐
         ctx.beginPath();
         ctx.rect(this.left, this.top, this.width, this.getHeight(ctx));
       },
       draw: function (ctx, left, bottom) {
         ctx.save();
+        // 标为：鼠标的点的x轴，和y轴-字体的高度
         this.left = left;
         this.top = bottom - this.getHeight(ctx);
+        // 创建矩形路径
         this.createPath(ctx);
         ctx.fillStyle = this.fillStyle;
         ctx.fill();
@@ -70,27 +73,35 @@
     };
 
     const TextLine = function (x, y) {
+      // 字符串
       this.text = '';
+      // 字符串的位置
       this.left = x;
       this.bottom = y;
+      // 
       this.caret = 0;
     }
 
     TextLine.prototype = {
       insert: function (text) {
+        // 在字符串中间插入文字
         this.text = this.text.substr(0, this.caret) + text + this.text.substr(this.caret);
+        // 计算插入符的位置
         this.caret += text.length;
       },
       removeCharecterBeforeCaret: function () {
         if (this.caret === 0) {
           return;
         }
+        // 删除文字，插入符向前进一位
         this.text = this.text.substring(0, this.caret - 1) + this.text.substring(this.caret);
         this.caret--;
       },
+      // 获取字体的宽度
       getWidth: function (ctx) {
         return ctx.measureText(this.text).width;
       },
+      // 获取字体的高度
       getHeight: function (ctx) {
         const h = ctx.measureText('W').width;
         // 高度为小数，导致绘制时出现误差
@@ -98,6 +109,7 @@
       },
       draw(ctx) {
         ctx.save();
+        // 设置文本位置，
         ctx.textAlign = 'start';
         ctx.textBaseline = 'bottom';
         ctx.strokeText(this.text, this.left, this.bottom);
@@ -105,6 +117,7 @@
         ctx.restore();
       },
       erase(ctx, imageData) {
+        // 擦除画布
         ctx.putImageData(imageData, 0, 0);
       }
     };
@@ -135,12 +148,16 @@
       },
       getHeight() {
         let h = 0;
+        // 多行
         this.lines.forEach(item => {
+          // 获取每行的高度，相加
           h += item.getHeight(this.context);
         });
+        // 总高度
         return h;
       },
       getWidth() {
+        // 获取段落中最长的文本行，那个九四段落的宽度
         let w = 0,
           widest = 0;
 
@@ -152,28 +169,39 @@
         });
       },
       draw() {
+        // 画段落，就是遍历画文本行
         this.lines.forEach(item => {
           item.draw(this.context);
         });
       },
       erase(ctx, imageData) {
+        // 擦除画布
         ctx.putImageData(imageData, 0, 0);
       },
       addLine: function (line) {
+        // 添加行文本
         this.lines.push(line);
+        // 活跃行文本实例
         this.activeLine = line;
+        // 移动光标
         this.moveCursor(line.left, line.bottom);
       },
       moveCursor(x, y) {
+        // 擦除光标
         this.cursor.erase(this.context, this.drawingSurface);
+        // 重画光标
         this.cursor.draw(this.context, x, y);
+        // 没有定时器，光标没有在闪动
         if (!this.blinkingInterval) {
           this.blinkCursor(x, y);
         }
       },
       moveCursorCloseTo(x, y) {
+        // 获取接近光标的文本行
         const line = this.getLine(y);
+        // 行实例
         if (line) {
+          // 
           line.caret = this.getColumn(line, x);
           this.activeLine = line;
           this.moveCursor(line.getCaretX(ctx), line.bottom);
@@ -201,7 +229,7 @@
       },
       blinkCursor(x, y) {
         let self = this,
-          blinkOut = 200,
+          blinkOut = 500,
           blinkInterval = 900;
 
         this.blinkingInterval = setInterval(function (e) {
@@ -219,16 +247,22 @@
         }
       },
       newLine() {
+        // 光标之前的代码
         let textBeforeCursor = this.activeLine.text.substring(0, this.activeLine.caret),
+        // 获取文本的高度
           height = this.context.measureText('W').width +
             this.context.measureText('W').width / 6,
+            // 活跃行的top+文本高度等于下一行的top
           bottom = this.activeLine.bottom + height,
           activeIndex,
           line;
 
+        // 擦除画布
         this.erase(this.context, this.drawingSurface);
+        // 活跃文本行的文本设置为光标之前的内容
         this.activeLine.text = textBeforeCursor;
 
+        // 文本行
         line = new TextLine(this.activeLine.left, bottom);
         activeIndex = this.lines.indexOf(this.activeLine);
 
@@ -353,8 +387,6 @@
 
     function moveCursor(loc) {
       cursor.erase(ctx, drawingSurfaceImageData);
-      saveDrawingSurface();
-      ctx.putImageData(drawingSurfaceImageData, 0, 0);
       cursor.draw(ctx, loc.x, loc.y);
       // 闪烁开始
       blinkCursor(loc);
@@ -373,7 +405,6 @@
           if (cursor.left === loc.x && cursor.top + cursor.getHeight(ctx) === loc.y) {
             cursor.draw(ctx, cursor.left, cursor.top + cursor.getHeight(ctx));
           }
-
         }, blinkOff);
       }, blinkOn + blinkOff);
     }
