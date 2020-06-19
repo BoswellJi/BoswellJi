@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #video {
+      /* display: none; */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- canvas 视频功能的最终目标是为了实现即时视频处理功能 -->
+  <video id="video" poster controls>
+    <source src="test.mp4" />
+  </video>
+  <canvas id="canvas" width="500" height="500"></canvas>
+  <script>
+    const canvas = document.querySelector('#canvas'),
+      ctx = canvas.getContext('2d'),
+      video = document.querySelector('#video');
+
+    function animate() {
+      if (!video.ended) {
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        requsetAnimationFrame(animate);
+      }
+    }
+
+    video.addEventListener('load', function (e) {
+      video.play();
+      requsetAnimationFrame(animate);
+    });
+  </script>
+</body>
+
+</html>

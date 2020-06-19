@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <!-- canvas 视频功能的最终目标是为了实现即时视频处理功能 -->
+  <video id="video" poster controls>
+    <source src="test.mp4" />
+  </video>
+  <canvas id="canvas" width="550" height="960"></canvas>
+  <div id="controls">
+    <button type="button" id="play-btn">play</button>
+    <input type="checkbox" checked id="color" /> color
+    <input type="checkbox" id="flip"> flip
+  </div>
+  <script>
+    let canvas = document.querySelector('#canvas'),
+      ctx = canvas.getContext('2d'),
+      offscreenCanvas = document.createElement('canvas'),
+      offscreenContext = offscreenCanvas.getContext('2d'),
+      video = document.querySelector('#video'),
+      controlBtn = document.querySelector('#play-btn'),
+      color = document.querySelector('#color'),
+      flip = document.querySelector('#flip'),
+      imageData,
+      poster = new Image();
+
+    function removeColor() {
+      let data,
+        width,
+        average;
+
+      // 获取离屏canvas全部像素
+      imageData = offscreenContext.getImageData(0, 0, offscreenCanvas.width, offscreenCanvas.height);
+      data = imageData.data;
+      width = data.width;
+
+      // 将离屏canvas进行黑白处理
+      for (let i = 0; i < data.length - 4; i += 4) {
+        average = (data[i] + data[i + 1] + data[i + 2]) / 3;
+        data[i] = average;
+        data[i + 1] = average;
+        data[i + 2] = average;
+      }
+
+      // 将处理后的像素数据放回离屏的canvas中
+      offscreenContext.putImageData(imageData, 0, 0);
+    }
+
+    function drawFlipped(){
+      ctx.save();
+      // 转移坐标原点到canvas中心点
+      ctx.translate(canvas.width/2,canvas.height/2);
+      // 旋转180度
+      ctx.rotate(Math.PI);
+      // 恢复坐标系
+      ctx.translate(-canvas.width/2,-canvas.height/2);
+      // 将离屏canvas绘制到显示canvas 中
+      ctx.drawImage(offscreenCanvas,0,0);
+      ctx.restore();
+    }
+
+    function nextVideoFrame(){
+      // 视频结束
+      if(video.ended){
+        // 恢复状态
+        controlBtn.innerText = 'play';
+      } else {
+        // 没结束，捕获video的帧，进行绘制到离屏canvas上
+        offscreenContext.drawImage(video,0,0);
+        // 没有选择颜色
+        if(!color.checked){
+          // 删除颜色（变为黑白色
+          removeColor();
+        }
+
+        // 选择反转
+        if(flip.checked){
+          drawFlipped();
+        }else{
+          // 没反转，直接将离屏的canvas 绘制到显示的canvas上去
+          ctx.drawImage(offscreenCanvas,0,0);
+        }
+        requestAnimationFrame(nextVideoFrame);
+      }
+    }
+
+    function startPlaying(){
+      // 调用动画帧
+      requestAnimationFrame(nextVideoFrame);
+      // 播放视频
+      video.play();
+    }
+
+    function stopPlaying(){
+      video.pause();
+    }
+
+    controlBtn.addEventListener('click',function(e){
+      // 开始播放视频
+      if(this.innerText==='play'){
+        startPlaying();
+        controlBtn.innerText ='pause';
+      }else{
+        stopPlaying();
+        controlBtn.innerText = 'play';
+      }
+    });
+
+    offscreenCanvas.width = canvas.width;
+    offscreenCanvas.height = canvas.height;
+  </script>
+</body>
+
+</html>

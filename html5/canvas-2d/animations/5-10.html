@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="frame"></div>
+  <canvas id="canvas" width="750" height="750"></canvas>
+  <button id="animateButton">开始</button>
+
+  <script>
+    let canvas = document.querySelector('#canvas'),
+      ctx = canvas.getContext('2d'),
+      paused = true,
+      discs = [
+        {
+          x: 150,
+          y: 250,
+          lastX: 150,
+          lastY: 250,
+          velocityX: -3.2,
+          velocityY: 3.5,
+          radius: 25,
+          innerColor: 'rgba(255,255,0,1)',
+          middleColor: 'rgba(255,255,0,0.7)',
+          outerColor: 'rgba(255,255,0,0.5)',
+          strokeStyle: 'gray'
+        },
+        {
+          x: 150,
+          y: 350,
+          lastX: 150,
+          lastY: 250,
+          velocityX: -3.2,
+          velocityY: 3.5,
+          radius: 25,
+          innerColor: 'rgba(255,255,0,1)',
+          middleColor: 'rgba(255,255,0,0.7)',
+          outerColor: 'rgba(255,255,0,0.5)',
+          strokeStyle: 'blue'
+        },
+        {
+          x: 150,
+          y: 650,
+          lastX: 150,
+          lastY: 250,
+          velocityX: -3.2,
+          velocityY: 3.5,
+          radius: 25,
+          innerColor: 'rgba(255,255,0,1)',
+          middleColor: 'rgba(255,255,0,0.7)',
+          outerColor: 'rgba(255,255,0,0.5)',
+          strokeStyle: 'orange'
+        }
+      ],
+      numDiscs = discs.length,
+      animateButton = document.querySelector('#animateButton')
+
+    window.requestNextAnimationFrame = (function () {
+      let originalWebkitMethod,
+        wrapper,
+        callback,
+        geckoVersion = 0,
+        userAgent = navigator.userAgent,
+        index = 0,
+        self = this;
+
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function (callback, element) {
+          // 指代window
+          let self = this,
+            start,
+            finish;
+
+          // 修改原生方法，（装饰器模式
+          if (window.webkitRequestAnimationFrame) {
+            // 包装原生方法
+            wrapper = function (item) {
+              if (titme === undefined) {
+                titme = +new Date();
+              }
+              // 给原生方法传值
+              self.callback(time);
+            }
+
+            // 保存原生方法的引用
+            originalWebkitMethod = window.webkitRequestAnimationFrame;
+            // 重新定义原生方法
+            window.webkitRequestAnimationFrame = function (callback, element) {
+              // 给window添加callback函数
+              self.callback = callback;
+              // 调用原生方法
+              originalWebkitMethod(wrapper, element);
+            }
+          }
+
+          if (window.mozRequestAnimationFrame) {
+            // 查找用户代理中的rv 字符串
+            index = userAgent.indexOf('rv');
+
+            // 用户代理中没有所查找字符串
+            if (userAgent.indexOf('Gecko') != -1) {
+              geckoVersion = userAgent.substr(index + 3, 3);
+
+              if (geckoVersion === '2.0') {
+                window.mozRequestAnimationFrame = undefined;
+              }
+            }
+          }
+
+          window.setTimeout(function () {
+            start = +new Date();
+            callback(start);
+            finish = +new Date();
+            self.timeout = 100 / 60 - (finish - start);
+          }, self.timeout);
+        }
+    })();
+
+    function update() {
+      let disc = null;
+      for (let i = 0; i < numDiscs; i++) {
+        disc = discs[i];
+
+        // 到达边界的时候：改变速度的方向 x轴
+        if (disc.x + disc.velocityX + disc.radius > canvas.width || disc.x + disc.velocityX - disc.radius < 0) {
+          disc.velocityX = -disc.velocityX
+        }
+
+        // 到达边界的时候：改变速度的方向 y轴
+        if (disc.y + disc.velocityY + disc.radius > canvas.height || disc.y + disc.velocityY - disc.radius < 0) {
+          disc.velocityY = -disc.velocityY
+        }
+
+        // 变换圆的位置
+        disc.x += disc.velocityX;
+        disc.y += disc.velocityY;
+      }
+    }
+
+    function draw() {
+      let disc;
+
+      for (let i = 0; i < numDiscs; i++) {
+        disc = discs[i];
+        gradient = ctx.createRadialGradient(disc.x, disc.y, 0, disc.x, disc.y, disc.radius);
+        gradient.addColorStop(0.3, disc.innerColor);
+        gradient.addColorStop(0.5, disc.middleColor);
+        gradient.addColorStop(1, disc.outerColor);
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(disc.x, disc.y, disc.radius, 0, Math.PI * 2, false);
+        ctx.fillStyle = gradient;
+        ctx.strokeStyle = disc.strokeStyle;
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+
+    let lastFpsUpdateTime =0,
+    lastFpsUpdate = 0;
+    function animate(time) {
+      let fps = 0;
+      if (!paused) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        update();
+        draw();
+
+        fps = calculateFps();
+
+        if(now-lastFpsUpdate>1000){
+          lastFpsUpdate = fps;
+          lastFpsUpdateTime = now;
+        }
+
+        ctx.fillText(fps+'fps',60,60);
+
+        window.requestNextAnimationFrame(animate);
+      }
+    }
+   
+   let lastTime =0;
+    function calculateFps(){
+      const now = +new Date(),
+      fps = 1000/(now-lastTime);
+      lastTime = now;
+      return Math.floor(fps) ;
+    }
+
+    animateButton.addEventListener('click', function (e) {
+      paused = paused ? false : true;
+
+      if (paused) {
+        animateButton.innerText = 'animate';
+      } else {
+        window.requestNextAnimationFrame(animate);
+        animateButton.innerText = 'pause'
+      }
+    });
+
+    // 动画：一系列帧 图像组成
+    // 帧速率：图像的显示频率
+  </script>
+</body>
+
+</html>
