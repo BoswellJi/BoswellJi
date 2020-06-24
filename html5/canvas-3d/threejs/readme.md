@@ -3,6 +3,13 @@
 - OrthographicCamera
 - PerspectiveCamera
 
+```眼睛
+position:
+up: 是头顶的方向，大多时候朝向天空
+lookAt: 是眼睛看的方向，眼睛的聚焦
+```
+
+
 ## Core （核心对象）
 - BufferGeometry
 - Clock
@@ -55,3 +62,8 @@
 
 ## Extras / Core
 
+## 动画引擎
+-- Tween
+
+## 性能测量工具FPS
+-- stats

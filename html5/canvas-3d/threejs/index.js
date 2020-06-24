@@ -79,4 +79,205 @@ function webglApp() {
   renderer.render(scene, camera);
 }
 
+/**
+ * 
+ */
+function webglApp() {
+  const scene = new THREE.Scene(),
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000),
+    renderer = new THREE.WebGLRenderer();
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
+
+  const geometry = new THREE.CubeGeometry(1, 1, 1),
+    material = new THREE.MeshBasicMaterial({
+      color: 0x00ff00
+    }),
+    cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+  camera.position.z = 5;
+
+  function render() {
+    requestAnimationFrame(render);
+    cube.rotation.x += 0.1;
+    cube.rotation.y += 0.1;
+    renderer.render(scene, camera);
+  }
+  render();
+}
+
+function webglApp() {
+  var renderer, width, height, stats;
+  function initThree() {
+    width = document.getElementById('canvas-frame').clientWidth;
+    height = document.getElementById('canvas-frame').clientHeight;
+    renderer = new THREE.WebGLRenderer({
+      antialias: true
+    });
+    renderer.setSize(width, height);
+    document.getElementById('canvas-frame').appendChild(renderer.domElement);
+    renderer.setClearColor(0xFFFFFF, 1.0);
+
+    stats = new Stats();
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.left = '0px';
+    stats.domElement.style.top = '0px';
+    document.getElementById('canvas-frame').appendChild(stats.domElement);
+  }
+
+  var camera;
+  function initCamera() {
+    camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+    camera.position.x = 0;
+    camera.position.y = 0;
+    camera.position.z = 600;
+    camera.up.x = 0;
+    camera.up.y = 1;
+    camera.up.z = 0;
+    camera.lookAt({
+      x: 0,
+      y: 0,
+      z: 0
+    });
+  }
+
+  var scene;
+  function initScene() {
+    scene = new THREE.Scene();
+  }
+
+  var light;
+  function initLight() {
+    light = new THREE.DirectionalLight(0xFF0000, 1.0, 0);
+    light.position.set(100, 100, 200);
+    scene.add(light);
+  }
+
+  function initLight() {
+    light = new THREE.AmbientLight(0xFFFFFF);
+    light.position.set(100, 100, 200);
+    scene.add(light);
+    light = new THREE.PointLight(0x00FF00);
+    light.position.set(0, 0, 300);
+    scene.add(light);
+  }
+
+  function initObject() {
+    // 创建几何形状
+    var geometry = new THREE.Geometry();
+
+    // 创建材质
+    var material = new THREE.LineBasicMaterial({
+      // 线条的颜色根据顶点来计算
+      vertexColors: THREE.VertexColors
+    });
+
+    // 创建颜色
+    var color1 = new THREE.Color(0x000000),
+      color2 = new THREE.Color(0xFF0000);
+
+    // 创建顶点
+    var p1 = new THREE.Vector3();
+    p1.set(0, 0, 0);
+    var p2 = new THREE.Vector3(-100, 0, 0);
+
+    // vertices表示顶点
+    geometry.vertices.push(p1);
+    geometry.vertices.push(p2);
+
+    // colors表示顶点颜色
+    geometry.colors.push(color1, color2);
+
+    // 创建一条线（使用顶点，材质）
+    var line = new THREE.Line(geometry, material);
+
+    // 添加到场景中去
+    scene.add(line);
+  }
+
+  function initObject() {
+    const geometry = new THREE.Geometry();
+    geometry.vertices.push(new THREE.Vector3(-500, 0, 0));
+    geometry.vertices.push(new THREE.Vector3(500, 0, 0));
+
+    for (let i = 0; i <= 20; i++) {
+      const line = new THREE.Line(geometry, new THREE.LineBasicMaterial({
+        color: 0xffffff,
+        opacity: 0.2
+      }));
+      line.position.z = (i * 50) - 500;
+      scene.add(line);
+
+      const line1 = new THREE.Line(geometry, new THREE.LineBasicMaterial({
+        color: 0xffffff,
+        opacity: 0.2
+      }));
+      line1.position.x = (i * 50) - 500;
+      // 围绕y轴旋转90度
+      line1.rotation.y = 90 * Math.PI * 2 / 360;
+      scene.add(line1);
+    }
+  }
+
+  var mesh;
+  function initObject() {
+    var geometry = new THREE.CylinderGeometry(100, 150, 400);
+    var material = new THREE.MeshLambertMaterial({ color: 0xFFFF00 });
+    mesh = new THREE.Mesh(geometry, material);
+    mesh.position = new THREE.Vector3(0, 0, 0);
+    scene.add(mesh);
+  }
+
+  function initTween() {
+    // 参数： 要改变属性的对象（dom等）
+    new TWEEN.Tween(mesh.position)
+      // 目标位置
+      .to({ x: 400 }, 500)
+      // 动画函数
+      .easing(TWEEN.Easing.Back.Out)
+      // 重复
+      .repeat(Infinity)
+      // 开始
+      .start();
+  }
+
+  function render() {
+    renderer.clear();
+    renderer.render(scene, camera);
+  }
+
+  /**
+   * 运动的两种方式:
+   * 1. 让照相机运动
+   * 2. 让物体运动
+   */
+  function render() {
+    renderer.clear();
+    camera.position.x = camera.position.x + 1;
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+  }
+
+  function render() {
+    // mesh.position.x -= 1;
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+    TWEEN.update();
+    stats.update();
+  }
+
+  function threeStart() {
+    initThree();
+    initCamera();
+    initScene();
+    initLight();
+    initObject();
+    initTween();
+    render();
+  }
+
+  threeStart();
+}
+
 webglApp();

@@ -1,6 +1,13 @@
-// const canvas = document.querySelector('#canvas'),
-//   // webgl的上下文对象
-//   gl = canvas.getContext('webgl');
+/**
+ * 获取webgl的渲染上下文
+ */
+function draw() {
+  const canvas = document.querySelector('#glcanvas'),
+    // WebGLRenderingContext
+    glCtx = canvas.getContext('webgl');
+
+  console.log(glCtx);
+}
 
 /**
  * 绘制一个没有纹理的2d图像
@@ -8,6 +15,9 @@
  * 2. 依然需要创建着色器
  */
 function draw() {
+  const canvas = document.querySelector('#canvas'),
+    // webgl的上下文对象
+    gl = canvas.getContext('webgl');
   // 跟webgl上下文相关的canvas dom对象
   console.log(gl.canvas);
   console.log(gl.drawingBufferWidth);
@@ -173,16 +183,23 @@ function draw() {
   }
 }
 
-
+/**
+ * 在三维空间中渲染正方形
+ * 1. 创建着色器
+ * 
+ * 着色器：
+ * 1. 使用 OpenGL ES着色语言 （GLSL）编写
+ * 2. 携带绘制形状的顶点信息，构造绘制在屏幕上像素的所需数据
+ * 即：像素点的位置和颜色
+ * 
+ * 分类：顶点着色器，片段着色器
+ */
 function draw() {
   main();
-
-  //
-  // Start here
-  //
+  
   function main() {
-    const canvas = document.querySelector('#glcanvas');
-    const gl = canvas.getContext('webgl');
+    const canvas = document.querySelector('#glcanvas'),
+      gl = canvas.getContext('webgl');
 
     // If we don't have a GL context, give up now
 
@@ -411,7 +428,6 @@ function draw() {
 
     return shader;
   }
-
 }
 
 draw();
