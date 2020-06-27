@@ -68,8 +68,7 @@ abstract class Duck {
   public abstract void display();
 
   /**
-   * 因为fly 和quack 动作，每个鸭子的实现都不一样是动态的，
-   * 所以，单独作为接口，给不同的子类型进行实现，在运行时进行动态的调用；
+   * 因为fly 和quack 动作，每个鸭子的实现都不一样是动态的， 所以，单独作为接口，给不同的子类型进行实现，在运行时进行动态的调用；
    */
 
   public void performFly() {
@@ -80,11 +79,11 @@ abstract class Duck {
     quackBehavior.quack();
   }
 
-  public void setFlyBehavior(FlyBehavior fb){
+  public void setFlyBehavior(FlyBehavior fb) {
     flyBehavior = fb;
   }
 
-  public void setQuackBehavior(QuackBehavior qb){
+  public void setQuackBehavior(QuackBehavior qb) {
     quackBehavior = qb;
   }
 }
@@ -95,7 +94,7 @@ class MallarDuck extends Duck {
     System.out.println("MallarDuck");
   }
 
-  public void mallardDuck(){
+  public void mallardDuck() {
     flyBehavior = new FlyWings();
     quackBehavior = new Quack();
   }
@@ -108,13 +107,15 @@ class RedHeadDuck extends Duck {
   }
 }
 
-// 鸭鸣器
-class Duckcall implements QuackBehavior{
+// 鸭鸣器\u000A 
+class Duckcall implements QuackBehavior {
+
+  String str =  "jmz\u000Ajmz";
 
   @Override
   public void quack() {
     // TODO Auto-generated method stub
 
   }
-  
+
 }

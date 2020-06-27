@@ -1,5 +1,5 @@
 <template>
-  <div class="hello" @click="updateText">
+  <div class="hello">
     <h1>{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,
@@ -67,11 +67,11 @@
         <a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a>
       </li>
     </ul>
-    {{name}}
-    {{age}}
-    {{name}}
-    <test ref="test"></test>
-    <test1 ref="test1"></test1>
+    <div>
+      <test :a.sync="show">
+        <test1></test1>
+      </test>
+    </div>
   </div>
 </template>
 
@@ -93,7 +93,8 @@ export default {
   data() {
     return {
       name: "Hello world",
-      age: 12
+      age: 12,
+      show: true
     };
   },
   created() {
@@ -113,7 +114,7 @@ export default {
     //   console.log(this.age);
     // });
   },
-  mounted(){
+  mounted() {
     // this.$watch(
     //   ()=>{
     //     return 'a+b'
@@ -124,7 +125,6 @@ export default {
     //   {
     //     immediate: true,
     //     lazy: true,
-        
     //   }
     // );
   },

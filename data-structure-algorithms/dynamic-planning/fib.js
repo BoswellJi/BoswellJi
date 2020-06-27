@@ -35,17 +35,17 @@ function recurFib(n) {
  * 
  * @param {*} n 数列长度
  */
-// function recurFib(n) {
-//     let sum = 1;
-//     let last = 0;
-//     let next = 1;
-//     for (var i = 2; i <= n; i++) {
-//       // 开始根据斐波那契数列规则进行计算
-//       sum = last + next;
-//       last = next;
-//       next = sum;
-//     }
-//     return sum;
-// }
+function recurFib(n) {
+  let sum = 1;
+  let last = 0;
+  let next = 1;
+  for (var i = 2; i <= n; i++) {
+    // 开始根据斐波那契数列规则进行计算
+    sum = last + next;
+    last = next;
+    next = sum;
+  }
+  return sum;
+}
 
 console.log(recurFib(10));
