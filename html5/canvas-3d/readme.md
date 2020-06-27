@@ -21,3 +21,13 @@
 
 
 ## 右手坐标系 
+
+## 缓冲区
+- 颜色缓冲区`gl.COLOR_BUFFER_BIT`
+- 深度缓冲区`gl.DEPTH_BUFFER_BIT`
+- 模板缓冲区`gl.STENCIL_BUFFER_BIT`
+
+### 清空缓冲区
+- `gl.clearColor(red,green,blue,alpha) (0.0,0.0,0.0,0.0)`
+- `gl.clearDepth(depth)  1.0`
+- `gl.clearStencil(s) 0`

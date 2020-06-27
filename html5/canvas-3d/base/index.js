@@ -25,7 +25,9 @@ function draw() {
 
   // 着色器是使用GLSL编写的,他们是直接由GPu执行计算的程序
   // 通过着色器来渲染场景并画出物体
+  // 参数： 都是 0 - 1，表示颜色可以使用  255/255；
   gl.clearColor(0, 0, 0, 1);
+  // 多基本缓冲区模型，清空颜色缓冲区
   gl.clear(gl.COLOR_BUFFER_BIT);
 }
 
@@ -196,7 +198,7 @@ function draw() {
  */
 function draw() {
   main();
-  
+
   function main() {
     const canvas = document.querySelector('#glcanvas'),
       gl = canvas.getContext('webgl');
@@ -428,6 +430,33 @@ function draw() {
 
     return shader;
   }
+}
+
+function draw() {
+  // 顶点着色器
+  const VSHADER_SOURCE = `
+    void main(){
+      gl_Position = vec4(0.0,0.0,0.0,1.0);
+      gl_PointSize = 10.0
+    }
+  `,
+    FSHADER_SOURCE = `
+    void main(){
+      gl_FragColor = vec4(1.0,0.0,0.0,1.0);
+    }
+  `,
+    canvas = document.querySelector('#glcanvas'),
+    gl = canvas.getContext('webgl');
+
+  if (!initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE)) {
+    return;
+  }
+  // 设置canvas背景
+  gl.clearColor(0.0, 0.0, 0.0, 1.0);
+  // 清空canvas背景
+  gl.clear(gl.COLOR_BUFFER_BIT);
+  // 绘制一个点
+  gl.drawArrays(gl.POINTS, 0, 1);
 }
 
 draw();
