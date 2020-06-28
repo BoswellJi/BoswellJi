@@ -128,7 +128,8 @@ function webglApp() {
 
   var camera;
   function initCamera() {
-    camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+    camera = new THREE.PerspectiveCamera(90, width / height, 1, 10000);
+    // camera = new THREE.OrthographicCamera(window.innerWidth / -2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / -2);
     camera.position.x = 0;
     camera.position.y = 0;
     camera.position.z = 600;
@@ -262,7 +263,7 @@ function webglApp() {
   function render() {
     // mesh.position.x -= 1;
     renderer.render(scene, camera);
-    requestAnimationFrame(render);
+    // requestAnimationFrame(render);
     TWEEN.update();
     stats.update();
   }

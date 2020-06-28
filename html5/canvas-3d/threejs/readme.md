@@ -1,7 +1,10 @@
 ## Cameras （照相机）
 - Camera
 - OrthographicCamera
+正交投影相机: 远近高低比例都相同
+
 - PerspectiveCamera
+透视投影相机: 远处的物体比近处的物体小
 
 ```眼睛
 position:
