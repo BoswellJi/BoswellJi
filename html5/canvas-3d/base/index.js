@@ -432,31 +432,4 @@ function draw() {
   }
 }
 
-function draw() {
-  // 顶点着色器
-  const VSHADER_SOURCE = `
-    void main(){
-      gl_Position = vec4(0.0,0.0,0.0,1.0);
-      gl_PointSize = 10.0
-    }
-  `,
-    FSHADER_SOURCE = `
-    void main(){
-      gl_FragColor = vec4(1.0,0.0,0.0,1.0);
-    }
-  `,
-    canvas = document.querySelector('#glcanvas'),
-    gl = canvas.getContext('webgl');
-
-  if (!initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE)) {
-    return;
-  }
-  // 设置canvas背景
-  gl.clearColor(0.0, 0.0, 0.0, 1.0);
-  // 清空canvas背景
-  gl.clear(gl.COLOR_BUFFER_BIT);
-  // 绘制一个点
-  gl.drawArrays(gl.POINTS, 0, 1);
-}
-
 draw();

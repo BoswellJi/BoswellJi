@@ -42,7 +42,6 @@ function draw() {
   // 从刚才创建的glsl着色程序中找到这个属性值所在的位置
   const positionAttributeLocation = gl.getAttribLocation(program, 'a_position');
   const resolutionUniformLocation = gl.getUniformLocation(program, 'u_resolution');
-  const colorUniformLocation = gl.getUniformLocation(program, 'u_color');
   const matrixLocation  = gl.getUniformLocation(program,'u_matrix');
 
   // createBuffer, bindBuffer, bufferData(将数据存放到缓冲中)
@@ -54,16 +53,6 @@ function draw() {
   gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 
   setGeometry(gl);
-
-  // 通过绑定点向缓冲中存放数据
-  const positions = [
-    10, 20,
-    80, 20,
-    10, 30,
-    10, 30,
-    80, 20,
-    80, 30,
-  ];
 
   // bufferData复制这些数据到gpu的positionBuffer对象上
   // 通过绑定点，向缓冲中存放数据
@@ -111,18 +100,6 @@ function draw() {
     count = 3; // 表示处理6个顶点
 
   gl.drawArrays(primitiveType, offset1, count);
-
-  // for (let i = 0; i < 50; i++) {
-  //   setRectangle(gl, randomInt(300), randomInt(300), randomInt(300), randomInt(300));
-  //   // 告诉webgl,怎样获取颜色缓冲数据
-  //   gl.uniform4f(colorUniformLocation, Math.random(), Math.random(), Math.random(), 1);
-
-  //   const primitiveType = gl.TRIANGLES, // 图元类型（三角形
-  //     offset1 = 0,
-  //     count = 6; // 表示处理6个顶点
-
-  //   gl.drawArrays(primitiveType, offset1, count);
-  // }
 }
 
 function setGeometry(gl) {
