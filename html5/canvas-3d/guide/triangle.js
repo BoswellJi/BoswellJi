@@ -126,8 +126,9 @@ function draw() {
   uniform float u_CosB,u_SinB;
   
   void main(){
+    // 根据公式传入计算好的信息
     gl_Position.x = a_Position.x * u_CosB - a_Position.y * u_SinB;
-    gl_Position.y = a_Position.x * u_SinB - a_Position.y * u_CosB;
+    gl_Position.y = a_Position.x * u_SinB + a_Position.y * u_CosB;
     gl_Position.z = a_Position.z;
     gl_Position.w = 1.0;
   }
@@ -145,47 +146,51 @@ function draw() {
 
   // 顶点着色器，矩阵旋转
   var vertex = `
-// 存储限定符 类型 变量名
-attribute vec4 a_Position;
+    // 存储限定符 类型 变量名
+    attribute vec4 a_Position;
+    uniform mat4 u_xformMatrix;
 
-uniform mat4 u_xformMatrix;
+    void main(){
+      // 矢量具有三个分量，被称为三维矢量
+      // 矩阵 与 矢量 相乘得到 新矢量
+      // 只有在矩阵的列数和矢量的行数相等时，才可以将两者相乘
 
-void main(){
-  gl_Position = a_Position * u_xformMatrix;
-}
-`,
+      // 矢量 a_Position 乘以 矩阵 u_xformMatrix，自动进行计算
+      gl_Position = a_Position * u_xformMatrix;
+    }
+  `,
     // 片元着色器
     fragment = `
-// 精度限定词（指定变量的范围，（最大值，最小值）和精度
-precision mediump float;
-// 存储限定符 类型 变量名
-uniform vec4  u_FragColor;
-void main(){
-  gl_FragColor = u_FragColor;
-}
-`;
+    // 精度限定词（指定变量的范围，（最大值，最小值）和精度
+    precision mediump float;
+    // 存储限定符 类型 变量名
+    uniform vec4  u_FragColor;
+    void main(){
+      gl_FragColor = u_FragColor;
+    }
+  `;
 
-  // 顶点着色器，矩阵平移
-  var vertex = `
-// 存储限定符 类型 变量名
-attribute vec4 a_Position;
+  //   // 顶点着色器，矩阵平移
+  //   var vertex = `
+  // // 存储限定符 类型 变量名
+  // attribute vec4 a_Position;
 
-uniform mat4 u_xformMatrix;
+  // uniform mat4 u_xformMatrix;
 
-void main(){
-  gl_Position = a_Position * u_xformMatrix;
-}
-`,
-    // 片元着色器
-    fragment = `
-// 精度限定词（指定变量的范围，（最大值，最小值）和精度
-precision mediump float;
-// 存储限定符 类型 变量名
-uniform vec4  u_FragColor;
-void main(){
-  gl_FragColor = u_FragColor;
-}
-`;
+  // void main(){
+  //   gl_Position = a_Position * u_xformMatrix;
+  // }
+  // `,
+  //     // 片元着色器
+  //     fragment = `
+  // // 精度限定词（指定变量的范围，（最大值，最小值）和精度
+  // precision mediump float;
+  // // 存储限定符 类型 变量名
+  // uniform vec4  u_FragColor;
+  // void main(){
+  //   gl_FragColor = u_FragColor;
+  // }
+  // `;
 
   if (!initShaders(gl, vertex, fragment)) {
     return;
@@ -223,43 +228,64 @@ void main(){
   // 清空canvas背景
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-  
+
   const n = initVertexBuffer(gl);
 
-  // const radian = Math.PI * 2 / 360 * 140;
-  // const cosB = Math.cos(radian);
-  // const sinB = Math.sin(radian);
-  // // const uCosB = gl.getUniformLocation(gl.program, 'u_CosB');
-  // // const uSinB = gl.getUniformLocation(gl.program, 'u_SinB');
-  // // gl.uniform1f(uCosB, cosB);
-  // // gl.uniform1f(uSinB, sinB);
+  const radian = Math.PI * 2 / 360 * 90;
+  // 计算角度的余弦值，正弦值
+  const cosB = Math.cos(radian);
+  const sinB = Math.sin(radian);
 
-  // // 旋转矩阵
+  // 获取glsl中定义的正弦，余弦的变量
+  const uCosB = gl.getUniformLocation(gl.program, 'u_CosB');
+  const uSinB = gl.getUniformLocation(gl.program, 'u_SinB');
+
+  // 将余弦，正弦值传入glsl中
+  // gl.uniform1f(uCosB, cosB);
+  // gl.uniform1f(uSinB, sinB);
+
+  // 旋转矩阵
   // const xformMatrix = new Float32Array([
-  //   cosB, sinB, 0, 0,
-  //   -sinB, cosB, 0, 0,
+  //   cosB, -sinB, 0, 0,
+  //   sinB, cosB, 0, 0,
   //   0, 0, 1, 0,
   //   0, 0, 0, 1
   // ]);
 
   // 平移矩阵
   // const xformMatrix = new Float32Array([
-  //   1,0,0,0,
-  //   0,1,0,0,
-  //   0,0,1,0,
-  //   0.5,0.5,0,1
+  //   1,0,0,0.5,
+  //   0,1,0,0.5,
+  //   0,0,0,0,
+  //   0,0,0,1
   // ]);
 
-  // 缩放矩阵
+  // 平移矩阵2
   // const xformMatrix = new Float32Array([
   //   1, 0, 0, 0,
-  //   0, 1.5, 0, 0,
+  //   0, 1, 0, 0,
+  //   0, 0, 1, 0,
+  //   0.5, 0.5, 0, 1
+  // ]);
+
+  // 平移加旋转 矩阵
+  // const xformMatrix = new Float32Array([
+  //   cosB, -sinB, 0, 0.5,
+  //   sinB, cosB, 0, 0.5,
   //   0, 0, 1, 0,
   //   0, 0, 0, 1
   // ]);
 
-  // const uXformMatrix = gl.getUniformLocation(gl.program, 'u_xformMatrix');
-  // gl.uniformMatrix4fv(uXformMatrix, false, xformMatrix);
+  // 缩放变换矩阵
+  const xformMatrix = new Float32Array([
+    1.5, 0, 0, 0,
+    0, 0.5, 0, 0,
+    0, 0, 0.5, 0,
+    0, 0, 0, 1
+  ]);
+
+  const uXformMatrix = gl.getUniformLocation(gl.program, 'u_xformMatrix');
+  gl.uniformMatrix4fv(uXformMatrix, false, xformMatrix);
 
   // 给点设置大小
   gl.vertexAttrib1f(aPointSize, 5);

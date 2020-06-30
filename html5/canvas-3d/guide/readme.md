@@ -17,7 +17,8 @@ webgl程序执行流程：
 顶点着色器的内置变量：
 
 1. vec4 gl_Position：  顶点位置
-  + 齐次坐标，具有4个分量，如果齐次坐标最后一个分量是1.0，那么它的前三个分量就可以表示一个三维坐标；（必须是1.0）
+  + 齐次坐标，具有4个分量，如果齐次坐标最后一个分量是 `1.0` ，那么它的前三个分量就可以表示一个三维坐标； `（必须是1.0）` 
+  + 齐次坐标中的 `gl_Position` 对象可以单独访问它的属性， `gl_Position.x， gl_Position.y， gl_Position.z， gl_Position.w` 
 2. float gl_PointSize: 点的尺寸（像素数
 
 片元着色器内置变量：（唯一内置的变量
@@ -75,14 +76,16 @@ webgl与javascript之间传输数据：
 2. 将attribute变量赋值给gl_Position
 3. 向attribute 传输数据
 
-vertexAttrib3f方法的同族函数：
+```处理glsl中变量的函数：
+
+1. vertexAttrib3f方法的同族函数：
 
 1. vertexAttrib1f
 2. vertexAttrib2f
 3. vertexAttrib3f
 4. vertexAttrib4f
 
-vertexAttrib1f方法的矢量版本：（在方法的结尾处以 ‘v’ 字符结尾）
+2. vertexAttrib1f方法的矢量版本：（在方法的结尾处以 ‘v’ 字符结尾）
 
 * 这个矢量版本函数，接手类型化数组作为参数，函数名中的数字表示数组中的元素个数
 1. vertexAttrib1fv
@@ -90,7 +93,11 @@ vertexAttrib1f方法的矢量版本：（在方法的结尾处以 ‘v’ 字符
 3. vertexAttrib3fv
 4. vertexAttrib4fv
 
-uniform4f函数与vertexAttrib4f函数相同：
+3. uniform4f函数与vertexAttrib4f函数相同：
+
+4. uniformMatrix4fv: 处理矩阵的函数
+
+``` 
 
 openGL中函数的命名规范：
 基础函数名 参数个数 参数类型
@@ -104,8 +111,9 @@ vertexAttrib [123](attribute矢量中元素个数) f(float)
 变换或者仿射变换：
 
 * 平移
-* 旋转: 旋转轴，旋转方向，旋转角度
-* 缩放
+* 旋转: `旋转轴，旋转方向，旋转角度` 
+  + 旋转方向的问题： 沿着z轴正半轴某处，视线沿着z轴负方向进行观察，看到的物体就是逆时针旋转的；（向左为逆，向右为顺
+* 缩放： `缩放因子` 
 
 需要用到数学知识，不过可以借助函数库来进行数学计算；
 
@@ -129,8 +137,8 @@ vertexAttrib [123](attribute矢量中元素个数) f(float)
 矩阵 * 矢量
 
 [                [
-  [8, 3, 0], x, 
-  [4, 3, 6], *       y, 
+  [8, 3, 0],          x, 
+  [4, 3, 6], *        y, 
   [3, 2, 3]           z
 ]                ]
 
@@ -138,21 +146,110 @@ x' = 8*x + 3*y + 0*z;
 y' = 4*x + 3*y + 6*z; 
 z' = 3*x + 2*y + 3*z; 
 
+以z轴为旋转轴：
+
+三角函数公式：
+
+1. sin(a+b) = sin(a) * cos(b) + cos(a) * sin(b); 正弦
+2. cos(a+b) = cos(a) * cos(b) - sin(a) * sin(b); 余弦
+
 计算p点的坐标：
-cos(a) = 临边/斜边
-sin(a) = 对边/斜边
 
- x = r * cos(a)  
- y = r * sin(a)
+1. cos(a) = 临边/斜边
+2. sin(a) = 对边/斜边
 
- x' = x * cos(a) - y * sin(b);
- y' = x * sin(b) + y * cos(a);
+```
+ x轴先旋转 a角度，再旋转 b角度, p点的坐标为 （x, y, z）, 原点距离点p的距离为r; 
+
+ 计算旋转 a角度后的 p点坐标:
+ x = r * cos(a); 
+ y = r * sin(a); 
+ 
+ 计算旋转a+b角度后的 p点的坐标:
+ x' = r * cos(a+b); 
+ y' = r * sin(a+b); 
+
+ 转换：
+ x' = r * ( cos(a) * cos(b) - sin(a) * sin(b) ); 
+ y' = r * ( sin(a) * cos(b) + cos(a) * sin(b) ); 
+
+ 转换：
+ x' = r * cos(a) * cos(b) - r * sin(a) * sin(b); 
+ y' = r * sin(a) * cos(b) + r * cos(a) * sin(b); 
+
+ 根据三角函数进行转换:
+ x' = x * cos(a) - y * sin(b); 
+ y' = x * sin(b) + y * cos(a); 
+
+``` 
 
 变换矩阵：在三维图形学中非常重要；
-1. 旋转：这种矩阵也被称为旋转矩阵 ；
-2. 平移：这种矩阵也被称为平移矩阵 ；
-3. 平移：这种矩阵也被称为平移矩阵 ；
+
+1. 旋转：这种矩阵也被称为旋转变换矩阵 ；
+2. 平移：这种矩阵也被称为平移变换矩阵 ；
+3. 缩放：这种矩阵也被称为缩放变换矩阵 ；
+
+- 根据矩阵来计算坐标位置
+- 优势： 不需要重新定义着色器
+- 矩阵 * 矢量（旧坐标） = 新坐标
+
+```矩阵替换数学表达式
+ 旋转矩阵：
+ 数学表达式：
+ y' = x * sin(b) + y * cos(a); 
+ x' = x * cos(a) - y * sin(b); 
+ z' = 1; 
+
+ 矩阵表达式：
+ x' = ax + by + cz; 
+ y' = dx + ey + fz; 
+ z' = gx + hy + iz
+
+ a = cos(a), b = -sin(a), c = 0
+ d = sin(a), e = cos(a), f = 0
+ g = 0, h = 0, i =1
+ 
+ 平移矩阵：(因为这个等式中有t, 下一个等式中没有t, 所以需要借助4*4矩阵)
+ 数学表达式：
+ x' = x + t; 
+ y' = y + t; 
+ z' = 1; 
+
+ 矩阵表达式：
+ x' = ax + by + cz + d; 
+ y' = ex + fy + gz + h; 
+ z' = ix + jy + kz + l; 
+ 1 =  mx + ny + oz + p; 
+
+ a = 1, b = 0, c = 0, d = t, 
+ e = 0, f = 1, g = 0, h = t, 
+ i = 0, j = 0, k = 0, l = 0, 
+ m = 0, n = 0, o = 0, p = 1; 
+
+ 缩放矩阵：
+ 数学表达式：
+ x' = x * s; 
+ y' = y * s; 
+ z' = z * s; 
+ 1 = w * 1; 
+
+ 矩阵表达式：
+ x' = ax + by + cz + d; 
+ y' = ex + fy + gz + h; 
+ z' = ix + jy + kz + l; 
+ 1 =  mx + ny + oz + p; 
+
+ a = s, b = 0, c = 0, d = 0, 
+ e = 0, f = s, g = 0, h = 0, 
+ i = 0, j = 0, k = s, l = 0, 
+ m = 0, n = 0, o = 0, p = 1; 
+
+ 将不同阶数的矩阵相乘的方法：
+ - 将阶数少的矩阵转换为阶数多个矩阵
+```
 
 着色器本身就实现了矩阵和矢量相乘的功能；
 
-webgl中的矩阵是按照： 按列主序的
+矩阵都是二维的，数组是一维的，需要： 按列主序, 按行主序 两种方式存储在数组中；
+
+webgl中的矩阵存储在数组中的方式： 按列主序存储；
