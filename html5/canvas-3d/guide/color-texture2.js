@@ -54,25 +54,43 @@ function initShaders(gl, vertex, fragment) {
   return program;
 }
 
+/**
+ * 初始化顶点数据缓存
+ * @param {*} gl 
+ */
 function initVertexBuffer(gl) {
   // 顶点坐标 纹理坐标
+  // 
   const vertices = new Float32Array([
-    -0.5, 0.5, 0, 1,
-    -0.5, -0.5, 0, 0,
+    -1, 1, 0, 1,
+    -1, -1, 0, 0,
     0.5, 0.5, 1, 1,
     0.5, -0.5, 1, 0,
   ]);
+
+  // 顶点个数
   const n = 4;
+
+  // 创建缓冲数据
   const vertexTexCoordBuffer = gl.createBuffer();
 
+  // 绑定缓冲
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexTexCoordBuffer);
+
+  // 将数据与缓冲进行绑定
   gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
 
+  // 单个元素的字节数
   const fsize = vertices.BYTES_PER_ELEMENT;
 
+  // glsl种a_Position变量的内存地址
   const aPosition = gl.getAttribLocation(gl.program, 'a_Position');
+
+  // 将缓冲中的数据指定给aPosition
   gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, fsize * 4, 0);
-  gl.enableVertexAttribArray(vertices);
+
+  // 
+  gl.enableVertexAttribArray(aPosition);
 
   const aTexCoord = gl.getAttribLocation(gl.program, 'a_TexCoord');
   gl.vertexAttribPointer(aTexCoord, 2, gl.FLOAT, false, fsize * 4, fsize * 2);
@@ -81,102 +99,83 @@ function initVertexBuffer(gl) {
   return n;
 }
 
-function initTexures(gl, n) {
+function initTexures(gl) {
+  // 创建纹理对象
   const texture = gl.createTexture();
+  
+  // 获取glsl变量u_Sampler的存储地址
   const uSampler = gl.getUniformLocation(gl.program, 'u_Sampler');
 
-  // 加载纹理图像
+  // 创建图片对象
   const image = new Image();
+
+  // 监听图片加载事件
   image.addEventListener('load', function () {
-    // 将图像交给webgl系统
-    loadTexture(gl, n, texture, uSampler, image);
+    loadTexture(gl,  texture, uSampler, image);
   });
-  image.src = './1.jpg';
+
+  // 给图片添加src属性
+  image.src = './examples/resources/particle.png';
   return true;
 }
 
-function loadTexture(gl, n, texture, uSampler, image) {
+function loadTexture(gl, texture, uSampler, image) {
   // 对纹理图像进行y轴反转
   gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
 
-  // 激活0号纹理单元
+  // 开启0号纹理单元
   gl.activeTexture(gl.TEXTURE0);
 
-  // 开启纹理对象， 绑定纹理对象到纹理单元
-  gl.bindTexture(gl.TEXTURE_2D,texture);
+  // 向target绑定
+  gl.bindTexture(gl.TEXTURE_2D, texture);
 
-  // 配置纹理参数
+  // 配置纹理参数（不同的纹理，类似背景图
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
 
   // 配置纹理图像
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
 
   // 将0号纹理传递给着色器
   gl.uniform1i(uSampler, 0);
+
+  // 方法是异步执行的，必须放这里
+  gl.clear(gl.COLOR_BUFFER_BIT);
+
+  gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 }
 
 const canvas = document.querySelector('#canvas'),
   gl = canvas.getContext('webgl');
 
-/**
- * 顶点坐标
- * 图形装配
- * 光栅化
- * 执行片元着色器
- */
 function draw() {
-  const vertex = `
-    attribute vec4 a_Position;
-    attribute vec2 a_TexCoord;
+  const vertex =  `
+  attribute vec4 a_Position;
+  attribute vec2 a_TexCoord;
+  varying vec2 v_TexCoord;
+
+  void main() {
+    gl_Position = a_Position;
+    v_TexCoord = a_TexCoord;
+  }`,
+    fragment = `
+    precision mediump float;
+    uniform sampler2D u_Sampler;
     varying vec2 v_TexCoord;
 
-    void main(){
-      gl_Position = a_Position;
-      v_TexCoord = a_TexCoord;
-    }
-  `,
-    fragment = `
-      precision mediump float;
-      uniform float u_Width;
-      uniform float u_Height;
+    void main() {
+      gl_FragColor = texture2D(u_Sampler, v_TexCoord);
+    }`;
 
-      uniform sampler2D u_Sampler;
-      varying vec2 v_TexCoord;
-
-      void main(){
-        // 根据片元的坐标信息计算颜色
-        // gl_FragColor = vec4(gl_FragCoord.x/u_Width,0,gl_FragCoord.y/u_Height,1);
-        gl_FragColor = texture2D(u_Sampler,v_TexCoord);
-      }
-    `;
-
-  // 初始化着色器
   if (!initShaders(gl, vertex, fragment)) {
     return;
   }
 
   const n = initVertexBuffer(gl);
 
-  const flag = initTexures(gl,n);
-
-  console.log(flag);
-
-  // const uWidth = gl.getUniformLocation(gl.program, 'u_Width');
-  // const uHeight = gl.getUniformLocation(gl.program, 'u_Height');
-
-  // 颜色缓冲区的宽度，高度
-  // const colorBufferWidth = gl.drawingBufferWidth;
-  // const colorBufferHeight = gl.drawingBufferHeight;
-
-  // gl.uniform1f(uWidth, colorBufferWidth);
-  // gl.uniform1f(uHeight, colorBufferHeight);
-
-  // 设置canvas背景
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
-  // 清空canvas背景
-  gl.clear(gl.COLOR_BUFFER_BIT);
-  // 进行绘制
-  gl.drawArrays(gl.TRIANGLE_STRIP, 0, n);
+
+  initTexures(gl);
 }
 
 draw();
