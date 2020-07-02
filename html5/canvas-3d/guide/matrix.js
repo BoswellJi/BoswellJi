@@ -222,6 +222,7 @@ Matrix4.prototype.invert = function() {
 };
 
 /**
+ * 设置正射投影矩阵
  * Set the orthographic projection matrix.
  * @param left The coordinate of the left of clipping plane.
  * @param right The coordinate of the right of clipping plane.

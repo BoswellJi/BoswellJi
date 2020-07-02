@@ -61,22 +61,22 @@ function initShaders(gl, vertex, fragment) {
 function initVertexBuffer(gl) {
   // 顶点坐标 纹理坐标
   const vertices = new Float32Array([
-    // Vertex coordinates and color(RGBA)
-    0.0, 0.5, -0.4, 0.4, 1.0, 0.4, // The back green one
-    -0.5, -0.5, -0.4, 0.4, 1.0, 0.4,
-    0.5, -0.5, -0.4, 1.0, 0.4, 0.4,
+    // Vertex coordinates and color
+    0.0,  1.0,   0.0,  0.4,  0.4,  1.0,  // The front blue one 
+    -0.5, -1.0,   0.0,  0.4,  0.4,  1.0,
+     0.5, -1.0,   0.0,  1.0,  0.4,  0.4, 
 
-    // 0.5, 0.4, -0.2, 1.0, 0.4, 0.4, // The middle yellow one
-    // -0.5, 0.4, -0.2, 1.0, 1.0, 0.4,
-    // 0.0, -0.6, -0.2, 1.0, 1.0, 0.4,
+     0.0,  1.0,  -2.0,  1.0,  1.0,  0.4, // The middle yellow one
+    -0.5, -1.0,  -2.0,  1.0,  1.0,  0.4,
+     0.5, -1.0,  -2.0,  1.0,  0.4,  0.4,
 
-    // 0.0, 0.5, 0.0, 0.4, 0.4, 1.0,  // The front blue one 
-    // -0.5, -0.5, 0.0, 0.4, 0.4, 1.0,
-    // 0.5, -0.5, 0.0, 1.0, 0.4, 0.4
+     0.0,  1.0,  -4.0,  0.4,  1.0,  0.4, // The back green one
+    -0.5, -1.0,  -4.0,  0.4,  1.0,  0.4,
+     0.5, -1.0,  -4.0,  1.0,  0.4,  0.4, 
   ]);
 
   // 顶点个数
-  const n = 3;
+  const n = 9;
 
   // 创建缓冲数据
   const vertexTexCoordBuffer = gl.createBuffer();
@@ -108,21 +108,29 @@ function initVertexBuffer(gl) {
   return n;
 }
 
-
 const canvas = document.querySelector('#canvas'),
   gl = canvas.getContext('webgl');
 
+/**
+ * 正确处理对象的前后关系
+ * 解决方法：
+ * 1. 隐藏面消除功能；（消除那些被遮挡的表面（隐藏面），这样绘制场景不必顾及各物体在缓冲区中的顺序，那些远处的物体会自动被近处的物体遮挡住，不会被绘制出来，
+ * 2. webgl的内置功能
+ * 
+ * 深度冲突： 几何图形或者物体的两个表面极为接近时，使得表面看上去斑斑驳驳的现象；
+ * 原因： 两个表面太过接近，深度缓冲区有限的精度已经不能区分哪个在前，在后了；
+ * 解决方法：
+ * 1. 多边形偏移
+ * 
+ */
 function draw() {
   const vertex = `
     attribute vec4 a_Position;
     attribute vec4 a_Color;
-    uniform mat4 u_ViewMatrix;
-    uniform mat4 u_ModelMatrix;
     varying vec4 v_Color;
 
     void main(){
-      // 视图矩阵和顶点坐标相乘； 意味着：根据视图矩阵（观察者的状态），调整每个顶点坐标，渲染到屏幕上
-      gl_Position = u_ModelMatrix * u_ViewMatrix * a_Position;
+      gl_Position = a_Position;
       v_Color = a_Color;
     }
   `,
@@ -140,25 +148,12 @@ function draw() {
   }
 
   const n = initVertexBuffer(gl);
-  const uViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix');
-  const uModelMatrix = gl.getUniformLocation(gl.program,'u_ModelMatrix');
+  
+  gl.clearColor(0, 0, 0, 1);
 
-  // 设置观察者的状态
-  // 设置视点，视线（目标点），和上方向
-  const viewMatrix = new Matrix4();
-  viewMatrix.setLookAt(0, 0, 0.5, 0.5, 0, 0, 0, 1, 0);
-
-  // 旋转元素
-  const modelMatrix = new Matrix4();
-  modelMatrix.setRotate(-10,0,0,1);
-
-  gl.uniformMatrix4fv(uViewMatrix, false, viewMatrix.elements);
-  gl.uniformMatrix4fv(uModelMatrix, false, modelMatrix.elements);
-
-  gl.clearColor(0.0, 0.0, 0.0, 1.0);
-
+  // 清空画布
   gl.clear(gl.COLOR_BUFFER_BIT);
-
+  // 绘制图形
   gl.drawArrays(gl.TRIANGLES, 0, n);
 }
 

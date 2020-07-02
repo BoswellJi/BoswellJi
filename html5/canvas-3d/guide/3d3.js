@@ -61,22 +61,35 @@ function initShaders(gl, vertex, fragment) {
 function initVertexBuffer(gl) {
   // 顶点坐标 纹理坐标
   const vertices = new Float32Array([
-    // Vertex coordinates and color(RGBA)
-    0.0, 0.5, -0.4, 0.4, 1.0, 0.4, // The back green one
-    -0.5, -0.5, -0.4, 0.4, 1.0, 0.4,
-    0.5, -0.5, -0.4, 1.0, 0.4, 0.4,
+    // Three triangles on the right side
+    0.75,  1.0,  -4.0,  0.4,  1.0,  0.4, // The back green one
+    0.25, -1.0,  -4.0,  0.4,  1.0,  0.4,
+    1.25, -1.0,  -4.0,  1.0,  0.4,  0.4, 
 
-    // 0.5, 0.4, -0.2, 1.0, 0.4, 0.4, // The middle yellow one
-    // -0.5, 0.4, -0.2, 1.0, 1.0, 0.4,
-    // 0.0, -0.6, -0.2, 1.0, 1.0, 0.4,
+    0.75,  1.0,  -2.0,  1.0,  1.0,  0.4, // The middle yellow one
+    0.25, -1.0,  -2.0,  1.0,  1.0,  0.4,
+    1.25, -1.0,  -2.0,  1.0,  0.4,  0.4, 
 
-    // 0.0, 0.5, 0.0, 0.4, 0.4, 1.0,  // The front blue one 
-    // -0.5, -0.5, 0.0, 0.4, 0.4, 1.0,
-    // 0.5, -0.5, 0.0, 1.0, 0.4, 0.4
+    0.75,  1.0,   0.0,  0.4,  0.4,  1.0,  // The front blue one 
+    0.25, -1.0,   0.0,  0.4,  0.4,  1.0,
+    1.25, -1.0,   0.0,  1.0,  0.4,  0.4, 
+
+    // Three triangles on the left side
+   -0.75,  1.0,  -4.0,  0.4,  1.0,  0.4, // The back green one
+   -1.25, -1.0,  -4.0,  0.4,  1.0,  0.4,
+   -0.25, -1.0,  -4.0,  1.0,  0.4,  0.4, 
+
+   -0.75,  1.0,  -2.0,  1.0,  1.0,  0.4, // The middle yellow one
+   -1.25, -1.0,  -2.0,  1.0,  1.0,  0.4,
+   -0.25, -1.0,  -2.0,  1.0,  0.4,  0.4, 
+
+   -0.75,  1.0,   0.0,  0.4,  0.4,  1.0,  // The front blue one 
+   -1.25, -1.0,   0.0,  0.4,  0.4,  1.0,
+   -0.25, -1.0,   0.0,  1.0,  0.4,  0.4, 
   ]);
 
   // 顶点个数
-  const n = 3;
+  const n = 18;
 
   // 创建缓冲数据
   const vertexTexCoordBuffer = gl.createBuffer();
@@ -108,21 +121,20 @@ function initVertexBuffer(gl) {
   return n;
 }
 
-
 const canvas = document.querySelector('#canvas'),
   gl = canvas.getContext('webgl');
 
+// 透视投影
 function draw() {
   const vertex = `
     attribute vec4 a_Position;
     attribute vec4 a_Color;
-    uniform mat4 u_ViewMatrix;
-    uniform mat4 u_ModelMatrix;
     varying vec4 v_Color;
+    uniform mat4 u_ProjMatrix;
+    uniform mat4 u_ViewMatrix;
 
     void main(){
-      // 视图矩阵和顶点坐标相乘； 意味着：根据视图矩阵（观察者的状态），调整每个顶点坐标，渲染到屏幕上
-      gl_Position = u_ModelMatrix * u_ViewMatrix * a_Position;
+      gl_Position = u_ViewMatrix * u_ProjMatrix * a_Position;
       v_Color = a_Color;
     }
   `,
@@ -140,25 +152,29 @@ function draw() {
   }
 
   const n = initVertexBuffer(gl);
+  const uProjMatrix = gl.getUniformLocation(gl.program, 'u_ProjMatrix');
   const uViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix');
-  const uModelMatrix = gl.getUniformLocation(gl.program,'u_ModelMatrix');
 
-  // 设置观察者的状态
-  // 设置视点，视线（目标点），和上方向
+  const projMatrix = new Matrix4();
   const viewMatrix = new Matrix4();
-  viewMatrix.setLookAt(0, 0, 0.5, 0.5, 0, 0, 0, 1, 0);
-
-  // 旋转元素
-  const modelMatrix = new Matrix4();
-  modelMatrix.setRotate(-10,0,0,1);
+  
+  // 计算视图矩阵
+  viewMatrix.setLookAt(0, 0, 5, 0, 0, -100, 0, 1, 0);
+  // 计算投影矩阵
+  projMatrix.setPerspective(30, canvas.width / canvas.height, 1, 100);
 
   gl.uniformMatrix4fv(uViewMatrix, false, viewMatrix.elements);
-  gl.uniformMatrix4fv(uModelMatrix, false, modelMatrix.elements);
+  gl.uniformMatrix4fv(uProjMatrix, false, new Float32Array([
+    1,0,0,0,
+    0,1,0,0,
+    0,0,1,0,
+    0,0,0,1]));
+  
+  gl.clearColor(0, 0, 0, 1);
 
-  gl.clearColor(0.0, 0.0, 0.0, 1.0);
-
+  // 清空画布
   gl.clear(gl.COLOR_BUFFER_BIT);
-
+  // 绘制图形
   gl.drawArrays(gl.TRIANGLES, 0, n);
 }
 

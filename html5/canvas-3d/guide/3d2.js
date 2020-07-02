@@ -66,17 +66,17 @@ function initVertexBuffer(gl) {
     -0.5, -0.5, -0.4, 0.4, 1.0, 0.4,
     0.5, -0.5, -0.4, 1.0, 0.4, 0.4,
 
-    // 0.5, 0.4, -0.2, 1.0, 0.4, 0.4, // The middle yellow one
-    // -0.5, 0.4, -0.2, 1.0, 1.0, 0.4,
-    // 0.0, -0.6, -0.2, 1.0, 1.0, 0.4,
+    0.5, 0.4, -0.2, 1.0, 0.4, 0.4, // The middle yellow one
+    -0.5, 0.4, -0.2, 1.0, 1.0, 0.4,
+    0.0, -0.6, -0.2, 1.0, 1.0, 0.4,
 
-    // 0.0, 0.5, 0.0, 0.4, 0.4, 1.0,  // The front blue one 
-    // -0.5, -0.5, 0.0, 0.4, 0.4, 1.0,
-    // 0.5, -0.5, 0.0, 1.0, 0.4, 0.4
+    0.0, 0.5, 0.0, 0.4, 0.4, 1.0,  // The front blue one 
+    -0.5, -0.5, 0.0, 0.4, 0.4, 1.0,
+    0.5, -0.5, 0.0, 1.0, 0.4, 0.4
   ]);
 
   // 顶点个数
-  const n = 3;
+  const n = 9;
 
   // 创建缓冲数据
   const vertexTexCoordBuffer = gl.createBuffer();
@@ -116,13 +116,11 @@ function draw() {
   const vertex = `
     attribute vec4 a_Position;
     attribute vec4 a_Color;
-    uniform mat4 u_ViewMatrix;
-    uniform mat4 u_ModelMatrix;
     varying vec4 v_Color;
+    uniform mat4 u_ProjMatrix;
 
     void main(){
-      // 视图矩阵和顶点坐标相乘； 意味着：根据视图矩阵（观察者的状态），调整每个顶点坐标，渲染到屏幕上
-      gl_Position = u_ModelMatrix * u_ViewMatrix * a_Position;
+      gl_Position = u_ProjMatrix * a_Position;
       v_Color = a_Color;
     }
   `,
@@ -140,26 +138,63 @@ function draw() {
   }
 
   const n = initVertexBuffer(gl);
-  const uViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix');
-  const uModelMatrix = gl.getUniformLocation(gl.program,'u_ModelMatrix');
+  const uProjMatrix = gl.getUniformLocation(gl.program, 'u_ProjMatrix');
+
+  // Matrix4 只计算矩阵 （一个矩阵变化到另一个矩阵
 
   // 设置观察者的状态
   // 设置视点，视线（目标点），和上方向
-  const viewMatrix = new Matrix4();
-  viewMatrix.setLookAt(0, 0, 0.5, 0.5, 0, 0, 0, 1, 0);
+  const projMatrix = new Matrix4();
+  
 
   // 旋转元素
-  const modelMatrix = new Matrix4();
-  modelMatrix.setRotate(-10,0,0,1);
-
-  gl.uniformMatrix4fv(uViewMatrix, false, viewMatrix.elements);
-  gl.uniformMatrix4fv(uModelMatrix, false, modelMatrix.elements);
+  // const rotateMatrix = new Matrix4();
+  // rotateMatrix.setRotate(10, 0, 0, 1);
 
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
-  gl.clear(gl.COLOR_BUFFER_BIT);
+  // gl.clear(gl.COLOR_BUFFER_BIT);
 
-  gl.drawArrays(gl.TRIANGLES, 0, n);
+  // gl.drawArrays(gl.TRIANGLES, 0, n);
+
+  // 根据键盘移动视点
+  let g_eyeX = 0.2,
+    gNear = 0,
+    gFar = 0.5,
+    content = document.querySelector('#content');
+
+    draw();
+  /**
+   * 当在调整观察者的位置时，视点在极右，或者极左的时候，三角形会缺少一部分
+   * 原因： 没有指定可视范围，实际观察得到的区域边界
+   * 
+   * 
+   */
+  document.addEventListener('keydown', function (e) {
+    // 左右键
+    switch (e.keyCode) {
+      case 39: gNear += 0.01; break;
+      case 37: gNear -= 0.01; break;
+      case 38: gFar += 0.01; break;
+      case 40: gFar -= 0.01; break;
+      default: return;
+    }
+    draw();
+  });
+
+  // 展示了可视空间的作用，想要绘制任何东西，必须把它置于可视空间中
+  function draw(){
+    // 视点与近，远裁剪面的距离，使用矩阵设置可视空间
+    projMatrix.setOrtho(-1, 1, -1, 1, gNear, gFar);
+    // 给glsl中的变量赋值（计算物体的顶点坐标
+    gl.uniformMatrix4fv(uProjMatrix, false, projMatrix.elements);
+    // 清空画布
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    // 绘制图形
+    gl.drawArrays(gl.TRIANGLES, 0, n);
+
+    content.innerHTML = gNear +'------' + gFar;
+  }
 }
 
 draw();
