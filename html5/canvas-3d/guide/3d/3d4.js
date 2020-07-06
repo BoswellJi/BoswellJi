@@ -111,18 +111,6 @@ function initVertexBuffer(gl) {
 const canvas = document.querySelector('#canvas'),
   gl = canvas.getContext('webgl');
 
-/**
- * 正确处理对象的前后关系
- * 解决方法：
- * 1. 隐藏面消除功能；（消除那些被遮挡的表面（隐藏面），这样绘制场景不必顾及各物体在缓冲区中的顺序，那些远处的物体会自动被近处的物体遮挡住，不会被绘制出来，
- * 2. webgl的内置功能
- * 
- * 深度冲突： 几何图形或者物体的两个表面极为接近时，使得表面看上去斑斑驳驳的现象；
- * 原因： 两个表面太过接近，深度缓冲区有限的精度已经不能区分哪个在前，在后了；
- * 解决方法：
- * 1. 多边形偏移
- * 
- */
 function draw() {
   const vertex = `
     attribute vec4 a_Position;

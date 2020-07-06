@@ -61,8 +61,9 @@ function initShaders(gl, vertex, fragment) {
 function initVertexBuffer(gl) {
   /**
    * 通常这些复杂的顶点和索引，不需要我们手动常见，可以借助三维建模工具来创建他们
+   * 顶点坐标
    */
-  var vertices = new Float32Array([   // Vertex coordinates
+  var vertices = new Float32Array([   // Vertex coordinates 24个顶点
     1.0, 1.0, 1.0,  -1.0, 1.0, 1.0,  -1.0,-1.0, 1.0,   1.0,-1.0, 1.0,  // v0-v1-v2-v3 front
     1.0, 1.0, 1.0,   1.0,-1.0, 1.0,   1.0,-1.0,-1.0,   1.0, 1.0,-1.0,  // v0-v3-v4-v5 right
     1.0, 1.0, 1.0,   1.0, 1.0,-1.0,  -1.0, 1.0,-1.0,  -1.0, 1.0, 1.0,  // v0-v5-v6-v1 up
@@ -70,7 +71,7 @@ function initVertexBuffer(gl) {
    -1.0,-1.0,-1.0,   1.0,-1.0,-1.0,   1.0,-1.0, 1.0,  -1.0,-1.0, 1.0,  // v7-v4-v3-v2 down
     1.0,-1.0,-1.0,  -1.0,-1.0,-1.0,  -1.0, 1.0,-1.0,   1.0, 1.0,-1.0   // v4-v7-v6-v5 back
  ]);
-
+ // 每个顶点的颜色
  var colors = new Float32Array([     // Colors
    0.4, 0, 1.0,  0.4, 1, 1.0,  0.4, 0.9, 1.0,  0.4, 0, 1.0,  // v0-v1-v2-v3 front(blue)
    0.4, 1.0, 0.4,  0.4, 1.0, 0.4,  0.4, 1.0, 0.4,  0.4, 1.0, 0.4,  // v0-v3-v4-v5 right(green)
@@ -79,7 +80,7 @@ function initVertexBuffer(gl) {
    1.0, 1.0, 1.0,  1.0, 1.0, 1.0,  1.0, 1.0, 1.0,  1.0, 1.0, 1.0,  // v7-v4-v3-v2 down
    0.4, 1.0, 1.0,  0.4, 1.0, 1.0,  0.4, 1.0, 1.0,  0.4, 1.0, 1.0   // v4-v7-v6-v5 back
  ]);
-  // Indices of the vertices
+  // Indices of the vertices， 顶点索引， 36个顶点（一个面两个三角行）
   var indices = new Uint8Array([
     0, 1, 2,   0, 2, 3,    // front
     4, 5, 6,   4, 6, 7,    // right
@@ -162,7 +163,10 @@ function draw() {
   const uMvpMatrix = gl.getUniformLocation(gl.program, 'u_MvpMatrix');
 
   const mvpMatrix = new Matrix4();
+  // 透视投影矩阵下的物体
   mvpMatrix.setPerspective(30, 1, 1, 100);
+
+  // 观察者的视点
   mvpMatrix.lookAt(3, 3, 7, 0, 0, 0, 0, 1, 0);
 
   gl.uniformMatrix4fv(uMvpMatrix, false, mvpMatrix.elements);

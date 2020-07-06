@@ -186,22 +186,9 @@ binTree.insert(9);
 
 binTree.removeNode(binTree.root,0);
 
-/**tree
- *                  6
- *     2                  7
- *       3                      9
- *          4               8
- *             5
- */
 function printNode(val) {
     console.log(val);
 }
-
-console.log('中序遍历');
-/**
- * 从小到大升序遍历
- */
-binTree.inOrderTraverse(binTree.root, printNode);
 
 console.log('先序遍历');
 /**
@@ -209,6 +196,12 @@ console.log('先序遍历');
  * 2. 左右子树，都是从小到大（从左子树开始
  */
 binTree.preOrderTraverse(binTree.root, printNode);
+
+console.log('中序遍历');
+/**
+ * 从小到大升序遍历
+ */
+binTree.inOrderTraverse(binTree.root, printNode);
 
 console.log('后序遍历');
 /**
