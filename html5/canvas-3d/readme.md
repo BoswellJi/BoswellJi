@@ -52,3 +52,13 @@
 - `gl.clearColor(red,green,blue,alpha) (0.0,0.0,0.0,0.0)`
 - `gl.clearDepth(depth)  1.0`
 - `gl.clearStencil(s) 0`
+
+
+
+## 数学基础
+- 三角函数
+- 矩阵
+- 向量,也叫几何向量，矢量
+
+## 物理
+- 力，速度
