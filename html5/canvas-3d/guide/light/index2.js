@@ -147,21 +147,25 @@ function draw() {
   attribute vec4 a_Position;
   attribute vec4 a_Color;
   attribute vec4 a_Normal; // 法向量
-  uniform mat4 u_MvpMatrix;
+  uniform mat4 u_MvpMatrix; // 透视投影矩阵*观察者矩阵
+  uniform mat4 u_NormalMatrix; // 用来变换法向量的矩阵
   uniform vec3 u_LightColor; // 入射线颜色
   uniform vec3 u_LightDirection; // 归一化世界坐标
+  uniform vec3 u_AmbientLight;
   varying vec4 v_Color;
 
   void main(){
     gl_Position = u_MvpMatrix * a_Position;
-    // 对法向量进行归一化
-    vec3 normal = normalize(vec3(a_Normal));
-    // 计算光线方向和法向量的点积
+    // 计算变换后的法向量，然后进行归一化
+    vec3 normal = normalize(vec3(u_NormalMatrix * a_Normal));
+    // 计算光线方向和法向量的点积（入射角
     float nDotL = max(dot(u_LightDirection,normal),0.0);
     // 计算漫反射光线的颜色
     vec3 diffuse = u_LightColor * vec3(a_Color) * nDotL;
+    // 环境反射光颜色
+    vec3 ambient = u_AmbientLight * a_Color.rgb;
     // 顶点颜色
-    v_Color = vec4(diffuse,a_Color);
+    v_Color = vec4(diffuse + ambient,a_Color);
   }
   `,
     fragment = `
@@ -185,41 +189,68 @@ function draw() {
   const uMvpMatrix = gl.getUniformLocation(gl.program, 'u_MvpMatrix');
   const uLightColor = gl.getUniformLocation(gl.program, 'u_LightColor');
   const uLightDirection = gl.getUniformLocation(gl.program, 'u_LightDirection');
+  const uAmbientLight = gl.getUniformLocation(gl.program, 'u_AmbientLight');
+  const uNormalMatrix = gl.getUniformLocation(gl.program, 'u_NormalMatrix');
 
   // 直接给存储位置添加数据，不使用缓存
+
   // 设置光线颜色
   gl.uniform3f(uLightColor, 1, 1, 1);
 
+  // 环境光颜色
+  gl.uniform3f(uAmbientLight, 0.2, 0.2, 0.2);
+
+  // 光照方向
   const lightDirection = new Vector3([0.5, 3, 4]);
   lightDirection.normalize(); // 归一化
   gl.uniform3fv(uLightDirection, lightDirection.elements);
 
   // 计算模型视图投影矩阵
   const mvpMatrix = new Matrix4();
-  // 透视模型矩阵
+
+  // 模型矩阵
+  const modelMatrix = new Matrix4();
+  // 平移
+  modelMatrix.setTranslate(0, 0, 0);
+  // 旋转
+  modelMatrix.rotate(0, 0, 0, 1);
+
+  // 透视投影
   mvpMatrix.setPerspective(30, canvas.width / canvas.clientHeight, 1, 100);
-  // 观察者状态矩阵
+  // 视图
   mvpMatrix.lookAt(3, 3, 7, 0, 0, 0, 0, 1, 0);
+  // 计算最终的变换矩阵
+  mvpMatrix.multiply(modelMatrix);
   gl.uniformMatrix4fv(uMvpMatrix, false, mvpMatrix.elements);
+
+  // 计算变换后的法向量
+  const normalMatrix = new Matrix4();
+  normalMatrix.setInverseOf(modelMatrix);
+  normalMatrix.transpose();
+  gl.uniformMatrix4fv(uNormalMatrix, false, normalMatrix.elements);
 
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
   gl.drawElements(gl.TRIANGLES, n, gl.UNSIGNED_BYTE, 0);
 
   let currentAngle = [0, 0];
-  initHandler(canvas, currentAngle);
+  initHandler(canvas, currentAngle, gl, n, mvpMatrix, uMvpMatrix);
 
   const tick = function () {
-    matrixModify(gl, n, undefined, uMvpMatrix, currentAngle);
+    matrixModify(gl, n, mvpMatrix, uMvpMatrix, currentAngle);
     requestAnimationFrame(tick);
   };
   tick();
 }
 
-function initHandler(canvas, currentAngle) {
+function initHandler(canvas, currentAngle, gl, n, mvpMatrix, uMvpMatrix) {
   let dragging = false,
     lastX = -1,
     lastY = -1;
+
+  canvas.addEventListener('mouseup', function () {
+    dragging = false;
+  });
 
   canvas.addEventListener('mousedown', function (e) {
     let x = e.clientX,
@@ -247,12 +278,13 @@ function initHandler(canvas, currentAngle) {
     }
     lastX = x;
     lastY = y;
+    matrixModify(gl, n, mvpMatrix, uMvpMatrix, currentAngle);
   });
 }
 
 const g_MvpMatrix = new Matrix4();
 function matrixModify(gl, n, viewProjMatrix, uMvpMatrix, currentAngle) {
-  // g_MvpMatrix.set(viewProjMatrix);
+  g_MvpMatrix.set(viewProjMatrix);
   g_MvpMatrix.rotate(currentAngle[0], 1, 0, 0);
   g_MvpMatrix.rotate(currentAngle[1], 1, 0, 0);
   gl.uniformMatrix4fv(uMvpMatrix, false, g_MvpMatrix.elements);
