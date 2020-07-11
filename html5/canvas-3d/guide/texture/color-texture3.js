@@ -141,7 +141,7 @@ function loadTexture(gl, texture, uSampler, image,texUnit) {
     g_texUnit1 = true;
   }
 
-  // 向target绑定
+  // 绑定纹理对象到激活的纹理单元上,纹理对象(也被指定纹理类型)
   gl.bindTexture(gl.TEXTURE_2D, texture);
 
   // 配置纹理参数（不同的纹理，类似背景图
