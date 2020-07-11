@@ -7,12 +7,14 @@
  * @return true, if the program object was created and successfully made current 
  */
 function initShaders(gl, vshader, fshader) {
+  // 创建着色器程序
   var program = createProgram(gl, vshader, fshader);
   if (!program) {
     console.log('Failed to create program');
     return false;
   }
 
+  // 指定使用的着色器程序
   gl.useProgram(program);
   gl.program = program;
 
@@ -95,12 +97,14 @@ function loadShader(gl, type, source) {
 }
 
 /** 
+ * 初始化并且获取webgl的渲染器
  * Initialize and get the rendering for WebGL
  * @param canvas <cavnas> element
  * @param opt_debug flag to initialize the context for debugging
  * @return the rendering context for WebGL
  */
 function getWebGLContext(canvas, opt_debug) {
+  // 获取webgl的渲染上下文
   // Get the rendering context for WebGL
   var gl = WebGLUtils.setupWebGL(canvas);
   if (!gl) return null;

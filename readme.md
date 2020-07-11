@@ -34,9 +34,9 @@
   - 行为型
   - 结构型
 - 架构模式
- - mvc
- - mvp
- - mvvm
+  - mvc
+  - mvp
+  - mvvm
 
 ## web 知识架构
 - html
@@ -65,5 +65,4 @@
   - vue-fire
   - vue-loader
 
-
-
+## webgl

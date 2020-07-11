@@ -1,161 +1,32 @@
-/**
-  * 创建着色器程序
-  * @param {*} gl 渲染上下文
-  * @param {*} vertexShader 顶点着色器
-  * @param {*} fragmentShader 片段着色器
-  */
-function createProgram(gl, vertexShader, fragmentShader) {
-  const program = gl.createProgram();
-  gl.attachShader(program, vertexShader);
-  gl.attachShader(program, fragmentShader);
-  gl.linkProgram(program);
-
-  const success = gl.getProgramParameter(program, gl.LINK_STATUS);
-  if (success) {
-    return program;
-  }
-
-  console.log('program: ' + gl.getProgramInfoLog(program));
-  gl.deleteProgram(program);
-}
-
-/**
- * 
- * @param {*} gl 渲染上下文
- * @param {*} type 着色器类型
- * @param {*} source 数据源
- */
-function createShader(gl, type, source) {
-  const shader = gl.createShader(type);
-  gl.shaderSource(shader, source);
-  gl.compileShader(shader);
-
-  const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
-  if (success) {
-    return shader;
-  }
-
-  console.log('shader: ' + gl.getShaderInfoLog(shader));
-  gl.deleteShader(shader);
-}
-
-function initShaders(gl, vertex, fragment) {
-  //  创建两个着色器
-  const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertex),
-    fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragment);
-
-  // 将两个着色器link（链接）到一个 program 
-  const program = createProgram(gl, vertexShader, fragmentShader);
-
-  gl.useProgram(program);
-
-  gl.program = program;
-
-  return program;
-}
-
 const canvas = document.querySelector('#canvas'),
+// webgl绘图上下文
+
+  // 获取webgl绘图上下文这里不同平台会有兼容问题
   gl = canvas.getContext('webgl');
 
-function draw() {
-  // 顶点着色器
-  const vertex = `
-        // 存储限定符 类型 变量名
-        attribute vec4 a_Position;
-        attribute float a_PointSize;
-        
-        void main(){
-          gl_Position = a_Position;
-          gl_PointSize = a_PointSize;
-        }
-      `,
-    // 片元着色器
-    fragment = `
-    // 精度限定词（指定变量的范围，（最大值，最小值）和精度
-        precision mediump float;
-        // 存储限定符 类型 变量名
-        uniform vec4  u_FragColor;
-        void main(){
-          gl_FragColor = u_FragColor;
-        }
-      `;
+  // 设置背景
 
-  if (!initShaders(gl, vertex, fragment)) {
-    return;
-  }
+  // canvas二维绘图系统的颜色分量值在（0-255）之间
+  // webgl是继承自opengl的，所以它遵循传统的opengl颜色分量的取值，即（0，1
 
-  // 获取glsl中的变量的存储地址
-  // 获取attribute 变量存储位置，返回变量a_Position存储地址
-  // 不存在返回-1，存在即大于等于 0
-  const aPosition = gl.getAttribLocation(gl.program, 'a_Position');
-  const aPointSize = gl.getAttribLocation(gl.program, 'a_PointSize');
+  // 一旦指定，背景颜色会贮存在webgl系统，下次调用clearColor方法之前不会改变；
 
-  // 不存在返回null
-  const uFragColor = gl.getUniformLocation(gl.program, 'u_FragColor');
+  // 参数(也叫颜色分量： 红，黄，蓝，透明度（值都是从0-1
+  gl.clearColor(1,0,0,1);
 
-  if (aPosition < 0) {
-    return;
-  }
-  // 将顶点位置传输给attribute 变量
-  // 向attribute变量赋值,后面三个参数，对应变量的三个分量
-  // 省略第4个参数，默认会被设置为 1.0
+  // 用之前clearColor指定的背景色清空绘图区域
 
-  //  vertexAttrib3f() 是一系列同族函数：
-  // vertexAttrib1f vertexAttrib2f
-  // gl.vertexAttrib3f(aPosition, 0.0, 1.0, 0.0);
-  // gl.vertexAttrib1f(aPointSize, 50);
+  // 方法继承自opengl，基于多基本缓冲区模型
 
-  // vertexAttrib3f的矢量版本
-  // gl.vertexAttrib4fv(aPosition, new Float32Array([0, 0, 0.0, 1.0]));
+  // 清空绘图区域，就是在清空颜色缓冲区（color buffer
 
-  // 设置canvas背景
-  gl.clearColor(0.0, 0.0, 0.0, 1.0);
+  // gl.COLOR_BUFFER_BIT就是告诉webgl清空颜色缓冲区
 
-  // 清空canvas背景
+  // 可以使用 | 位操作符，指定多个缓冲区
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-  // 绘制一个点
-  // gl.drawArrays(gl.POINTS, 0, 1);
-  const points = [];
-  const colors = [];
-  canvas.addEventListener('mousedown', function (e) {
-    const x = (e.clientX - e.target.getBoundingClientRect().left - canvas.width / 2) / canvas.width / 2;
-    const y = (canvas.height / 2 - e.clientY + e.target.getBoundingClientRect().top) / canvas.height / 2;
-
-    points.push([x, y]);
-
-    if (x >= 0 && y >= 0) {
-      colors.push([1, 0, 0, 1]);
-    } else if (x < 0 && y < 0) {
-      colors.push([0, 1, 0, 1]);
-    } else {
-      colors.push([1, 1, 1, 1]);
-    }
-
-    // 不清空，绘制点之后，颜色缓冲区被重置为（0，0，0，0）
-    // 这里是用指定的背景色 clearColor(0,0,0,1)
-    gl.clear(gl.COLOR_BUFFER_BIT);
-
-    // 设置顶点坐标，大小
-    gl.vertexAttrib1f(aPointSize, 5);
-    for (let i = 0; i < points.length; i++) {
-      const point = points[i];
-      gl.vertexAttrib4fv(aPosition, new Float32Array([point[0], point[1], 0, 1.0]));
-      
-
-      const rgba = colors[i];
-      // 向uniform变量中写入数据
-      gl.uniform4f(uFragColor,rgba[0],rgba[1],rgba[2],rgba[3]);
-
-      // 需要一个一个绘制
-      gl.drawArrays(gl.POINTS, 0, 1);
-    }
-
-    // 绘制操作是在颜色缓冲区中进行绘制，绘制结束，系统将缓冲区内容显示在屏幕上
-    // 接着缓冲区被重置，内容丢失，这是默认操作
-    // gl.drawArrays(gl.POINTS, 0, 1);
-
-  });
-}
-
-draw();
+  /**
+   * gl.clearColor(1,1,1,1);
+   * gl.clearDepth(depth)
+   * gl.clearStencil(s);
+   */

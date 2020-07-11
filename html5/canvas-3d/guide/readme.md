@@ -7,3 +7,6 @@
 - 向html和js中添加额外的三维图形学的代码，就可以在网页上显示三维图形了；
 
 - webgl是内嵌在浏览器中的；所以跨平台；
+
+- webgl程序的结构
+  + glsl es, webgl,opengl/opengl es, js web api

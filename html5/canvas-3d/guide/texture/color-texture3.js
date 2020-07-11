@@ -88,7 +88,7 @@ function initVertexBuffer(gl) {
   // 将缓冲中的数据指定给aPosition
   gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, fsize * 4, 0);
 
-  // 
+  // 开始使用内存
   gl.enableVertexAttribArray(aPosition);
 
   const aTexCoord = gl.getAttribLocation(gl.program, 'a_TexCoord');
@@ -120,8 +120,8 @@ function initTexures(gl) {
   });
 
   // 给图片添加src属性
-  image.src = './examples/resources/sky.jpg';
-  image1.src = './examples/resources/circle.gif';
+  image.src = '../asset/sky.jpg';
+  image1.src = '../asset/sky.jpg';
   return true;
 }
 
@@ -130,7 +130,9 @@ function loadTexture(gl, texture, uSampler, image,texUnit) {
   // 对纹理图像进行y轴反转
   gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
 
-  // 开启0号纹理单元
+  // 开启0号纹理单元(激活纹理)
+
+  // 指定纹理单元编号,gl.TEXTUREn 中的n,将纹理对象传给u_Sampler
   if(texUnit===0){
     gl.activeTexture(gl.TEXTURE0);
     g_texUnit0 = true;
@@ -144,17 +146,18 @@ function loadTexture(gl, texture, uSampler, image,texUnit) {
 
   // 配置纹理参数（不同的纹理，类似背景图
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
+  // gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
 
-  // 配置纹理图像
+  // 将图像从javascript传入webgl系统,存储在纹理对象中
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
 
-  // 将0号纹理传递给着色器
+  // 将纹理单元传递给着色器,必须指定纹理单元编号
   gl.uniform1i(uSampler, texUnit);
 
   // 方法是异步执行的，必须放这里
   gl.clear(gl.COLOR_BUFFER_BIT);
 
+  // 当两个纹理图像都激活处理完成后,进行绘制
   if(g_texUnit0 && g_texUnit1){
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   }
@@ -166,6 +169,7 @@ const canvas = document.querySelector('#canvas'),
 function draw() {
   const vertex =  `
   attribute vec4 a_Position;
+  // 从顶点着色器向片元着色器传输纹理坐标
   attribute vec2 a_TexCoord;
   varying vec2 v_TexCoord;
 
@@ -177,11 +181,14 @@ function draw() {
     precision mediump float;
     // 片元着色器访问两个纹理
     // 最终的片元颜色由两个纹理上纹素颜色共同决定
+
+    // 专门用于处理纹理对象的数据类型
     uniform sampler2D u_Sampler0;
     uniform sampler2D u_Sampler1;
     varying vec2 v_TexCoord;
 
     void main() {
+      // texture2D: 在片元着色器中获取纹理像素颜色(纹理单元编号,纹理坐标)
       vec4 color0 = texture2D(u_Sampler0 , v_TexCoord);
       vec4 color1 = texture2D(u_Sampler1 , v_TexCoord);
       gl_FragColor = color0 * color1;
