@@ -1,9 +1,3 @@
-/**
-  * 创建着色器程序
-  * @param {*} gl 渲染上下文
-  * @param {*} vertexShader 顶点着色器
-  * @param {*} fragmentShader 片段着色器
-  */
 function createProgram(gl, vertexShader, fragmentShader) {
   const program = gl.createProgram();
   gl.attachShader(program, vertexShader);
@@ -19,12 +13,6 @@ function createProgram(gl, vertexShader, fragmentShader) {
   gl.deleteProgram(program);
 }
 
-/**
- * 
- * @param {*} gl 渲染上下文
- * @param {*} type 着色器类型
- * @param {*} source 数据源
- */
 function createShader(gl, type, source) {
   const shader = gl.createShader(type);
   gl.shaderSource(shader, source);
@@ -138,37 +126,22 @@ function draw() {
   }
 
   const n = initVertexBuffer(gl);
+
   const uProjMatrix = gl.getUniformLocation(gl.program, 'u_ProjMatrix');
-
-  // Matrix4 只计算矩阵 （一个矩阵变化到另一个矩阵
-
-  // 设置观察者的状态
-  // 设置视点，视线（目标点），和上方向
   const projMatrix = new Matrix4();
-  
-
-  // 旋转元素
-  // const rotateMatrix = new Matrix4();
-  // rotateMatrix.setRotate(10, 0, 0, 1);
 
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
-  // gl.clear(gl.COLOR_BUFFER_BIT);
-
-  // gl.drawArrays(gl.TRIANGLES, 0, n);
-
   // 根据键盘移动视点
-  let g_eyeX = 0.2,
-    gNear = 0,
+  let gNear = 0,
     gFar = 0.5,
     content = document.querySelector('#content');
 
-    draw();
+  draw();
+
   /**
    * 当在调整观察者的位置时，视点在极右，或者极左的时候，三角形会缺少一部分
    * 原因： 没有指定可视范围，实际观察得到的区域边界
-   * 
-   * 
    */
   document.addEventListener('keydown', function (e) {
     // 左右键
@@ -183,17 +156,17 @@ function draw() {
   });
 
   // 展示了可视空间的作用，想要绘制任何东西，必须把它置于可视空间中
-  function draw(){
+  function draw() {
     // 视点与近，远裁剪面的距离，使用矩阵设置可视空间
+    // 正射投影矩阵
     projMatrix.setOrtho(-1, 1, -1, 1, gNear, gFar);
-    // 给glsl中的变量赋值（计算物体的顶点坐标
+    
     gl.uniformMatrix4fv(uProjMatrix, false, projMatrix.elements);
-    // 清空画布
+    
     gl.clear(gl.COLOR_BUFFER_BIT);
-    // 绘制图形
     gl.drawArrays(gl.TRIANGLES, 0, n);
 
-    content.innerHTML = gNear +'------' + gFar;
+    content.innerHTML = gNear + '------' + gFar;
   }
 }
 

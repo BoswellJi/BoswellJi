@@ -62,30 +62,30 @@ function initVertexBuffer(gl) {
   // 顶点坐标 纹理坐标
   const vertices = new Float32Array([
     // Three triangles on the right side
-    0.75,  1.0,  -4.0,  0.4,  1.0,  0.4, // The back green one
-    0.25, -1.0,  -4.0,  0.4,  1.0,  0.4,
-    1.25, -1.0,  -4.0,  1.0,  0.4,  0.4, 
+    0.75, 1.0, -4.0, 0.4, 1.0, 0.4, // The back green one
+    0.25, -1.0, -4.0, 0.4, 1.0, 0.4,
+    1.25, -1.0, -4.0, 1.0, 0.4, 0.4,
 
-    0.75,  1.0,  -2.0,  1.0,  1.0,  0.4, // The middle yellow one
-    0.25, -1.0,  -2.0,  1.0,  1.0,  0.4,
-    1.25, -1.0,  -2.0,  1.0,  0.4,  0.4, 
+    0.75, 1.0, -2.0, 1.0, 1.0, 0.4, // The middle yellow one
+    0.25, -1.0, -2.0, 1.0, 1.0, 0.4,
+    1.25, -1.0, -2.0, 1.0, 0.4, 0.4,
 
-    0.75,  1.0,   0.0,  0.4,  0.4,  1.0,  // The front blue one 
-    0.25, -1.0,   0.0,  0.4,  0.4,  1.0,
-    1.25, -1.0,   0.0,  1.0,  0.4,  0.4, 
+    0.75, 1.0, 0.0, 0.4, 0.4, 1.0,  // The front blue one 
+    0.25, -1.0, 0.0, 0.4, 0.4, 1.0,
+    1.25, -1.0, 0.0, 1.0, 0.4, 0.4,
 
     // Three triangles on the left side
-   -0.75,  1.0,  -4.0,  0.4,  1.0,  0.4, // The back green one
-   -1.25, -1.0,  -4.0,  0.4,  1.0,  0.4,
-   -0.25, -1.0,  -4.0,  1.0,  0.4,  0.4, 
+    -0.75, 1.0, -4.0, 0.4, 1.0, 0.4, // The back green one
+    -1.25, -1.0, -4.0, 0.4, 1.0, 0.4,
+    -0.25, -1.0, -4.0, 1.0, 0.4, 0.4,
 
-   -0.75,  1.0,  -2.0,  1.0,  1.0,  0.4, // The middle yellow one
-   -1.25, -1.0,  -2.0,  1.0,  1.0,  0.4,
-   -0.25, -1.0,  -2.0,  1.0,  0.4,  0.4, 
+    -0.75, 1.0, -2.0, 1.0, 1.0, 0.4, // The middle yellow one
+    -1.25, -1.0, -2.0, 1.0, 1.0, 0.4,
+    -0.25, -1.0, -2.0, 1.0, 0.4, 0.4,
 
-   -0.75,  1.0,   0.0,  0.4,  0.4,  1.0,  // The front blue one 
-   -1.25, -1.0,   0.0,  0.4,  0.4,  1.0,
-   -0.25, -1.0,   0.0,  1.0,  0.4,  0.4, 
+    -0.75, 1.0, 0.0, 0.4, 0.4, 1.0,  // The front blue one 
+    -1.25, -1.0, 0.0, 0.4, 0.4, 1.0,
+    -0.25, -1.0, 0.0, 1.0, 0.4, 0.4,
   ]);
 
   // 顶点个数
@@ -124,7 +124,6 @@ function initVertexBuffer(gl) {
 const canvas = document.querySelector('#canvas'),
   gl = canvas.getContext('webgl');
 
-// 透视投影
 function draw() {
   const vertex = `
     attribute vec4 a_Position;
@@ -134,7 +133,7 @@ function draw() {
     uniform mat4 u_ViewMatrix;
 
     void main(){
-      gl_Position = u_ViewMatrix * u_ProjMatrix * a_Position;
+      gl_Position = u_ProjMatrix * u_ViewMatrix *  a_Position;
       v_Color = a_Color;
     }
   `,
@@ -152,29 +151,23 @@ function draw() {
   }
 
   const n = initVertexBuffer(gl);
-  const uProjMatrix = gl.getUniformLocation(gl.program, 'u_ProjMatrix');
+  
+  
+  // 视图矩阵
   const uViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix');
-
-  const projMatrix = new Matrix4();
   const viewMatrix = new Matrix4();
-  
-  // 计算视图矩阵
   viewMatrix.setLookAt(0, 0, 5, 0, 0, -100, 0, 1, 0);
-  // 计算投影矩阵
-  projMatrix.setPerspective(30, canvas.width / canvas.height, 1, 100);
-
   gl.uniformMatrix4fv(uViewMatrix, false, viewMatrix.elements);
-  gl.uniformMatrix4fv(uProjMatrix, false, new Float32Array([
-    1,0,0,0,
-    0,1,0,0,
-    0,0,1,0,
-    0,0,0,1]));
-  
+
+  // 透视投影矩阵
+  const uProjMatrix = gl.getUniformLocation(gl.program, 'u_ProjMatrix');
+  const projMatrix = new Matrix4();
+  projMatrix.setPerspective(30, canvas.width / canvas.height, 1, 100);
+  gl.uniformMatrix4fv(uProjMatrix, false, projMatrix.elements);
+
   gl.clearColor(0, 0, 0, 1);
 
-  // 清空画布
   gl.clear(gl.COLOR_BUFFER_BIT);
-  // 绘制图形
   gl.drawArrays(gl.TRIANGLES, 0, n);
 }
 

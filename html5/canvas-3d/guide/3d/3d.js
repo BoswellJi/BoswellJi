@@ -1,9 +1,3 @@
-/**
-  * 创建着色器程序
-  * @param {*} gl 渲染上下文
-  * @param {*} vertexShader 顶点着色器
-  * @param {*} fragmentShader 片段着色器
-  */
 function createProgram(gl, vertexShader, fragmentShader) {
   const program = gl.createProgram();
   gl.attachShader(program, vertexShader);
@@ -19,12 +13,6 @@ function createProgram(gl, vertexShader, fragmentShader) {
   gl.deleteProgram(program);
 }
 
-/**
- * 
- * @param {*} gl 渲染上下文
- * @param {*} type 着色器类型
- * @param {*} source 数据源
- */
 function createShader(gl, type, source) {
   const shader = gl.createShader(type);
   gl.shaderSource(shader, source);
@@ -66,17 +54,17 @@ function initVertexBuffer(gl) {
     -0.5, -0.5, -0.4, 0.4, 1.0, 0.4,
     0.5, -0.5, -0.4, 1.0, 0.4, 0.4,
 
-    // 0.5, 0.4, -0.2, 1.0, 0.4, 0.4, // The middle yellow one
-    // -0.5, 0.4, -0.2, 1.0, 1.0, 0.4,
-    // 0.0, -0.6, -0.2, 1.0, 1.0, 0.4,
+    0.5, 0.4, -0.2, 1.0, 0.4, 0.4, // The middle yellow one
+    -0.5, 0.4, -0.2, 1.0, 1.0, 0.4,
+    0.0, -0.6, -0.2, 1.0, 1.0, 0.4,
 
-    // 0.0, 0.5, 0.0, 0.4, 0.4, 1.0,  // The front blue one 
-    // -0.5, -0.5, 0.0, 0.4, 0.4, 1.0,
-    // 0.5, -0.5, 0.0, 1.0, 0.4, 0.4
+    0.0, 0.5, 0.0, 0.4, 0.4, 1.0,  // The front blue one 
+    -0.5, -0.5, 0.0, 0.4, 0.4, 1.0,
+    0.5, -0.5, 0.0, 1.0, 0.4, 0.4
   ]);
 
   // 顶点个数
-  const n = 3;
+  const n = 9;
 
   // 创建缓冲数据
   const vertexTexCoordBuffer = gl.createBuffer();
@@ -117,12 +105,13 @@ function draw() {
     attribute vec4 a_Position;
     attribute vec4 a_Color;
     uniform mat4 u_ViewMatrix;
-    uniform mat4 u_ModelMatrix;
+    uniform mat4 u_RotateMatrix;
+
     varying vec4 v_Color;
 
     void main(){
       // 视图矩阵和顶点坐标相乘； 意味着：根据视图矩阵（观察者的状态），调整每个顶点坐标，渲染到屏幕上
-      gl_Position = u_ModelMatrix * u_ViewMatrix * a_Position;
+      gl_Position = u_ViewMatrix *  a_Position * u_RotateMatrix;
       v_Color = a_Color;
     }
   `,
@@ -140,20 +129,20 @@ function draw() {
   }
 
   const n = initVertexBuffer(gl);
-  const uViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix');
-  const uModelMatrix = gl.getUniformLocation(gl.program,'u_ModelMatrix');
+ 
 
-  // 设置观察者的状态
-  // 设置视点，视线（目标点），和上方向
+  // 根据下面的三个矢量创建视图矩阵：影响屏幕上的视图
+  // 视点，目标点/观察点/视线，上方向
   const viewMatrix = new Matrix4();
   viewMatrix.setLookAt(0, 0, 0.5, 0.5, 0, 0, 0, 1, 0);
-
-  // 旋转元素
-  const modelMatrix = new Matrix4();
-  modelMatrix.setRotate(-10,0,0,1);
-
+  const uViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix');
   gl.uniformMatrix4fv(uViewMatrix, false, viewMatrix.elements);
-  gl.uniformMatrix4fv(uModelMatrix, false, modelMatrix.elements);
+
+  // 旋转：先设置视图矩阵，从指定视点观察旋转后的三角形
+  const rotateMatrix = new Matrix4();
+  rotateMatrix.setRotate(-10,0,0,1);
+  const uRotateMatrix = gl.getUniformLocation(gl.program, 'u_RotateMatrix');
+  gl.uniformMatrix4fv(uRotateMatrix, false, rotateMatrix.elements);
 
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
 

@@ -139,9 +139,7 @@ function draw() {
   
   gl.clearColor(0, 0, 0, 1);
 
-  // 清空画布
   gl.clear(gl.COLOR_BUFFER_BIT);
-  // 绘制图形
   gl.drawArrays(gl.TRIANGLES, 0, n);
 }
 
