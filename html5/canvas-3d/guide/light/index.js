@@ -20,7 +20,7 @@ function createProgram(gl, vertexShader, fragmentShader) {
 }
 
 /**
- * 
+ * 创建着色器
  * @param {*} gl 渲染上下文
  * @param {*} type 着色器类型
  * @param {*} source 数据源
@@ -148,7 +148,7 @@ function draw() {
   attribute vec4 a_Color;
   attribute vec4 a_Normal; // 法向量
   uniform mat4 u_MvpMatrix;
-  uniform vec3 u_LightColor; // 入射线颜色
+  uniform vec3 u_LightColor; // 入射线/光线颜色
   uniform vec3 u_LightDirection; // 归一化世界坐标
   varying vec4 v_Color;
 
@@ -181,39 +181,30 @@ function draw() {
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
   gl.enable(gl.DEPTH_TEST);
 
-  // uniform
   const uMvpMatrix = gl.getUniformLocation(gl.program, 'u_MvpMatrix');
   const uLightColor = gl.getUniformLocation(gl.program, 'u_LightColor');
   const uLightDirection = gl.getUniformLocation(gl.program, 'u_LightDirection');
 
-  // 直接给存储位置添加数据，不使用缓存
+  // 直接给存储位置添加数据，不使用缓冲区
+
   // 设置光线颜色
   gl.uniform3f(uLightColor, 1, 1, 1);
-
+  // 光线方向
   const lightDirection = new Vector3([0.5, 3, 4]);
   lightDirection.normalize(); // 归一化
   gl.uniform3fv(uLightDirection, lightDirection.elements);
 
-  // 计算模型视图投影矩阵
+  // 视图投影矩阵
   const mvpMatrix = new Matrix4();
   // 透视模型矩阵
   mvpMatrix.setPerspective(30, canvas.width / canvas.clientHeight, 1, 100);
-  // 观察者状态矩阵
+  // 视图矩阵
   mvpMatrix.lookAt(3, 3, 7, 0, 0, 0, 0, 1, 0);
   gl.uniformMatrix4fv(uMvpMatrix, false, mvpMatrix.elements);
 
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
   gl.drawElements(gl.TRIANGLES, n, gl.UNSIGNED_BYTE, 0);
-
-  let currentAngle = [0, 0];
-  initHandler(canvas, currentAngle);
-
-  const tick = function () {
-    matrixModify(gl, n, undefined, uMvpMatrix, currentAngle);
-    requestAnimationFrame(tick);
-  };
-  tick();
 }
 
 function initHandler(canvas, currentAngle) {
