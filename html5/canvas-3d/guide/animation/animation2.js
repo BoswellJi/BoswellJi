@@ -130,50 +130,24 @@ function draw() {
   // 缩放变换矩阵
   const matrix = new Matrix4();
 
-  // 进行矩阵变换（复合,自身矩阵
-  // 计算后为旋转变换矩阵： （旋转矩阵*原始坐标），然后设置自身矩阵为这个旋转后的矩阵
-  matrix.setRotate(110, 0, 0, 1);
-  // 计算后为平移变换矩阵： （平移矩阵*原始坐标）* 自身矩阵
-  matrix.translate(-1, 0, 0);
-  // 计算矩阵依然使用原始坐标，
-  matrix.setRotate(0, 0, 0, 1);
+  // 平移，然后旋转
+
+  // 把自身设置为计算出的旋转矩阵，不会修改
+  // matrix.setRotate(20, 0, 0, 1);
+  // matrix.setRotate(0, 0, 0, 1);
+  
+  matrix.rotate(20, 0, 0, 1);
+  matrix.rotate(30, 0, 0, 1);
+
+  // matrix.translate(-1, 0, 0);
+  // matrix.setRotate(0, 0, 0, 1);
 
   const uXformMatrix = gl.getUniformLocation(gl.program, 'u_ModelMatrix');
-  
-  let x = 0;
-  function draw(gl, n, currentAngle, matrix, uXformMatrix) {
-    matrix.setTranslate(0.5,0,0);
-    // 设置旋转矩阵
-    matrix.rotate(currentAngle, 0, 0, 1);
-    // 给glsl变量传递数据
-    gl.uniformMatrix4fv(uXformMatrix, false, matrix.elements);
-    gl.clear(gl.COLOR_BUFFER_BIT);
-    gl.drawArrays(gl.TRIANGLES, 0, n);
-    // x-=0.1;
-    // if(x===-0.6){
-    //   x=0;
-    // }
-  }
 
-  // 计算当前角度
-  let gLast = Date.now();
-  function animate(angle) {
-    let now = Date.now();
-    // 时间，毫秒数
-    let elapsed = now - gLast;
-    gLast = now;
-    let newAngle = angle + (10 * elapsed) / 1000;
-    newAngle = newAngle % 360;
-    return newAngle;
-  }
+  gl.uniformMatrix4fv(uXformMatrix, false, matrix.elements);
 
-  let currentAngle = 0;
-  const tick = function () {
-    currentAngle = animate(currentAngle);
-    draw(gl, n, currentAngle, matrix, uXformMatrix);
-    requestAnimationFrame(tick);
-  }
-  tick();
+  gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.drawArrays(gl.TRIANGLES, 0, n);
 }
 
 draw();

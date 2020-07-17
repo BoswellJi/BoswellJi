@@ -110,7 +110,7 @@ function draw() {
     varying vec4 v_Color;
 
     void main(){
-      // 视图矩阵和顶点坐标相乘； 意味着：根据视图矩阵（观察者的状态），调整每个顶点坐标，渲染到屏幕上
+      // 视图矩阵和顶点坐标相乘； 意味着：根据视图矩阵（观察者,照相机），调整每个顶点坐标，渲染到屏幕上
       gl_Position = u_ViewMatrix *  a_Position * u_RotateMatrix;
       v_Color = a_Color;
     }

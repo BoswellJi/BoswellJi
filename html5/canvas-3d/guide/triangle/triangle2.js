@@ -5,12 +5,9 @@
   * @param {*} fragmentShader 片段着色器
   */
 function createProgram(gl, vertexShader, fragmentShader) {
-  //  创建程序对象
   const program = gl.createProgram();
-  // 为程序对象分配着色器
   gl.attachShader(program, vertexShader);
   gl.attachShader(program, fragmentShader);
-  // 连接程序对象
   gl.linkProgram(program);
 
   const success = gl.getProgramParameter(program, gl.LINK_STATUS);
@@ -29,19 +26,15 @@ function createProgram(gl, vertexShader, fragmentShader) {
  * @param {*} source 数据源
  */
 function createShader(gl, type, source) {
-  // 创建着色器
   const shader = gl.createShader(type);
-  // 向着色器对象中填充着色器程序的源代码
   gl.shaderSource(shader, source);
-  // 编译着色器
   gl.compileShader(shader);
 
-  // 查看着色器状态，是否失败
   const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
   if (success) {
     return shader;
   }
-  // 可以获取失败日志
+
   console.log('shader: ' + gl.getShaderInfoLog(shader));
   gl.deleteShader(shader);
 }
@@ -54,7 +47,6 @@ function initShaders(gl, vertex, fragment) {
   // 将两个着色器link（链接）到一个 program 
   const program = createProgram(gl, vertexShader, fragmentShader);
 
-  // 使用程序对象
   gl.useProgram(program);
 
   gl.program = program;
@@ -62,24 +54,71 @@ function initShaders(gl, vertex, fragment) {
   return program;
 }
 
+function initVertexBuffer(gl) {
+  const vertices = new Float32Array([
+    -0.5, 0.5,
+    -0.5, -0.5,
+    0.5, 0.5,
+  ]);
+  const n = 3; // 2维
+
+  // 1. 创建缓冲区对象(webgl系统中的一块内存区域，将glsl中的变量存储位置指向这块内存)
+  const vertexBuffer = gl.createBuffer();
+  if (!vertexBuffer) {
+    return -1;
+  }
+  // 2. 将缓冲区对象绑定到目标
+  // target: gl.ARRAY_BUFFER gl.ELEMENT_ARRAY_BUFFER
+  gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+
+  // 3. 向缓冲区写入数据
+  // target data usage: gl.STATIC_DRAW gl.STREAM_DRAW gl.DYNAMIC_DRAW
+  gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+  const aPosition = gl.getAttribLocation(gl.program, 'a_Position');
+
+  // 4. 将缓冲区对象分配给aPosition
+  gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
+
+  // 5. 连接aPosition变量与分配给它的缓冲对象
+  gl.enableVertexAttribArray(aPosition);
+
+  return n;
+}
+
 const canvas = document.querySelector('#canvas'),
   gl = canvas.getContext('webgl'),
   vertex = `
-    attriubte vec3 a_Position;
-    attribute vec4 a_Color; 
-
-    varying vec4 v_Color;
-
-    void main(){
-      gl_Position = a_Position;
+    attribute vec4 a_Position;
+    uniform mat4 u_xformMatrix;
+    
+    void main(){ 
+      gl_Position = a_Position * u_xformMatrix;
     }
   `,
   fragment = `
-    precision mediump float;
-    varying vec4 v_Color;
-
     void main(){
-
+      gl_FragColor = vec4(0.0,0.0,1.0,1);
     }
   `;
+
+initShaders(gl, vertex, fragment)
+
+gl.clearColor(0.0, 0.0, 0.0, 1.0);
+
+gl.clear(gl.COLOR_BUFFER_BIT);
+
+const n = initVertexBuffer(gl),
+  h = 2 * Math.PI / 360 * 180,
+  uCos = Math.cos(h),
+  uSin = Math.sin(h);
+
+const tMatrix = new Matrix4();
+tMatrix.setTranslate(0.5,0,0);
+
+const uXformMatrix = gl.getUniformLocation(gl.program, 'u_xformMatrix');
+
+gl.uniformMatrix4fv(uXformMatrix, false, tMatrix.elements);
+
+gl.drawArrays(gl.TRIANGLES, 0, n);
 

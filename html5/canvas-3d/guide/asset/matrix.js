@@ -573,6 +573,7 @@ Matrix4.prototype.setRotate = function(angle, x, y, z) {
 };
 
 /**
+ * 
  * Multiply the matrix for rotation from the right.
  * The vector of rotation axis may not be normalized.
  * @param angle The angle of rotation (degrees)
