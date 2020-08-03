@@ -71,5 +71,20 @@
 
 ## packages
 
-* [[mint-ui]](https://github.com/ElemeFE/mint-ui)
 * [qs](https://github.com/ljharb/qs)
+
+* [axios](https://github.com/axios/axios)
+
+* [decimal.js](https://github.com/MikeMcl/decimal.js)
+
+* [cooking](https://github.com/ElemeFE/cooking)
+
+## vue
+
+* [mint-ui](https://github.com/ElemeFE/mint-ui)
+
+## webpack
+
+## babel
+
+* [babel-plugin-ramda](https://github.com/megawac/babel-plugin-ramda)
