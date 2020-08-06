@@ -67,23 +67,37 @@
   + vue-fire
   + vue-loader
 
-## webgl
-
 ## packages
 
-* [qs](https://github.com/ljharb/qs)
-
 * [axios](https://github.com/axios/axios)
-
-* [decimal.js](https://github.com/MikeMcl/decimal.js)
-
 * [cooking](https://github.com/ElemeFE/cooking)
+
+## webgl
+
+* [beam](https://github.com/doodlewind/beam)
+* [glsl-doodle](https://github.com/akira-cn/glsl-doodle)
+
+## canvas
+
+* [spritejs](https://github.com/spritejs/spritejs)
 
 ## vue
 
+* [vue](https://github.com/vuejs/vue)
 * [mint-ui](https://github.com/ElemeFE/mint-ui)
+* [vue-clipboard2](https://github.com/Inndy/vue-clipboard2)
+
+## js
+
+* [decimal.js](https://github.com/MikeMcl/decimal.js)
+* [qs](https://github.com/ljharb/qs)
+* [moment](https://github.com/moment/moment)
+
+## node
 
 ## webpack
+
+* [vue-cli](https://github.com/vuejs/vue-cli)
 
 ## babel
 
