@@ -71,6 +71,10 @@
 
 * [axios](https://github.com/axios/axios)
 * [cooking](https://github.com/ElemeFE/cooking)
+* [vConsole](https://github.com/Tencent/vConsole)
+* [jsonp](https://github.com/webmodules/jsonp)
+* [qs](https://github.com/ljharb/qs)
+* [crypto-js](https://github.com/brix/crypto-js)
 
 ## webgl
 
@@ -84,21 +88,32 @@
 ## vue
 
 * [vue](https://github.com/vuejs/vue)
+* [vue-router](https://github.com/vuejs/vue-router)
+* [vuex](https://github.com/vuejs/vuex)
+* [vue-color](https://github.com/xiaokaike/vue-color)
 * [mint-ui](https://github.com/ElemeFE/mint-ui)
 * [vue-clipboard2](https://github.com/Inndy/vue-clipboard2)
+* [vue-cookie](https://github.com/alfhen/vue-cookie)
+* [vue-html5plus](https://github.com/vue-html5plus/vue-html5plus)
+* [element](https://github.com/ElemeFE/element)
+* [vue-picker](https://github.com/naihe138/vue-picker)
+
+## uniapp
 
 ## js
 
 * [decimal.js](https://github.com/MikeMcl/decimal.js)
-* [qs](https://github.com/ljharb/qs)
 * [moment](https://github.com/moment/moment)
+* [lodash](https://github.com/lodash/lodash)
 
 ## node
 
+* [vue-cli](https://github.com/vuejs/vue-cli)
+
 ## webpack
 
-* [vue-cli](https://github.com/vuejs/vue-cli)
 
 ## babel
 
 * [babel-plugin-ramda](https://github.com/megawac/babel-plugin-ramda)
+* [babel-polyfill](https://github.com/babel/babel/tree/master/packages/babel-polyfill)
