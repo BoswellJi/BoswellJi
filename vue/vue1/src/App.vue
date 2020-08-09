@@ -1,22 +1,40 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div id="app" @click="clickFn">
+    {{msg}}
+    {{msgCopy}}
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-// import "reflect-metadata";
+
 
 export default {
   name: "App",
   components: {
-    HelloWorld
+    
   },
   created() {
-    console.log("App", this);
-  }
+     
+  },
+  // 被缓存
+  // 作为响应式属性的监听函数
+  computed:{
+    msgCopy(){
+      return this.a+'d';
+    }
+  },
+  data(){
+    return {
+      msg:'abc',
+      name:'jmz'
+    };
+  },
+  methods:{
+    clickFn(){
+      this.a='jjj';
+      this.msg='name';
+    }
+  },
 };
 </script>
 
