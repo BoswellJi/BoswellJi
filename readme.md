@@ -85,19 +85,6 @@
 
 * [spritejs](https://github.com/spritejs/spritejs)
 
-## vue
-
-* [vue](https://github.com/vuejs/vue)
-* [vue-router](https://github.com/vuejs/vue-router)
-* [vuex](https://github.com/vuejs/vuex)
-* [vue-color](https://github.com/xiaokaike/vue-color)
-* [mint-ui](https://github.com/ElemeFE/mint-ui)
-* [vue-clipboard2](https://github.com/Inndy/vue-clipboard2)
-* [vue-cookie](https://github.com/alfhen/vue-cookie)
-* [vue-html5plus](https://github.com/vue-html5plus/vue-html5plus)
-* [element](https://github.com/ElemeFE/element)
-* [vue-picker](https://github.com/naihe138/vue-picker)
-
 ## uniapp
 
 ## js
@@ -106,14 +93,5 @@
 * [moment](https://github.com/moment/moment)
 * [lodash](https://github.com/lodash/lodash)
 
-## node
-
-* [vue-cli](https://github.com/vuejs/vue-cli)
-
-## webpack
 
 
-## babel
-
-* [babel-plugin-ramda](https://github.com/megawac/babel-plugin-ramda)
-* [babel-polyfill](https://github.com/babel/babel/tree/master/packages/babel-polyfill)

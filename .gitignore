@@ -1,10 +1,4 @@
-﻿# sublime 
-*.sublime-project
-*.sublime-workspace
-
-# 略文件或者目录
-/node_modules
-/build
+﻿# 略文件或者目录
 node_modules
 
 .vscode
