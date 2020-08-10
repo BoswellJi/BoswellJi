@@ -67,31 +67,9 @@
   + vue-fire
   + vue-loader
 
-## packages
 
-* [axios](https://github.com/axios/axios)
-* [cooking](https://github.com/ElemeFE/cooking)
-* [vConsole](https://github.com/Tencent/vConsole)
-* [jsonp](https://github.com/webmodules/jsonp)
-* [qs](https://github.com/ljharb/qs)
-* [crypto-js](https://github.com/brix/crypto-js)
 
-## webgl
 
-* [beam](https://github.com/doodlewind/beam)
-* [glsl-doodle](https://github.com/akira-cn/glsl-doodle)
-
-## canvas
-
-* [spritejs](https://github.com/spritejs/spritejs)
-
-## uniapp
-
-## js
-
-* [decimal.js](https://github.com/MikeMcl/decimal.js)
-* [moment](https://github.com/moment/moment)
-* [lodash](https://github.com/lodash/lodash)
 
 
 
