@@ -21,7 +21,8 @@ ecmascript5/6/7兼容性表格
 ```
 
 * [serialize-javascript](https://github.com/yahoo/serialize-javascript)
-```
+
+``` 
 js序列化为包括正则表达式,日期,函数的js到json超集
 ```
 
@@ -31,3 +32,17 @@ js序列化为包括正则表达式,日期,函数的js到json超集
 * [jsonp](https://github.com/webmodules/jsonp)
 * [qs](https://github.com/ljharb/qs)
 * [crypto-js](https://github.com/brix/crypto-js)
+
+* [qrcodejs](https://github.com/davidshimjs/qrcodejs)
+
+``` 
+给js的跨浏览器的二维码生成器
+```
+
+## components
+
+* [nprogress](https://github.com/rstacruz/nprogress)
+
+``` 
+给ajax应用程序的苗条的进度条 
+```

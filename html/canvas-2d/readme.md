@@ -66,3 +66,14 @@
 ## canvas
 
 * [spritejs](https://github.com/spritejs/spritejs)
+
+* [incubator-echarts/echarts](https://github.com/apache/incubator-echarts)
+
+``` 
+图表与可视化库
+```
+
+* [zrender](https://github.com/ecomfe/zrender)
+```
+一个轻量的提供给echart的2d绘制的canvas库
+```
