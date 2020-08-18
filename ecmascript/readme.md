@@ -56,6 +56,16 @@ js序列化为包括正则表达式,日期,函数的js到json超集
 跨多个浏览器的规范化鼠标滚轮事件
 ```
 
+* [async-validator](https://github.com/yiminghe/async-validator)
+```
+验证异步
+```
+
+* [throttle-debounce](https://github.com/niksy/throttle-debounce)
+```
+防抖：防止ui每次刷新抖动（每次，清掉上一次的定时器） 节流：节省每次变更都要发送请求的流量（固定多少毫秒后开始发送） 函数
+```
+
 获取
 
 * [axios](https://github.com/axios/axios)
