@@ -18,7 +18,7 @@ LinkedList.prototype = {
     append(el) {
         var node = new Node(el),
             current;
-        if (head === null) {
+        if (this.head === null) {
             this.head = node;
         } else {
             current = this.head;
@@ -108,3 +108,52 @@ LinkedList.prototype = {
         return this.head;
     }
 };
+
+const list = new LinkedList();
+
+// const node1 = new Node(1);
+// const node2 = new Node(2);
+// const node3 = new Node(3);
+
+list.append(1);
+list.append(2);
+list.append(3);
+
+let head = list.getHead();
+let nextNode = null;
+
+// 反转链表
+var reverseList = function(head) {
+    if(head == null || head.next == null){
+        return head
+    }
+    const current = reverseList(head.next);
+
+    head.next.next = head;
+    head.next = null
+    return current;
+};
+
+var reverseList = function(head) {
+    let prev = null, curr = head, tmp
+    // 从头节点开始
+    while (curr) {
+        // 后一个节点
+        tmp = curr.next
+        // 当前节点的前一个节点
+        curr.next = prev
+        // 当前节点给前一个
+        prev = curr
+        curr = tmp
+    }
+    return prev
+};
+
+// head = reverseList(head);
+
+// 遍历链表
+console.log(head.element);
+while(head.next){
+    console.log(head.next.element);
+    head = head.next;
+}

@@ -12,12 +12,9 @@ Array.prototype = {
         }
         return -1;
     },
-    join(symbol) {
-
-    },
+    join(symbol) { },
     toString() { },
     concat() { },
-    // 可变函数
     splice(startIndex, num, arr) { },
     push() { },
     unshift() { },
@@ -25,7 +22,6 @@ Array.prototype = {
     shift() { },
     reveres() { },
     sort() { },
-
     forEach() { },
     every() { },
     some() { },
@@ -33,5 +29,4 @@ Array.prototype = {
     reduceRight() { },
     map() { },
     filter() { },
-
 };
