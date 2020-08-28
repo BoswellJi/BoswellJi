@@ -184,7 +184,7 @@ binTree.insert(7);
 binTree.insert(8);
 binTree.insert(9);
 
-binTree.removeNode(binTree.root,0);
+binTree.removeNode(binTree.root, 0);
 
 function printNode(val) {
     console.log(val);

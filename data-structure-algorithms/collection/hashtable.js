@@ -1,23 +1,6 @@
-/**
- * 散列表(哈希表)
- * 
- * 是指key为哈希值的字典数据结构，不需要手动指定key;
- * 
- * 组件:
- * 1. 散列生成器
- *  1.1. 防止散列重复
- * 2. 新增散列
- * 3. 散列表
- * 4. ...
- * 
- * 优势:
- * 1. 增删获取快
- * 
- * 劣势:
- * 1. 遍历慢
- */
+
 function HashTable() {
-  this.table = new Array(137);
+  this.table = new Array(7);
 }
 
 HashTable.prototype = {
@@ -25,39 +8,53 @@ HashTable.prototype = {
    * 新增散列元素
    * @param {*} data 
    */
-  put(key,data) {
-    // 生成散列
-    const pos = this.simpleHash(key);
+  put(k, data) {
+    // 生成数组的索引，有时会出现碰撞（就是重复值
+    const key = this.simpleHash(k);
+    let index = 0;
+
+    if (this.table[key][index] == undefined) {
+      this.table[key][index] = data;
+    } else {
+      while (this.table[key][index] != undefined) {
+        ++index;
+      }
+      this.table[key][index] = data;
+    }
+  },
+  /**
+   * 添加散列表元素,使用线性试探法
+   * @param {*} key key
+   * @param {*} data 值 
+   */
+  put1(key, data) {
+    let pos = this.simpleHash(key);
+    // 从生成的位置开始，向下一个一个位置试探
+    while(this.table[pos]){
+      pos++
+    }
     this.table[pos] = data;
   },
   /**
    * 获取散列元素
    * @param {*} key 
    */
-  get(key){
+  get(key) {
     // 根据散列值进行获取
     return this.table[this.simpleHash(key)];
   },
   /**
-   * 散列生成器 1
+   * 遍历散列表
    */
   showDistro() {
     let i = 0;
     let len = this.table.length;
 
     for (; i < len; i++) {
-      if (this.table[i] != undefined) {
+      if (this.table[i][0] != undefined) {
         console.log(i + ':' + this.table[i]);
       }
     }
-  },
-  /**
-   * 获取最大，最小区间的随机数
-   * @param {*} min 
-   * @param {*} max 
-   */
-  getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
   },
   /**
    * 散列生成器 1
@@ -76,7 +73,7 @@ HashTable.prototype = {
     return total % this.table.length;
   },
   /**
-   * 散列生成器 2(根据)
+   * 散列生成器 2(根据) 散列化字符串键
    * @param {*} string 
    * @param {*} arr 
    */
@@ -86,13 +83,29 @@ HashTable.prototype = {
     let i = 0;
     let len = string.length;
     for (; i < len; i++) {
-      total += H * total + string.charCodeAt(i);
+      // 质数 * 上一个数的值 + ASCII码 
+      total = total + H * total + string.charCodeAt(i);
     }
     total = total % arr.length;
     return parseInt(total);
+  },
+  /**
+   * 开链法： 给每个键元素，设置为数组，称这个数组为链，重复索引的元素放到同一个数组中
+   */
+  buildChains() {
+    for (let i = 0; i < this.table.length; i++) {
+      this.table[i] = [];
+    }
   }
 };
 
 const hash = new HashTable();
-hash.put('565656',90);
+// 将每个元素都初始化为数组
+hash.buildChains();
+
+hash.put1('565656', 'jmz');
+hash.put1('565656', 'jmz1');
+hash.put('565656', 'jmz');
+hash.put('565656', 'jmz1');
+
 hash.showDistro();

@@ -38,7 +38,7 @@ LinkedList.prototype = {
             if (pos === 0) {
                 this.head = node;
                 node.next = current;
-            } else {                
+            } else {
                 while (index++ < pos) {
                     previous = current;
                     current = current.next;
@@ -106,25 +106,53 @@ LinkedList.prototype = {
     },
     getHead() {
         return this.head;
-    }
+    },
+    showAll() {
+        let head = this.getHead();
+        while (head) {
+            console.log(head.element);
+            head = head.next;
+        }
+    },
 };
 
 const list = new LinkedList();
-
-// const node1 = new Node(1);
-// const node2 = new Node(2);
-// const node3 = new Node(3);
 
 list.append(1);
 list.append(2);
 list.append(3);
 
-let head = list.getHead();
-let nextNode = null;
+const list1 = new LinkedList();
 
+list1.append(2);
+list1.append(4);
+list1.append(6);
+
+// 遍历链表
+list.showAll();
+
+const listAll = mergeTwoLists(list1,list);
+
+
+// 合并有序链表
+function mergeTwoLists(l1, l2) {
+    if (l1 == null) {
+        return l2;
+    } else if (l2 == null) {
+        return l1;
+    }
+
+    if (l1.val >= l2.val) {
+        l2.next = mergeTwoLists(l1, l2.next);
+        return l2;
+    } else {
+        l1.next = mergeTwoLists(l1.next, l2);
+        return l1;
+    }
+};
 // 反转链表
-var reverseList = function(head) {
-    if(head == null || head.next == null){
+function reverseList1(head) {
+    if (head == null || head.next == null) {
         return head
     }
     const current = reverseList(head.next);
@@ -133,8 +161,7 @@ var reverseList = function(head) {
     head.next = null
     return current;
 };
-
-var reverseList = function(head) {
+function reverseList(head) {
     let prev = null, curr = head, tmp
     // 从头节点开始
     while (curr) {
@@ -144,16 +171,8 @@ var reverseList = function(head) {
         curr.next = prev
         // 当前节点给前一个
         prev = curr
+        // 后一个给到当前
         curr = tmp
     }
     return prev
 };
-
-// head = reverseList(head);
-
-// 遍历链表
-console.log(head.element);
-while(head.next){
-    console.log(head.next.element);
-    head = head.next;
-}
