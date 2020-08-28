@@ -1,9 +1,8 @@
 
 /**
  * 冒泡排序：
- * 比较 len-1次
- * 每次都会把最大的放最后
- * @param {} arr
+ * 思路：遍历数组长度次数，每次进行对比大小的排序n-1次，每次都会把最大的放最后
+ * @param {} arr 
  */
 function bubbleSort(arr) {
     for (let i = 0, len = arr.length; i < len; i++) {
