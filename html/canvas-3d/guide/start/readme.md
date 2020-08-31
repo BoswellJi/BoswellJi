@@ -99,7 +99,7 @@ webgl与javascript之间传输数据：
 
 2. vertexAttrib1f方法的矢量版本：（在方法的结尾处以 ‘v’ 字符结尾）
 
-* 这个矢量版本函数，接手类型化数组作为参数，函数名中的数字表示数组中的元素个数
+这个矢量版本函数，接手类型化数组作为参数，函数名中的数字表示数组中的元素个数
 1. vertexAttrib1fv
 2. vertexAttrib2fv
 3. vertexAttrib3fv
