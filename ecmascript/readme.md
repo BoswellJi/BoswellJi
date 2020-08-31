@@ -66,6 +66,22 @@ js序列化为包括正则表达式,日期,函数的js到json超集
 防抖：防止ui每次刷新抖动（每次，清掉上一次的定时器） 节流：节省每次变更都要发送请求的流量（固定多少毫秒后开始发送） 函数
 ```
 
+* [terser](https://github.com/terser/terser)
+```
+js解析器，es6的马槽和压缩工具包
+```
+
+* [rollup](https://github.com/rollup/rollup)
+```
+下一代es模块打包器
+```
+
+* [path-to-regexp](https://github.com/pillarjs/path-to-regexp)
+```
+转换路径字符串比如 `/user/:name` 转换正则表达式
+
+```
+
 获取
 
 * [axios](https://github.com/axios/axios)
