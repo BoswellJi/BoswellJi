@@ -5,7 +5,6 @@ import precss from 'precss';
 import autoprefixer from 'autoprefixer';
 import "babel-polyfill";
 
-// 基础配置
 const config = {
     target: 'web',
     cache: true,
@@ -13,14 +12,11 @@ const config = {
         index: './express-first/public/js/index.js',
         vender: ['angular', 'angular-ui-router']
     },
-    //打包输出的文件
     output: {
         path: path.resolve(__dirname, "express-app/public"),
-        //打包后的根路径
         publicPath: '/public/',
         filename: "js/bundle.js"
     },
-    // 加载器
     module: {
         loaders: [{
             test: /\.css$/,
@@ -47,7 +43,6 @@ const config = {
             }
         }]
     },
-    //插件
     plugins: [
         new ExtractTextPlugin("css/style.bundle.css"),
         new webpack.optimize.CommonsChunkPlugin('vender', 'js/common.js'),
@@ -55,35 +50,28 @@ const config = {
             angular: 'angular'
         })
     ],
-    //css预处理器
-    postcss: function() {
+    postcss: function () {
         return [precss, autoprefixer]
     },
-    //
     resolve: {
-        extensions: ['', '.js', '.css', '.less','.html'],
+        extensions: ['', '.js', '.css', '.less', '.html'],
         alias: {
 
         }
     }
 }
 
-// 开发环境
 if (process.env.NODE_ENV == 'development') {
-    config.devtool='source-map';
-    const pluginsArr = [
-
-    ];
+    config.devtool = 'source-map';
+    const pluginsArr = [];
     config.plugins.concat(pluginsArr);
-    console.log('df')
 }
 
-// 生产环境
 if (process.env.NODE_ENV === 'production') {
     config.plugins.push(new webpack.optimize.UglifyJsPlugin({
-            test: /(\.jsx|\.js)$/,
-            compress: { warnings: false }
-        }));
+        test: /(\.jsx|\.js)$/,
+        compress: { warnings: false }
+    }));
 }
 
 exports.module = config;
