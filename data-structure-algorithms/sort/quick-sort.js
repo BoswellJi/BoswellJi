@@ -2,11 +2,9 @@
  * 快速排序
  * max 基准值
  * 边界： 少于2位数组，就不用排序
- * 分治： 大于基准值，小于基准值
- * 递归： 
+ * 分治： 大于基准值，小于基准值 
  * @param {*} arr 
  */
-
 function quickSort(arr) {
   if (arr.length < 2) {
     return arr;
