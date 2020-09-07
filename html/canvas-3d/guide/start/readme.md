@@ -58,22 +58,6 @@ GLSL中的数据类型：
   + first: 指定从哪个顶点开始绘制
   + count: 指定绘制需要用到多少顶点
 
-webgl坐标系统：
-
-1. webgl是处理三维图形，所以它使用的三维坐标系（笛卡尔坐标系），有x,y,z轴；
-2. 又称为右手坐标系；
-3. webgl坐标于canvas坐标对应关系：
-  + canvas的中心点：(0.0, 0.0, 0.0)
-  + canvas的左边缘与右边缘：(-1.0, 0.0, 0.0) 和 (1.0, 0.0, 0.0)
-  + canvas的上边缘与下边缘：(0.0, 1.0, 0.0) 和 (0.0, -1.0, 0.0)
-4. 将客户区坐标系统，转换到canvas坐标系统，再转换到webgl坐标系
-5. webgl坐标系的中心，再canvas元素的中心点（canvas.width/2,canvas.height/2）
-6. canvas坐标系转webgl坐标系公式：
-
-``` 
-x = ((x-rect.left) - canvas.width/2) / (canvas.width/2);
-y = (canvas.height/2 - (y-rect.top)) / (canvas.height/2);
-```
 
 webgl与javascript之间传输数据：
 目标： 从javascript中设置的顶点的位置坐标，传到着色器程序中；
