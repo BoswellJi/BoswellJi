@@ -298,19 +298,19 @@ function draw() {
   // gl.drawArrays(gl.POINTS, 1, 1);
   // gl.drawArrays(gl.POINTS, 2, 1);
 
-  // // 三角形
+  // 三角形
   // gl.drawArrays(gl.TRIANGLES,0,n);
 
-  // // 线段
+  // 线段
   // gl.drawArrays(gl.LINES,0,n);
 
-  // // 线条
+  // 线条
   // gl.drawArrays(gl.LINE_STARIP,0,n);
 
-  // // 回路
+  // 回路
   // gl.drawArrays(gl.LINE_LOOP,0,n);
 
-  // // 三角带
+  // 三角带
   // gl.drawArrays(gl.TRIANGLE_STRIP,0,n);
 
   // 三角扇

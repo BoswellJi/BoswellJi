@@ -127,7 +127,7 @@ function initTexures(gl) {
 
 let g_texUnit0 = false,g_texUnit1 =false;
 function loadTexture(gl, texture, uSampler, image,texUnit) {
-  // 对纹理图像进行y轴反转
+  // 对纹理图像进行y轴反转，环绕x轴翻转，让图片坐标系与纹理图像坐标系对应
   gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
 
   // 开启0号纹理单元(激活纹理)
