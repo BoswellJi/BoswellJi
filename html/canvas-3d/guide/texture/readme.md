@@ -51,10 +51,10 @@ webgl坐标：
 * 系统支持的纹理单元个数取决于：硬件和浏览器的webgl实现；
 
 * 绑定纹理对象:
-* `gl.bindTexture()` : 告诉webgl系统纹理对象使用的是哪种类型的纹理;
+* `gl.bindTexture()` : 告诉webgl系统纹理对象使用的是哪种类型的纹理; 
   + 纹理的类型 
-    - `gl.TEXTURE_2D` :二维纹理; (glsl es中,`sampler2D`类型专门用来处理)
-    - `gl.TEXTURE_CUBE_MAP` : 立方体纹理; (glsl es中,`samplerCube`类型专门处理)
+    - `gl.TEXTURE_2D` :二维纹理; (glsl es中, `sampler2D` 类型专门用来处理)
+    - `gl.TEXTURE_CUBE_MAP` : 立方体纹理; (glsl es中, `samplerCube` 类型专门处理)
 
 * 配置纹理对象的参数:
 * `gl.texParameteri()` : 设置纹理图像映射到图形上的具体方式

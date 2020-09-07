@@ -91,7 +91,7 @@ function initTexures(gl, n) {
     // 将图像交给webgl系统
     loadTexture(gl, n, texture, uSampler, image);
   });
-  image.src = './1.jpg';
+  image.src = '../asset/sky.jpg';
   return true;
 }
 
@@ -158,8 +158,6 @@ function draw() {
   const n = initVertexBuffer(gl);
 
   const flag = initTexures(gl,n);
-
-  console.log(flag);
 
   // const uWidth = gl.getUniformLocation(gl.program, 'u_Width');
   // const uHeight = gl.getUniformLocation(gl.program, 'u_Height');
