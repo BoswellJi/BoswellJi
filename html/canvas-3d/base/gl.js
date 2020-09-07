@@ -18,6 +18,8 @@
       console.log('Unable to initialize the shader program: ' + gl.getProgramInfoLog(shaderProgram));
       return null;
     }
+    // 可以用这个程序对象绘制图形
+    gl.useProgram(shaderProgram);
 
     return shaderProgram;
   }

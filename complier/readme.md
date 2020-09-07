@@ -2,22 +2,48 @@
 
 ## 主要部分
 
-- Scanner 扫描器
-- Parser 解析器
-- Binder 绑定器
-- Checker 检查器
-- Emitter 发射器
+* Scanner 扫描器
+* Parser 解析器
+* Binder 绑定器
+* Checker 检查器
+* Emitter 发射器
 
 ## 编译过程
 
 ```使用到的专业词汇
+
 1. Token :  流，单词
 2. AST:     抽象语法树
 3. Symbols: 符号
+
 ```
 
-- SourceCode -> Scanner -> Token 
-- Token -> Parser -> AST
-- AST -> Binder -> Symbols
-- AST + Symbols -> Checker -> 类型验证
-- AST + Checker -> Emitter -> js SourceCode
+* SourceCode -> Scanner -> Token 
+* Token -> Parser -> AST
+* AST -> Binder -> Symbols
+* AST + Symbols -> Checker -> 类型验证
+* AST + Checker -> Emitter -> js SourceCode
+
+## 语法
+
+* 含义：
+  + 字符组合成合法语句排列规则；
+  + 指用字符组合成合法语句的规则集（KEMIN:字符先通过词法,组词或字串，再由代表不同句子成分的词组合成语句）。语法定义语言的各种要素间的形式关系（KEMIN：什么要素，什么关系？），因此给出了语言中各种不同的合法的语句的结构描述。语法只关注句法结构，不管其含义，那是语义的事;
+
+## 语义
+
+* 含义：
+  + 合法语句的含义`就是程序的含义`;
+  + 对于编程语言来说，描述了计算机执行一个程序时所表现的行为；
+  + 揭示语义的行为包括描述程序输入输出之间的关系，逐步解说程序如何在真实或抽象机器的`执行过程`等；
+  + 考虑程序含义的最实际方法是思考它做了些什么：在运行程序的时候，我们期望发生什么呢？在运行时编程语言中不同的结构都是如何表现的？把它们放到一起组成更大的程序时会是什么效果？ 
+这是操作语义学（ operational semantic）的基础，这种方法为程序在某种机器上的执行定义一些规则，以此来捕捉编程语言的含义。这个机器常常是一种抽象的机器；
+
+* 包含：
+  + 类型系统
+  + 编程范式
+  + 存储
+  + 子程序
+  + 流程控制
+
+## 语用
