@@ -1,66 +1,10 @@
 /**
-  * 创建着色器程序
-  * @param {*} gl 渲染上下文
-  * @param {*} vertexShader 顶点着色器
-  * @param {*} fragmentShader 片段着色器
-  */
-function createProgram(gl, vertexShader, fragmentShader) {
-  const program = gl.createProgram();
-  gl.attachShader(program, vertexShader);
-  gl.attachShader(program, fragmentShader);
-  gl.linkProgram(program);
-
-  const success = gl.getProgramParameter(program, gl.LINK_STATUS);
-  if (success) {
-    return program;
-  }
-
-  console.log('program: ' + gl.getProgramInfoLog(program));
-  gl.deleteProgram(program);
-}
-
-/**
- * 
- * @param {*} gl 渲染上下文
- * @param {*} type 着色器类型
- * @param {*} source 数据源
- */
-function createShader(gl, type, source) {
-  const shader = gl.createShader(type);
-  gl.shaderSource(shader, source);
-  gl.compileShader(shader);
-
-  const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
-  if (success) {
-    return shader;
-  }
-
-  console.log('shader: ' + gl.getShaderInfoLog(shader));
-  gl.deleteShader(shader);
-}
-
-function initShaders(gl, vertex, fragment) {
-  //  创建两个着色器
-  const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertex),
-    fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragment);
-
-  // 将两个着色器link（链接）到一个 program 
-  const program = createProgram(gl, vertexShader, fragmentShader);
-
-  gl.useProgram(program);
-
-  gl.program = program;
-
-  return program;
-}
-
-/**
  * 初始化顶点数据缓存
  * 物体都是有，点，线面（三角形组成
  * @param {*} gl 
  */
 function initVertexBuffer(gl) {
-  // 24
+  // 顶点数量
   var vertices = new Float32Array([   // Coordinates
     1.0, 1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0, 1.0, // v0-v1-v2-v3 front
     1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0, // v0-v3-v4-v5 right
@@ -70,7 +14,7 @@ function initVertexBuffer(gl) {
     1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0, 1.0, 1.0, -1.0  // v4-v7-v6-v5 back
   ]);
 
-  // 
+  // 每个面的顶点的颜色
   var colors = new Float32Array([    // Colors
     1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0,     // v0-v1-v2-v3 front
     1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0,     // v0-v3-v4-v5 right
@@ -81,6 +25,7 @@ function initVertexBuffer(gl) {
   ]);
 
 
+  // 法线
   var normals = new Float32Array([    // Normal
     0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0,  // v0-v1-v2-v3 front
     1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0,  // v0-v3-v4-v5 right
@@ -91,7 +36,7 @@ function initVertexBuffer(gl) {
   ]);
 
 
-  // Indices of the vertices，每个面的两个三角形的顶点索引
+  // 每个面的两个三角形的顶点索引
   var indices = new Uint8Array([
     0, 1, 2, 0, 2, 3,    // front
     4, 5, 6, 4, 6, 7,    // right
@@ -107,37 +52,14 @@ function initVertexBuffer(gl) {
 
   // 创建缓冲数据
   const indexBuffer = gl.createBuffer();
-
   // 绑定缓冲
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
-
   // 将数据与缓冲进行绑定
   gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
 
   return indices.length;
 }
 
-/**
- * 初始化数组类型缓冲
- * @param {*} gl 
- * @param {*} attribute 
- * @param {*} data 
- * @param {*} num 
- * @param {*} type 
- */
-function initArrayBuffer(gl, attribute, data, num, type) {
-  // 创建缓冲区，将获取的glsl变量的地址指向缓冲区
-  const buffer = gl.createBuffer();
-
-  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-  gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
-
-  const aAttribute = gl.getAttribLocation(gl.program, attribute);
-
-  gl.vertexAttribPointer(aAttribute, num, type, false, 0, 0);
-  gl.enableVertexAttribArray(aAttribute);
-  gl.bindBuffer(gl.ARRAY_BUFFER, null);
-}
 
 const canvas = document.querySelector('#canvas'),
   gl = canvas.getContext('webgl');
@@ -146,10 +68,10 @@ function draw() {
   const vertex = `
   attribute vec4 a_Position;
   attribute vec4 a_Color;
-  attribute vec4 a_Normal; // 法向量
-  uniform mat4 u_MvpMatrix; // 透视投影矩阵*观察者矩阵
-  uniform mat4 u_NormalMatrix; // 用来变换法向量的矩阵
-  uniform mat4 u_ModelMatrix; // 模型矩阵
+  attribute vec4 a_Normal;      // 法向量
+  uniform mat4 u_MvpMatrix;     // 透视投影矩阵 * 观察者矩阵
+  uniform mat4 u_NormalMatrix;  // 用来变换法向量的矩阵
+  uniform mat4 u_ModelMatrix;   // 模型矩阵
   
   // 1. 片元在世界坐标系下的坐标
   // 2. 片元处表面的法向量
@@ -165,8 +87,8 @@ function draw() {
     v_Position = vec3(u_ModelMatrix * a_Position);
     v_Normal = normalize(vec3(u_NormalMatrix * a_Normal));
   }
-  `,
-    fragment = `
+  `;
+   const fragment = `
     precision mediump float;
     
     uniform vec3 u_LightColor;
@@ -192,9 +114,10 @@ function draw() {
       // 环境反射光颜色
       vec3 ambient = u_AmbientLight * v_Color.rgb;
       gl_FragColor = vec4(diffuse + ambient,v_Color.a);
-    }`;
+    }
+    `;
 
-  if (!initShaders(gl, vertex, fragment)) {
+  if (!initShaderProgram(gl, vertex, fragment)) {
     return;
   }
 
@@ -215,8 +138,6 @@ function draw() {
   // 光源位置
   gl.uniform3f(uLightPosition, 0, 3, 4);
 
-  // 直接给存储位置添加数据，不使用缓存
-
   // 设置光线颜色
   gl.uniform3f(uLightColor, 1, 1, 1);
 
@@ -231,8 +152,6 @@ function draw() {
   // 计算模型视图投影矩阵
   const mvpMatrix = new Matrix4();
   const modelMatrix = new Matrix4();
-  // modelMatrix.setTranslate(0,1,0);
-  // modelMatrix.rotate(15,0,0,1);
   modelMatrix.setRotate(90, 0, 1, 0);
   gl.uniformMatrix4fv(uModelMatrix, false, modelMatrix.elements);
 
