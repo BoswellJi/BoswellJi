@@ -12,7 +12,7 @@ const canvas = document.querySelector('#canvas'),
   // 一旦指定，背景颜色会贮存在webgl系统，下次调用clearColor方法之前不会改变；
 
   // 参数(也叫颜色分量： 红，黄，蓝，透明度（值都是从0-1
-  gl.clearColor(1,0,0,1);
+  gl.clearColor(0,0,0,1);
 
   // 用之前clearColor指定的背景色清空绘图区域
 

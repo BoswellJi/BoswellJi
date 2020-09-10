@@ -1,58 +1,3 @@
-/**
-  * 创建着色器程序
-  * @param {*} gl 渲染上下文
-  * @param {*} vertexShader 顶点着色器
-  * @param {*} fragmentShader 片段着色器
-  */
-function createProgram(gl, vertexShader, fragmentShader) {
-  const program = gl.createProgram();
-  gl.attachShader(program, vertexShader);
-  gl.attachShader(program, fragmentShader);
-  gl.linkProgram(program);
-
-  const success = gl.getProgramParameter(program, gl.LINK_STATUS);
-  if (success) {
-    return program;
-  }
-
-  console.log('program: ' + gl.getProgramInfoLog(program));
-  gl.deleteProgram(program);
-}
-
-/**
- * 
- * @param {*} gl 渲染上下文
- * @param {*} type 着色器类型
- * @param {*} source 数据源
- */
-function createShader(gl, type, source) {
-  const shader = gl.createShader(type);
-  gl.shaderSource(shader, source);
-  gl.compileShader(shader);
-
-  const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
-  if (success) {
-    return shader;
-  }
-
-  console.log('shader: ' + gl.getShaderInfoLog(shader));
-  gl.deleteShader(shader);
-}
-
-function initShaders(gl, vertex, fragment) {
-  //  创建两个着色器
-  const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertex),
-    fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragment);
-
-  // 将两个着色器link（链接）到一个 program 
-  const program = createProgram(gl, vertexShader, fragmentShader);
-
-  gl.useProgram(program);
-
-  gl.program = program;
-
-  return program;
-}
 
 function initVertexBuffer(gl) {
   const vertices = new Float32Array([
@@ -90,25 +35,39 @@ const canvas = document.querySelector('#canvas'),
   gl = canvas.getContext('webgl'),
   vertex = `
     attribute vec4 a_Position;
+
     uniform mat4 u_xformMatrix;
+
     
     void main(){ 
-      gl_Position = a_Position * u_xformMatrix;
+       gl_Position = a_Position * u_xformMatrix;
     }
   `,
   fragment = `
+    precision mediump float;
+
+    uniform float u_Width;
+    uniform float u_Height;
+
     void main(){
-      gl_FragColor = vec4(0.0,0.0,1.0,1);
+      gl_FragColor = vec4(1,0.0,0.0,1.0);
     }
   `;
 
-initShaders(gl, vertex, fragment)
+initShaderProgram(gl, vertex, fragment)
 
 // 设置canvas背景
 gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
 // 清空canvas背景
 gl.clear(gl.COLOR_BUFFER_BIT);
+
+const canvasWidth = canvas.width/400;
+const canvasHeight = canvas.height/400;
+
+gl.uniform1f(gl.getUniformLocation(gl.program, 'u_Width'), false, canvasWidth);
+gl.uniform1f(gl.getUniformLocation(gl.program, 'u_Height'), false, canvasHeight);
+
 
 const n = initVertexBuffer(gl),
   h = 2 * Math.PI / 360 * 180,

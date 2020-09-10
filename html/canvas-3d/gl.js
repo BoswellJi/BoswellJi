@@ -1,18 +1,17 @@
 /**
-   * 初始化一个着色器程序
-   * @param {*} gl webgl上下文对象
-   * @param {*} vsSource 顶点着色器程序
-   * @param {*} fsSource 片元着色器程序
-   * @returns 着色器程序对象
-   */
+ * 初始化一个着色器程序
+ * @param {*} gl webgl上下文对象
+ * @param {*} vsSource 顶点着色器程序
+ * @param {*} fsSource 片元着色器程序
+ * @returns 着色器程序对象
+ */
 function initShaderProgram(gl, vsSource, fsSource) {
   const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vsSource);
   const fragmentShader = loadShader(gl, gl.FRAGMENT_SHADER, fsSource);
-
   const shaderProgram = gl.createProgram();
+
   gl.attachShader(shaderProgram, vertexShader);
   gl.attachShader(shaderProgram, fragmentShader);
-
   gl.linkProgram(shaderProgram);
 
   if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
@@ -90,6 +89,6 @@ function initElementArrayBuffer(gl, attribute, data, num, type) {
 
   gl.vertexAttribPointer(aAttribute, num, type, false, 0, 0);
   gl.enableVertexAttribArray(aAttribute);
-  
+
   gl.bindBuffer(gl.ARRAY_BUFFER, null);
 }

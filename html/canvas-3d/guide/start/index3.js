@@ -1,6 +1,5 @@
-const canvas = document.querySelector('#canvas'),
-
-  gl = canvas.getContext('webgl');
+const canvas = document.querySelector('#canvas');
+const gl = canvas.getContext('webgl');
 
 const vertexShaderSource = `
     attribute vec4 a_Position;
@@ -13,8 +12,8 @@ const vertexShaderSource = `
       gl_PointSize = 5.0;
       v_Color = a_Color;
     }
-  `,
-  fragmentShaderSource = `
+  `;
+const fragmentShaderSource = `
     precision mediump float;
     varying vec4 v_Color;
 
@@ -23,12 +22,12 @@ const vertexShaderSource = `
     }
   `;
 
-if (!initShaders(gl, vertexShaderSource, fragmentShaderSource)) {
+if (!initShaderProgram(gl, vertexShaderSource, fragmentShaderSource)) {
   console.log('着色器初始化失败');
 }
 
 // 设置背景色
-gl.clearColor(1, 0, 0, 1);
+gl.clearColor(0, 0, 0, 1);
 gl.clear(gl.COLOR_BUFFER_BIT);
 
 // 点
@@ -42,20 +41,20 @@ gl.clear(gl.COLOR_BUFFER_BIT);
 // gl.drawArrays(gl.TRIANGLE_STRIP,0,n);
 
 // 定义顶点
-const n = initVertexBuffers(gl,new Float32Array([
-  0,0.5,
-  -0.5,-0.5,
-  0.5,-0.5,
-]),'a_Position');
+const n = initVertexBuffers(gl, new Float32Array([
+  0, 0.5,
+  -0.5, -0.5,
+  0.5, -0.5,
+]), 'a_Position');
 // 开始绘制
-gl.drawArrays(gl.TRIANGLE_FAN,0,3);
+gl.drawArrays(gl.TRIANGLE_FAN, 0, 3);
 
-const n1 = initVertexBuffers(gl,new Float32Array([
-  0.7,0.7,
-  -0.6,0.6,
-  -0.8,0.8
-]),'a_Position');
-gl.drawArrays(gl.TRIANGLE_FAN,0,3);
+const n1 = initVertexBuffers(gl, new Float32Array([
+  0.7, 0.7,
+  -0.6, 0.6,
+  -0.8, 0.8
+]), 'a_Position');
+gl.drawArrays(gl.TRIANGLE_FAN, 0, 3);
 
 
 /**
@@ -64,17 +63,17 @@ gl.drawArrays(gl.TRIANGLE_FAN,0,3);
  * @param {*} vertices 
  * @param {*} n 
  */
-function initVertexBuffers(gl,vertices,n,attribute){
+function initVertexBuffers(gl, vertices, n, attribute) {
   // 创建缓冲区对象
   const vertexBuffer = gl.createBuffer();
   // 将缓冲区对象绑定
-  gl.bindBuffer(gl.ARRAY_BUFFER,vertexBuffer);
+  gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
   // 将数据(顶点数据)放到缓冲区对象中
-  gl.bufferData(gl.ARRAY_BUFFER,vertices,gl.STATIC_DRAW);
+  gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
   // 获取着色器中的变量地址
-  const aPosition = gl.getAttribLocation(gl.program,attribute);
+  const aPosition = gl.getAttribLocation(gl.program, attribute);
   // 指定取数据的规则，将缓冲区对象分配给attribute变量
-  gl.vertexAttribPointer(aPosition,2,gl.FLOAT,false,0,0);
+  gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
   // 开始使用，使得顶点能够访问缓冲区内的数据
   gl.enableVertexAttribArray(aPosition);
 
@@ -99,18 +98,18 @@ canvas.addEventListener('mousemove', function (e) {
     // 转换成三维空间坐标系的值
     glx = ol / (width / 2),
     gly = ot / (height / 2);
-    gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.clear(gl.COLOR_BUFFER_BIT);
 
-    initVertexBuffers(gl,new Float32Array([
-      glx, 1,
-      glx,-1
-    ]),2,'a_Position');
-    gl.drawArrays(gl.LINES,0,2);
-    
-    initVertexBuffers(gl,new Float32Array([
-      1,gly,
-      -1,gly
-    ]),2,'a_Position');
-    gl.drawArrays(gl.LINES,0,2);
+  initVertexBuffers(gl, new Float32Array([
+    glx, 1,
+    glx, -1
+  ]), 2, 'a_Position');
+  gl.drawArrays(gl.LINES, 0, 2);
+
+  initVertexBuffers(gl, new Float32Array([
+    1, gly,
+    -1, gly
+  ]), 2, 'a_Position');
+  gl.drawArrays(gl.LINES, 0, 2);
 
 }, false);
