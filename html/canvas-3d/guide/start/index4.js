@@ -29,12 +29,12 @@ const vertexShaderSource = `
     }
   `;
 
-if (!initShaders(gl, vertexShaderSource, fragmentShaderSource)) {
+if (!initShaderProgram(gl, vertexShaderSource, fragmentShaderSource)) {
   console.log('着色器初始化失败');
 }
 
 // 设置背景色
-gl.clearColor(1, 0, 0, 1);
+gl.clearColor(0, 0, 0, 1);
 gl.clear(gl.COLOR_BUFFER_BIT);
 
 let image = 0;

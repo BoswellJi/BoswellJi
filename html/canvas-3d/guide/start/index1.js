@@ -47,7 +47,7 @@ const canvas = document.querySelector('#canvas'),
 
    
   // 初始化着色器程序
-  if(!initShaders(gl,vertexShaderSource,fragmentShaderSource)){
+  if(!initShaderProgram(gl,vertexShaderSource,fragmentShaderSource)){
     console.log('着色器初始化失败');
   }
 

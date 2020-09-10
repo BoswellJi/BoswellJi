@@ -1,59 +1,3 @@
-/**
-  * 创建着色器程序
-  * @param {*} gl 渲染上下文
-  * @param {*} vertexShader 顶点着色器
-  * @param {*} fragmentShader 片段着色器
-  */
-function createProgram(gl, vertexShader, fragmentShader) {
-  const program = gl.createProgram();
-  gl.attachShader(program, vertexShader);
-  gl.attachShader(program, fragmentShader);
-  gl.linkProgram(program);
-
-  const success = gl.getProgramParameter(program, gl.LINK_STATUS);
-  if (success) {
-    return program;
-  }
-
-  console.log('program: ' + gl.getProgramInfoLog(program));
-  gl.deleteProgram(program);
-}
-
-/**
- * 
- * @param {*} gl 渲染上下文
- * @param {*} type 着色器类型
- * @param {*} source 数据源
- */
-function createShader(gl, type, source) {
-  const shader = gl.createShader(type);
-  gl.shaderSource(shader, source);
-  gl.compileShader(shader);
-
-  const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
-  if (success) {
-    return shader;
-  }
-
-  console.log('shader: ' + gl.getShaderInfoLog(shader));
-  gl.deleteShader(shader);
-}
-
-function initShaders(gl, vertex, fragment) {
-  //  创建两个着色器
-  const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertex),
-    fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragment);
-
-  // 将两个着色器link（链接）到一个 program 
-  const program = createProgram(gl, vertexShader, fragmentShader);
-
-  gl.useProgram(program);
-
-  gl.program = program;
-
-  return program;
-}
-
 function initVertexBuffer(gl) {
   const vertices = new Float32Array([
     -0.5, 0.5,
@@ -192,7 +136,7 @@ function draw() {
   // }
   // `;
 
-  if (!initShaders(gl, vertex, fragment)) {
+  if (!initShaderProgram(gl, vertex, fragment)) {
     return;
   }
 
@@ -295,14 +239,9 @@ function draw() {
   //  参数二： 坐标的偏移量（从哪个点开始
   //  参数三： 顶点数量 （绘制几个
   // gl.drawArrays(gl.POINTS, 0, 1);
-  // gl.drawArrays(gl.POINTS, 1, 1);
-  // gl.drawArrays(gl.POINTS, 2, 1);
 
-  // 三角形
-  // gl.drawArrays(gl.TRIANGLES,0,n);
-
-  // 线段
-  // gl.drawArrays(gl.LINES,0,n);
+  // 线段 ,两两一条
+  gl.drawArrays(gl.LINES,0,n);
 
   // 线条
   // gl.drawArrays(gl.LINE_STARIP,0,n);
@@ -310,13 +249,14 @@ function draw() {
   // 回路
   // gl.drawArrays(gl.LINE_LOOP,0,n);
 
+  // 三角形
+  // gl.drawArrays(gl.TRIANGLES,0,n);
+
   // 三角带
   // gl.drawArrays(gl.TRIANGLE_STRIP,0,n);
 
   // 三角扇
   // gl.drawArrays(gl.TRIANGLE_FAN,0,n);
-
-  gl.drawArrays(gl.TRIANGLES, 0, 3);
 }
 
 draw();
