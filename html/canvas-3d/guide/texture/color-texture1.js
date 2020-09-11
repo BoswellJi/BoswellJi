@@ -63,50 +63,16 @@ function initTexures(gl) {
  * @param {*} image 图片对象
  */
 function loadTexture(gl, texture, image) {
-  // 对纹理图像进行y轴反转， 因为webgl的纹理坐标系统中t轴的方向和图片的坐标系统的y轴是相反的
 
-  // gl.UNPACK_FLIP_Y_WEBGL：对纹理图像进行y轴反转
-  // gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL: 将图像rgb颜色值的每一个分量乘以A
+  // 对纹理图像进行y轴反转
   gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
-
-  // 通过纹理单元的机制来同时使用多个纹理
-  // 每个纹理单元有一个单元编号来管理一张纹理图像
-  // 系统支持的纹理单元的个数，取决于硬件和浏览器的webgl实现
-  // webgl系统默认至少支持8个纹理单元，内置的变量代表各个纹理单元
-  // gl.TEXTURE0, gl.TEXTURE1, gl.TEXTURE2,...,gl.TEXTURE7
 
   // 开启0号纹理单元(激活纹理单元)
   gl.activeTexture(gl.TEXTURE0);
 
-  // 告诉webgl系统，纹理对象使用哪种类型的纹理
-  // gl.TEXTURE_2D：二维纹理
-  // gl.TEXTURE_CUBE_MAP：立方体纹理
-
-  // 开启纹理对象；将纹理对象绑定到纹理单元上；
-  // 我们没有办法直接操作纹理对象，只能将纹理对象绑定到纹理单元，通过操作纹理单元来操作纹理对象
   gl.bindTexture(gl.TEXTURE_2D, texture);
 
-  // 配置纹理对象的参数，设置纹理图像映射到图形上的具体方式
-  // 根据纹理坐标获取纹素颜色，按哪种方式重复填充纹理
-  // 参数：
-  // target
-  // pname: 纹理参数
-  // gl.TEXTURE_MAG_FILTER(放大方法)
-  // gl.TEXTURE_MIN_FILTER(缩小方法)
-
-  // gl.TEXTURE_WRAP_S(水平填充方法) 
-  // gl.TEXTUER_WRAP_T(垂直填充方法)
-  // param: 纹理参数的值
-  // gl.NEAREST 
-  // gl.LINEAR
-
-  // 曼哈顿距离/直角距离/棋盘距离： （x1,y1） (x2,y2) = > (|x2-x1|,|y2-y1|)
-
-  // gl.REPEAT：平铺式的重复纹理
-  // gl.MIRRORED_REPEAT：镜像对称式的重复纹理
-  // gl.CLAMP_TO_EDGE：使用纹理图像边缘值
-
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  // gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
   // gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
   // gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.NEAREST);
   // gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.NEAREST);
@@ -116,28 +82,7 @@ function loadTexture(gl, texture, image) {
   // gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.MIRRORED_REPEAT);
   // gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
 
-  // 配置纹理图像:将纹理图像分配给纹理对象
-  // target: gl.TEXTURE_2D,gl.TEXTURE_CUBE_MAP
-
-  // level: 为了金字塔纹理准备的
-
-  // internalformat: 图像的内部格式
-
-  // format: 纹理数据的格式，必须跟internalformat相同的值
-  // 必须要根据纹理图像的格式（jpg,png）来选择这个参数
-  // jpg: gl.RGB png: gl.RGBA bmp: gl.RGB
-  // gl.LUMINANCE（流明），gl.LUMINANCE_ALPHA（透明度）：通常用在灰度图像上
-  // 流明： 感知到的物体表面的亮度，使用物体表面，红，绿，蓝分量值的加权平均来计算；
-
-  // type: 纹理数据的类型
-  // gl.UNSIGNED_BYTE
-  // gl.UNSIGNED_SHORT_5_6_5(将rgb三分量压缩入16比特中),数字代表占比
-  // gl.UNSIGNED_SHORT_4_4_4_4(将rgb三分量压缩入16比特中)
-  // gl.UNSIGNED_SHORT_5_5_5_1(将rgb三分量压缩入16比特中)
-
-  // image: 图片对象
-
-  // 这时，image对象中的图像就从javascript中传入webgl系统中，并存储在纹理对象中
+  
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
 
   // 获取glsl变量u_Sampler的存储地址
@@ -169,9 +114,7 @@ const vertex = `
   }
 `;
 
-// 拾色器类型，获取纹理对象中纹理图片的每个纹素
-// 顶点之间片元的纹理坐标会在光栅化的过程中内插出来
-// 根据片元的纹理坐标，从纹理图像上抽取出纹素的颜色，涂到当前片元上
+
 const fragment = `
     precision mediump float;
     uniform sampler2D u_Sampler;
