@@ -57,7 +57,7 @@ function initTexures(gl) {
 
   // 给图片添加src属性
   image.src = '/canvas-3d/guide/asset/sky.jpg';
-  image1.src = '/canvas-3d/guide/asset/sky.jpg';
+  image1.src = '/canvas-3d/guide/asset/circle.gif';
   return true;
 }
 
@@ -114,21 +114,21 @@ function draw() {
     v_TexCoord = a_TexCoord;
   }`;
   const fragment = `
-    precision mediump float;
-    // 片元着色器访问两个纹理
-    // 最终的片元颜色由两个纹理上纹素颜色共同决定
+  precision mediump float;
+  // 片元着色器访问两个纹理
+  // 最终的片元颜色由两个纹理上纹素颜色共同决定
 
-    // 专门用于处理纹理对象的数据类型
-    uniform sampler2D u_Sampler0;
-    uniform sampler2D u_Sampler1;
-    varying vec2 v_TexCoord;
+  // 专门用于处理纹理对象的数据类型
+  uniform sampler2D u_Sampler0;
+  uniform sampler2D u_Sampler1;
+  varying vec2 v_TexCoord;
 
-    void main() {
-      // texture2D: 在片元着色器中获取纹理像素颜色(纹理单元编号,纹理坐标)
-      vec4 color0 = texture2D(u_Sampler0 , v_TexCoord);
-      vec4 color1 = texture2D(u_Sampler1 , v_TexCoord);
-      gl_FragColor = color0 * color1;
-    }`;
+  void main() {
+    // texture2D: 在片元着色器中获取纹理像素颜色(纹理单元编号,纹理坐标)
+    vec4 color0 = texture2D(u_Sampler0 , v_TexCoord);
+    vec4 color1 = texture2D(u_Sampler1 , v_TexCoord);
+    gl_FragColor = color0 * color1;
+  }`;
 
   if (!initShaderProgram(gl, vertex, fragment)) {
     return;
