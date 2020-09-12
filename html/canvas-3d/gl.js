@@ -56,7 +56,7 @@ function loadShader(gl, type, source) {
 * @param {*} num 
 * @param {*} type 
 */
-function initArrayBuffer(gl, attribute, data, num, type) {
+function initArrayBuffer(gl, attribute, data, num, type, strip, offset) {
   // 创建缓冲区，将获取的glsl变量的地址指向缓冲区
   const buffer = gl.createBuffer();
 
@@ -65,7 +65,7 @@ function initArrayBuffer(gl, attribute, data, num, type) {
 
   const aAttribute = gl.getAttribLocation(gl.program, attribute);
 
-  gl.vertexAttribPointer(aAttribute, num, type, false, 0, 0);
+  gl.vertexAttribPointer(aAttribute, num, type, false, strip, offset);
   gl.enableVertexAttribArray(aAttribute);
   gl.bindBuffer(gl.ARRAY_BUFFER, null);
 }
@@ -78,7 +78,7 @@ function initArrayBuffer(gl, attribute, data, num, type) {
 * @param {*} num 
 * @param {*} type 
 */
-function initElementArrayBuffer(gl, attribute, data, num, type) {
+function initElementArrayBuffer(gl, attribute, data, num, type, strip, offset) {
   // 创建缓冲区，将获取的glsl变量的地址指向缓冲区
   const buffer = gl.createBuffer();
 
@@ -87,8 +87,7 @@ function initElementArrayBuffer(gl, attribute, data, num, type) {
 
   const aAttribute = gl.getAttribLocation(gl.program, attribute);
 
-  gl.vertexAttribPointer(aAttribute, num, type, false, 0, 0);
+  gl.vertexAttribPointer(aAttribute, num, type, false, strip, offset);
   gl.enableVertexAttribArray(aAttribute);
-
-  gl.bindBuffer(gl.ARRAY_BUFFER, null);
+  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
 }
