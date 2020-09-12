@@ -1,60 +1,4 @@
 /**
-  * 创建着色器程序
-  * @param {*} gl 渲染上下文
-  * @param {*} vertexShader 顶点着色器
-  * @param {*} fragmentShader 片段着色器
-  */
-function createProgram(gl, vertexShader, fragmentShader) {
-  const program = gl.createProgram();
-  gl.attachShader(program, vertexShader);
-  gl.attachShader(program, fragmentShader);
-  gl.linkProgram(program);
-
-  const success = gl.getProgramParameter(program, gl.LINK_STATUS);
-  if (success) {
-    return program;
-  }
-
-  console.log('program: ' + gl.getProgramInfoLog(program));
-  gl.deleteProgram(program);
-}
-
-/**
- * 
- * @param {*} gl 渲染上下文
- * @param {*} type 着色器类型
- * @param {*} source 数据源
- */
-function createShader(gl, type, source) {
-  const shader = gl.createShader(type);
-  gl.shaderSource(shader, source);
-  gl.compileShader(shader);
-
-  const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
-  if (success) {
-    return shader;
-  }
-
-  console.log('shader: ' + gl.getShaderInfoLog(shader));
-  gl.deleteShader(shader);
-}
-
-function initShaders(gl, vertex, fragment) {
-  //  创建两个着色器
-  const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertex),
-    fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragment);
-
-  // 将两个着色器link（链接）到一个 program 
-  const program = createProgram(gl, vertexShader, fragmentShader);
-
-  gl.useProgram(program);
-
-  gl.program = program;
-
-  return program;
-}
-
-/**
  * 初始化顶点数据缓存
  * @param {*} gl 
  */
@@ -146,7 +90,7 @@ function draw() {
       }
     `;
 
-  if (!initShaders(gl, vertex, fragment)) {
+  if (!initShaderProgram(gl, vertex, fragment)) {
     return;
   }
 
@@ -162,7 +106,7 @@ function draw() {
   // 透视投影矩阵
   const uProjMatrix = gl.getUniformLocation(gl.program, 'u_ProjMatrix');
   const projMatrix = new Matrix4();
-  projMatrix.setPerspective(30, canvas.width / canvas.height, 1, 100);
+  projMatrix.setPerspective(50, canvas.width / canvas.height/2, 1, 100);
   gl.uniformMatrix4fv(uProjMatrix, false, projMatrix.elements);
 
   gl.clearColor(0, 0, 0, 1);

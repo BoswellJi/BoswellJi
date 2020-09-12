@@ -1,60 +1,4 @@
 /**
-  * 创建着色器程序
-  * @param {*} gl 渲染上下文
-  * @param {*} vertexShader 顶点着色器
-  * @param {*} fragmentShader 片段着色器
-  */
-function createProgram(gl, vertexShader, fragmentShader) {
-  const program = gl.createProgram();
-  gl.attachShader(program, vertexShader);
-  gl.attachShader(program, fragmentShader);
-  gl.linkProgram(program);
-
-  const success = gl.getProgramParameter(program, gl.LINK_STATUS);
-  if (success) {
-    return program;
-  }
-
-  console.log('program: ' + gl.getProgramInfoLog(program));
-  gl.deleteProgram(program);
-}
-
-/**
- * 
- * @param {*} gl 渲染上下文
- * @param {*} type 着色器类型
- * @param {*} source 数据源
- */
-function createShader(gl, type, source) {
-  const shader = gl.createShader(type);
-  gl.shaderSource(shader, source);
-  gl.compileShader(shader);
-
-  const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
-  if (success) {
-    return shader;
-  }
-
-  console.log('shader: ' + gl.getShaderInfoLog(shader));
-  gl.deleteShader(shader);
-}
-
-function initShaders(gl, vertex, fragment) {
-  //  创建两个着色器
-  const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertex),
-    fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragment);
-
-  // 将两个着色器link（链接）到一个 program 
-  const program = createProgram(gl, vertexShader, fragmentShader);
-
-  gl.useProgram(program);
-
-  gl.program = program;
-
-  return program;
-}
-
-/**
  * 初始化顶点数据缓存
  * @param {*} gl 
  */
@@ -62,15 +6,15 @@ function initVertexBuffer(gl) {
   // 8个顶点，三个三个顶点相连接，组成12个三角形，构成正方形
   // 当顶点颜色全白时，看上去不是一个立体的集合图形，
   // 像是平面图，主要原因是因为缺少了光照的效果
-  var vertices = new Float32Array([  
-    1.0, 1.0, 1.0,   1.0, 1.0, 1.0,  // v0 White
-    -1.0, 1.0, 1.0,   1.0, 1.0, 1.0,  // v1 Magenta
-    -1.0, -1.0, 1.0,   1.0, 1.0, 1.0,  // v2 Red
-    1.0, -1.0, 1.0,   1.0, 1.0, 1.0,  // v3 Yellow
-    1.0, -1.0, -1.0,   1.0, 1.0, 1.0,  // v4 Green
-    1.0, 1.0, -1.0,   1.0, 1.0, 1.0,  // v5 Cyan
-    -1.0, 1.0, -1.0,   1.0, 1.0, 1.0,  // v6 Blue
-    -1.0, -1.0, -1.0,   1.0, 1.0, 1.0   // v7 Black
+  var vertices = new Float32Array([
+    1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  // v0 White
+    -1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  // v1 Magenta
+    -1.0, -1.0, 1.0, 1.0, 1.0, 1.0,  // v2 Red
+    1.0, -1.0, 1.0, 1.0, 1.0, 1.0,  // v3 Yellow
+    1.0, -1.0, -1.0, 1.0, 1.0, 1.0,  // v4 Green
+    1.0, 1.0, -1.0, 1.0, 1.0, 1.0,  // v5 Cyan
+    -1.0, 1.0, -1.0, 1.0, 1.0, 1.0,  // v6 Blue
+    -1.0, -1.0, -1.0, 1.0, 1.0, 1.0   // v7 Black
   ]);
 
   // 1. 36个带有重复的顶点（一个面两个三角行），组成正方体
@@ -139,7 +83,7 @@ function draw() {
       }
     `;
 
-  initShaders(gl, vertex, fragment);
+  initShaderProgram(gl, vertex, fragment);
 
   const n = initVertexBuffer(gl);
 

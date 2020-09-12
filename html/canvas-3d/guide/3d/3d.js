@@ -50,13 +50,13 @@ function draw() {
   const vertex = `
     attribute vec4 a_Position;
     attribute vec4 a_Color;
+    
     uniform mat4 u_ViewMatrix;
-    uniform mat4 u_RotateMatrix;
 
     varying vec4 v_Color;
 
     void main(){
-      gl_Position = u_ViewMatrix *  a_Position * u_RotateMatrix;
+      gl_Position = u_ViewMatrix *  a_Position;
       v_Color = a_Color;
     }
   `,
@@ -75,20 +75,12 @@ function draw() {
 
   const n = initVertexBuffer(gl);
 
-  // 根据下面的三个矢量创建视图矩阵：影响屏幕上的视图
-  // 视点，目标点/观察点/视线，上方向
+  // 视点，观察点，上方向
   const viewMatrix = new Matrix4();
-  viewMatrix.setLookAt(0, 0, 0.5, 0.5, 0, 0, 0, 1, 0);
+  viewMatrix.setLookAt(0, 0, 0, 0, 0, -1, 0, 1, 0);
 
   const uViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix');
   gl.uniformMatrix4fv(uViewMatrix, false, viewMatrix.elements);
-
-  // 旋转：先设置视图矩阵，从指定视点观察旋转后的三角形
-  const rotateMatrix = new Matrix4();
-  rotateMatrix.setRotate(-10, 0, 0, 1);
-
-  const uRotateMatrix = gl.getUniformLocation(gl.program, 'u_RotateMatrix');
-  gl.uniformMatrix4fv(uRotateMatrix, false, rotateMatrix.elements);
 
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
   gl.clear(gl.COLOR_BUFFER_BIT);

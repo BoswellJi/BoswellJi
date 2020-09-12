@@ -1,87 +1,30 @@
 /**
-  * 创建着色器程序
-  * @param {*} gl 渲染上下文
-  * @param {*} vertexShader 顶点着色器
-  * @param {*} fragmentShader 片段着色器
-  */
-function createProgram(gl, vertexShader, fragmentShader) {
-  const program = gl.createProgram();
-  gl.attachShader(program, vertexShader);
-  gl.attachShader(program, fragmentShader);
-  gl.linkProgram(program);
-
-  const success = gl.getProgramParameter(program, gl.LINK_STATUS);
-  if (success) {
-    return program;
-  }
-
-  console.log('program: ' + gl.getProgramInfoLog(program));
-  gl.deleteProgram(program);
-}
-
-/**
- * 
- * @param {*} gl 渲染上下文
- * @param {*} type 着色器类型
- * @param {*} source 数据源
- */
-function createShader(gl, type, source) {
-  const shader = gl.createShader(type);
-  gl.shaderSource(shader, source);
-  gl.compileShader(shader);
-
-  const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
-  if (success) {
-    return shader;
-  }
-
-  console.log('shader: ' + gl.getShaderInfoLog(shader));
-  gl.deleteShader(shader);
-}
-
-function initShaders(gl, vertex, fragment) {
-  //  创建两个着色器
-  const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertex),
-    fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragment);
-
-  // 将两个着色器link（链接）到一个 program 
-  const program = createProgram(gl, vertexShader, fragmentShader);
-
-  gl.useProgram(program);
-
-  gl.program = program;
-
-  return program;
-}
-
-/**
  * 初始化顶点数据缓存
  * @param {*} gl 
  */
 function initVertexBuffer(gl) {
   // 8个顶点，三个三个顶点相连接，组成12个三角形，构成正方形
-  var vertices = new Float32Array([   // Vertex coordinates 24个顶点
-    // Vertex coordinates and color
-    1.0, 1.0, 1.0,   1.0, 1.0, 1.0,  // v0 White
-    -1.0, 1.0, 1.0,   1.0, 0.0, 1.0,  // v1 Magenta
-    -1.0, -1.0, 1.0,   1.0, 0.0, 0.0,  // v2 Red
-    1.0, -1.0, 1.0,   1.0, 1.0, 0.0,  // v3 Yellow
-    1.0, -1.0, -1.0,   0.0, 1.0, 0.0,  // v4 Green
-    1.0, 1.0, -1.0,   0.0, 1.0, 1.0,  // v5 Cyan
-    -1.0, 1.0, -1.0,   0.0, 0.0, 1.0,  // v6 Blue
-    -1.0, -1.0, -1.0,   0.0, 0.0, 0.0   // v7 Black
+  var vertices = new Float32Array([   
+    1.0, 1.0, 1.0,   1.0, 1.0, 1.0, 
+    -1.0, 1.0, 1.0,   1.0, 0.0, 1.0, 
+    -1.0, -1.0, 1.0,   1.0, 0.0, 0.0,
+    1.0, -1.0, 1.0,   1.0, 1.0, 0.0, 
+    1.0, -1.0, -1.0,   0.0, 1.0, 0.0, 
+    1.0, 1.0, -1.0,   0.0, 1.0, 1.0, 
+    -1.0, 1.0, -1.0,   0.0, 0.0, 1.0, 
+    -1.0, -1.0, -1.0,   0.0, 0.0, 0.0  
   ]);
 
   // 1. 36个带有重复的顶点（一个面两个三角行），组成正方体
   // 2. 绘制顶点的顺序（最大值为256，大于256个顶点的，需要使用Uint16Array
-  // 3. 每三个索引为一组
+  // 3. 每三个索引为一组（组成三角形）
   // 4. 这些顶点坐标和索引数据等，一般由三维建模工具创建
   // 5. 不再按照顶点的顺序进行绘制，通过索引值来指定绘制的顺序
   // 6. 索引值是整型数
   // 7. 共享顶点，所以只需要8个顶点
   var indices = new Uint8Array([
-    0, 1, 2, 0, 2, 3,    // front
-    0, 3, 4, 0, 4, 5,    // right
+    0, 1, 2, 2, 0, 3,    // front
+    0, 3, 4, 4, 0, 5,    // right
     0, 5, 6, 0, 6, 1,    // up
     1, 6, 7, 1, 7, 2,    // left
     7, 4, 3, 7, 3, 2,    // down
@@ -138,7 +81,7 @@ function draw() {
       }
     `;
 
-  initShaders(gl, vertex, fragment);
+  initShaderProgram(gl, vertex, fragment);
 
   const n = initVertexBuffer(gl);
 
