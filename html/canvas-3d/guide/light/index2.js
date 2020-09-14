@@ -1,66 +1,10 @@
 /**
-  * 创建着色器程序
-  * @param {*} gl 渲染上下文
-  * @param {*} vertexShader 顶点着色器
-  * @param {*} fragmentShader 片段着色器
-  */
-function createProgram(gl, vertexShader, fragmentShader) {
-  const program = gl.createProgram();
-  gl.attachShader(program, vertexShader);
-  gl.attachShader(program, fragmentShader);
-  gl.linkProgram(program);
-
-  const success = gl.getProgramParameter(program, gl.LINK_STATUS);
-  if (success) {
-    return program;
-  }
-
-  console.log('program: ' + gl.getProgramInfoLog(program));
-  gl.deleteProgram(program);
-}
-
-/**
- * 
- * @param {*} gl 渲染上下文
- * @param {*} type 着色器类型
- * @param {*} source 数据源
- */
-function createShader(gl, type, source) {
-  const shader = gl.createShader(type);
-  gl.shaderSource(shader, source);
-  gl.compileShader(shader);
-
-  const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
-  if (success) {
-    return shader;
-  }
-
-  console.log('shader: ' + gl.getShaderInfoLog(shader));
-  gl.deleteShader(shader);
-}
-
-function initShaders(gl, vertex, fragment) {
-  //  创建两个着色器
-  const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertex),
-    fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragment);
-
-  // 将两个着色器link（链接）到一个 program 
-  const program = createProgram(gl, vertexShader, fragmentShader);
-
-  gl.useProgram(program);
-
-  gl.program = program;
-
-  return program;
-}
-
-/**
  * 初始化顶点数据缓存
  * 物体都是有，点，线面（三角形组成
  * @param {*} gl 
  */
 function initVertexBuffer(gl) {
-  // 24
+  // 顶点数量
   var vertices = new Float32Array([   // Coordinates
     1.0, 1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0, 1.0, // v0-v1-v2-v3 front
     1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0, // v0-v3-v4-v5 right
@@ -70,7 +14,7 @@ function initVertexBuffer(gl) {
     1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0, 1.0, 1.0, -1.0  // v4-v7-v6-v5 back
   ]);
 
-  // 
+  // 每个面的顶点的颜色
   var colors = new Float32Array([    // Colors
     1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0,     // v0-v1-v2-v3 front
     1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0,     // v0-v3-v4-v5 right
@@ -81,6 +25,7 @@ function initVertexBuffer(gl) {
   ]);
 
 
+  // 法线
   var normals = new Float32Array([    // Normal
     0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0,  // v0-v1-v2-v3 front
     1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0,  // v0-v3-v4-v5 right
@@ -91,7 +36,7 @@ function initVertexBuffer(gl) {
   ]);
 
 
-  // Indices of the vertices，每个面的两个三角形的顶点索引
+  // 每个面的两个三角形的顶点索引
   var indices = new Uint8Array([
     0, 1, 2, 0, 2, 3,    // front
     4, 5, 6, 4, 6, 7,    // right
@@ -107,76 +52,84 @@ function initVertexBuffer(gl) {
 
   // 创建缓冲数据
   const indexBuffer = gl.createBuffer();
-
   // 绑定缓冲
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
-
   // 将数据与缓冲进行绑定
   gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
 
   return indices.length;
 }
 
-/**
- * 初始化数组类型缓冲
- * @param {*} gl 
- * @param {*} attribute 
- * @param {*} data 
- * @param {*} num 
- * @param {*} type 
- */
-function initArrayBuffer(gl, attribute, data, num, type) {
-  // 创建缓冲区，将获取的glsl变量的地址指向缓冲区
-  const buffer = gl.createBuffer();
-
-  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-  gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
-
-  const aAttribute = gl.getAttribLocation(gl.program, attribute);
-
-  gl.vertexAttribPointer(aAttribute, num, type, false, 0, 0);
-  gl.enableVertexAttribArray(aAttribute);
-  gl.bindBuffer(gl.ARRAY_BUFFER, null);
-}
 
 const canvas = document.querySelector('#canvas'),
   gl = canvas.getContext('webgl');
 
 function draw() {
   const vertex = `
+  // 每个顶点都有的
   attribute vec4 a_Position;
   attribute vec4 a_Color;
-  attribute vec4 a_Normal; // 法向量
-  uniform mat4 u_MvpMatrix; // 透视投影矩阵*观察者矩阵
-  uniform mat4 u_NormalMatrix; // 用来变换法向量的矩阵
-  uniform vec3 u_LightColor; // 入射线颜色
-  uniform vec3 u_LightDirection; // 归一化世界坐标
-  uniform vec3 u_AmbientLight;
+  attribute vec4 a_Normal;      // 法向量
+
+  // 每个顶点都相同的
+  uniform mat4 u_MvpMatrix;     // 透视投影矩阵 * 观察者矩阵
+  uniform mat4 u_NormalMatrix;  // 用来变换法向量的矩阵
+  uniform mat4 u_ModelMatrix;   // 模型矩阵
+  
+  // 1. 片元在世界坐标系下的坐标
+  // 2. 片元处表面的法向量
+  // 3. 可以在顶点着色器中，将顶点的世界坐标和法向量以varying的形式传入片元着色器，片元着色器中的同名变量就已经是内插后的逐片元值了
   varying vec4 v_Color;
+  varying vec3 v_Normal;
+  varying vec3 v_Position;
 
   void main(){
     gl_Position = u_MvpMatrix * a_Position;
-    // 计算变换后的法向量，然后进行归一化
-    vec3 normal = normalize(vec3(u_NormalMatrix * a_Normal));
-    // 计算光线方向和法向量的点积（入射角
-    float nDotL = max(dot(u_LightDirection,normal),0.0);
-    // 计算漫反射光线的颜色
-    vec3 diffuse = u_LightColor * vec3(a_Color) * nDotL;
-    // 环境反射光颜色
-    vec3 ambient = u_AmbientLight * a_Color.rgb;
-    // 顶点颜色
-    v_Color = vec4(diffuse + ambient,a_Color);
+
+    v_Color = a_Color;
+
+    v_Position = vec3(u_ModelMatrix * a_Position);
+
+    // 模型变换后的顶点法线
+    v_Normal = normalize(vec3(u_NormalMatrix * a_Normal));
   }
-  `,
-    fragment = `
+  `;
+   const fragment = `
     precision mediump float;
+    
+    uniform vec3 u_LightColor;
+    uniform vec3 u_LightPosition;
+    uniform vec3 u_AmbientLight;
+
+    // 片元世界坐标系
+    // 片元颜色
+    // 片元法向量
     varying vec4 v_Color;
+    varying vec3 v_Normal;
+    varying vec3 v_Position;
 
     void main() {
-      gl_FragColor = v_Color;
-    }`;
 
-  if (!initShaders(gl, vertex, fragment)) {
+      // 变换后的法向量，然后进行归一化（因为内插之后，法向量不会再是1.0
+      vec3 normal = normalize(v_Normal);
+
+      // 片元处的光线方向  = 点光源坐标 - 顶点坐标，并归一化
+      vec3 lightDirection = normalize(u_LightPosition - v_Position);
+
+      // 光线方向和法向量的点积（入射角
+      float nDotL = max(dot(lightDirection,normal),0.0);
+
+      // 点光源反射光线的颜色
+      vec3 diffuse = u_LightColor * v_Color.rgb * nDotL;
+
+      // 环境反射光颜色
+      vec3 ambient = u_AmbientLight * v_Color.rgb;
+
+      gl_FragColor = vec4(diffuse + ambient,v_Color.a);
+    }
+    `;
+
+  if (!initShaderProgram(gl, vertex, fragment)) {
     return;
   }
 
@@ -191,8 +144,11 @@ function draw() {
   const uLightDirection = gl.getUniformLocation(gl.program, 'u_LightDirection');
   const uAmbientLight = gl.getUniformLocation(gl.program, 'u_AmbientLight');
   const uNormalMatrix = gl.getUniformLocation(gl.program, 'u_NormalMatrix');
+  const uModelMatrix = gl.getUniformLocation(gl.program, 'u_ModelMatrix');
+  const uLightPosition = gl.getUniformLocation(gl.program, 'u_LightPosition');
 
-  // 直接给存储位置添加数据，不使用缓存
+  // 光源位置
+  gl.uniform3f(uLightPosition, 0, 3, 4);
 
   // 设置光线颜色
   gl.uniform3f(uLightColor, 1, 1, 1);
@@ -206,89 +162,27 @@ function draw() {
   gl.uniform3fv(uLightDirection, lightDirection.elements);
 
   // 计算模型视图投影矩阵
-  const mvpMatrix = new Matrix4();
-
-  // 模型矩阵
   const modelMatrix = new Matrix4();
-  // 平移
-  modelMatrix.setTranslate(0, 0, 0);
-  // 旋转
-  modelMatrix.rotate(0, 0, 0, 1);
+  modelMatrix.setRotate(90, 0, 1, 0);
+  gl.uniformMatrix4fv(uModelMatrix, false, modelMatrix.elements);
 
-  // 透视投影
+  // 透视模型矩阵
+  const mvpMatrix = new Matrix4();
   mvpMatrix.setPerspective(30, canvas.width / canvas.clientHeight, 1, 100);
-  // 视图
   mvpMatrix.lookAt(3, 3, 7, 0, 0, 0, 0, 1, 0);
-  // 计算最终的变换矩阵
   mvpMatrix.multiply(modelMatrix);
   gl.uniformMatrix4fv(uMvpMatrix, false, mvpMatrix.elements);
 
   // 计算变换后的法向量
   const normalMatrix = new Matrix4();
+  // 逆矩阵
   normalMatrix.setInverseOf(modelMatrix);
+  // 逆转置矩阵
   normalMatrix.transpose();
   gl.uniformMatrix4fv(uNormalMatrix, false, normalMatrix.elements);
 
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-  gl.drawElements(gl.TRIANGLES, n, gl.UNSIGNED_BYTE, 0);
-
-  let currentAngle = [0, 0];
-  initHandler(canvas, currentAngle, gl, n, mvpMatrix, uMvpMatrix);
-
-  const tick = function () {
-    matrixModify(gl, n, mvpMatrix, uMvpMatrix, currentAngle);
-    requestAnimationFrame(tick);
-  };
-  tick();
-}
-
-function initHandler(canvas, currentAngle, gl, n, mvpMatrix, uMvpMatrix) {
-  let dragging = false,
-    lastX = -1,
-    lastY = -1;
-
-  canvas.addEventListener('mouseup', function () {
-    dragging = false;
-  });
-
-  canvas.addEventListener('mousedown', function (e) {
-    let x = e.clientX,
-      y = e.clientY,
-      rect = e.target.getBoundingClientRect();
-    // 确保鼠标再canvas上
-    if (rect.left <= x && x < rect.right && rect.top <= y && y < rect.bottom) {
-      lastX = x;
-      lastY = y;
-      dragging = true;
-    }
-  });
-
-  canvas.addEventListener('mousemove', function (e) {
-    let x = e.clientX,
-      y = e.clientY;
-    // 确保鼠标再canvas上
-    if (dragging) {
-      let factor = 100 / canvas.height,
-        dx = factor * (x - lastX);
-      dy = factor * (y - lastY);
-
-      currentAngle[0] = Math.max(Math.min(currentAngle[0] + dy, 90), -90);
-      currentAngle[1] = currentAngle[1] + dx;
-    }
-    lastX = x;
-    lastY = y;
-    matrixModify(gl, n, mvpMatrix, uMvpMatrix, currentAngle);
-  });
-}
-
-const g_MvpMatrix = new Matrix4();
-function matrixModify(gl, n, viewProjMatrix, uMvpMatrix, currentAngle) {
-  g_MvpMatrix.set(viewProjMatrix);
-  g_MvpMatrix.rotate(currentAngle[0], 1, 0, 0);
-  g_MvpMatrix.rotate(currentAngle[1], 1, 0, 0);
-  gl.uniformMatrix4fv(uMvpMatrix, false, g_MvpMatrix.elements);
-  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   gl.drawElements(gl.TRIANGLES, n, gl.UNSIGNED_BYTE, 0);
 }
 
