@@ -1,0 +1,486 @@
+<html>
+
+<head>
+    <title>Learning WebGL &mdash; lesson 3</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"/>
+
+    <script type="text/javascript" src="glMatrix-0.9.5.min.js"></script>
+    <script type="text/javascript" src="webgl-utils.js"></script>
+
+    <!-- fragment shader -->
+    <script id="shader-fs" type="x-shader/x-fragment">
+        precision mediump float;
+        
+        varying vec2 vTextureCoord;
+        varying vec3 vLightWeighting;
+        
+        uniform sampler2D uSampler;
+
+        void main(void) {
+            vec4 textureColor = texture2D(uSampler, vec2(vTextureCoord.s, vTextureCoord.t));
+            gl_FragColor = vec4(textureColor.rgb * vLightWeighting, textureColor.a);
+        }
+    </script>
+    
+    <!-- vertex shader -->
+    <script id="shader-vs" type="x-shader/x-vertex">
+        attribute vec3 aVertexPosition;
+        attribute vec3 aVertexNormal;
+        attribute vec2 aTextureCoord;
+        
+        uniform mat4 uMVMatrix;
+        uniform mat4 uPMatrix;
+        uniform mat3 uNMatrix;
+        
+        uniform vec3 uAmbientColor;
+        uniform vec3 uDirectionColor;
+        uniform vec3 uDirection;
+        
+        varying vec2 vTextureCoord;
+        varying vec3 vLightWeighting;
+
+        void main(void) {
+            gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+            vTextureCoord = aTextureCoord;
+            
+            vec3 transformNormal = uNMatrix * aVertexNormal;
+            float directionLightWeighting = max(dot(transformNormal, uDirection), 0.0);
+            vLightWeighting = uAmbientColor + uDirectionColor * directionLightWeighting;
+        }
+    </script>
+    
+    <!-- init gl -->
+    <script type="text/javascript">
+        var gl;
+
+        function initGL(canvas) {
+            try {
+                gl = canvas.getContext("experimental-webgl");
+                gl.viewportWidth = canvas.width;
+                gl.viewportHeight = canvas.height;
+            } catch (e) {
+            }
+            if (!gl) {
+                alert("Could not initialise WebGL, sorry :-(");
+            }
+        }
+    </script>
+    
+    <!-- init shader program -->
+    <script type="text/javascript">
+        function getShader(gl, id) {
+            var shaderScript = document.getElementById(id);
+            if (!shaderScript) {
+                return null;
+            }
+
+            var str = "";
+            var k = shaderScript.firstChild;
+            while (k) {
+                if (k.nodeType == 3) {
+                    str += k.textContent;
+                }
+                k = k.nextSibling;
+            }
+
+            var shader;
+            if (shaderScript.type == "x-shader/x-fragment") {
+                shader = gl.createShader(gl.FRAGMENT_SHADER);
+            } else if (shaderScript.type == "x-shader/x-vertex") {
+                shader = gl.createShader(gl.VERTEX_SHADER);
+            } else {
+                return null;
+            }
+
+            gl.shaderSource(shader, str);
+            gl.compileShader(shader);
+
+            if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                alert(gl.getShaderInfoLog(shader));
+                return null;
+            }
+            return shader;
+        }
+
+        var shaderProgram;
+
+        function initShaders() {
+            var fragmentShader = getShader(gl, "shader-fs");
+            var vertexShader = getShader(gl, "shader-vs");
+
+            shaderProgram = gl.createProgram();
+            gl.attachShader(shaderProgram, vertexShader);
+            gl.attachShader(shaderProgram, fragmentShader);
+            gl.linkProgram(shaderProgram);
+
+            if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+                alert("Could not initialise shaders");
+            }
+
+            gl.useProgram(shaderProgram);
+
+            shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
+            gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
+
+            shaderProgram.textureCoordAttribute = gl.getAttribLocation(shaderProgram, "aTextureCoord");
+            gl.enableVertexAttribArray(shaderProgram.textureCoordAttribute);
+
+            shaderProgram.vertexNormalAttribute = gl.getAttribLocation(shaderProgram, "aVertexNormal");
+            gl.enableVertexAttribArray(shaderProgram.vertexNormalAttribute);
+
+            shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
+            shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
+            shaderProgram.nMatrixUniform = gl.getUniformLocation(shaderProgram, "uNMatrix");
+            shaderProgram.samplerUniform = gl.getUniformLocation(shaderProgram, "uSampler");
+            shaderProgram.ambientColorUniform = gl.getUniformLocation(shaderProgram, "uAmbientColor");
+            shaderProgram.directionColorUniform = gl.getUniformLocation(shaderProgram, "uDirectionColor");
+            shaderProgram.directionUniform = gl.getUniformLocation(shaderProgram, "uDirection");
+        }
+
+    </script>
+    
+    <!-- init Matrix Uniforms -->
+    <script type="text/javascript">
+
+        var mvMatrix = mat4.create();
+        var mvMatrixStack = [];
+        var pMatrix = mat4.create();
+        var earthRotationMatrix = mat4.create();
+        mat4.identity(earthRotationMatrix);
+
+        function mvPushMatrix() {
+            var copy = mat4.create();
+            mat4.set(mvMatrix, copy);
+            mvMatrixStack.push(copy);
+        }
+
+        function mvPopMatrix() {
+            if (mvMatrixStack.length == 0) {
+                throw "Invalid popMatrix!";
+            }
+            mvMatrix = mvMatrixStack.pop();
+        }
+
+        function setMatrixUniforms() {
+            gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
+            gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
+
+            var normalMatrix = mat3.create();
+            mat4.toInverseMat3(mvMatrix, normalMatrix);
+            mat3.transpose(normalMatrix);
+            gl.uniformMatrix3fv(shaderProgram.nMatrixUniform, false, normalMatrix);
+        }
+
+        function degToRad(degrees) {
+            return degrees * Math.PI / 180;
+        }
+    </script>
+
+    <!-- init buffers -->
+    <script type="text/javascript">
+
+        var earthVertexPositionBuffer;
+        var earthVertexIndexBuffer;
+        var earthVertexTextureCoordBuffer;
+        var earthVertexNormalBuffer;
+
+        function initBuffers(zoom, blockIndex) {
+            var latitudeBands = 60;
+            var longitudeBands = 60;
+            var radius = 2;
+
+            var vertexPositionData = [];
+            var vertexTextureCoordData = [];
+            var normalData = [];
+
+            var pow = Math.pow(2, zoom);
+            var xIndex = blockIndex % pow;
+            var yIndex = parseInt(blockIndex / pow);
+
+            var latitudeStart = yIndex * latitudeBands / pow;
+            var latitudeEnd = (yIndex + 1) * latitudeBands / pow;
+            var longitudeStart = xIndex * longitudeBands / pow;
+            var longitudeEnd = (xIndex + 1) * longitudeBands / pow;
+            
+            for (var latN = latitudeStart; latN <= latitudeEnd; latN++) {
+                var theta = latN * Math.PI / latitudeBands;
+                var sinTheta = Math.sin(theta);
+                var cosTheta = Math.cos(theta);
+                for (var lonN = longitudeStart; lonN <= longitudeEnd; lonN++) {
+                    var phi = lonN * 2 * Math.PI / longitudeBands;
+                    var sinPhi = Math.sin(phi);
+                    var cosPhi = Math.cos(phi);
+
+                    var x = cosPhi * sinTheta;
+                    var y = cosTheta;
+                    var z = sinPhi * sinTheta;
+                    var u = 1 - ((latN - latitudeStart) * 1.0 / (longitudeEnd - longitudeStart));
+                    var v = 1 - ((lonN - longitudeStart) * 1.0 / (latitudeEnd - latitudeStart));
+
+                    normalData.push(x);
+                    normalData.push(y);
+                    normalData.push(z);
+                    vertexPositionData.push(radius * x);
+                    vertexPositionData.push(radius * y);
+                    vertexPositionData.push(radius * z);
+                    vertexTextureCoordData.push(v);
+                    vertexTextureCoordData.push(u);
+                }
+            }
+
+            var indexData = [];
+            for (var latN = latitudeStart; latN < latitudeEnd; latN++) {
+                for (var lonN = longitudeStart; lonN < longitudeEnd; lonN++) {
+                    var first = ((latN - latitudeStart) * (longitudeBands / pow + 1)) + (lonN - longitudeStart);
+                    var second = first + longitudeBands / pow + 1;
+
+                    indexData.push(first);
+                    indexData.push(second);
+                    indexData.push(first + 1);
+
+                    indexData.push(second);
+                    indexData.push(second + 1);
+                    indexData.push(first + 1);
+                }
+            }
+
+            earthVertexPositionBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, earthVertexPositionBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPositionData), gl.STATIC_DRAW);
+            earthVertexPositionBuffer.itemSize = 3;
+            earthVertexPositionBuffer.numItems = vertexPositionData.length / 3;
+
+            earthVertexTextureCoordBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, earthVertexTextureCoordBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexTextureCoordData), gl.STATIC_DRAW);
+            earthVertexTextureCoordBuffer.itemSize = 2;
+            earthVertexTextureCoordBuffer.numItems = vertexTextureCoordData / 2;
+
+            earthVertexIndexBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, earthVertexIndexBuffer);
+            gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indexData), gl.STATIC_DRAW);
+            earthVertexIndexBuffer.itemSize = 1;
+            earthVertexIndexBuffer.numItems = indexData.length;
+
+            earthVertexNormalBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, earthVertexNormalBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(normalData), gl.STATIC_DRAW);
+            earthVertexNormalBuffer.itemSize = 3;
+            earthVertexNormalBuffer.numItems = normalData.length / 3;
+        }
+    </script>
+
+    <!-- init Texture -->
+    <script type="text/javascript">
+
+        var earthTexture;
+
+        function initTexture(url) {
+            earthTexture = gl.createTexture();
+            earthTexture.image = new Image();
+            earthTexture.image.onload = function() { handleLoadedTexture(earthTexture)};
+            earthTexture.image.src = url;
+        }
+
+        function handleLoadedTexture(texture) {
+            gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+            gl.bindTexture(gl.TEXTURE_2D, texture);
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texture.image);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
+            gl.generateMipmap(gl.TEXTURE_2D);
+            gl.bindTexture(gl.TEXTURE_2D, null);
+        }
+    </script>
+
+    <!-- Control View -->
+    <script type="text/javascript">
+        var mouseDown = false;
+        var lastMouseX = null;
+        var lastMouseY = null;
+    
+        function handleMouseDown(event) {
+            mouseDown = true;
+            lastMouseX = event.clientX;
+            lastMouseY = event.clientY;
+        }
+
+        function handleMouseUp(event) {
+            mouseDown = false;
+        }
+
+        function handleMouseMove(event) {
+            if (mouseDown) {
+                var newX = event.clientX;
+                var newY = event.clientY;
+                var dx = newX - lastMouseX;
+                var newRotateMatrix = mat4.create();
+                mat4.identity(newRotateMatrix);
+                mat4.rotate(newRotateMatrix, degToRad(dx / 10.0), [0, 1, 0]);
+                var dy = newY - lastMouseY;
+                mat4.rotate(newRotateMatrix, degToRad(dy / 10.0), [1, 0, 0]);
+                mat4.multiply(newRotateMatrix, earthRotationMatrix, earthRotationMatrix);
+                
+                lastMouseX = newX;
+                lastMouseY = newY;
+            }
+        }
+
+        var currentPressedKey = [];
+
+        function handleKeyDown(event) {
+            currentPressedKey[event.keyCode] = true;
+            if (event.keyCode == 65) {getBlock();}
+        }
+
+        function handleKeyUp(event) {
+            currentPressedKey[event.keyCode] = false;
+        }
+
+        function initBufferTexture(block) {
+            var block = getBlock();
+            var theZoom = getZoom(z);
+            initBuffers(theZoom, block);
+            var url = "mapData/";
+
+            if (theZoom == 1) {
+                url += block.toString()+"/";
+            }
+
+            url += "i.jpg";
+
+            initTexture(url);
+        }
+
+        function getBlock() {
+            var inverseearthRotateMatrix = mat4.create();
+            mat4.inverse(earthRotationMatrix, inverseearthRotateMatrix);
+            var direction = [];
+            mat4.multiplyVec4(inverseearthRotateMatrix, [0, 0, 1, 0], direction);
+            var zoom = getZoom(z);
+            var tx = direction[0];
+            var ty = direction[1];
+            var tz = direction[2];
+            var phi = 0;
+            if (tz >= 0) {
+                phi = Math.acos(tx / Math.sqrt(tx * tx + ty * ty)); 
+            }
+            else {
+                phi = Math.PI + Math.acos(tx / Math.sqrt(tx * tx + ty * ty)); 
+            }
+            var theta = -Math.asin(ty / Math.sqrt(tz * tz + tx * tx + ty * ty));
+            var pow = Math.pow(2, zoom);
+            var iX = parseInt(phi / (2 * Math.PI / pow));
+            var iY = parseInt((theta + Math.PI / 2) / (Math.PI / pow));
+            return (iX + pow * iY);
+        }
+        
+        function getZoom(z) {
+            if (z > 3.12) { return 2; }
+            if (z <= 3.12 && z >= 2.63) { return 1; }
+            if (z < 2.63) { return 0; }
+        }
+    
+    </script>
+
+    <!-- draw scene -->
+    <script type="text/javascript">
+
+        var z = 0;
+
+        function drawScene() {
+            gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight);
+            gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+            mat4.perspective(45, gl.viewportWidth / gl.viewportHeight, 0.1, 100.0, pMatrix);
+            mat4.identity(mvMatrix);
+            mat4.translate(mvMatrix, [0.0, 0.0, -6.0+z]);
+
+            mat4.multiply(mvMatrix, earthRotationMatrix);
+            
+            mvPushMatrix();
+            
+            gl.bindBuffer(gl.ARRAY_BUFFER, earthVertexPositionBuffer);
+            gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, earthVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+            gl.bindBuffer(gl.ARRAY_BUFFER, earthVertexTextureCoordBuffer);
+            gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, earthVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+            gl.bindBuffer(gl.ARRAY_BUFFER, earthVertexNormalBuffer);
+            gl.vertexAttribPointer(shaderProgram.vertexNormalAttribute, earthVertexNormalBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
+            gl.activeTexture(gl.TEXTURE0);
+            gl.bindTexture(gl.TEXTURE_2D, earthTexture);
+            gl.uniform1i(shaderProgram.samplerUniform, 0);
+
+            gl.uniform3f(shaderProgram.ambientColorUniform, 1, 1, 1);
+            gl.uniform3f(shaderProgram.directionColorUniform, 0, 0, 0);
+            var adjustDirection = vec3.create();
+            vec3.normalize([0.0, 0.0, -1.0], adjustDirection);
+            vec3.scale(adjustDirection, -1);
+            gl.uniform3fv(shaderProgram.directionUniform, adjustDirection);
+            
+            gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, earthVertexIndexBuffer);
+            setMatrixUniforms();
+            
+            gl.drawElements(gl.TRIANGLES, earthVertexIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0)
+            
+            mvPopMatrix();
+        }
+
+        function tick() {
+            requestAnimFrame(tick);
+            drawScene();
+            animate();
+        }
+
+        var lastZ = 0;
+        function animate() {
+            if (currentPressedKey[77] == true)
+            { if (z < 4) { z += 0.01; } }
+            if (currentPressedKey[78] == true)
+            { if (z > -4) { z -= 0.01; } }
+
+//            if (lastZ < 3.12 && z > 3.12) {
+//                var block = getBlock();
+//                initBufferTexture(block);
+//            }
+            if (lastZ > 2.63 && z < 2.63) {
+                var block = getBlock();
+                initBufferTexture(block);
+            }
+            if ((lastZ > 3.12 || lastZ < 2.63) && (z < 3.12 && z > 2.63)) {
+                var block = getBlock();
+                initBufferTexture(block);
+            }
+
+            lastZ = z;
+        }
+
+        function webGLStart() {
+            var canvas = document.getElementById("theCanvas");
+            initGL(canvas);
+            initShaders();
+            initBuffers(0, 0);
+            initTexture("mapData/i.jpg");
+
+            gl.clearColor(0.0, 0.0, 0.0, 1.0);
+            gl.enable(gl.DEPTH_TEST);
+
+            canvas.onmousedown = handleMouseDown;
+            document.onmouseup = handleMouseUp;
+            document.onmousemove = handleMouseMove;
+            document.onkeydown = handleKeyDown;
+            document.onkeyup = handleKeyUp;
+            tick();
+        }
+
+    </script>
+</head>
+
+<body onload="webGLStart();">
+
+    <canvas id="theCanvas" style="border: none;" width="960" height="680"></canvas>
+
+</body>
+
+</html>

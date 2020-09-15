@@ -31,7 +31,6 @@ function initVertexBuffer(gl) {
     0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0, 0.0, -1.0   // v4-v7-v6-v5 back
   ]);
 
-
   // 每个面的两个三角形的顶点索引
   var indices = new Uint8Array([
     0, 1, 2, 0, 2, 3,    // front
@@ -45,7 +44,6 @@ function initVertexBuffer(gl) {
   initArrayBuffer(gl, 'a_Position', vertices, 3, gl.FLOAT);
   initArrayBuffer(gl, 'a_Color', colors, 3, gl.FLOAT);
   initArrayBuffer(gl, 'a_Normal', normals, 3, gl.FLOAT);
-
 
   const indexBuffer = gl.createBuffer();
 
@@ -80,7 +78,6 @@ const canvas = document.querySelector('#canvas'),
   gl = canvas.getContext('webgl');
 
 function draw() {
-
   // 平行光下的漫反射光
   const vertex = `
   attribute vec4 a_Position;
