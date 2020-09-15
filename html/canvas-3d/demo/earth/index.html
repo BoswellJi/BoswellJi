@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <title>Learning WebGL &mdash; lesson 3</title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"/>
+
+    <script type="text/javascript" src="glMatrix-0.9.5.min.js"></script>
+    <script type="text/javascript" src="webgl-utils.js"></script>
+
+    <!-- fragment shader -->
+    <script id="shader-fs" type="x-shader/x-fragment">
+        precision mediump float;
+        
+        varying vec2 vTextureCoord;
+        varying vec3 vLightWeighting;
+        
+        uniform sampler2D uSampler;
+
+        void main(void) {
+            vec4 textureColor = texture2D(uSampler, vTextureCoord);
+            gl_FragColor = vec4(textureColor.rgb * vLightWeighting, textureColor.a);
+        }
+    </script>
+    
+    <!-- vertex shader -->
+    <script id="shader-vs" type="x-shader/x-vertex">
+        attribute vec3 aVertexPosition;
+        attribute vec3 aVertexNormal;
+        attribute vec2 aTextureCoord;
+        
+        uniform mat4 uMVMatrix;
+        uniform mat4 uPMatrix;
+        uniform mat3 uNMatrix;
+        
+        uniform vec3 uAmbientColor;
+        uniform vec3 uDirectionColor;
+        uniform vec3 uDirection;
+        
+        varying vec2 vTextureCoord;
+        varying vec3 vLightWeighting;
+
+        void main(void) {
+            gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+            vTextureCoord = aTextureCoord;
+            
+            vec3 transformNormal = uNMatrix * aVertexNormal;
+            float directionLightWeighting = max(dot(transformNormal, uDirection), 0.0);
+            vLightWeighting = uAmbientColor + uDirectionColor * directionLightWeighting;
+        }
+    </script>
+        
+    <!-- init webgl enviroment -->
+    <script type="text/javascript" src="earth_gl.js"></script>
+    <!-- init Buffer and Texture -->
+    <script type="text/javascript" src="earth_buffer.js"></script>
+    <!-- Control View -->
+    <script type="text/javascript" src="earth_controlView.js"></script>
+    <!-- draw scene -->
+    <script type="text/javascript" src="earth_main.js"></script>
+</head>
+
+<body onload="webGLStart();">
+    <canvas id="theCanvas" style="border: none;" width="512" height="512"></canvas>
+</body>
+
+</html>

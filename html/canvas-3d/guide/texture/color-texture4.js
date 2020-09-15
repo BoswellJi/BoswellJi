@@ -73,6 +73,10 @@ function loadTexture(gl, texture, image) {
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
   gl.drawArrays(gl.TRIANGLE_STRIP, 0, n);
+
+  const ctx = canvas.getContext('2d');
+
+  ctx.fillText('canvas', 10, 10);
 }
 
 const canvas = document.querySelector('#canvas');
@@ -90,11 +94,22 @@ const vertex = `
 `;
 const fragment = `
     precision mediump float;
+
     uniform sampler2D u_Sampler;
+    uniform vec2 u_TextureSize;
+
     varying vec2 v_TexCoord;
 
     void main() {
-      gl_FragColor = texture2D(u_Sampler, v_TexCoord);
+      // 获取一个像素大小
+      vec2 onePixel = vec2(1.0,1.0)/u_TextureSize;
+
+      // rgba => bgra
+
+      gl_FragColor = (
+        texture2D(u_Sampler, v_TexCoord) +
+        texture2D(u_Sampler, v_TexCoord + vec2(onePixel.x, 0.0)) +
+        texture2D(u_Sampler, v_TexCoord + vec2(-onePixel.x, 0.0))) / 3.0;
     }
 `;
 
@@ -102,6 +117,12 @@ initShaderProgram(gl, vertex, fragment);
 
 gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
+var textureSizeLocation = gl.getUniformLocation(gl.program, "u_TextureSize");
+
+gl.uniform2f(textureSizeLocation, canvas.width, canvas.height);
+
 const n = initVertexBuffer(gl);
 
 initTexures(gl);
+
+
