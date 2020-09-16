@@ -1,63 +1,10 @@
 /**
-  * 创建着色器程序
-  * @param {*} gl 渲染上下文
-  * @param {*} vertexShader 顶点着色器
-  * @param {*} fragmentShader 片段着色器
-  */
-function createProgram(gl, vertexShader, fragmentShader) {
-  const program = gl.createProgram();
-  gl.attachShader(program, vertexShader);
-  gl.attachShader(program, fragmentShader);
-  gl.linkProgram(program);
-
-  const success = gl.getProgramParameter(program, gl.LINK_STATUS);
-  if (success) {
-    return program;
-  }
-
-  console.log('program: ' + gl.getProgramInfoLog(program));
-  gl.deleteProgram(program);
-}
-
-/**
- * 
- * @param {*} gl 渲染上下文
- * @param {*} type 着色器类型
- * @param {*} source 数据源
+ * 选中物体
+ * 1. 三维应用程序需要允许用户能够交互地操作三维物体；
+ * 2. 首先需要允许用户选中某个物体；
+ * 3. 是否悬浮在某个三维图形上；
  */
-function createShader(gl, type, source) {
-  const shader = gl.createShader(type);
-  gl.shaderSource(shader, source);
-  gl.compileShader(shader);
 
-  const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
-  if (success) {
-    return shader;
-  }
-
-  console.log('shader: ' + gl.getShaderInfoLog(shader));
-  gl.deleteShader(shader);
-}
-
-function initShaders(gl, vertex, fragment) {
-  //  创建两个着色器
-  const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertex),
-    fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragment);
-
-  // 将两个着色器link（链接）到一个 program 
-  const program = createProgram(gl, vertexShader, fragmentShader);
-
-  gl.useProgram(program);
-
-  gl.program = program;
-
-  return program;
-}
-
-/**
- * 组成立方体的面，三角形，和顶点的关系（为每个面指定不同的颜色
- * @param {*} gl 
- */
 function initVertexBuffer(gl) {
   /**
    * 给每个表面指定颜色
@@ -112,29 +59,20 @@ function initVertexBuffer(gl) {
   // 因为顶点的绘制不会因为开启隐藏面消除功能，所以需要用索引指定，顶点的绘制顺序
   // 使用的是gl.ELEMENT_ARRAY_BUFFER,管理着具有索引结构的三维模型数据
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
-  // 将顶点索引与缓冲区绑定
   gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
 
   return indices.length;
 }
 
 function initArrayBuffer(gl, data, num, type, attribute) {
-  var buffer = gl.createBuffer();   // Create a buffer object
-  if (!buffer) {
-    console.log('Failed to create the buffer object');
-    return false;
-  }
-  // Write date into the buffer object
+  var buffer = gl.createBuffer();   
+  
   gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
   gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
-  // Assign the buffer object to the attribute variable
+  
   var a_attribute = gl.getAttribLocation(gl.program, attribute);
-  if (a_attribute < 0) {
-    console.log('Failed to get the storage location of ' + attribute);
-    return false;
-  }
+
   gl.vertexAttribPointer(a_attribute, num, type, false, 0, 0);
-  // Enable the assignment of the buffer object to the attribute variable
   gl.enableVertexAttribArray(a_attribute);
 
   return true;
@@ -150,17 +88,18 @@ function initArrayBuffer(gl, data, num, type, attribute) {
  * 3. 使用立方体原来的颜色对其进行重绘
  * 4. 如果第二步骤读取到的颜色是红色，就说明物体被选中
  */
-const canvas = document.querySelector('#canvas'),
-  gl = canvas.getContext('webgl');
+const canvas = document.querySelector('#canvas');
+const gl = canvas.getContext('webgl');
 
-function draw() {
-  const vertex = `
+
+const vertex = `
     attribute vec4 a_Position;
     attribute vec4 a_Color;
-    uniform mat4 u_MvpMatrix;
-    varying vec4 v_Color;
 
+    uniform mat4 u_MvpMatrix;
     uniform bool u_Clicked;
+
+    varying vec4 v_Color;
 
     void main(){
       gl_Position = u_MvpMatrix * a_Position;
@@ -170,65 +109,56 @@ function draw() {
         v_Color = a_Color;
       }
     }
-  `,
-    fragment = `
-      precision mediump float;
-      varying vec4 v_Color;
+`;
+const fragment = `
+    precision mediump float;
+    varying vec4 v_Color;
 
-      void main(){
-        gl_FragColor = v_Color;
-      }
-    `;
-
-  initShaders(gl, vertex, fragment);
-
-  const n = initVertexBuffer(gl);
-
-  gl.clearColor(0, 0, 0, 1);
-  gl.enable(gl.DEPTH_TEST);
-
-  const uMvpMatrix = gl.getUniformLocation(gl.program, 'u_MvpMatrix');
-
-  const mvpMatrix = new Matrix4();
-  // 透视投影矩阵
-  mvpMatrix.setPerspective(30, 1, 1, 100);
-  // 视图矩阵
-  mvpMatrix.lookAt(3, 3, 7, 0, 0, 0, 0, 1, 0);
-  // 模型矩阵
-  mvpMatrix.rotate(0, 0, 0, 1);
-
-  gl.uniformMatrix4fv(uMvpMatrix, false, mvpMatrix.elements);
-
-  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
-  gl.drawElements(gl.TRIANGLES, n, gl.UNSIGNED_BYTE, 0);
-
-  canvas.addEventListener('click', function (e) {
-    const uClicked = gl.getUniformLocation(gl.program, 'u_Clicked');
-    gl.uniform1i(uClicked, 1);
-    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-    gl.drawElements(gl.TRIANGLES, n, gl.UNSIGNED_BYTE, 0);
-
-    const x = e.clientX,
-      y = e.clientY,
-      l = canvas.offsetLeft,
-      t = canvas.offsetTop,
-      diffx = x - l,
-      diffy = y - t;
-
-    // 读取点击位置的像素颜色值
-    const pixels = new Uint8Array(4);
-    // webgl中读取canvas坐标像素的颜色值
-    gl.readPixels(diffx, diffy, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
-    if(pixels[0]===255 && pixels[1]===0 && pixels[1]===0){
-      console.log('red');
+    void main(){
+      gl_FragColor = v_Color;
     }
+`;
 
-    gl.uniform1i(uClicked, 0);
-    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-    gl.drawElements(gl.TRIANGLES, n, gl.UNSIGNED_BYTE, 0);
-  }, false);
+initShaderProgram(gl, vertex, fragment);
+
+const n = initVertexBuffer(gl);
+
+gl.clearColor(0, 0, 0, 1);
+gl.enable(gl.DEPTH_TEST);
+
+const uMvpMatrix = gl.getUniformLocation(gl.program, 'u_MvpMatrix');
+const mvpMatrix = new Matrix4();
+mvpMatrix.setPerspective(30, 1, 1, 100);
+mvpMatrix.lookAt(3, 3, 7, 0, 0, 0, 0, 1, 0);
+mvpMatrix.rotate(0, 0, 0, 1);
+gl.uniformMatrix4fv(uMvpMatrix, false, mvpMatrix.elements);
+
+render();
+
+canvas.addEventListener('click', function (e) {
+  const uClicked = gl.getUniformLocation(gl.program, 'u_Clicked');
+  gl.uniform1i(uClicked, 1);
+  render();
+
+  const x = e.clientX;
+  const y = e.clientY;
+  const l = canvas.offsetLeft;
+  const t = canvas.offsetTop;
+  const diffx = x - l;
+  const diffy = y - t;
+  const pixels = new Uint8Array(4);
+  // 读取点击位置的像素颜色值
+  // webgl中读取canvas坐标像素的颜色值
+  gl.readPixels(diffx, diffy, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+  if (pixels[0] === 255 && pixels[1] === 0 && pixels[1] === 0) {
+    console.log('三维物体被选中了');
+  }
+
+  gl.uniform1i(uClicked, 0);
+  render();
+}, false);
+
+function render() {
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+  gl.drawElements(gl.TRIANGLES, n, gl.UNSIGNED_BYTE, 0);
 }
-
-draw();
-

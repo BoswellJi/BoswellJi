@@ -43,20 +43,16 @@ function initVertexBuffer(gl) {
   ]);
 
   // 每个顶点的颜色
-  // 每个颜色对应一个顶点，按顺序对应
   var colors = new Float32Array([     // Colors
-    0.4, 0, 1.0, 0.4, 0, 1.0, 0.4, 0, 1.0, 0.4, 0, 1.0,  // v0-v1-v2-v3 front(blue)
-    0.4, 1.0, 0.4, 0.4, 1.0, 0.4, 0.4, 1.0, 0.4, 0.4, 1.0, 0.4,  // v0-v3-v4-v5 right(green)
-    1.0, 0.4, 0.4, 1.0, 0.4, 0.4, 1.0, 0.4, 0.4, 1.0, 0.4, 0.4,  // v0-v5-v6-v1 up(red)
-    1.0, 1.0, 0.4, 1.0, 1.0, 0.4, 1.0, 1.0, 0.4, 1.0, 1.0, 0.4,  // v1-v6-v7-v2 left
-    1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,  // v7-v4-v3-v2 down
-    0.4, 1.0, 1.0, 0.4, 1.0, 1.0, 0.4, 1.0, 1.0, 0.4, 1.0, 1.0   // v4-v7-v6-v5 back
+    0.4, 0, 1.0, 0.4, 0.4, 0, 1.0, 0.4, 0.4, 0, 1.0, 0.4, 0.4, 0, 1.0, 0.4,  // v0-v1-v2-v3 front(blue)
+    0.4, 1.0, 0.4, 0.4, 0.4, 1.0, 0.4, 0.4, 0.4, 1.0, 0.4, 0.4, 0.4, 1.0, 0.4, 0.4,  // v0-v3-v4-v5 right(green)
+    1.0, 0.4, 0.4, 0.4, 1.0, 0.4, 0.4, 0.4, 1.0, 0.4, 0.4, 0.4, 1.0, 0.4, 0.4, 0.4,  // v0-v5-v6-v1 up(red)
+    1.0, 1.0, 0.4, 0.4, 1.0, 1.0, 0.4, 0.4, 1.0, 1.0, 0.4, 0.4, 1.0, 1.0, 0.4, 0.4,  // v1-v6-v7-v2 left
+    1.0, 1.0, 1.0, 0.4, 1.0, 1.0, 1.0, 0.4, 1.0, 1.0, 1.0, 0.4, 1.0, 1.0, 1.0, 0.4,  // v7-v4-v3-v2 down
+    0.4, 1.0, 1.0, 0.4, 0.4, 1.0, 1.0, 0.4, 0.4, 1.0, 1.0, 0.4, 0.4, 1.0, 1.0, 0.4,  // v4-v7-v6-v5 back
   ]);
 
-  // 绘制顶点的顺序（最大值为256，36个带有重复的顶点组成正方体
-  // 每三个索引为一组
-  // 三角形列表
-  // 每个面都指向一组不同的顶点，不会有共享一个顶点的情况
+  // 
   var indices = new Uint8Array([
     0, 1, 2, 0, 2, 3,    // front
     4, 5, 6, 4, 6, 7,    // right
@@ -71,7 +67,7 @@ function initVertexBuffer(gl) {
   if (!initArrayBuffer(gl, vertices, 3, gl.FLOAT, 'a_Position'))
     return -1;
 
-  if (!initArrayBuffer(gl, colors, 3, gl.FLOAT, 'a_Color'))
+  if (!initArrayBuffer(gl, colors, 4, gl.FLOAT, 'a_Color'))
     return -1;
 
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
@@ -111,32 +107,23 @@ const vertex = `
     attribute vec4 a_Color;
     
     uniform mat4 u_MvpMatrix;
-    uniform vec4 u_Eye;
+  
 
     varying vec4 v_Color;
-    varying float v_Dist;
 
     void main(){
       gl_Position = u_MvpMatrix * a_Position;
-      // 顶点与视点的距离
-      v_Dist = distance(a_Position,u_Eye);
+
       v_Color = a_Color;
     }
 `;
 const fragment = `
     precision mediump float;
 
-    uniform vec3 u_FogColor;
-    uniform vec2 u_FogDist;
-    
     varying vec4 v_Color;
-    varying float v_Dist;
 
     void main(){
-      // 限定范围
-      float fogFactor = clamp((u_FogDist.y - v_Dist) / (u_FogDist.y - u_FogDist.x), 0.0, 1.0);
-      vec3 color = mix(u_FogColor, vec3(v_Color), fogFactor);
-      gl_FragColor = vec4(color, v_Color.a);
+      gl_FragColor = v_Color;
     }
 `;
 
@@ -144,31 +131,58 @@ initShaderProgram(gl, vertex, fragment);
 
 const n = initVertexBuffer(gl);
 
+// 方案1： 会让不透明的物体前后关系乱掉；不推荐
+// 隐藏消除面功能开启时，被隐藏的片元不会被绘制，所以不会发生混合过程；不会有半透明效果；
+// 取消隐藏消除面功能即可；
+// gl.enable(gl.DEPTH_TEST);
+
 gl.enable(gl.DEPTH_TEST);
+
+// 锁定用于进行隐藏面消除的深度缓冲区的写入操作，使之只读
+gl.depthMask(false);
+gl.enable(gl.BLEND);
+gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
 
 const uMvpMatrix = gl.getUniformLocation(gl.program, 'u_MvpMatrix');
 const mvpMatrix = new Matrix4();
 mvpMatrix.setPerspective(30, 1, 1, 1000);
 mvpMatrix.lookAt(25, 65, 35, 0, 1, 0, 0, 1, 0);
 mvpMatrix.rotate(0, 0, 0, 1);
-mvpMatrix.scale(10,10,10);
+mvpMatrix.scale(10, 10, 10);
+gl.uniformMatrix4fv(uMvpMatrix, false, mvpMatrix.elements);
 
-const uEye = gl.getUniformLocation(gl.program, 'u_Eye');
-gl.uniform4fv(uEye,[ 25, 65, 35, 1.0]);
-
-const uFogColor = gl.getUniformLocation(gl.program, 'u_FogColor');
-gl.uniform3fv(uFogColor,[0.137, 0.231, 0.423]);
-
-var uFogDist = gl.getUniformLocation(gl.program, 'u_FogDist');
-gl.uniform2fv(uFogDist, [55, 80]);
-
-gl.clearColor(0.137, 0.231, 0.423, 1.0);
+gl.clearColor(0, 0, 0, 1.0);
 
 render();
 
+// 恢复深度缓冲区，使之可读可写
+gl.depthMask(true);
+
 function render() {
-  gl.uniformMatrix4fv(uMvpMatrix, false, mvpMatrix.elements);
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   gl.drawElements(gl.TRIANGLES, n, gl.UNSIGNED_BYTE, 0);
 }
 
+const vertexColors = new Float32Array([
+  .6, -.7, 1, 0, 1,
+  .6, -.6, 1, 0, 1,
+  .7, -.6, 1, 0, 1,
+  .7, -.7, 1, 0, 1,
+]);
+const buffer1 = gl.createBuffer();
+const size = buffer1.BYTES_PER_ELEMENT;
+
+gl.bindBuffer(gl.ARRAY_BUFFER, buffer1);
+gl.bufferData(gl.ARRAY_BUFFER, vertexColors, gl.STATIC_DRAW);
+
+const aPos = gl.getAttribLocation(gl.program, 'a_Position');
+gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, size * 5, 0);
+gl.enableVertexAttribArray(aPos);
+
+const aColor = gl.getAttribLocation(gl.program, 'a_Color');
+gl.vertexAttribPointer(aColor, 3, gl.FLOAT, false, size * 5, size*2);
+gl.enableVertexAttribArray(aColor);
+
+// gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+gl.drawArrays(gl.TRIANGLES, 0 , 4);

@@ -1,58 +1,3 @@
-/**
-  * 创建着色器程序
-  * @param {*} gl 渲染上下文
-  * @param {*} vertexShader 顶点着色器
-  * @param {*} fragmentShader 片段着色器
-  */
-function createProgram(gl, vertexShader, fragmentShader) {
-  const program = gl.createProgram();
-  gl.attachShader(program, vertexShader);
-  gl.attachShader(program, fragmentShader);
-  gl.linkProgram(program);
-
-  const success = gl.getProgramParameter(program, gl.LINK_STATUS);
-  if (success) {
-    return program;
-  }
-
-  console.log('program: ' + gl.getProgramInfoLog(program));
-  gl.deleteProgram(program);
-}
-
-/**
- * 
- * @param {*} gl 渲染上下文
- * @param {*} type 着色器类型
- * @param {*} source 数据源
- */
-function createShader(gl, type, source) {
-  const shader = gl.createShader(type);
-  gl.shaderSource(shader, source);
-  gl.compileShader(shader);
-
-  const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
-  if (success) {
-    return shader;
-  }
-
-  console.log('shader: ' + gl.getShaderInfoLog(shader));
-  gl.deleteShader(shader);
-}
-
-function initShaders(gl, vertex, fragment) {
-  //  创建两个着色器
-  const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertex),
-    fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragment);
-
-  // 将两个着色器link（链接）到一个 program 
-  const program = createProgram(gl, vertexShader, fragmentShader);
-
-  gl.useProgram(program);
-
-  gl.program = program;
-
-  return program;
-}
 
 /**
  * 组成立方体的面，三角形，和顶点的关系（为每个面指定不同的颜色
@@ -100,12 +45,25 @@ function initVertexBuffer(gl) {
     20, 21, 22, 20, 22, 23     // back
   ]);
 
+  // 表面编号
+  var faces = new Uint8Array([
+    1, 1, 1, 1,
+    2, 2, 2, 2,
+    3, 3, 3, 3,
+    4, 4, 4, 4,
+    5, 5, 5, 5,
+    6, 6, 6, 6
+  ]);
+
   var indexBuffer = gl.createBuffer();
 
   if (!initArrayBuffer(gl, vertices, 3, gl.FLOAT, 'a_Position'))
     return -1;
 
   if (!initArrayBuffer(gl, colors, 3, gl.FLOAT, 'a_Color'))
+    return -1;
+
+  if (!initArrayBuffer(gl, faces, 1, gl.FLOAT, 'a_Face'))
     return -1;
 
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
@@ -149,15 +107,14 @@ function initArrayBuffer(gl, data, num, type, attribute) {
 const canvas = document.querySelector('#canvas'),
   gl = canvas.getContext('webgl');
 
-function draw() {
-  const vertex = `
+
+const vertex = `
     attribute vec4 a_Position;
     attribute vec4 a_Color;
-    attribute float a_Face;
+    attribute float a_Face; // 表面编号
 
     uniform mat4 u_MvpMatrix;
-    uniform bool u_Clicked;
-    uniform int u_PickedFace;
+    uniform int u_PickedFace; // 被选中表面的编号
 
     varying vec4 v_Color;
 
@@ -165,16 +122,18 @@ function draw() {
       gl_Position = u_MvpMatrix * a_Position;
 
       int face = int(a_Face);
-      vec3 color = (face == u_PickedFace)? vec3(1.0):a_Color.rgb;
+
+      vec3 color = face == u_PickedFace ? vec3(1.0) : a_Color.rgb;
 
       if(u_PickedFace==0){
+        // 将表面编号写入第四个分量，这样可以在页面获取坐标像素信息时，提取出来
         v_Color = vec4(color,a_Face/255.0);
       }else{
-        v_Color = a_Color;
+        v_Color = vec4(color,a_Color.a);
       }
     }
-  `,
-    fragment = `
+  `;
+const fragment = `
       precision mediump float;
       varying vec4 v_Color;
 
@@ -183,51 +142,51 @@ function draw() {
       }
     `;
 
-  initShaders(gl, vertex, fragment);
+initShaderProgram(gl, vertex, fragment);
 
-  const n = initVertexBuffer(gl);
+const n = initVertexBuffer(gl);
 
-  gl.clearColor(0, 0, 0, 1);
-  gl.enable(gl.DEPTH_TEST);
+gl.clearColor(0, 0, 0, 1);
+gl.enable(gl.DEPTH_TEST);
 
-  const uMvpMatrix = gl.getUniformLocation(gl.program, 'u_MvpMatrix');
+const uMvpMatrix = gl.getUniformLocation(gl.program, 'u_MvpMatrix');
 
-  const mvpMatrix = new Matrix4();
-  // 透视投影矩阵
-  mvpMatrix.setPerspective(30, 1, 1, 100);
-  // 视图矩阵
-  mvpMatrix.lookAt(3, 3, 7, 0, 0, 0, 0, 1, 0);
-  // 模型矩阵
-  mvpMatrix.rotate(0, 0, 0, 1);
+const mvpMatrix = new Matrix4();
+mvpMatrix.setPerspective(30, 1, 1, 100);
+mvpMatrix.lookAt(3, 3, 7, 0, 0, 0, 0, 1, 0);
+mvpMatrix.rotate(0, 0, 0, 1);
 
-  gl.uniformMatrix4fv(uMvpMatrix, false, mvpMatrix.elements);
+const uPickedFace = gl.getUniformLocation(gl.program, 'u_PickedFace');
+gl.uniform1i(uPickedFace, -1);
 
-  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+render();
 
-  const uPickedFace = gl.getUniformLocation(gl.program, 'u_PickedFace');
-  gl.uniform1i(uPickedFace, -1);
+canvas.addEventListener('click', function (e) {
+  const x = e.clientX;
+  const y = e.clientY;
+  const l = canvas.offsetLeft;
+  const t = canvas.offsetTop;
+  const diffx = x - l;
+  const diffy = y - t;
 
-  gl.drawElements(gl.TRIANGLES, n, gl.UNSIGNED_BYTE, 0);
+  const px = checkFace(diffx, diffy);
 
-  /**
-   * 0.4, 0, 1.0
-    0.4, 1.0, 0.4
-    1.0, 0.4, 0.4
-    1.0, 1.0, 0.4
-    1.0, 1.0, 1.0
-    0.4, 1.0, 1.0
-   */
-  canvas.addEventListener('click', function (e) {
-    const x = e.clientX,
-      y = e.clientY,
-      l = canvas.offsetLeft,
-      t = canvas.offsetTop,
-      diffx = x - l,
-      diffy = y - t;
+  gl.uniform1i(uPickedFace, px);
+  render();
+}, false);
 
+function checkFace(diffx, diffy) {
+  gl.uniform1i(uPickedFace, 0);
+  render();
 
-  }, false);
+  const pixels = new Uint8Array(4);
+  gl.readPixels(diffx, diffy, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+
+  return pixels[3];
 }
 
-draw();
-
+function render() {
+  gl.uniformMatrix4fv(uMvpMatrix, false, mvpMatrix.elements);
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+  gl.drawElements(gl.TRIANGLES, n, gl.UNSIGNED_BYTE, 0);
+}

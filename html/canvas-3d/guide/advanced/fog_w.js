@@ -82,19 +82,11 @@ function initVertexBuffer(gl) {
 
 function initArrayBuffer(gl, data, num, type, attribute) {
   var buffer = gl.createBuffer();   // Create a buffer object
-  if (!buffer) {
-    console.log('Failed to create the buffer object');
-    return false;
-  }
   // Write date into the buffer object
   gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
   gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
   // Assign the buffer object to the attribute variable
   var a_attribute = gl.getAttribLocation(gl.program, attribute);
-  if (a_attribute < 0) {
-    console.log('Failed to get the storage location of ' + attribute);
-    return false;
-  }
   gl.vertexAttribPointer(a_attribute, num, type, false, 0, 0);
   // Enable the assignment of the buffer object to the attribute variable
   gl.enableVertexAttribArray(a_attribute);
@@ -102,9 +94,8 @@ function initArrayBuffer(gl, data, num, type, attribute) {
   return true;
 }
 
-const canvas = document.querySelector('#canvas'),
-  gl = canvas.getContext('webgl');
-
+const canvas = document.querySelector('#canvas');
+const gl = canvas.getContext('webgl');
 
 const vertex = `
     attribute vec4 a_Position;
@@ -119,7 +110,11 @@ const vertex = `
     void main(){
       gl_Position = u_MvpMatrix * a_Position;
       // 顶点与视点的距离
-      v_Dist = distance(a_Position,u_Eye);
+      // v_Dist = distance(a_Position,u_Eye);
+      // w分量的值就是顶点视图坐标z分量成-1
+      // 因为视图坐标系中，视点在原点，视线沿着z轴的负轴方向，观察者看到的物体其视图坐标系z分量为负，
+      // 所以近似顶点与视点的距离
+      v_Dist = gl_Position.w;
       v_Color = a_Color;
     }
 `;
