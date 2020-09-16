@@ -1,29 +1,12 @@
 /**
- * 雾化： 描述远处的物体看上去较为模糊的现象；
- * 
- * 1. 任何介质中的物体都可能表现出雾化现象；
- * 
- * 实现雾化的方式：
- * 1. 线性雾化： 某一点的雾化程度取决于它与视点之间的距离，距离越远雾化程度越高；
- * 2. 有起点，有终点
- * 
- * 完全雾化： 表示完全看不见
- * 
- * 某一点雾化的程度： 被定义为雾化因子
- * 
- * 雾化因子 = （终点-当前点与视点之间的距离） / （终点-起点）
- * 
- * 起点 <= 当前点与视点之间的距离 <= 终点
- * 
- * 雾化因子是1： 表示完全没有被雾化
- * 雾化因子是0： 表示完全被雾化，完全看不见
- * 
- * 片元着色器中，根据雾化因子计算片元颜色
- * 
- * 片元颜色 = 物体表面颜色 * 雾化因子 + 雾的颜色 * （1-雾化因子）
+ * 鼠标控制物体旋转
+ * 1. 使用模型视图投影矩阵来变换顶点坐标
  */
 
-
+/**
+* 组成立方体的面，三角形，和顶点的关系（为每个面指定不同的颜色
+* @param {*} gl 
+*/
 function initVertexBuffer(gl) {
   /**
    * 给每个表面指定颜色
@@ -81,94 +64,105 @@ function initVertexBuffer(gl) {
 }
 
 function initArrayBuffer(gl, data, num, type, attribute) {
-  var buffer = gl.createBuffer();   // Create a buffer object
+  var buffer = gl.createBuffer();
   if (!buffer) {
     console.log('Failed to create the buffer object');
     return false;
   }
-  // Write date into the buffer object
   gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
   gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
-  // Assign the buffer object to the attribute variable
   var a_attribute = gl.getAttribLocation(gl.program, attribute);
   if (a_attribute < 0) {
     console.log('Failed to get the storage location of ' + attribute);
     return false;
   }
   gl.vertexAttribPointer(a_attribute, num, type, false, 0, 0);
-  // Enable the assignment of the buffer object to the attribute variable
   gl.enableVertexAttribArray(a_attribute);
 
   return true;
 }
 
-const canvas = document.querySelector('#canvas'),
-  gl = canvas.getContext('webgl');
-
+const canvas = document.querySelector('#canvas');
+const gl = canvas.getContext('webgl');
 
 const vertex = `
     attribute vec4 a_Position;
     attribute vec4 a_Color;
-    
+    attribute float a_Face;
+
     uniform mat4 u_MvpMatrix;
-    uniform vec4 u_Eye;
+    uniform bool u_Clicked;
+    uniform int u_PickedFace;
 
     varying vec4 v_Color;
-    varying float v_Dist;
 
     void main(){
       gl_Position = u_MvpMatrix * a_Position;
-      // 顶点与视点的距离
-      v_Dist = distance(a_Position,u_Eye);
+
       v_Color = a_Color;
     }
 `;
 const fragment = `
-    precision mediump float;
+      precision mediump float;
+      varying vec4 v_Color;
 
-    uniform vec3 u_FogColor;
-    uniform vec2 u_FogDist;
-    
-    varying vec4 v_Color;
-    varying float v_Dist;
-
-    void main(){
-      // 限定范围
-      float fogFactor = clamp((u_FogDist.y - v_Dist) / (u_FogDist.y - u_FogDist.x), 0.0, 1.0);
-      vec3 color = mix(u_FogColor, vec3(v_Color), fogFactor);
-      gl_FragColor = vec4(color, v_Color.a);
-    }
+      void main(){
+        gl_FragColor = v_Color;
+      }
 `;
 
 initShaderProgram(gl, vertex, fragment);
 
 const n = initVertexBuffer(gl);
 
+gl.clearColor(0, 0, 0, 1);
 gl.enable(gl.DEPTH_TEST);
 
-const uMvpMatrix = gl.getUniformLocation(gl.program, 'u_MvpMatrix');
-const mvpMatrix = new Matrix4();
-mvpMatrix.setPerspective(30, 1, 1, 1000);
-mvpMatrix.lookAt(25, 65, 35, 0, 1, 0, 0, 1, 0);
-mvpMatrix.rotate(0, 0, 0, 1);
-mvpMatrix.scale(10,10,10);
+let currentAngle = [0.0, 0.0];
 
-const uEye = gl.getUniformLocation(gl.program, 'u_Eye');
-gl.uniform4fv(uEye,[ 25, 65, 35, 1.0]);
+initEventHandlers(canvas, currentAngle);
+render(currentAngle);
 
-const uFogColor = gl.getUniformLocation(gl.program, 'u_FogColor');
-gl.uniform3fv(uFogColor,[0.137, 0.231, 0.423]);
-
-var uFogDist = gl.getUniformLocation(gl.program, 'u_FogDist');
-gl.uniform2fv(uFogDist, [55, 80]);
-
-gl.clearColor(0.137, 0.231, 0.423, 1.0);
-
-render();
-
-function render() {
+function render(currentAngle) {
+  const uMvpMatrix = gl.getUniformLocation(gl.program, 'u_MvpMatrix');
+  const mvpMatrix = new Matrix4();
+  mvpMatrix.setPerspective(30, 1, 1, 100);
+  mvpMatrix.lookAt(3, 3, 7, 0, 0, 0, 0, 1, 0);
+  mvpMatrix.rotate(currentAngle[0], 0, 0, 1);
+  mvpMatrix.rotate(currentAngle[1], 0, 1, 0);
   gl.uniformMatrix4fv(uMvpMatrix, false, mvpMatrix.elements);
+
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   gl.drawElements(gl.TRIANGLES, n, gl.UNSIGNED_BYTE, 0);
 }
 
+function initEventHandlers(canvas, currentAngle) {
+  var dragging = false;
+  var lastX = -1, lastY = -1;
+
+  canvas.onmousedown = function (ev) {
+    var x = ev.clientX, y = ev.clientY;
+    var rect = ev.target.getBoundingClientRect();
+    if (rect.left <= x && x < rect.right && rect.top <= y && y < rect.bottom) {
+      lastX = x; lastY = y;
+      dragging = true;
+    }
+  };
+
+  document.onmouseup = function (ev) { dragging = false; };
+
+  canvas.onmousemove = function (ev) {
+    var x = ev.clientX, y = ev.clientY;
+    if (dragging) {
+      var factor = 100 / canvas.height;
+      var dx = factor * (x - lastX);
+      var dy = factor * (y - lastY);
+
+      currentAngle[0] = Math.max(Math.min(currentAngle[0] + dy, 90.0), -90.0);
+      currentAngle[1] = currentAngle[1] + dx;
+    }
+    lastX = x, lastY = y;
+
+    render(currentAngle);
+  };
+}

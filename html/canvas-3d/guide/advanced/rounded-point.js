@@ -34,10 +34,6 @@ const canvas = document.querySelector('#canvas'),
     }
   `;
 
-if (!initShaders(gl, vertexShaderSource, fragmentShaderSource)) {
-  console.log('着色器初始化失败');
-}
-
 
 
 function initVertexBuffers(gl, vertices, n, attribute) {
@@ -56,6 +52,8 @@ function initVertexBuffers(gl, vertices, n, attribute) {
 
   return n;
 }
+
+initShaderProgram(gl, vertexShaderSource, fragmentShaderSource)
 
 gl.clearColor(0, 0, 0, 1);
 

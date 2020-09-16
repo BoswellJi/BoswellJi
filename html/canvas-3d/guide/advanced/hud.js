@@ -1,29 +1,11 @@
 /**
- * 雾化： 描述远处的物体看上去较为模糊的现象；
- * 
- * 1. 任何介质中的物体都可能表现出雾化现象；
- * 
- * 实现雾化的方式：
- * 1. 线性雾化： 某一点的雾化程度取决于它与视点之间的距离，距离越远雾化程度越高；
- * 2. 有起点，有终点
- * 
- * 完全雾化： 表示完全看不见
- * 
- * 某一点雾化的程度： 被定义为雾化因子
- * 
- * 雾化因子 = （终点-当前点与视点之间的距离） / （终点-起点）
- * 
- * 起点 <= 当前点与视点之间的距离 <= 终点
- * 
- * 雾化因子是1： 表示完全没有被雾化
- * 雾化因子是0： 表示完全被雾化，完全看不见
- * 
- * 片元着色器中，根据雾化因子计算片元颜色
- * 
- * 片元颜色 = 物体表面颜色 * 雾化因子 + 雾的颜色 * （1-雾化因子）
+ * 两个canvas叠加
  */
 
-
+/**
+ * 组成立方体的面，三角形，和顶点的关系（为每个面指定不同的颜色
+ * @param {*} gl 
+ */
 function initVertexBuffer(gl) {
   /**
    * 给每个表面指定颜色
@@ -66,12 +48,25 @@ function initVertexBuffer(gl) {
     20, 21, 22, 20, 22, 23     // back
   ]);
 
+  // 表面编号
+  var faces = new Uint8Array([
+    1, 1, 1, 1,
+    2, 2, 2, 2,
+    3, 3, 3, 3,
+    4, 4, 4, 4,
+    5, 5, 5, 5,
+    6, 6, 6, 6
+  ]);
+
   var indexBuffer = gl.createBuffer();
 
   if (!initArrayBuffer(gl, vertices, 3, gl.FLOAT, 'a_Position'))
     return -1;
 
   if (!initArrayBuffer(gl, colors, 3, gl.FLOAT, 'a_Color'))
+    return -1;
+
+  if (!initArrayBuffer(gl, faces, 1, gl.FLOAT, 'a_Face'))
     return -1;
 
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
@@ -102,6 +97,16 @@ function initArrayBuffer(gl, data, num, type, attribute) {
   return true;
 }
 
+
+/**
+ * 三维空间中选中物体：
+ * 1. 通过数学过程来计算鼠标是否悬浮在某个图形上
+ * 
+ * 1. 当鼠标按下时，将整个正方体重绘为单一的红色
+ * 2. 读取鼠标点击处的像素颜色
+ * 3. 使用立方体原来的颜色对其进行重绘
+ * 4. 如果第二步骤读取到的颜色是红色，就说明物体被选中
+ */
 const canvas = document.querySelector('#canvas'),
   gl = canvas.getContext('webgl');
 
@@ -109,66 +114,82 @@ const canvas = document.querySelector('#canvas'),
 const vertex = `
     attribute vec4 a_Position;
     attribute vec4 a_Color;
-    
+    attribute float a_Face; // 表面编号
+
     uniform mat4 u_MvpMatrix;
-    uniform vec4 u_Eye;
+    uniform int u_PickedFace; // 被选中表面的编号
 
     varying vec4 v_Color;
-    varying float v_Dist;
 
     void main(){
       gl_Position = u_MvpMatrix * a_Position;
-      // 顶点与视点的距离
-      v_Dist = distance(a_Position,u_Eye);
-      v_Color = a_Color;
+
+      int face = int(a_Face);
+
+      vec3 color = face == u_PickedFace ? vec3(1.0) : a_Color.rgb;
+
+      if(u_PickedFace==0){
+        // 将表面编号写入第四个分量，这样可以在页面获取坐标像素信息时，提取出来
+        v_Color = vec4(color,a_Face/255.0);
+      }else{
+        v_Color = vec4(color,a_Color.a);
+      }
     }
-`;
+  `;
 const fragment = `
-    precision mediump float;
+      precision mediump float;
+      varying vec4 v_Color;
 
-    uniform vec3 u_FogColor;
-    uniform vec2 u_FogDist;
-    
-    varying vec4 v_Color;
-    varying float v_Dist;
-
-    void main(){
-      // 限定范围
-      float fogFactor = clamp((u_FogDist.y - v_Dist) / (u_FogDist.y - u_FogDist.x), 0.0, 1.0);
-      vec3 color = mix(u_FogColor, vec3(v_Color), fogFactor);
-      gl_FragColor = vec4(color, v_Color.a);
-    }
-`;
+      void main(){
+        gl_FragColor = v_Color;
+      }
+    `;
 
 initShaderProgram(gl, vertex, fragment);
 
 const n = initVertexBuffer(gl);
 
+gl.clearColor(0, 0, 0, 0);
 gl.enable(gl.DEPTH_TEST);
 
 const uMvpMatrix = gl.getUniformLocation(gl.program, 'u_MvpMatrix');
+
 const mvpMatrix = new Matrix4();
-mvpMatrix.setPerspective(30, 1, 1, 1000);
-mvpMatrix.lookAt(25, 65, 35, 0, 1, 0, 0, 1, 0);
+mvpMatrix.setPerspective(30, 1, 1, 100);
+mvpMatrix.lookAt(3, 3, 7, 0, 0, 0, 0, 1, 0);
 mvpMatrix.rotate(0, 0, 0, 1);
-mvpMatrix.scale(10,10,10);
 
-const uEye = gl.getUniformLocation(gl.program, 'u_Eye');
-gl.uniform4fv(uEye,[ 25, 65, 35, 1.0]);
-
-const uFogColor = gl.getUniformLocation(gl.program, 'u_FogColor');
-gl.uniform3fv(uFogColor,[0.137, 0.231, 0.423]);
-
-var uFogDist = gl.getUniformLocation(gl.program, 'u_FogDist');
-gl.uniform2fv(uFogDist, [55, 80]);
-
-gl.clearColor(0.137, 0.231, 0.423, 1.0);
+const uPickedFace = gl.getUniformLocation(gl.program, 'u_PickedFace');
+gl.uniform1i(uPickedFace, -1);
 
 render();
+
+canvas.addEventListener('click', function (e) {
+  const x = e.clientX;
+  const y = e.clientY;
+  const l = canvas.offsetLeft;
+  const t = canvas.offsetTop;
+  const diffx = x - l;
+  const diffy = y - t;
+
+  const px = checkFace(diffx, diffy);
+
+  gl.uniform1i(uPickedFace, px);
+  render();
+}, false);
+
+function checkFace(diffx, diffy) {
+  gl.uniform1i(uPickedFace, 0);
+  render();
+
+  const pixels = new Uint8Array(4);
+  gl.readPixels(diffx, diffy, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+
+  return pixels[3];
+}
 
 function render() {
   gl.uniformMatrix4fv(uMvpMatrix, false, mvpMatrix.elements);
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   gl.drawElements(gl.TRIANGLES, n, gl.UNSIGNED_BYTE, 0);
 }
-
