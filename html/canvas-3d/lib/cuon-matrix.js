@@ -27,9 +27,7 @@ var Matrix4 = function(opt_src) {
 };
 
 /**
- * 将实例初始化为单位阵（单位阵在矩阵乘法中，就像数字1，一个矩阵乘以单位阵，得到好原矩阵完全相同）
- * 单位阵： 对角线的元素为1.0，其余都是0
- * Set the identity matrix. 设置矩阵身份
+ * Set the identity matrix.
  * @return this
  */
 Matrix4.prototype.setIdentity = function() {
@@ -222,7 +220,6 @@ Matrix4.prototype.invert = function() {
 };
 
 /**
- * 设置正射投影矩阵
  * Set the orthographic projection matrix.
  * @param left The coordinate of the left of clipping plane.
  * @param right The coordinate of the right of clipping plane.
@@ -416,8 +413,6 @@ Matrix4.prototype.perspective = function(fovy, aspect, near, far) {
 };
 
 /**
- * 不会改变原始矩阵
- * 设置缩放变换矩阵
  * Set the matrix for scaling.
  * @param x The scale factor along the X axis
  * @param y The scale factor along the Y axis
@@ -434,9 +429,6 @@ Matrix4.prototype.setScale = function(x, y, z) {
 };
 
 /**
- * 经过多次变换，将这些变换全部复合为一个等效的变换，就得到了模型变换也叫建模变换；相应的矩阵称为模型矩阵；
- * 方法会根据参数计算出变换矩阵，然后将自身与计算得到的变换矩阵相乘，结果写入到 matrix4实例中去
- * 改变了原始的矩阵
  * Multiply the matrix for scaling from the right.
  * @param x The scale factor along the X axis
  * @param y The scale factor along the Y axis
@@ -453,7 +445,6 @@ Matrix4.prototype.scale = function(x, y, z) {
 };
 
 /**
- * 将矩阵实例设置平移变换矩阵
  * Set the matrix for translation.
  * @param x The X value of a translation.
  * @param y The Y value of a translation.
@@ -486,7 +477,6 @@ Matrix4.prototype.translate = function(x, y, z) {
 };
 
 /**
- * 设置缩放变换矩阵
  * Set the matrix for rotation.
  * The vector of rotation axis may not be normalized.
  * @param angle The angle of rotation (degrees)
@@ -573,7 +563,6 @@ Matrix4.prototype.setRotate = function(angle, x, y, z) {
 };
 
 /**
- * 
  * Multiply the matrix for rotation from the right.
  * The vector of rotation axis may not be normalized.
  * @param angle The angle of rotation (degrees)

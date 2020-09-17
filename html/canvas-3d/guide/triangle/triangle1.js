@@ -1,3 +1,6 @@
+/**
+ * 使用矩阵来平移
+ */
 
 function initVertexBuffer(gl) {
   const vertices = new Float32Array([
@@ -5,7 +8,7 @@ function initVertexBuffer(gl) {
     -0.5, -0.5,
     0.5, 0.5,
   ]);
-  const n = 3; // 2维
+  const n = 3;
 
   // 1. 创建缓冲区对象(webgl系统中的一块内存区域，将glsl中的变量存储位置指向这块内存)
   const vertexBuffer = gl.createBuffer();
@@ -31,19 +34,18 @@ function initVertexBuffer(gl) {
   return n;
 }
 
-const canvas = document.querySelector('#canvas'),
-  gl = canvas.getContext('webgl'),
-  vertex = `
+const canvas = document.querySelector('#canvas');
+const  gl = canvas.getContext('webgl');
+const  vertex = `
     attribute vec4 a_Position;
 
     uniform mat4 u_xformMatrix;
 
-    
     void main(){ 
        gl_Position = a_Position * u_xformMatrix;
     }
-  `,
-  fragment = `
+`;
+const  fragment = `
     precision mediump float;
 
     uniform float u_Width;
@@ -52,7 +54,7 @@ const canvas = document.querySelector('#canvas'),
     void main(){
       gl_FragColor = vec4(1,0.0,0.0,1.0);
     }
-  `;
+`;
 
 initShaderProgram(gl, vertex, fragment)
 

@@ -1,7 +1,3 @@
-/**
- * 平移，对分量进行加减运算 
- */
-
 function initVertexBuffer(gl) {
   const vertices = new Float32Array([
     -0.5, 0.5,
@@ -12,6 +8,7 @@ function initVertexBuffer(gl) {
     0.5, 0.5,
     0.5, -0.5
   ]);
+  const n = 6; // 2维
 
   // 1. 创建缓冲区对象(webgl系统中的一块内存区域，将glsl中的变量存储位置指向这块内存)
   const vertexBuffer = gl.createBuffer();
@@ -23,10 +20,9 @@ function initVertexBuffer(gl) {
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
 
   // 3. 向缓冲区写入数据
-  // usage(数据存储区的使用方式): gl.STATIC_DRAW gl.STREAM_DRAW gl.DYNAMIC_DRAW
+  // target data usage: gl.STATIC_DRAW gl.STREAM_DRAW gl.DYNAMIC_DRAW
   gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
 
-  // 顶点着色器变量a_Position，
   const aPosition = gl.getAttribLocation(gl.program, 'a_Position');
 
   // 4. 将缓冲区对象分配给aPosition
@@ -35,38 +31,41 @@ function initVertexBuffer(gl) {
   // 5. 连接aPosition变量与分配给它的缓冲对象
   gl.enableVertexAttribArray(aPosition);
 
-  return vertices.length/2;
+  return n;
 }
 
 const canvas = document.querySelector('#canvas');
 const gl = canvas.getContext('webgl');
 
-// 顶点着色器，平移
+// 顶点着色器，矩阵旋转
 let vertex = `
-  // 存储限定符 类型 变量名
-  attribute vec4 a_Position;
-  attribute float a_PointSize;
-  
-  uniform vec4 u_Translation;
-  
-  void main(){
-    gl_Position = a_Position + u_Translation;
-    gl_PointSize = a_PointSize;
-  }
+    // 存储限定符 类型 变量名
+    attribute vec4 a_Position;
+    uniform mat4 u_xformMatrix;
+
+    void main(){
+      // 矢量具有三个分量，被称为三维矢量
+      // 矩阵 与 矢量 相乘得到 新矢量
+      // 只有在矩阵的列数和矢量的行数相等时，才可以将两者相乘
+
+      // 矢量 a_Position 乘以 矩阵 u_xformMatrix，自动进行计算
+      gl_Position = a_Position * u_xformMatrix;
+    }
 `;
 // 片元着色器
 let fragment = `
-  // 精度限定词（指定变量的范围，（最大值，最小值）和精度
-  precision mediump float;
-  // 存储限定符 类型 变量名
-  uniform vec4  u_FragColor;
-  void main(){
-    gl_FragColor = u_FragColor;
-  }
+    // 精度限定词（指定变量的范围，（最大值，最小值）和精度
+    precision mediump float;
+    // 存储限定符 类型 变量名
+    uniform vec4  u_FragColor;
+    void main(){
+      gl_FragColor = u_FragColor;
+    }
 `;
 
 initShaders(gl, vertex, fragment);
 
+// 获取glsl中的变量的存储地址
 // 获取attribute 变量存储位置，返回变量a_Position存储地址
 // 不存在返回-1，存在即大于等于 0
 const aPosition = gl.getAttribLocation(gl.program, 'a_Position');
@@ -97,15 +96,64 @@ gl.clear(gl.COLOR_BUFFER_BIT);
 
 // 数组元素缓冲区
 const n = initVertexBuffer(gl);
+const radian = Math.PI * 2 / 360 * 90;
+// 计算角度的余弦值，正弦值
+const cosB = Math.cos(radian);
+const sinB = Math.sin(radian);
+
+// 获取glsl中定义的正弦，余弦的变量
+const uCosB = gl.getUniformLocation(gl.program, 'u_CosB');
+const uSinB = gl.getUniformLocation(gl.program, 'u_SinB');
+
+// 将余弦，正弦值传入glsl中
+// gl.uniform1f(uCosB, cosB);
+// gl.uniform1f(uSinB, sinB);
+
+// 旋转矩阵
+// const xformMatrix = new Float32Array([
+//   cosB, -sinB, 0, 0,
+//   sinB, cosB, 0, 0,
+//   0, 0, 1, 0,
+//   0, 0, 0, 1
+// ]);
+
+// 平移矩阵
+// const xformMatrix = new Float32Array([
+//   1,0,0,0.5,
+//   0,1,0,0.5,
+//   0,0,0,0,
+//   0,0,0,1
+// ]);
+
+// 平移矩阵2
+// const xformMatrix = new Float32Array([
+//   1, 0, 0, 0,
+//   0, 1, 0, 0,
+//   0, 0, 1, 0,
+//   0.5, 0.5, 0, 1
+// ]);
+
+// 平移加旋转 矩阵
+// const xformMatrix = new Float32Array([
+//   cosB, -sinB, 0, 0.5,
+//   sinB, cosB, 0, 0.5,
+//   0, 0, 1, 0,
+//   0, 0, 0, 1
+// ]);
+
+// 缩放变换矩阵
+const xformMatrix = new Float32Array([
+  1.5, 0, 0, 0,
+  0, 0.5, 0, 0,
+  0, 0, 0.5, 0,
+  0, 0, 0, 1
+]);
+
+const uXformMatrix = gl.getUniformLocation(gl.program, 'u_xformMatrix');
+gl.uniformMatrix4fv(uXformMatrix, false, xformMatrix);
 
 // 给点设置大小
 gl.vertexAttrib1f(aPointSize, 5);
-
-// 平移大小（矢量）
-gl.uniform4fv(uTranslation, [0, 0, 0, 0]);
-
-// 片元的颜色
-gl.uniform4fv(uFragColor,[0,0,1,1]);
 
 // 点
 //  参数一： 绘制图形的类型
