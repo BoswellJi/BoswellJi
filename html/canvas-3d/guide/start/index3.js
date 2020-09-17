@@ -12,7 +12,7 @@ const vertexShaderSource = `
       gl_PointSize = 5.0;
       v_Color = a_Color;
     }
-  `;
+`;
 const fragmentShaderSource = `
     precision mediump float;
     varying vec4 v_Color;
@@ -20,50 +20,50 @@ const fragmentShaderSource = `
     void main(){
       gl_FragColor = vec4(1,0,1,1);
     }
-  `;
+`;
 
-if (!initShaderProgram(gl, vertexShaderSource, fragmentShaderSource)) {
-  console.log('着色器初始化失败');
-}
+initShaders(gl, vertexShaderSource, fragmentShaderSource);
 
 // 设置背景色
 gl.clearColor(0, 0, 0, 1);
 gl.clear(gl.COLOR_BUFFER_BIT);
 
-// 点
+// drawArrays: 用于从向量数组中绘制图元；
+
+// 单个点
 // gl.drawArrays(gl.POINTS,0,n);
+
 // 不闭合路径
 // gl.drawArrays(gl.LINE_STRIP,0,n);
 // 闭合路径
 // gl.drawArrays(gl.LINE_LOOP,0,n);
+
 // 三角形(填充)
 // gl.drawArrays(gl.TRIANGLES,0,n);
+// 
 // gl.drawArrays(gl.TRIANGLE_STRIP,0,n);
 
-// 定义顶点
 const n = initVertexBuffers(gl, new Float32Array([
   0, 0.5,
   -0.5, -0.5,
   0.5, -0.5,
 ]), 'a_Position');
-// 开始绘制
-gl.drawArrays(gl.TRIANGLE_FAN, 0, 3);
+gl.drawArrays(gl.LINE_STRIP, 0, 3);
 
 const n1 = initVertexBuffers(gl, new Float32Array([
   0.7, 0.7,
   -0.6, 0.6,
   -0.8, 0.8
 ]), 'a_Position');
-gl.drawArrays(gl.TRIANGLE_FAN, 0, 3);
-
+gl.drawArrays(gl.TRIANGLES, 0, 3);
 
 /**
- * 
+ * 顶点缓冲区
  * @param {*} gl 
  * @param {*} vertices 
- * @param {*} n 
+ * @param {*} attribute
  */
-function initVertexBuffers(gl, vertices, n, attribute) {
+function initVertexBuffers(gl, vertices, attribute) {
   // 创建缓冲区对象
   const vertexBuffer = gl.createBuffer();
   // 将缓冲区对象绑定
@@ -76,8 +76,6 @@ function initVertexBuffers(gl, vertices, n, attribute) {
   gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
   // 开始使用，使得顶点能够访问缓冲区内的数据
   gl.enableVertexAttribArray(aPosition);
-
-  return n;
 }
 
 const l = canvas.offsetLeft,

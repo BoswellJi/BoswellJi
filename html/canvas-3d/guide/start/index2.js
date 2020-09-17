@@ -1,38 +1,34 @@
-const canvas = document.querySelector('#canvas'),
-
-  gl = canvas.getContext('webgl');
+const canvas = document.querySelector('#canvas');
+const  gl = canvas.getContext('webgl');
 
 const vertexShaderSource = `
-    attribute vec4 a_Position;
-    attribute vec4 a_Color;
+  attribute vec4 a_Position;
+  attribute vec4 a_Color;
+  attribute float a_PositionSize;
 
-    varying vec4 v_Color;
+  varying vec4 v_Color;
 
-    void main(){
-      gl_Position = a_Position;
-      gl_PointSize = 5.0;
-      v_Color = a_Color;
-    }
-  `,
-  fragmentShaderSource = `
-    precision mediump float;
-    varying vec4 v_Color;
+  void main(){
+    gl_Position = a_Position;
+    gl_PointSize = a_PositionSize;
+    v_Color = a_Color;
+  }
+`;
+const  fragmentShaderSource = `
+  precision mediump float;
+  varying vec4 v_Color;
 
-    void main(){
-      gl_FragColor = v_Color;
-    }
-  `;
+  void main(){
+    gl_FragColor = v_Color;
+  }
+`;
 
-if (!initShaderProgram(gl, vertexShaderSource, fragmentShaderSource)) {
-  console.log('着色器初始化失败');
-}
-
-// 设置背景色
-gl.clearColor(0, 0, 0, 1);
+initShaders(gl, vertexShaderSource, fragmentShaderSource);
 
 // 在js和glsl es中传递数据
 const aPosition = gl.getAttribLocation(gl.program, 'a_Position');
 const aColor = gl.getAttribLocation(gl.program, 'a_Color');
+const aPositionSize = gl.getAttribLocation(gl.program, 'a_PositionSize');
 
 // 这个方法省略了vec4类型中的第四个分量，他会自动默认第4个分量设置为1.0
 // gl.vertexAttrib3f(aPosition,0,0,0);
@@ -47,14 +43,15 @@ const aColor = gl.getAttribLocation(gl.program, 'a_Color');
 // 缓冲区对象： webgl系统中的一块内存区域
 
 gl.vertexAttrib2fv(aPosition, [0, 0]);
-gl.vertexAttrib3fv(aColor, [0, 1, 0]);
+gl.vertexAttrib3fv(aColor, [1, 1, 1]);
+gl.vertexAttrib1f(aPositionSize, 1);
+
+gl.clearColor(0, 0, 0, 1);
 
 gl.clear(gl.COLOR_BUFFER_BIT);
-gl.drawArrays(gl.POINTS, 0, 1);
 
 function draw(x, y) {
   gl.vertexAttrib2fv(aPosition, [x, y]);
-  gl.vertexAttrib3fv(aColor, [0, 1, 0])
   gl.drawArrays(gl.PONITS, 0, 1);
 }
 
@@ -119,27 +116,3 @@ function mousemove(e) {
   }
 }
 
-gl.clear(gl.COLOR_BUFFER_BIT);
-for (let i = 0; i < width / 2; i++) {
-  gl.vertexAttrib2fv(aPosition, [-1 + i / (width / 2), 0]);
-  gl.drawArrays(gl.POINTS, 0, 1);
-
-  gl.vertexAttrib2fv(aPosition, [0 + i / (width / 2), 0]);
-  gl.drawArrays(gl.POINTS, 0, 1);
-}
-
-for (let i = 0; i < height / 2; i++) {
-  gl.vertexAttrib2fv(aPosition, [0,-1 + i / (height / 2)]);
-  gl.drawArrays(gl.POINTS, 0, 1);
-
-  gl.vertexAttrib2fv(aPosition, [0,0 + i / (height / 2), 0]);
-  gl.drawArrays(gl.POINTS, 0, 1);
-}
-
-gl.vertexAttrib2fv(aPosition,[0.2,0.3]);
-gl.vertexAttrib3fv(aColor,[1,1,1]);
-gl.drawArrays(gl.POINTS, 0, 1);
-
-gl.vertexAttrib2fv(aPosition,[-0.2,0.3]);
-gl.vertexAttrib3fv(aColor,[1,1,1]);
-gl.drawArrays(gl.POINTS, 0, 2);

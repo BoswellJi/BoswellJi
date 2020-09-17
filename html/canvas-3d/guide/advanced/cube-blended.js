@@ -131,13 +131,18 @@ initShaderProgram(gl, vertex, fragment);
 
 const n = initVertexBuffer(gl);
 
+// 设置webgl中的视口大小： 左下角为原点（0，0） canvas的宽高
+// 设置gl.drawArrays(),gl.drawElements()函数的的绘图区域
+gl.viewport(0,0,400,600);
+
 // 方案1： 会让不透明的物体前后关系乱掉；不推荐
 // 隐藏消除面功能开启时，被隐藏的片元不会被绘制，所以不会发生混合过程；不会有半透明效果；
 // 取消隐藏消除面功能即可；
 // gl.enable(gl.DEPTH_TEST);
 
 gl.enable(gl.DEPTH_TEST);
-
+// 消隐功能，让webgl不再绘制图形的背面，提高绘制速度；
+gl.enable(gl.CULL_FACE);
 // 锁定用于进行隐藏面消除的深度缓冲区的写入操作，使之只读
 gl.depthMask(false);
 gl.enable(gl.BLEND);
@@ -153,6 +158,8 @@ mvpMatrix.scale(10, 10, 10);
 gl.uniformMatrix4fv(uMvpMatrix, false, mvpMatrix.elements);
 
 gl.clearColor(0, 0, 0, 1.0);
+
+
 
 render();
 
