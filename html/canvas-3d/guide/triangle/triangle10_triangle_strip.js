@@ -1,16 +1,16 @@
 /**
- * 平移，对分量进行加减运算 
+ * 绘制三角带
+ * 
+ *  N  字形的顺序做顶点；
  */
 
 function initVertexBuffer(gl) {
   const vertices = new Float32Array([
-    -0.5, 0.5,
-    -0.5, -0.5,
     0.5, 0.5,
+    0.5, -0.5,
+    -0.5, 0.5,
 
     -0.5, -0.5,
-    0.5, 0.5,
-    0.5, -0.5
   ]);
 
   // 1. 创建缓冲区对象(webgl系统中的一块内存区域，将glsl中的变量存储位置指向这块内存)
@@ -30,28 +30,25 @@ function initVertexBuffer(gl) {
   const aPosition = gl.getAttribLocation(gl.program, 'a_Position');
 
   // 4. 将缓冲区对象分配给aPosition
+  // 参数： 2 缓冲区顶点的几个分量
   gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
 
   // 5. 连接aPosition变量与分配给它的缓冲对象
   gl.enableVertexAttribArray(aPosition);
 
-  return vertices.length/2;
+  return vertices.length / 2;
 }
 
 const canvas = document.querySelector('#canvas');
 const gl = canvas.getContext('webgl');
 
-// 顶点着色器，平移
+// 顶点着色器
 let vertex = `
   // 存储限定符 类型 变量名
   attribute vec4 a_Position;
-  attribute float a_PointSize;
-  
-  uniform vec4 u_Translation;
   
   void main(){
-    gl_Position = a_Position + u_Translation;
-    gl_PointSize = a_PointSize;
+    gl_Position = a_Position;
   }
 `;
 // 片元着色器
@@ -70,11 +67,9 @@ initShaders(gl, vertex, fragment);
 // 获取attribute 变量存储位置，返回变量a_Position存储地址
 // 不存在返回-1，存在即大于等于 0
 const aPosition = gl.getAttribLocation(gl.program, 'a_Position');
-const aPointSize = gl.getAttribLocation(gl.program, 'a_PointSize');
 
 // 不存在返回null
 const uFragColor = gl.getUniformLocation(gl.program, 'u_FragColor');
-const uTranslation = gl.getUniformLocation(gl.program, 'u_Translation');
 
 // 将顶点位置传输给attribute 变量
 // 向attribute变量赋值,后面三个参数，对应变量的三个分量
@@ -98,35 +93,10 @@ gl.clear(gl.COLOR_BUFFER_BIT);
 // 数组元素缓冲区
 const n = initVertexBuffer(gl);
 
-// 给点设置大小
-gl.vertexAttrib1f(aPointSize, 5);
-
-// 平移大小（矢量）
-gl.uniform4fv(uTranslation, [0, 0, 0, 0]);
-
 // 片元的颜色
-gl.uniform4fv(uFragColor,[0,0,1,1]);
-
-// 点
-//  参数一： 绘制图形的类型
-//  参数二： 坐标的偏移量（从哪个点开始
-//  参数三： 顶点数量 （绘制几个
-// gl.drawArrays(gl.POINTS, 0, 1);
-
-// 线段 ,两两一条
-gl.drawArrays(gl.LINES, 0, n);
-
-// 线条
-// gl.drawArrays(gl.LINE_STARIP,0,n);
-
-// 回路
-// gl.drawArrays(gl.LINE_LOOP,0,n);
-
-// 三角形
-// gl.drawArrays(gl.TRIANGLES,0,n);
+gl.uniform4fv(uFragColor, [0, 0, 1, 1]);
 
 // 三角带
-// gl.drawArrays(gl.TRIANGLE_STRIP,0,n);
+// 参数 0：从第几个顶点开始 n: 有几个顶点
+gl.drawArrays(gl.TRIANGLE_STRIP, 0, n);
 
-// 三角扇
-// gl.drawArrays(gl.TRIANGLE_FAN,0,n);

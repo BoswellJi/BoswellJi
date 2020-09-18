@@ -1,5 +1,5 @@
 /**
- * 矩阵缩放
+ * 矩阵平移
  */
 
 function initVertexBuffer(gl) {
@@ -41,7 +41,7 @@ function initVertexBuffer(gl) {
 const canvas = document.querySelector('#canvas');
 const gl = canvas.getContext('webgl');
 
-// 顶点着色器，矩阵旋转
+// 顶点着色器
 let vertex = `
     // 存储限定符 类型 变量名
     attribute vec4 a_Position;
@@ -101,11 +101,10 @@ gl.clear(gl.COLOR_BUFFER_BIT);
 // 数组元素缓冲区
 const n = initVertexBuffer(gl);
 
-// 缩放变换矩阵
 const xformMatrix = new Float32Array([
-  1.5, 0, 0, 0,
-  0, 0.5, 0, 0,
-  0, 0, 0.5, 0,
+  1, 0, 0, 0.4,
+  0, 1, 0, 0,
+  0, 0, 1, 0,
   0, 0, 0, 1
 ]);
 
@@ -138,3 +137,4 @@ gl.drawArrays(gl.LINES, 0, n);
 
 // 三角扇
 // gl.drawArrays(gl.TRIANGLE_FAN,0,n);
+

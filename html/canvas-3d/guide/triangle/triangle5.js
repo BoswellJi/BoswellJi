@@ -1,3 +1,7 @@
+/**
+ * 手动旋转
+ */
+
 function initVertexBuffer(gl) {
   const vertices = new Float32Array([
     -0.5, 0.5,
@@ -8,7 +12,7 @@ function initVertexBuffer(gl) {
     0.5, 0.5,
     0.5, -0.5
   ]);
-  const n = 6; // 2维
+  const n = 6;
 
   // 1. 创建缓冲区对象(webgl系统中的一块内存区域，将glsl中的变量存储位置指向这块内存)
   const vertexBuffer = gl.createBuffer();
@@ -36,8 +40,6 @@ function initVertexBuffer(gl) {
 
 const canvas = document.querySelector('#canvas');
 const gl = canvas.getContext('webgl');
-
-
 
 // 顶点着色器，旋转
 let vertex = `
@@ -74,7 +76,6 @@ const aPointSize = gl.getAttribLocation(gl.program, 'a_PointSize');
 
 // 不存在返回null
 const uFragColor = gl.getUniformLocation(gl.program, 'u_FragColor');
-const uTranslation = gl.getUniformLocation(gl.program, 'u_Translation');
 
 // 将顶点位置传输给attribute 变量
 // 向attribute变量赋值,后面三个参数，对应变量的三个分量
@@ -106,57 +107,13 @@ const sinB = Math.sin(radian);
 const uCosB = gl.getUniformLocation(gl.program, 'u_CosB');
 const uSinB = gl.getUniformLocation(gl.program, 'u_SinB');
 
-// 将余弦，正弦值传入glsl中
-// gl.uniform1f(uCosB, cosB);
-// gl.uniform1f(uSinB, sinB);
-
-// 旋转矩阵
-// const xformMatrix = new Float32Array([
-//   cosB, -sinB, 0, 0,
-//   sinB, cosB, 0, 0,
-//   0, 0, 1, 0,
-//   0, 0, 0, 1
-// ]);
-
-// 平移矩阵
-// const xformMatrix = new Float32Array([
-//   1,0,0,0.5,
-//   0,1,0,0.5,
-//   0,0,0,0,
-//   0,0,0,1
-// ]);
-
-// 平移矩阵2
-// const xformMatrix = new Float32Array([
-//   1, 0, 0, 0,
-//   0, 1, 0, 0,
-//   0, 0, 1, 0,
-//   0.5, 0.5, 0, 1
-// ]);
-
-// 平移加旋转 矩阵
-// const xformMatrix = new Float32Array([
-//   cosB, -sinB, 0, 0.5,
-//   sinB, cosB, 0, 0.5,
-//   0, 0, 1, 0,
-//   0, 0, 0, 1
-// ]);
-
-// 缩放变换矩阵
-const xformMatrix = new Float32Array([
-  1.5, 0, 0, 0,
-  0, 0.5, 0, 0,
-  0, 0, 0.5, 0,
-  0, 0, 0, 1
-]);
-
-const uXformMatrix = gl.getUniformLocation(gl.program, 'u_xformMatrix');
-gl.uniformMatrix4fv(uXformMatrix, false, xformMatrix);
+gl.uniform1f(uCosB, cosB);
+gl.uniform1f(uSinB, sinB);
 
 // 给点设置大小
 gl.vertexAttrib1f(aPointSize, 5);
 
-// 点
+//  点
 //  参数一： 绘制图形的类型
 //  参数二： 坐标的偏移量（从哪个点开始
 //  参数三： 顶点数量 （绘制几个
