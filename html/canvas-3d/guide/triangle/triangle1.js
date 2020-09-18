@@ -1,5 +1,5 @@
 /**
- * 使用矩阵来平移
+ * 使用矩阵来旋转物体
  */
 
 function initVertexBuffer(gl) {
@@ -8,13 +8,10 @@ function initVertexBuffer(gl) {
     -0.5, -0.5,
     0.5, 0.5,
   ]);
-  const n = 3;
 
   // 1. 创建缓冲区对象(webgl系统中的一块内存区域，将glsl中的变量存储位置指向这块内存)
   const vertexBuffer = gl.createBuffer();
-  if (!vertexBuffer) {
-    return -1;
-  }
+
   // 2. 将缓冲区对象绑定到目标
   // target: gl.ARRAY_BUFFER gl.ELEMENT_ARRAY_BUFFER
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
@@ -31,7 +28,7 @@ function initVertexBuffer(gl) {
   // 5. 连接aPosition变量与分配给它的缓冲对象
   gl.enableVertexAttribArray(aPosition);
 
-  return n;
+  return vertices.length/2;
 }
 
 const canvas = document.querySelector('#canvas');
@@ -48,15 +45,12 @@ const  vertex = `
 const  fragment = `
     precision mediump float;
 
-    uniform float u_Width;
-    uniform float u_Height;
-
     void main(){
       gl_FragColor = vec4(1,0.0,0.0,1.0);
     }
 `;
 
-initShaderProgram(gl, vertex, fragment)
+initShaders(gl, vertex, fragment)
 
 // 设置canvas背景
 gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -64,19 +58,12 @@ gl.clearColor(0.0, 0.0, 0.0, 1.0);
 // 清空canvas背景
 gl.clear(gl.COLOR_BUFFER_BIT);
 
-const canvasWidth = canvas.width/400;
-const canvasHeight = canvas.height/400;
-
-gl.uniform1f(gl.getUniformLocation(gl.program, 'u_Width'), false, canvasWidth);
-gl.uniform1f(gl.getUniformLocation(gl.program, 'u_Height'), false, canvasHeight);
-
-
 const n = initVertexBuffer(gl),
   h = 2 * Math.PI / 360 * 180,
   uCos = Math.cos(h),
   uSin = Math.sin(h);
 
-// // 旋转变换矩阵
+// 旋转变换矩阵
 const xformMatrix = new Float32Array([
   uCos, -uSin, 0, 0,
   uSin, uCos, 0, 0,
@@ -92,7 +79,7 @@ const xformMatrix = new Float32Array([
 //   0, 0, 0, 1
 // ]);
 
-// // 缩放变换矩阵
+// 缩放变换矩阵
 // const xformMatrix = new Float32Array([
 //   1, 0, 0, 0,
 //   0, 1, 0, 0,

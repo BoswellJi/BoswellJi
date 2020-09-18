@@ -1,3 +1,8 @@
+/**
+ * 矩阵旋转
+ */
+
+
 function initVertexBuffer(gl) {
   const vertices = new Float32Array([
     -0.5, 0.5,
@@ -37,7 +42,6 @@ function initVertexBuffer(gl) {
 const canvas = document.querySelector('#canvas');
 const gl = canvas.getContext('webgl');
 
-// 顶点着色器，矩阵平移
 let vertex = `
   // 存储限定符 类型 变量名
   attribute vec4 a_Position;
@@ -65,11 +69,9 @@ initShaders(gl, vertex, fragment);
 // 获取attribute 变量存储位置，返回变量a_Position存储地址
 // 不存在返回-1，存在即大于等于 0
 const aPosition = gl.getAttribLocation(gl.program, 'a_Position');
-const aPointSize = gl.getAttribLocation(gl.program, 'a_PointSize');
 
 // 不存在返回null
 const uFragColor = gl.getUniformLocation(gl.program, 'u_FragColor');
-const uTranslation = gl.getUniformLocation(gl.program, 'u_Translation');
 
 // 将顶点位置传输给attribute 变量
 // 向attribute变量赋值,后面三个参数，对应变量的三个分量
@@ -92,64 +94,22 @@ gl.clear(gl.COLOR_BUFFER_BIT);
 
 // 数组元素缓冲区
 const n = initVertexBuffer(gl);
-const radian = Math.PI * 2 / 360 * 90;
+const radian = Math.PI * 2 / 360 * 0;
 // 计算角度的余弦值，正弦值
 const cosB = Math.cos(radian);
 const sinB = Math.sin(radian);
 
-// 获取glsl中定义的正弦，余弦的变量
-const uCosB = gl.getUniformLocation(gl.program, 'u_CosB');
-const uSinB = gl.getUniformLocation(gl.program, 'u_SinB');
-
-// 将余弦，正弦值传入glsl中
-// gl.uniform1f(uCosB, cosB);
-// gl.uniform1f(uSinB, sinB);
 
 // 旋转矩阵
-// const xformMatrix = new Float32Array([
-//   cosB, -sinB, 0, 0,
-//   sinB, cosB, 0, 0,
-//   0, 0, 1, 0,
-//   0, 0, 0, 1
-// ]);
-
-// 平移矩阵
-// const xformMatrix = new Float32Array([
-//   1,0,0,0.5,
-//   0,1,0,0.5,
-//   0,0,0,0,
-//   0,0,0,1
-// ]);
-
-// 平移矩阵2
-// const xformMatrix = new Float32Array([
-//   1, 0, 0, 0,
-//   0, 1, 0, 0,
-//   0, 0, 1, 0,
-//   0.5, 0.5, 0, 1
-// ]);
-
-// 平移加旋转 矩阵
-// const xformMatrix = new Float32Array([
-//   cosB, -sinB, 0, 0.5,
-//   sinB, cosB, 0, 0.5,
-//   0, 0, 1, 0,
-//   0, 0, 0, 1
-// ]);
-
-// 缩放变换矩阵
 const xformMatrix = new Float32Array([
-  1.5, 0, 0, 0,
-  0, 0.5, 0, 0,
-  0, 0, 0.5, 0,
+  cosB, -sinB, 0, 0,
+  sinB, cosB, 0, 0,
+  0, 0, 1, 0,
   0, 0, 0, 1
 ]);
 
 const uXformMatrix = gl.getUniformLocation(gl.program, 'u_xformMatrix');
 gl.uniformMatrix4fv(uXformMatrix, false, xformMatrix);
-
-// 给点设置大小
-gl.vertexAttrib1f(aPointSize, 5);
 
 // 点
 //  参数一： 绘制图形的类型
