@@ -116,10 +116,4 @@ gl.uniform4fv(uFragColor,[0,0,1,1]);
 // gl.drawArrays(gl.LINE_LOOP,0,n);
 
 // 三角形: 三个点一组
-// gl.drawArrays(gl.TRIANGLES,0,n);
-
-// 三角带
-// gl.drawArrays(gl.TRIANGLE_STRIP,0,n);
-
-// 三角扇
-// gl.drawArrays(gl.TRIANGLE_FAN,0,n);
+gl.drawArrays(gl.TRIANGLES,0,n);
