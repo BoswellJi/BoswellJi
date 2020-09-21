@@ -65,8 +65,8 @@ function initVertexBuffer(gl) {
   return n;
 }
 
-const canvas = document.querySelector('#canvas'),
-  gl = canvas.getContext('webgl');
+const canvas = document.querySelector('#canvas');
+const gl = canvas.getContext('webgl');
 
 function draw() {
   const vertex = `
@@ -80,23 +80,20 @@ function draw() {
       gl_Position = u_ProjMatrix * u_ViewMatrix *  a_Position;
       v_Color = a_Color;
     }
-  `,
-    fragment = `
+  `;
+  const fragment = `
       precision mediump float;
       varying vec4 v_Color;
 
       void main(){
         gl_FragColor = v_Color;
       }
-    `;
+  `;
 
-  if (!initShaderProgram(gl, vertex, fragment)) {
-    return;
-  }
+  initShaders(gl, vertex, fragment);
 
   const n = initVertexBuffer(gl);
-  
-  
+
   // 视图矩阵
   const uViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix');
   const viewMatrix = new Matrix4();
@@ -106,7 +103,9 @@ function draw() {
   // 透视投影矩阵
   const uProjMatrix = gl.getUniformLocation(gl.program, 'u_ProjMatrix');
   const projMatrix = new Matrix4();
-  projMatrix.setPerspective(50, canvas.width / canvas.height/2, 1, 100);
+  // 参数： 垂直视角范围， 近裁剪面的宽高比， 近剪裁面距离， 远剪裁面距离
+  projMatrix.setPerspective(50, canvas.width / canvas.height / 2, 1, 100);
+
   gl.uniformMatrix4fv(uProjMatrix, false, projMatrix.elements);
 
   gl.clearColor(0, 0, 0, 1);

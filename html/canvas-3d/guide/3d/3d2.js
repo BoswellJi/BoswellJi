@@ -45,39 +45,65 @@ const vertex = `
     attribute vec4 a_Position;
     attribute vec4 a_Color;
     varying vec4 v_Color;
+
     uniform mat4 u_ProjMatrix;
+    uniform mat4 u_ModelMatrix;
+
 
     void main(){
-      gl_Position = u_ProjMatrix * a_Position;
+      gl_Position = u_ProjMatrix * u_ModelMatrix * a_Position;
       v_Color = a_Color;
     }
-  `;
+`;
 const fragment = `
-      precision mediump float;
-      varying vec4 v_Color;
+    precision mediump float;
+    varying vec4 v_Color;
 
-      void main(){
-        gl_FragColor = v_Color;
-      }
-    `;
+    void main(){
+      gl_FragColor = v_Color;
+    }
+`;
 
-initShaderProgram(gl, vertex, fragment)
+initShaders(gl, vertex, fragment)
 
 const n = initVertexBuffer(gl);
 
-/**
- * 当在调整观察者的位置时，视点在极右，或者极左的时候，三角形会缺少一部分
- * 原因： 没有指定可视范围，实际观察得到的区域边界
- */
-
 // 展示了可视空间的作用，想要绘制任何东西，必须把它置于可视空间中
-// 视点与近，远裁剪面的距离，使用矩阵设置可视空间
+// 视点与近，远裁剪面的距离，使用矩阵设置可视空间，远近裁剪面之间的空间就是可视空间，超出了就会被裁剪掉
 // 正射投影矩阵
 const uProjMatrix = gl.getUniformLocation(gl.program, 'u_ProjMatrix');
 const projMatrix = new Matrix4();
-projMatrix.setOrtho(-.5, .5, -.5, .5, 0, .5);
+projMatrix.setOrtho(-.5, .5, -.5, .5, 0, 5);
 gl.uniformMatrix4fv(uProjMatrix, false, projMatrix.elements);
+
+const uModelMatrix = gl.getUniformLocation(gl.program, 'u_ModelMatrix');
+const modelMatrix = new Matrix4();
+modelMatrix.setScale(.5,.5, 1);
+gl.uniformMatrix4fv(uModelMatrix, false, modelMatrix.elements);
 
 gl.clearColor(0.0, 0.0, 0.0, 1.0);
 gl.clear(gl.COLOR_BUFFER_BIT);
 gl.drawArrays(gl.TRIANGLES, 0, n);
+
+// 根据键盘移动视点
+let g_eyeX = 0.5;
+
+/**
+ * 当在调整观察者的位置时，视点在极右，或者极左的时候，三角形会缺少一部分
+ * 原因： 没有指定可视范围，实际观察得到的区域边界,默认可视深度不够，所以三角形会缺一个角
+ */
+// document.addEventListener('keydown', function (e) {
+
+//   projMatrix.setOrtho(-.5, .5, -.5, .5, 0, g_eyeX);
+//   gl.uniformMatrix4fv(uProjMatrix, false, projMatrix.elements);
+
+//   gl.clear(gl.COLOR_BUFFER_BIT);
+//   gl.drawArrays(gl.TRIANGLES, 0, n);
+
+//   // 左右键
+//   if (e.keyCode == 39) {
+//     g_eyeX += 0.01;
+//   } else if (e.keyCode == 37) {
+//     g_eyeX -= 0.01;
+//   }
+// });

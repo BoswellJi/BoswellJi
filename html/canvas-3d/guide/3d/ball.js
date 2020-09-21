@@ -111,7 +111,7 @@ const fs = `
   }
 `;
 
-initShaderProgram(gl, vs, fs);
+initShaders(gl, vs, fs);
 
 const n = initVertexBuffer(gl);
 
