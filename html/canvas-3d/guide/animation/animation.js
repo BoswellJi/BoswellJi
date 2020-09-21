@@ -1,59 +1,3 @@
-/**
-  * 创建着色器程序
-  * @param {*} gl 渲染上下文
-  * @param {*} vertexShader 顶点着色器
-  * @param {*} fragmentShader 片段着色器
-  */
-function createProgram(gl, vertexShader, fragmentShader) {
-  const program = gl.createProgram();
-  gl.attachShader(program, vertexShader);
-  gl.attachShader(program, fragmentShader);
-  gl.linkProgram(program);
-
-  const success = gl.getProgramParameter(program, gl.LINK_STATUS);
-  if (success) {
-    return program;
-  }
-
-  console.log('program: ' + gl.getProgramInfoLog(program));
-  gl.deleteProgram(program);
-}
-
-/**
- * 
- * @param {*} gl 渲染上下文
- * @param {*} type 着色器类型
- * @param {*} source 数据源
- */
-function createShader(gl, type, source) {
-  const shader = gl.createShader(type);
-  gl.shaderSource(shader, source);
-  gl.compileShader(shader);
-
-  const success = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
-  if (success) {
-    return shader;
-  }
-
-  console.log('shader: ' + gl.getShaderInfoLog(shader));
-  gl.deleteShader(shader);
-}
-
-function initShaders(gl, vertex, fragment) {
-  //  创建两个着色器
-  const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertex),
-    fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragment);
-
-  // 将两个着色器link（链接）到一个 program 
-  const program = createProgram(gl, vertexShader, fragmentShader);
-
-  gl.useProgram(program);
-
-  gl.program = program;
-
-  return program;
-}
-
 function initVertexBuffer(gl) {
   const vertices = new Float32Array([
     -0.5, 0.5,
@@ -89,38 +33,34 @@ function initVertexBuffer(gl) {
   return n;
 }
 
-const canvas = document.querySelector('#canvas'),
-  gl = canvas.getContext('webgl');
+const canvas = document.querySelector('#canvas');
+const gl = canvas.getContext('webgl');
+// 顶点着色器
+const vertex = `
+  attribute vec4 a_Position;
+  uniform mat4 u_ModelMatrix;
+
+  void main(){
+    gl_Position = a_Position * u_ModelMatrix;
+  }
+`;
+// 片元着色器
+const fragment = `
+  precision mediump float;
+  uniform vec4  u_FragColor;
+
+  void main(){
+    gl_FragColor = u_FragColor;
+  }
+`;
+
+// 设置canvas背景
+gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
 function draw() {
-  // 顶点着色器，矩阵旋转
-  var vertex = `
-    attribute vec4 a_Position;
-    uniform mat4 u_ModelMatrix;
-
-    void main(){
-      gl_Position = a_Position * u_ModelMatrix;
-    }
-  `,
-    // 片元着色器
-    fragment = `
-    precision mediump float;
-    uniform vec4  u_FragColor;
-    void main(){
-      gl_FragColor = u_FragColor;
-    }
-  `;
-
-  if (!initShaders(gl, vertex, fragment)) {
-    return;
-  }
+  initShaders(gl, vertex, fragment);
   // 获取glsl中attribute类型变量的存储地址
   const aPointSize = gl.getAttribLocation(gl.program, 'a_PointSize');
-  // 设置canvas背景
-  gl.clearColor(0.0, 0.0, 0.0, 1.0);
-
-  // 清空canvas背景
-  gl.clear(gl.COLOR_BUFFER_BIT);
 
   const n = initVertexBuffer(gl);
 
@@ -135,24 +75,20 @@ function draw() {
   matrix.setRotate(110, 0, 0, 1);
   // 计算后为平移变换矩阵： （平移矩阵*原始坐标）* 自身矩阵
   matrix.translate(-1, 0, 0);
-  // 计算矩阵依然使用原始坐标，
+  // 计算矩阵依然使用原始坐标
   matrix.setRotate(0, 0, 0, 1);
 
   const uXformMatrix = gl.getUniformLocation(gl.program, 'u_ModelMatrix');
-  
-  let x = 0;
+
   function draw(gl, n, currentAngle, matrix, uXformMatrix) {
-    matrix.setTranslate(0.5,0,0);
+    matrix.setTranslate(0.5, 0, 0);
     // 设置旋转矩阵
     matrix.rotate(currentAngle, 0, 0, 1);
     // 给glsl变量传递数据
     gl.uniformMatrix4fv(uXformMatrix, false, matrix.elements);
+
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.TRIANGLES, 0, n);
-    // x-=0.1;
-    // if(x===-0.6){
-    //   x=0;
-    // }
   }
 
   // 计算当前角度

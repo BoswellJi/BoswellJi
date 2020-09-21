@@ -70,6 +70,7 @@ const n = initVertexBuffer(gl);
 
 gl.clearColor(0, 0, 0, 1);
 gl.enable(gl.DEPTH_TEST);
+gl.enable(gl.POLYGON_OFFSET_FILL);
 
 const uProjMatrix = gl.getUniformLocation(gl.program, 'u_ProjMatrix');
 
@@ -90,6 +91,7 @@ const uProjMatrix = gl.getUniformLocation(gl.program, 'u_ProjMatrix');
     gl.uniformMatrix4fv(uProjMatrix, false, mvpMatrix.elements);
 
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    gl.polygononOffset(1, 1);
     gl.drawArrays(gl.TRIANGLES, 0, n);
 
     requestAnimationFrame(tick);

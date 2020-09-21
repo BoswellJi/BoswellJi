@@ -59,30 +59,34 @@ function draw() {
       gl_Position = u_ViewMatrix *  a_Position;
       v_Color = a_Color;
     }
-  `,
-    fragment = `
-      precision mediump float;
-      varying vec4 v_Color;
+  `;
 
-      void main(){
-        gl_FragColor = v_Color;
-      }
-    `;
+  const  fragment = `
+    precision mediump float;
+    varying vec4 v_Color;
 
-  if (!initShaderProgram(gl, vertex, fragment)) {
-    return;
-  }
+    void main(){
+      gl_FragColor = v_Color;
+    }
+  `;
+
+  initShaders(gl, vertex, fragment);
 
   const n = initVertexBuffer(gl);
 
-  // 视点，观察点，上方向
+  // 视点，观察点，上方向 => 视图矩阵
   const viewMatrix = new Matrix4();
-  viewMatrix.setLookAt(0, 0, 0, 0, 0, -1, 0, 1, 0);
+  // 在右上角处
+  viewMatrix.setLookAt(1, .25, .25, 0, 0, -1, 0, 1, 0);
+
+  // 在坐标原点处
+  // viewMatrix.setLookAt(0, 0, 0, 0, 0, -1, 0, 1, 0);
 
   const uViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix');
   gl.uniformMatrix4fv(uViewMatrix, false, viewMatrix.elements);
 
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
+
   gl.clear(gl.COLOR_BUFFER_BIT);
   gl.drawArrays(gl.TRIANGLES, 0, n);
 }
