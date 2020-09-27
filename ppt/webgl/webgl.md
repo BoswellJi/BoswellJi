@@ -49,11 +49,6 @@ By jmz {.text-intro}
 * `WebGLRenderingContext` 接口提供绘图上下文，用于在 HTML `<canvas>` 元素内绘图；
 * 要获得这个接口的对象，可以通过在 `<canvas>` 元素上调用 getContext() 函数，调用时传入 “webgl” 参数；
 
-``` javascript
-const canvas = document.querySelector('#canvas');
-const gl = canvas.getContext('webgl');
-```
-
 <slide class="bg-black-blue aligncenter">
 
 # 着色器
@@ -62,14 +57,17 @@ const gl = canvas.getContext('webgl');
 <br />
 <br />
 
+:::{.content-left}
+
 * webgl系统的绘图程序；
 * webgl系统的着色器由两部分组成： 
     - 顶点着色器
         - 顶点：二维或者三维中的一个点，比如二维或者三维图形的端点和交点；
     - 片元着色器
         - 片元：可以理解为像素，图像的单元；
+:::
 
-:::{.content-left}
+:::{.content-right}
 
 ``` javascript
 const vertexShaderSource = `
@@ -87,9 +85,6 @@ const vertexShaderSource = `
 `;
 ```
 
-:::
-
-:::{.content-right}
 
 ``` javascript
 const fragmentShaderSource = `
@@ -105,7 +100,7 @@ const fragmentShaderSource = `
 :::
 <slide class="bg-black-blue aligncenter">
 
-# 专门用来编写着色器的编程语言glsl es
+# 编写着色器的语言glsl es
 
 <br />
 <br />
@@ -166,34 +161,8 @@ const fragmentShaderSource = `
 <br />
 <br />
 
-* 是webgl中的一块存储区；可以在缓存区对象中保存想要绘制的所有顶点的数据；
+是webgl中的一块存储区；可以在缓存区对象中保存想要绘制的所有顶点的数据；
 
-``` javascript
-// 1. 创建缓冲区对象(webgl系统中的一块内存区域，将glsl中的变量存储位置指向这块内存)
-const vertexBuffer = gl.createBuffer();
-
-// 2. 将缓冲区对象绑定到目标
-gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
-
-// 3. 向缓冲区写入数据
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
-    -0.5, 0.5,
-    -0.5, -0.5,
-    0.5, 0.5,
-]), gl.STATIC_DRAW);
-
-// 获取webgl中变量a_Position的存储地址
-const aPosition = gl.getAttribLocation(gl.program, 'a_Position');
-
-// 4. 将缓冲区对象分配给aPosition
-gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
-
-// 5. 连接aPosition变量与分配给它的缓冲对象
-gl.enableVertexAttribArray(aPosition);
-
-// 返回顶点  
-return vertices.length / 2;
-```
 
 <slide class="bg-black-blue aligncenter">
 
@@ -256,7 +225,7 @@ return vertices.length / 2;
 <!-- 3 -->
 <slide class="bg-black-blue aligncenter">
 
-# 最后来几个概念
+# 又又来几个概念
 
 <br />
 <br />
@@ -291,9 +260,55 @@ return vertices.length / 2;
 <br />
 <br />
 <br />
+:::{.content-left}
 
 三维物体可以放在三维空间的任何地方，但是只有当它在可视范围内时，webgl才会绘制它
 
 * 四棱锥/金字塔可视空间，由 `透视投影` 产生；
 
 * 长方体可视空间/盒状可视空间，由 `正射投影` 产生；
+:::
+
+:::{.content-left}
+
+!![](./othor.png)
+
+!![](./prepestive.png)
+:::
+
+<!-- 4 -->
+<slide class="bg-black-blue aligncenter">
+
+# 最后几个概念
+
+<br />
+<br />
+<br />
+
+* 纹理
+* 纹理坐标
+
+
+<slide class="bg-black-blue aligncenter">
+
+# 纹理
+
+<br />
+<br />
+<br />
+
+使用一图案或纹理确定片元的颜色
+
+
+<slide class="bg-black-blue aligncenter">
+
+
+# 纹理坐标
+
+<br />
+<br />
+<br />
+
+纹理坐标： 纹理图像上的坐标，可以在纹理图像上获取纹素颜色；
+
+!![](./texture.png)
