@@ -26,3 +26,17 @@
   }
   console.log('异常被捕获，没有引起引擎挂掉，所以正常执行');
   ```
+
+## 四个组合器
+
+* Promise.allSettled()
+  - 不会短路
+
+* Promise.all()
+  - 会短路，当一个Promise失败的时候；
+
+* Promise.race()
+  - 会短路，当输入是一个有状态Promise的时候，`即Promise稳定了settld`；
+
+* Promise.any() 
+  - 会短路,当一个Promise完成的时候；
