@@ -18,7 +18,7 @@ function initShaders(gl, vshader, fshader) {
   gl.useProgram(program);
   gl.program = program;
 
-  return true;
+  return program;
 }
 
 /**

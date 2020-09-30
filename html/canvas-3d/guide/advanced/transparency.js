@@ -61,14 +61,18 @@ const fragment = `
     }
 `;
 
-initShaderProgram(gl, vertex, fragment);
+initShaders(gl, vertex, fragment);
 
 const n = initVertexBuffer(gl);
 
 gl.clearColor(0, 0, 0, 1.0);
+
+// 开启深度测试
 gl.enable(gl.DEPTH_TEST);
+
 // 开启混合功能
 gl.enable(gl.BLEND);
+
 // 指定混合功能
 gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
