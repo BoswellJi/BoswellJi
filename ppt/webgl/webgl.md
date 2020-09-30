@@ -1,14 +1,63 @@
-title: webgl
-speaker: jmz
+title: WebGL从入门到放弃
+speaker: 季明壮
 plugins:
-
     - echarts
 
-<slide class="bg-black-blue aligncenter" image="https://source.unsplash.com/C1HhAQrbykQ/ .dark">
+<slide class="bg-black-blue aligncenter">
 
-# webgl {.text-landing.text-shadow}
+# WebGL从入门到放弃 {.text-landing.text-shadow}
 
-By jmz {.text-intro}
+By 季明壮 {.text-intro}
+
+<slide class="bg-black-blue aligncenter">
+
+# 主要内容
+
+<br />
+<br />
+<br />
+
+* 什么是3D? {.fadeIn.animated.delay-0}
+* 什么是WebGL? {.fadeIn.animated.delay-400}
+* WebGL的应用领域? {.fadeIn.animated.delay-800}
+* WebGL中的基本概念和示例? {.fadeIn.animated.delay-1200}
+
+<slide class="bg-black-blue aligncenter" >
+
+# 什么是3D（3-dimension）?
+
+<br />
+<br />
+<br />
+
+通常我们说的`三维`是指在`平面二维系`中又加入了`一个方向向量`构成的`空间系`。三维既是坐标轴的三个轴，即x轴、y轴、z轴，其中x表示左右空间，y表示前后空间，z表示上下空间（不可用平面直角坐标系去理解空间方向）。在实际应用方面，一般把用X轴形容左右运动，而Z轴用来形容上下运动，Y轴用来形容前后运动，这样就形成了人的视觉立体感。
+
+<slide class="bg-black-blue aligncenter">
+
+# 什么是WebGL?
+
+<br />
+<br />
+<br />
+
+WebGL（Web图形库）是一个JavaScript API，可在任何兼容的Web浏览器中渲染高性能的交互式3D和2D图形，而无需使用插件。
+
+
+<slide class="bg-black-blue aligncenter">
+
+# WebGL的应用领域?
+
+<br />
+<br />
+<br />
+
+* [3D 的数据可视化](https://cybermap.kaspersky.com/)
+* 3D游戏开发
+* H5广告/Web传页
+* 3D绘图软件
+* [打造3D的交互效果](http://bookcase.chromeexperiments.com/)
+* [进行3D产品/物体展示](https://alteredqualia.com/three/examples/materials_cars.html)
+* ......
 
 <!-- 1 -->
 <slide class="bg-black-blue aligncenter">
