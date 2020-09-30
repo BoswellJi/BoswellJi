@@ -1,7 +1,12 @@
+/**
+ * 初始化顶点缓存
+ * @param {*} gl 
+ */
 function initVertexBuffer(gl) {
   // 顶点坐标 和 纹理坐标，
   // 纹理覆盖在顶点坐标装配的几何图形上；
   // 纹理图像根据坐标来重复背景填充
+
   // const vertices = new Float32Array([
   //   -.5, .5, 0, 2,
   //   -.5, -.5, 0, 0,
@@ -15,26 +20,31 @@ function initVertexBuffer(gl) {
     1, 1, 1, 1,
     1, -1, 1, 0,
   ]);
-
-
-  const vertexTexCoordBuffer = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, vertexTexCoordBuffer);
-  gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
   const fsize = vertices.BYTES_PER_ELEMENT;
 
+  const vertexTexCoordBuffer = gl.createBuffer();
+
+  gl.bindBuffer(gl.ARRAY_BUFFER, vertexTexCoordBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
   const aPosition = gl.getAttribLocation(gl.program, 'a_Position');
+
   gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, fsize * 4, 0);
   gl.enableVertexAttribArray(aPosition);
 
   const aTexCoord = gl.getAttribLocation(gl.program, 'a_TexCoord');
+
   gl.vertexAttribPointer(aTexCoord, 2, gl.FLOAT, false, fsize * 4, fsize * 2);
   gl.enableVertexAttribArray(aTexCoord);
 
   return 4;
 }
 
+/**
+ * 初始化纹理对象
+ * @param {*} gl 
+ */
 function initTexures(gl) {
-  // 创建纹理对象
   const texture = gl.createTexture();
   const image = new Image();
 
@@ -44,6 +54,12 @@ function initTexures(gl) {
   });
 }
 
+/**
+ * 加载纹理图像
+ * @param {*} gl 
+ * @param {*} texture 
+ * @param {*} image 
+ */
 function loadTexture(gl, texture, image) {
   // 对纹理图像进行y轴反转
   gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
@@ -70,9 +86,18 @@ function loadTexture(gl, texture, image) {
   // 片元着色器终于能够访问纹理图像了
   gl.uniform1i(uSampler, 0);
 
-  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+  draw(n);
 
-  gl.drawArrays(gl.TRIANGLE_STRIP, 0, n);
+  gl.bindTexture(gl.TEXTURE_2D, null);
+}
+
+/**
+ * 开始绘制
+ * @param {*} num 
+ */
+function draw(num){
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+  gl.drawArrays(gl.TRIANGLE_STRIP, 0, num);
 }
 
 const canvas = document.querySelector('#canvas');
@@ -98,7 +123,7 @@ const fragment = `
     }
 `;
 
-initShaderProgram(gl, vertex, fragment);
+initShaders(gl, vertex, fragment);
 
 gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
