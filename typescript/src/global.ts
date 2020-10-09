@@ -1,9 +1,10 @@
 import _ from 'lodash';
 import args from 'args';
 import { parse } from 'cookie';
-import { module1, module3, module4, Greeter, GreetingLib } from '../typings/module/module';
+import { module1, module3, module4 } from './common1/common1';
 import './vue';
-import { say, beat } from './javascript';
+import { say, beat } from './global';
+import { getArrayLength,maxInterval } from './common';
 
 say('jmz');
 beat(1);
@@ -16,7 +17,6 @@ args.showHelp;
 args.a;
 
 parse('df');
-
 
 // global type definitions file
 test('');
@@ -43,21 +43,6 @@ module1('jmz');
 module3.a('jmz');
 new module4()
 
-const g = new Greeter(<GreetingLib.AlertOptions>{
-  modal: true
-});
-g.greeting;
-g.showGreeting();
+getArrayLength();
 
-GreetingLib.say({
-  modal: true
-});
-GreetingLib.options.verbose = true;
-
-// 命名空间中的接口当作类型使用
-const options: GreetingLib.AlertOptions = {
-  modal: true
-};
-
-// single
-
+maxInterval;

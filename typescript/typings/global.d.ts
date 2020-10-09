@@ -37,3 +37,20 @@ interface Content{
 }
 
 declare let Content: Content;
+
+declare namespace GreetingLib {
+  interface LogOptions {
+    verbose?: boolean;
+  }
+
+  interface AlertOptions {
+    modal: boolean;
+    title?: string;
+    color?: string;
+  }
+
+  function say(option: AlertOptions): void;
+  function Greeter(): void;
+
+  const options: LogOptions;
+}

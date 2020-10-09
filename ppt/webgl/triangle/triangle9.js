@@ -43,7 +43,6 @@ const gl = canvas.getContext('webgl');
 
 // 顶点着色器，平移
 let vertex = `
-  // 存储限定符 类型 变量名
   attribute vec4 a_Position;
   attribute float a_PointSize;
   
@@ -56,9 +55,7 @@ let vertex = `
 `;
 // 片元着色器
 let fragment = `
-  // 精度限定词（指定变量的范围，（最大值，最小值）和精度
   precision mediump float;
-  // 存储限定符 类型 变量名
   uniform vec4  u_FragColor;
   void main(){
     gl_FragColor = u_FragColor;
@@ -67,66 +64,16 @@ let fragment = `
 
 initShaders(gl, vertex, fragment);
 
-// 获取attribute 变量存储位置，返回变量a_Position存储地址
-// 不存在返回-1，存在即大于等于 0
 const aPosition = gl.getAttribLocation(gl.program, 'a_Position');
 const aPointSize = gl.getAttribLocation(gl.program, 'a_PointSize');
-
-// 不存在返回null
 const uFragColor = gl.getUniformLocation(gl.program, 'u_FragColor');
 const uTranslation = gl.getUniformLocation(gl.program, 'u_Translation');
-
-// 将顶点位置传输给attribute 变量
-// 向attribute变量赋值,后面三个参数，对应变量的三个分量
-// 省略第4个参数，默认会被设置为 1.0
-
-//  vertexAttrib3f() 是一系列同族函数：
-// vertexAttrib1f vertexAttrib2f
-// gl.vertexAttrib3f(aPosition, 0.0, 1.0, 0.0);
-// gl.vertexAttrib1f(aPointSize, 50);
-
-// vertexAttrib3f的矢量版本
-// gl.vertexAttrib4fv(aPosition, new Float32Array([0, 0, 0.0, 1.0]));
-// gl.uniform4f(uTranslation, 0.5, 0.5, 0, 0);
-
-// 设置canvas背景
-gl.clearColor(0.0, 0.0, 0.0, 1.0);
-
-// 清空canvas背景
-gl.clear(gl.COLOR_BUFFER_BIT);
-
-// 数组元素缓冲区
 const n = initVertexBuffer(gl);
 
-// 给点设置大小
 gl.vertexAttrib1f(aPointSize, 5);
-
-// 平移大小（矢量）
 gl.uniform4fv(uTranslation, [.1, 0, 0, 0]);
-
-// 片元的颜色
 gl.uniform4fv(uFragColor,[0,0,1,1]);
 
-// 点
-//  参数一： 绘制图形的类型
-//  参数二： 坐标的偏移量（从哪个点开始
-//  参数三： 顶点数量 （绘制几个
-// gl.drawArrays(gl.POINTS, 0, 1);
-
-// 线段 ,两两一条
+gl.clearColor(0.0, 0.0, 0.0, 1.0);
+gl.clear(gl.COLOR_BUFFER_BIT);
 gl.drawArrays(gl.LINES, 0, n);
-
-// 线条
-// gl.drawArrays(gl.LINE_STARIP,0,n);
-
-// 回路
-// gl.drawArrays(gl.LINE_LOOP,0,n);
-
-// 三角形
-// gl.drawArrays(gl.TRIANGLES,0,n);
-
-// 三角带
-// gl.drawArrays(gl.TRIANGLE_STRIP,0,n);
-
-// 三角扇
-// gl.drawArrays(gl.TRIANGLE_FAN,0,n);

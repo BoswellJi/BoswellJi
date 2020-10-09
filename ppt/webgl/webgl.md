@@ -1,7 +1,5 @@
 title: WebGL从入门到放弃
 speaker: 季明壮
-plugins:
-    - echarts
 
 <slide class="bg-black-blue aligncenter">
 
@@ -11,7 +9,7 @@ By 季明壮 {.text-intro}
 
 <slide class="bg-black-blue aligncenter">
 
-# 主要内容
+# 第一部分
 
 <br />
 <br />
@@ -20,7 +18,6 @@ By 季明壮 {.text-intro}
 * 什么是3D? {.fadeIn.animated.delay-0}
 * 什么是WebGL? {.fadeIn.animated.delay-400}
 * WebGL的应用领域? {.fadeIn.animated.delay-800}
-* WebGL中的基本概念和示例? {.fadeIn.animated.delay-1200}
 
 <slide class="bg-black-blue aligncenter" >
 
@@ -30,7 +27,9 @@ By 季明壮 {.text-intro}
 <br />
 <br />
 
-通常我们说的`三维`是指在`平面二维系`中又加入了`一个方向向量`构成的`空间系`。三维既是坐标轴的三个轴，即x轴、y轴、z轴，其中x表示左右空间，y表示前后空间，z表示上下空间（不可用平面直角坐标系去理解空间方向）。在实际应用方面，一般把用X轴形容左右运动，而Z轴用来形容上下运动，Y轴用来形容前后运动，这样就形成了人的视觉立体感。
+* 通常我们说的`三维`是指在`平面二维系`中又加入了`一个方向向量`构成的`空间系`。
+* 三维既是坐标轴的三个轴，即x轴、y轴、z轴，其中x表示左右空间，y表示前后空间，z表示上下空间（不可用平面直角坐标系去理解空间方向）。
+* 在实际应用方面，一般把用X轴形容左右运动，而Z轴用来形容上下运动，Y轴用来形容前后运动，这样就形成了人的视觉立体感。
 
 <slide class="bg-black-blue aligncenter">
 
@@ -51,29 +50,29 @@ WebGL（Web图形库）是一个JavaScript API，可在任何兼容的Web浏览�
 <br />
 <br />
 
-* [3D 的数据可视化](https://cybermap.kaspersky.com/)
+* [3D数据可视化](https://cybermap.kaspersky.com/)
 * 3D游戏开发
-* H5广告/Web传页
+* H5广告/Web宣传页
 * 3D绘图软件
-* [打造3D的交互效果](http://bookcase.chromeexperiments.com/)
-* [进行3D产品/物体展示](https://alteredqualia.com/three/examples/materials_cars.html)
+* [3D交互效果](http://bookcase.chromeexperiments.com/)
+* [3D产品展示](https://alteredqualia.com/three/examples/materials_cars.html)
 * ......
 
 <!-- 1 -->
 <slide class="bg-black-blue aligncenter">
 
-# 先来几个概念
+# 第二部分
 
 <br />
 <br />
 <br />
 
-* canvas
-* 渲染上下文
-* 着色器
-* glsl es
-* 缓冲区
-* 绘制
+* canvas {.fadeIn.animated.delay-10}
+* 渲染上下文 {.fadeIn.animated.delay-400}
+* 着色器 {.fadeIn.animated.delay-800}
+* glsl es {.fadeIn.animated.delay-1200}
+* 缓冲区 {.fadeIn.animated.delay-1600}
+* 绘制 {.fadeIn.animated.delay-2100}
 
 <slide class="bg-black-blue aligncenter">
 
@@ -106,47 +105,14 @@ WebGL（Web图形库）是一个JavaScript API，可在任何兼容的Web浏览�
 <br />
 <br />
 
-:::{.content-left}
-
 * webgl系统的绘图程序；
 * webgl系统的着色器由两部分组成： 
     - 顶点着色器
         - 顶点：二维或者三维中的一个点，比如二维或者三维图形的端点和交点；
     - 片元着色器
         - 片元：可以理解为像素，图像的单元；
-:::
-
-:::{.content-right}
-
-``` javascript
-const vertexShaderSource = `
-  attribute vec4 a_Position;
-  attribute vec4 a_Color;
-  attribute float a_PositionSize;
-
-  varying vec4 v_Color;
-
-  void main(){
-    gl_Position = a_Position;
-    gl_PointSize = a_PositionSize;
-    v_Color = a_Color;
-  }
-`;
-```
 
 
-``` javascript
-const fragmentShaderSource = `
-  precision mediump float;
-  varying vec4 v_Color;
-
-  void main(){
-    gl_FragColor = v_Color;
-  }
-`;
-```
-
-:::
 <slide class="bg-black-blue aligncenter">
 
 # 编写着色器的语言glsl es
@@ -160,27 +126,12 @@ const fragmentShaderSource = `
 ## 数据类型
 
 * 矢量
-
-``` html
-(3,7,1)
-```
+   - vec3 v3 = vec3(1.0, 1.1, 0.1); 
 
 * 矩阵
+  - mat4 m4 = mat4(1.0, 1.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0  );
 
-``` html
-[
-2,3,4
-2,3,4,
-3,3,3
-]
-
-乘法规则：行 * 列
-
-[ [ [
-1,2, * a,b, = 1*a + 2*c , 1*b + 2*d
-3,4 c,d 3*a + 4*c , 3*b + 4*d
-] ] ]
-```
+!![](./mat4.png)
 
 :::
 
@@ -210,14 +161,16 @@ const fragmentShaderSource = `
 <br />
 <br />
 
-是webgl中的一块存储区；可以在缓存区对象中保存想要绘制的所有顶点的数据；
+* 是webgl中的一块存储区；
+* 可以在缓存区对象中保存想要绘制的所有顶点的数据；
 
 
 <slide class="bg-black-blue aligncenter">
 
 # 绘制
+<br />
+<br />
 
-* `gl.drawArrays(type,offset,number)`
 * 三种基本图形是webgl可以直接绘制的图形
     - gl.POINTS：
       - 一系列点;
@@ -229,15 +182,15 @@ const fragmentShaderSource = `
 <!-- 2 -->
 <slide class="bg-black-blue aligncenter">
 
-# 再来几个概念
+# 第三部分
 
 <br />
 <br />
 <br />
 
-* 坐标系
-* 变换
-* 矩阵变换
+* 坐标系 {.fadeIn.animated.delay-0}
+* 变换 {.fadeIn.animated.delay-400}
+* 矩阵变换  {.fadeIn.animated.delay-800}
 
 <slide class="bg-black-blue aligncenter">
 
@@ -274,14 +227,14 @@ const fragmentShaderSource = `
 <!-- 3 -->
 <slide class="bg-black-blue aligncenter">
 
-# 又又来几个概念
+# 第四部分
 
 <br />
 <br />
 <br />
 
-* 照相机
-* 可视空间
+* 照相机  {.fadeIn.animated.delay-0}
+* 可视空间  {.fadeIn.animated.delay-400}
 
 <slide class="bg-black-blue aligncenter">
 
@@ -328,7 +281,7 @@ const fragmentShaderSource = `
 <!-- 4 -->
 <slide class="bg-black-blue aligncenter">
 
-# 最后几个概念
+# 第五部分
 
 <br />
 <br />
@@ -361,3 +314,10 @@ const fragmentShaderSource = `
 纹理坐标： 纹理图像上的坐标，可以在纹理图像上获取纹素颜色；
 
 !![](./texture.png)
+
+<slide class="bg-black-blue aligncenter">
+
+
+# 放弃？不是，是选择！
+
+

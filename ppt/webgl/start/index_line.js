@@ -1,6 +1,5 @@
 const canvas = document.querySelector('#canvas');
 const gl = canvas.getContext('webgl');
-
 const vertexShaderSource = `
     attribute vec4 a_Position;
     attribute vec4 a_Color;
@@ -23,10 +22,7 @@ const fragmentShaderSource = `
 `;
 
 initShaders(gl, vertexShaderSource, fragmentShaderSource);
-
-gl.clearColor(0, 0, 0, 1);
-
-const n = initVertexBuffers(gl, new Float32Array([
+initVertexBuffers(gl, new Float32Array([
   0, 0.5,
   -0.5, -0.5,
 
@@ -36,6 +32,8 @@ const n = initVertexBuffers(gl, new Float32Array([
   0.5, -0.5,
   0, 0.5,
 ]), 'a_Position');
+
+gl.clearColor(0, 0, 0, 1);
 
 gl.clear(gl.COLOR_BUFFER_BIT);
 gl.drawArrays(gl.LINES, 0, 6);
