@@ -1,61 +1,60 @@
-/**
- * 初始化顶点数据缓存
- * @param {*} gl 
- */
 function initVertexBuffer(gl) {
-  // 顶点坐标 颜色
-  const vertices = new Float32Array([
-
-    0, 1, 0, 1, 0, 0,
-    -1, -1, 0, 0, 0, 1,
-    1, -1, 0, 0, 0, 1,
-
-    0, .5, 0, 1, 0, 0,
-    -.5, -.5, 0, 1, 0, 0,
-    .5, -.5, 0, 1, 0, 0,
-
-    0, .8, 0, 0, 1, 0,
-    -.8, -.8, 0, 0, 1, 0,
-    .8, -.8, 0, 0, 1, 0,
-
+  var vertices = new Float32Array([   
+    1.0, 1.0, 1.0,   1.0, 1.0, 1.0, 
+    -1.0, 1.0, 1.0,   1.0, 0.0, 1.0, 
+    -1.0, -1.0, 1.0,   1.0, 0.0, 0.0,
+    1.0, -1.0, 1.0,   1.0, 1.0, 0.0, 
+    1.0, -1.0, -1.0,   0.0, 1.0, 0.0, 
+    1.0, 1.0, -1.0,   0.0, 1.0, 1.0, 
+    -1.0, 1.0, -1.0,   0.0, 0.0, 1.0, 
+    -1.0, -1.0, -1.0,   0.0, 0.0, 0.0  
   ]);
 
-  // 顶点个数
-  const n = 9;
-
-  const vertexTexCoordBuffer = gl.createBuffer();
-  const fsize = vertices.BYTES_PER_ELEMENT;
-  gl.bindBuffer(gl.ARRAY_BUFFER, vertexTexCoordBuffer);
+  var indices = new Uint8Array([
+    0, 1, 2, 2, 0, 3,    // front
+    0, 3, 4, 4, 0, 5,    // right
+    0, 5, 6, 0, 6, 1,    // up
+    1, 6, 7, 1, 7, 2,    // left
+    7, 4, 3, 7, 3, 2,    // down
+    4, 7, 6, 4, 6, 5     // back
+  ]);
+  // 顶点颜色缓冲区
+  const vertexColorBuffer = gl.createBuffer();
+  const size = vertices.BYTES_PER_ELEMENT;
+  gl.bindBuffer(gl.ARRAY_BUFFER, vertexColorBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
 
   const aPosition = gl.getAttribLocation(gl.program, 'a_Position');
-  gl.vertexAttribPointer(aPosition, 3, gl.FLOAT, false, fsize * 6, 0);
+  gl.vertexAttribPointer(aPosition, 3, gl.FLOAT, false, size * 6, 0);
   gl.enableVertexAttribArray(aPosition);
 
   const aColor = gl.getAttribLocation(gl.program, 'a_Color');
-  gl.vertexAttribPointer(aColor, 3, gl.FLOAT, false, fsize * 6, fsize * 3);
+  gl.vertexAttribPointer(aColor, 3, gl.FLOAT, false, size * 6, size * 3);
   gl.enableVertexAttribArray(aColor);
 
-  return n;
+  const indexBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+  gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
+
+  return indices.length;
 }
 
-const canvas = document.querySelector('#canvas');
-const gl = canvas.getContext('webgl');
+const canvas = document.querySelector('#canvas'),
+  gl = canvas.getContext('webgl');
 
-const vertex = `
+function draw() {
+  const vertex = `
     attribute vec4 a_Position;
     attribute vec4 a_Color;
-
-    uniform mat4 u_ProjMatrix;
-
+    uniform mat4 u_MvpMatrix;
     varying vec4 v_Color;
 
     void main(){
-      gl_Position = u_ProjMatrix * a_Position;
+      gl_Position = u_MvpMatrix * a_Position;
       v_Color = a_Color;
     }
-  `;
-const fragment = `
+  `,
+    fragment = `
       precision mediump float;
       varying vec4 v_Color;
 
@@ -64,44 +63,25 @@ const fragment = `
       }
     `;
 
-initShaderProgram(gl, vertex, fragment);
+  initShaders(gl, vertex, fragment);
 
-const n = initVertexBuffer(gl);
+  const n = initVertexBuffer(gl);
 
-gl.clearColor(0, 0, 0, 1);
-gl.enable(gl.DEPTH_TEST);
-gl.enable(gl.POLYGON_OFFSET_FILL);
+  gl.clearColor(0, 0, 0, 1);
+  gl.enable(gl.DEPTH_TEST);
 
-const uProjMatrix = gl.getUniformLocation(gl.program, 'u_ProjMatrix');
+  const uMvpMatrix = gl.getUniformLocation(gl.program, 'u_MvpMatrix');
+  const mvpMatrix = new Matrix4();
+  mvpMatrix.setPerspective(30, 1, 1, 100);
+  mvpMatrix.lookAt(3, 3, 7, 0, 0, 0, 0, 1, 0);
+  mvpMatrix.rotate(0, 0, 0, 1);
 
-(function () {
-  const ANGLE_STEP = 30.0;
-  let currentAngle = 0.0;
-  let g_last = Date.now();
+  gl.uniformMatrix4fv(uMvpMatrix, false, mvpMatrix.elements);
 
-  tick();
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+  gl.drawElements(gl.TRIANGLES, n, gl.UNSIGNED_BYTE, 0);
+}
 
-  function tick() {
-    currentAngle = animate(currentAngle);
+draw();
 
-    const mvpMatrix = new Matrix4();
 
-    mvpMatrix.rotate(currentAngle, 0, 0, 1);
-
-    gl.uniformMatrix4fv(uProjMatrix, false, mvpMatrix.elements);
-
-    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-    gl.polygononOffset(1, 1);
-    gl.drawArrays(gl.TRIANGLES, 0, n);
-
-    requestAnimationFrame(tick);
-  };
-
-  function animate(angle) {
-    let now = Date.now();
-    let elapsed = now - g_last;
-    g_last = now;
-    let newAngle = angle + (ANGLE_STEP * elapsed) / 1000.0;
-    return newAngle %= 360;
-  }
-})()

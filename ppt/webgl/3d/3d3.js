@@ -1,7 +1,3 @@
-/**
- * 初始化顶点数据缓存
- * @param {*} gl 
- */
 function initVertexBuffer(gl) {
   // 顶点坐标 纹理坐标
   const vertices = new Float32Array([
@@ -68,8 +64,8 @@ function initVertexBuffer(gl) {
 const canvas = document.querySelector('#canvas');
 const gl = canvas.getContext('webgl');
 
-function draw() {
-  const vertex = `
+
+const vertex = `
     attribute vec4 a_Position;
     attribute vec4 a_Color;
     varying vec4 v_Color;
@@ -81,7 +77,7 @@ function draw() {
       v_Color = a_Color;
     }
   `;
-  const fragment = `
+const fragment = `
       precision mediump float;
       varying vec4 v_Color;
 
@@ -90,28 +86,22 @@ function draw() {
       }
   `;
 
-  initShaders(gl, vertex, fragment);
+initShaders(gl, vertex, fragment);
 
-  const n = initVertexBuffer(gl);
+const n = initVertexBuffer(gl);
+const uViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix');
+const viewMatrix = new Matrix4();
 
-  // 视图矩阵
-  const uViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix');
-  const viewMatrix = new Matrix4();
-  viewMatrix.setLookAt(0, 0, 5, 0, 0, -100, 0, 1, 0);
-  gl.uniformMatrix4fv(uViewMatrix, false, viewMatrix.elements);
+viewMatrix.setLookAt(0, 0, 5, 0, 0, -100, 0, 1, 0);
+gl.uniformMatrix4fv(uViewMatrix, false, viewMatrix.elements);
 
-  // 透视投影矩阵
-  const uProjMatrix = gl.getUniformLocation(gl.program, 'u_ProjMatrix');
-  const projMatrix = new Matrix4();
-  // 参数： 垂直视角范围， 近裁剪面的宽高比， 近剪裁面距离， 远剪裁面距离
-  projMatrix.setPerspective(50, canvas.width / canvas.height / 2, 1, 100);
+const uProjMatrix = gl.getUniformLocation(gl.program, 'u_ProjMatrix');
+const projMatrix = new Matrix4();
+// 透视投影
+// 参数： 垂直视角范围， 近裁剪面的宽高比， 近剪裁面距离， 远剪裁面距离
+projMatrix.setPerspective(50, canvas.width / canvas.height, 1, 100);
+gl.uniformMatrix4fv(uProjMatrix, false, projMatrix.elements);
 
-  gl.uniformMatrix4fv(uProjMatrix, false, projMatrix.elements);
-
-  gl.clearColor(0, 0, 0, 1);
-
-  gl.clear(gl.COLOR_BUFFER_BIT);
-  gl.drawArrays(gl.TRIANGLES, 0, n);
-}
-
-draw();
+gl.clearColor(0, 0, 0, 1);
+gl.clear(gl.COLOR_BUFFER_BIT);
+gl.drawArrays(gl.TRIANGLES, 0, n);

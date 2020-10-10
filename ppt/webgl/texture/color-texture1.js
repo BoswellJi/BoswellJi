@@ -38,7 +38,7 @@ function initTexures(gl) {
   const texture = gl.createTexture();
   const image = new Image();
 
-  image.src = '/canvas-3d/guide/asset/sky.jpg';
+  image.src = '/asset/sky.jpg';
   image.addEventListener('load', function () {
     loadTexture(gl, texture, image);
   });
@@ -98,7 +98,7 @@ const fragment = `
     }
 `;
 
-initShaderProgram(gl, vertex, fragment);
+initShaders(gl, vertex, fragment);
 
 gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
