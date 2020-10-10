@@ -106,7 +106,7 @@ function initTexures(gl) {
   const texture = gl.createTexture();
   const image = new Image();
 
-  image.src = '/canvas-3d/guide/asset/cubetexture.png';
+  image.src = '/asset/cubetexture.png';
   image.addEventListener('load', function () {
     loadTexture(gl, texture, image);
   });
@@ -200,7 +200,7 @@ const fragment = `
 gl.clearColor(0.0, 0.0, 0.0, 1.0);
 gl.enable(gl.DEPTH_TEST);
 
-initShaderProgram(gl, vertex, fragment);
+initShaders(gl, vertex, fragment);
 
 initVertexBuffer(gl);
 

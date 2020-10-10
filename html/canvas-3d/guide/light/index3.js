@@ -60,6 +60,22 @@ function initVertexBuffer(gl) {
   return indices.length;
 }
 
+function initArrayBuffer(gl, name, data, num, type) {
+  const buffer = gl.createBuffer();
+  
+  if (!buffer) {
+    console.log('Failed to create the buffer object');
+    return null;
+  }
+  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+  gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
+
+  const aPosition = gl.getAttribLocation(gl.program, name);
+
+  gl.vertexAttribPointer(aPosition, num, type, false, 0, 0);
+  gl.enableVertexAttribArray(aPosition);
+}
+
 
 const canvas = document.querySelector('#canvas'),
   gl = canvas.getContext('webgl');
@@ -125,7 +141,7 @@ function draw() {
     }
     `;
 
-  if (!initShaderProgram(gl, vertex, fragment)) {
+  if (!initShaders(gl, vertex, fragment)) {
     return;
   }
 

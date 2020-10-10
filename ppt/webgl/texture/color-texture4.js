@@ -2,20 +2,19 @@ function initVertexBuffer(gl) {
   // 顶点坐标 和 纹理坐标，
   // 纹理覆盖在顶点坐标装配的几何图形上；
   // 纹理图像根据坐标来重复背景填充
-  // const vertices = new Float32Array([
-  //   -.5, .5, 0, 2,
-  //   -.5, -.5, 0, 0,
-  //   .5, .5, 2, 2,
-  //   .5, -.5, 2, 0,
-  // ]);
-
   const vertices = new Float32Array([
-    -1, 1, 0, 1,
-    -1, -1, 0, 0,
-    1, 1, 1, 1,
-    1, -1, 1, 0,
+    -.5, .5, 0, .5,
+    -.5, -.5, 0, 0,
+    .5, .5, .5, .5,
+    .5, -.5, .5, 0,
   ]);
 
+  // const vertices = new Float32Array([
+  //   -1, 1, 0, 1,
+  //   -1, -1, 0, 0,
+  //   1, 1, 1, 1,
+  //   1, -1, 1, 0,
+  // ]);
 
   const vertexTexCoordBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexTexCoordBuffer);
@@ -38,7 +37,7 @@ function initTexures(gl) {
   const texture = gl.createTexture();
   const image = new Image();
 
-  image.src = 'http://localhost:81/html/canvas-3d/guide/asset/sky.jpg';
+  image.src = '/asset/sky.jpg';
   image.addEventListener('load', function () {
     loadTexture(gl, texture, image);
   });
@@ -74,9 +73,6 @@ function loadTexture(gl, texture, image) {
 
   gl.drawArrays(gl.TRIANGLE_STRIP, 0, n);
 
-  const ctx = canvas.getContext('2d');
-
-  ctx.fillText('canvas', 10, 10);
 }
 
 const canvas = document.querySelector('#canvas');

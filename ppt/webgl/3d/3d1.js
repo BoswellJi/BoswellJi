@@ -1,9 +1,4 @@
-/**
- * 初始化顶点数据缓存
- * @param {*} gl 
- */
 function initVertexBuffer(gl) {
-  // 顶点坐标 颜色
   const vertices = new Float32Array([
     0.0, 0.5, -0.4, 0.4, 1.0, 0.4,
     -0.5, -0.5, -0.4, 0.4, 1.0, 0.4,
@@ -37,8 +32,8 @@ function initVertexBuffer(gl) {
 }
 
 
-const canvas = document.querySelector('#canvas'),
-  gl = canvas.getContext('webgl');
+const canvas = document.querySelector('#canvas');
+const  gl = canvas.getContext('webgl');
 
 const vertex = `
     attribute vec4 a_Position;
@@ -69,19 +64,18 @@ initShaders(gl, vertex, fragment)
 
 const n = initVertexBuffer(gl);
 
-// 视图矩阵
 const viewMatrix = new Matrix4();
 viewMatrix.setLookAt(0.2, 0, 0, 0, 0, -1, 0, 1, 0);
+
 const uViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix');
 gl.uniformMatrix4fv(uViewMatrix, false, viewMatrix.elements);
 
-// 旋转矩阵
 const modelMatrix = new Matrix4();
 modelMatrix.setRotate(10, 0, 1, 0);
+
 const uModelMatrix = gl.getUniformLocation(gl.program, 'u_ModelMatrix');
 gl.uniformMatrix4fv(uModelMatrix, false, modelMatrix.elements);
 
-// 可以先在js中计算出视图矩阵和模型矩阵相乘的结果，这样避免每个顶点都会执行一遍
 const modelViewMatrix = viewMatrix.multiply(modelMatrix);
 const uModelViewMatrix = gl.getUniformLocation(gl.program,'u_ModelViewMatrix');
 gl.uniformMatrix4fv(uModelViewMatrix,false,modelViewMatrix.elements);
@@ -90,7 +84,6 @@ gl.clearColor(0.0, 0.0, 0.0, 1.0);
 gl.clear(gl.COLOR_BUFFER_BIT);
 gl.drawArrays(gl.TRIANGLES, 0, n);
 
-// 根据键盘移动视点
 let g_eyeX = 0.2;
 
 /**

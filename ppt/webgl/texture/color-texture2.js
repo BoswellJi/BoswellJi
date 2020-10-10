@@ -56,8 +56,8 @@ function initTexures(gl) {
   });
 
   // 给图片添加src属性
-  image.src = '/canvas-3d/guide/asset/sky.jpg';
-  image1.src = '/canvas-3d/guide/asset/circle.gif';
+  image.src = '/asset/sky.jpg';
+  image1.src = '/asset/circle.gif';
   return true;
 }
 
@@ -130,7 +130,7 @@ function draw() {
     gl_FragColor = color0 * color1;
   }`;
 
-  if (!initShaderProgram(gl, vertex, fragment)) {
+  if (!initShaders(gl, vertex, fragment)) {
     return;
   }
 

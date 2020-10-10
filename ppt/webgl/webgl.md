@@ -125,7 +125,7 @@ WebGL（Web图形库）是一个JavaScript API，可在任何兼容的Web浏览�
 
 ## 数据类型
 
-* 矢量
+* 矢量/向量
    - vec3 v3 = vec3(1.0, 1.1, 0.1); 
 
 * 矩阵
@@ -212,7 +212,13 @@ WebGL（Web图形库）是一个JavaScript API，可在任何兼容的Web浏览�
 <br />
 <br />
 
-移动，旋转和缩放，这样的操作称为`变换或者仿射`
+* 平移：将对应的坐标轴的值加上平移距离；
+* 旋转：
+  - 旋转轴
+  - 旋转方向
+  - 旋转角度
+* 缩放：将对应的坐标轴乘上缩放比例；
+
 
 <slide class="bg-black-blue aligncenter">
 
@@ -222,7 +228,21 @@ WebGL（Web图形库）是一个JavaScript API，可在任何兼容的Web浏览�
 <br />
 <br />
 
-使用变换矩阵进行变换
+* 使用变换矩阵进行变换；
+* 矩阵与向量的乘法运算；
+
+:::column
+
+乘法
+
+!![](./translation.png)
+
+---
+
+平移
+
+!![](./trans.png)
+
 
 <!-- 3 -->
 <slide class="bg-black-blue aligncenter">
@@ -299,8 +319,7 @@ WebGL（Web图形库）是一个JavaScript API，可在任何兼容的Web浏览�
 <br />
 <br />
 
-使用一图案或纹理确定片元的颜色
-
+使用`图案`或`纹理`确定片元的颜色
 
 <slide class="bg-black-blue aligncenter">
 

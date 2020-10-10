@@ -1,109 +1,114 @@
-/**
- * 初始化顶点数据缓存
- * @param {*} gl 
- */
 function initVertexBuffer(gl) {
-  // 顶点坐标 颜色
+  // 顶点坐标 纹理坐标
   const vertices = new Float32Array([
-    0.0, 0.5, -0.4, 0.4, 1.0, 0.4,
-    -0.5, -0.5, -0.4, 0.4, 1.0, 0.4,
-    0.5, -0.5, -0.4, 1.0, 0.4, 0.4,
+    // Three triangles on the right side
+    0.75, 1.0, -4.0, 0.4, 1.0, 0.4, // The back green one
+    0.25, -1.0, -4.0, 0.4, 1.0, 0.4,
+    1.25, -1.0, -4.0, 1.0, 0.4, 0.4,
 
-    0.5, 0.4, -0.2, 1.0, 0.4, 0.4,
-    -0.5, 0.4, -0.2, 1.0, 1.0, 0.4,
-    0.0, -0.6, -0.2, 1.0, 1.0, 0.4,
+    0.75, 1.0, -2.0, 1.0, 1.0, 0.4, // The middle yellow one
+    0.25, -1.0, -2.0, 1.0, 1.0, 0.4,
+    1.25, -1.0, -2.0, 1.0, 0.4, 0.4,
 
-    0.0, 0.5, 0.0, 0.4, 0.4, 1.0,
-    -0.5, -0.5, 0.0, 0.4, 0.4, 1.0,
-    0.5, -0.5, 0.0, 1.0, 0.4, 0.4
+    0.75, 1.0, 0.0, 0.4, 0.4, 1.0,  // The front blue one 
+    0.25, -1.0, 0.0, 0.4, 0.4, 1.0,
+    1.25, -1.0, 0.0, 1.0, 0.4, 0.4,
+
+    // Three triangles on the left side
+    -0.75, 1.0, -4.0, 0.4, 1.0, 0.4, // The back green one
+    -1.25, -1.0, -4.0, 0.4, 1.0, 0.4,
+    -0.25, -1.0, -4.0, 1.0, 0.4, 0.4,
+
+    -0.75, 1.0, -2.0, 1.0, 1.0, 0.4, // The middle yellow one
+    -1.25, -1.0, -2.0, 1.0, 1.0, 0.4,
+    -0.25, -1.0, -2.0, 1.0, 0.4, 0.4,
+
+    -0.75, 1.0, 0.0, 0.4, 0.4, 1.0,  // The front blue one 
+    -1.25, -1.0, 0.0, 0.4, 0.4, 1.0,
+    -0.25, -1.0, 0.0, 1.0, 0.4, 0.4,
   ]);
 
-  const n = 9;
+  // 顶点个数
+  const n = 18;
 
+  // 创建缓冲数据
   const vertexTexCoordBuffer = gl.createBuffer();
+
   const fsize = vertices.BYTES_PER_ELEMENT;
 
+  // 绑定缓冲
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexTexCoordBuffer);
+
+  // 将数据与缓冲进行绑定
   gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
 
+  // glsl种a_Position变量的内存地址
   const aPosition = gl.getAttribLocation(gl.program, 'a_Position');
+
+  // 将缓冲中的数据指定给aPosition
   gl.vertexAttribPointer(aPosition, 3, gl.FLOAT, false, fsize * 6, 0);
+
   gl.enableVertexAttribArray(aPosition);
 
+  // 获取glsl中a_Color存储地址
   const aColor = gl.getAttribLocation(gl.program, 'a_Color');
+
+  // 给地址中分配数据
   gl.vertexAttribPointer(aColor, 3, gl.FLOAT, false, fsize * 6, fsize * 3);
+
   gl.enableVertexAttribArray(aColor);
 
   return n;
 }
 
-
 const canvas = document.querySelector('#canvas');
 const gl = canvas.getContext('webgl');
 
-const vertex = `
+function draw() {
+  const vertex = `
     attribute vec4 a_Position;
     attribute vec4 a_Color;
     varying vec4 v_Color;
-
     uniform mat4 u_ProjMatrix;
-    uniform mat4 u_ModelMatrix;
-
+    uniform mat4 u_ViewMatrix;
 
     void main(){
-      gl_Position = u_ProjMatrix * u_ModelMatrix * a_Position;
+      gl_Position = u_ProjMatrix * u_ViewMatrix *  a_Position;
       v_Color = a_Color;
     }
-`;
-const fragment = `
-    precision mediump float;
-    varying vec4 v_Color;
+  `;
+  const fragment = `
+      precision mediump float;
+      varying vec4 v_Color;
 
-    void main(){
-      gl_FragColor = v_Color;
-    }
-`;
+      void main(){
+        gl_FragColor = v_Color;
+      }
+  `;
 
-initShaders(gl, vertex, fragment)
+  initShaders(gl, vertex, fragment);
 
-const n = initVertexBuffer(gl);
+  const n = initVertexBuffer(gl);
 
-// 展示了可视空间的作用，想要绘制任何东西，必须把它置于可视空间中
-// 视点与近，远裁剪面的距离，使用矩阵设置可视空间，远近裁剪面之间的空间就是可视空间，超出了就会被裁剪掉
-// 正射投影矩阵
-const uProjMatrix = gl.getUniformLocation(gl.program, 'u_ProjMatrix');
-const projMatrix = new Matrix4();
-projMatrix.setOrtho(-.5, .5, -.5, .5, 0, 5);
-gl.uniformMatrix4fv(uProjMatrix, false, projMatrix.elements);
+  const uViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix');
+  const viewMatrix = new Matrix4();
+  viewMatrix.setLookAt(0, 0, 5, 0, 0, -100, 0, 1, 0);
+  gl.uniformMatrix4fv(uViewMatrix, false, viewMatrix.elements);
 
-const uModelMatrix = gl.getUniformLocation(gl.program, 'u_ModelMatrix');
-const modelMatrix = new Matrix4();
-modelMatrix.setScale(.5,.5, 1);
-gl.uniformMatrix4fv(uModelMatrix, false, modelMatrix.elements);
+  const uProjMatrix = gl.getUniformLocation(gl.program, 'u_ProjMatrix');
+  const projMatrix = new Matrix4();
+  
+  // 正射投影
+  // 参数：近裁剪面的左边界， 近裁剪面的右边界， 近裁剪面的下边界， 近裁剪面的上边界，
+  // 近裁剪面的位置， 远剪裁面的位置
+  projMatrix.setOrtho(-1.5, 1.5, -1.5, 1.5, 0, 125);
 
-gl.clearColor(0.0, 0.0, 0.0, 1.0);
-gl.clear(gl.COLOR_BUFFER_BIT);
-gl.drawArrays(gl.TRIANGLES, 0, n);
+  gl.uniformMatrix4fv(uProjMatrix, false, projMatrix.elements);
 
-// 根据键盘移动视点
-let g_eyeX = 0.5;
+  gl.clearColor(0, 0, 0, 1);
 
-/**
- * 当在调整观察者的位置时，视点在极右，或者极左的时候，三角形会缺少一部分
- * 原因： 没有指定可视范围，实际观察得到的区域边界,默认可视深度不够，所以三角形会缺一个角
- */
-// document.addEventListener('keydown', function (e) {
+  gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.drawArrays(gl.TRIANGLES, 0, n);
+}
 
-//   projMatrix.setOrtho(-.5, .5, -.5, .5, 0, g_eyeX);
-//   gl.uniformMatrix4fv(uProjMatrix, false, projMatrix.elements);
-
-//   gl.clear(gl.COLOR_BUFFER_BIT);
-//   gl.drawArrays(gl.TRIANGLES, 0, n);
-
-//   // 左右键
-//   if (e.keyCode == 39) {
-//     g_eyeX += 0.01;
-//   } else if (e.keyCode == 37) {
-//     g_eyeX -= 0.01;
-//   }
-// });
+draw();
