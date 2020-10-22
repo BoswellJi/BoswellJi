@@ -18,10 +18,10 @@
 // Ad是接收者类
 const Ad = function () { }
 Ad.prototype = {
-  stop() { 
+  stop() {
     console.log('ad stop...');
   },
-  start() { 
+  start() {
     console.log('ad start...');
   },
 };
@@ -50,11 +50,9 @@ const ad = new Ad();
 const startAdCommand = new StartAd(ad);
 const stopAdCommand = new StopAd(ad);
 
-// 使用命令
+// 使用命令，同过调用excute来指定方法调用，就像一条条命令一样
 startAdCommand.excute();
 stopAdCommand.excute();
-
-
 
 
 const makeStart = function (adObj) {
