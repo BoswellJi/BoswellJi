@@ -1,5 +1,7 @@
 /**
  * 揭示模块
+ * 
+ * 1. 使用匿名对象返回我们想要揭示的私有方法
  */
 
 var myRevealingModule = (function () {
