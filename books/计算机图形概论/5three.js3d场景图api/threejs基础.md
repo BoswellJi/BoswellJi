@@ -1,5 +1,13 @@
 ## 概述
 
+THREE.js是一个用于3d图形的面向对象javascript库。它是一个Ricardo Cabello创建，以及来自其他程序员的贡献的开源项目。它似乎已经称为了3dweb应用程序的最流行的开源javascript库。Three.js使用你已经熟悉的概念，比如几何对象，变化，灯光，素材，纹理和照相机。但是它还有构建在强大，灵活的webgl之上的额外特性。
+
+你能够下载three.js以及阅读文档，在主要的web站点https://threejs.org。下载是相当大的，因为它包含了许多案例和支持文件。在这本书中，我使用软件来自2017年10月的89版。（这本书的1.1版本使用的是71版。从那个发布之后，有大量的api修改。不幸的是，api还没有像我希望的那个稳定，这本书中的例子在89版下会工作，但是可能不会在其他three.js版本中工作）
+
+three.js的核心特性被定义在一个单个的巨大，被命名为three.js的javascript文件中。能够在下在的build目录下被找到。还有一个更小的最小化版本。three.min.js,包含相同的格式，其格式不是人类可读的。（你还能找到这些文件的拷贝，从three.js的89版，作为这本书的web站下载的一部分，在内部的源文件中的threejs文件）。在一个web页面上使用three.js，你需要在页面上包含两个script元素之一。例如，将设three.min.js和web页面在相同的文件夹。
+
+核心之外，three.js下载包含许多案例以及各种在案例中使用的支持文件，即使我重点在核心上，我也会使用几个额外的，并会注意它们的来源当我做的时候。
+
 ## 场景，渲染器，照相机
 
 Three.js使用HTML<canvas>元素来工作，在章节2.6中，我们使用同样的事情用于2d图形。在许多web浏览器中，除了自身的2d图形api，一个画布还支持使用webgl画3d,这与2d api几乎完全不同。webgl在一些支持<canvas>的浏览器中不能使用。例如，在Ie9和e10中是真实的。但是webgl在ie11中被实现，以及chrome，safari，firefox，和edge最近版本，它还在许多手机设备的浏览器中工作。
@@ -26,8 +34,6 @@ scene.add(item)函数通常被用来添加照相机，灯光，和图形对象�
 ## THREE.Object3D
 
 一个three.js场景图由THREE.Object3D类型的对象组成。包括属于那个类子类的对象。照相机，灯光，和可见对象都是由Object3D的子类来表示。事实上，THREE.Scene本身也是Object3D的子类。
-
-
 
 ## Object,Geometry,Material
 
