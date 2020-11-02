@@ -16,8 +16,6 @@ export default {
   created() {
      
   },
-  // 被缓存
-  // 作为响应式属性的监听函数
   computed:{
     msgCopy(){
       return this.a+'d';
