@@ -82,18 +82,16 @@ const canvas = document.querySelector('#canvas'),
 
 function draw() {
   const vertex = `
-  // 每个顶点都有的
   attribute vec4 a_Position;
   attribute vec4 a_Color;
   attribute vec4 a_Normal;      // 法向量
 
-  // 每个顶点都相同的
   uniform mat4 u_ModelMatrix;   // 模型矩阵
   uniform mat4 u_MvpMatrix;     // 透视投影矩阵 * 观察者矩阵
   uniform mat4 u_NormalMatrix;  // 用来变换法向量的矩阵
   uniform vec3 u_LightPosition; // 光源位置,世界坐标系中
   uniform vec3 u_AmbientLight;  // 环境光
-  uniform vec3 u_LightDirection;  // 
+  uniform vec3 u_LightDirection;  // 光方向
   uniform vec3 u_LightColor;  // 光照颜色
   
   // 1. 片元在世界坐标系下的坐标

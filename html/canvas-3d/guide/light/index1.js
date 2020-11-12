@@ -79,6 +79,7 @@ const canvas = document.querySelector('#canvas'),
   gl = canvas.getContext('webgl');
 
 function draw() {
+  // 逐顶点光照
   const vertex = `
   attribute vec4 a_Position;
   attribute vec4 a_Color;
