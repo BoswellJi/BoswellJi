@@ -81,15 +81,13 @@ const canvas = document.querySelector('#canvas'),
 
 function draw() {
   const vertex = `
-  // 每个顶点都有的
   attribute vec4 a_Position;
   attribute vec4 a_Color;
   attribute vec4 a_Normal;      // 法向量
 
-  // 每个顶点都相同的
-  uniform mat4 u_MvpMatrix;     // 透视投影矩阵 * 观察者矩阵
-  uniform mat4 u_NormalMatrix;  // 用来变换法向量的矩阵
-  uniform mat4 u_ModelMatrix;   // 模型矩阵
+  uniform mat4 u_MvpMatrix;    
+  uniform mat4 u_NormalMatrix;   
+  uniform mat4 u_ModelMatrix;
   
   // 1. 片元在世界坐标系下的坐标
   // 2. 片元处表面的法向量

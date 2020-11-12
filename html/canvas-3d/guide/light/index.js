@@ -79,6 +79,7 @@ const canvas = document.querySelector('#canvas'),
 
 function draw() {
   // 平行光下的漫反射光
+  // 逐顶点光照
   const vertex = `
   attribute vec4 a_Position;
   attribute vec4 a_Color;
@@ -91,14 +92,17 @@ function draw() {
   varying vec4 v_Color;
 
   void main(){
-    // 模型视图透视举证转换
     gl_Position = u_MvpMatrix * a_Position;
+
     // 对法向量进行归一化
     vec3 normal = normalize(vec3(a_Normal));
+    
     // 计算光线方向和法向量的点积(夹角)，当夹角大于90度时，光照没有作用，照射在物体背面
     float nDotL = max(dot(u_LightDirection,normal),0.0);
+    
     // 计算漫反射光线的颜色
     vec3 diffuse = u_LightColor * vec3(a_Color) * nDotL;
+
     // 顶点颜色
     v_Color = vec4(diffuse,1.0);
   }
