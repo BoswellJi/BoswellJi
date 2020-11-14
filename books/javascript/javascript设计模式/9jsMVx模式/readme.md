@@ -14,9 +14,62 @@ mvc鼓励通过关注点分离来改善应用程序组织的架构模式。它�
 
 我们直到mvc由三个核心组件组成：
 
-## model
+## 模型
 
 模型管理一个应用程序的数据。它们既不关注用户接口也不关注呈现层，反而代表应用程序可能需要的唯一的数据格式。当模型改变的时候，它将会代表性的通知它的观察者（例如：views,我们之后会涉及的概念），以至于发生改变它们可以进行相应的反应。
+
+为了进一步理解models，让我们想想一下，我们有一个js图片画廊应用程序。在图片画廊中，图片的概念值得有自己的模型，因为它代表唯一的特定领域数据的类型。比如一个模型可能包含相关的属性，比如标题，图片地址，以及额外的元数据。一个特定的图片会被存储在一个模型实例中以及模型还可以重用。下面我们能够看到一个使用backbone实现的非常简单的模型的案例。
+
+```js
+var Photo = Backbone.Model.extend({
+    // Default attributes for the photo
+    defaults: {
+      src: "placeholder.jpg",
+      caption: "A default image",
+      viewed: false
+    },
+ 
+    // Ensure that each photo created has an `src`.
+    initialize: function() {
+       this.set( { "src": this.defaults.src} );
+    }
+});
+```
+
+模型内置的能力因框架而异，但是对于它们支持属性验证却相当统一的，其中的属性代表模型属性，比如模型的标识符。当我们在真实世界的应用程序中使用模型时，我们一般还希望模型持久化。持久化允许我们编辑和更新模型，了解模型的最新状态将保存在内存中，用户的本地存储数据存储中或与数据库同步。
+
+另外，一个模型还可能被多个视图观察。如果说，我们的图片模型包含像它的位置（经度和纬度），在图片中出现的朋友以及标签列表等数据，一个开发者可能决定提供一个单一的视图来展示这三个方面的每个。
+
+现代化MVC/MV*框架所提供的模型分组的方法这并不少见（例如：在backbone中，这些组被称为集合）。通过分组管理模型，我们可以根据来自组的通知编写应用程序逻辑，如果组中包含的任何模型发生了更改。这个避免了需要手动观察独立的模型实例。
+
+一个模型分组进到简化的backbone集合的案例展示在下面。
+
+```js
+var PhotoGallery = Backbone.Collection.extend({
+ 
+    // Reference to this collection's model.
+    model: Photo,
+ 
+    // Filter down the list of all photos
+    // that have been viewed
+    viewed: function() {
+        return this.filter(function( photo ){
+           return photo.get( "viewed" );
+        });
+    },
+ 
+    // Filter down the list to only photos that
+    // have not yet been viewed
+    unviewed: function() {
+      return this.without.apply( this, this.viewed() );
+    }
+});
+```
+
+关于mvc更老的文本可能还包含称为模型关系应用程序的概念`state`。在js应用程序中state有不同的含义，一般称为当前state,例如，在固定点上的用户屏幕的视图或者子视图（带有特定数据）。state是一个当你在了解单页应用程序时候才会正规讨论的话题，其中state的概念需要被模拟。
+
+
+所以总的来说，models主要于业务数据有关。
 
 ## views 
 
