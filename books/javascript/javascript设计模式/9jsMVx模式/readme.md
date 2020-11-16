@@ -68,7 +68,6 @@ var PhotoGallery = Backbone.Collection.extend({
 
 关于mvc更老的文本可能还包含称为模型关系应用程序的概念`state`。在js应用程序中state有不同的含义，一般称为当前state,例如，在固定点上的用户屏幕的视图或者子视图（带有特定数据）。state是一个当你在了解单页应用程序时候才会正规讨论的话题，其中state的概念需要被模拟。
 
-
 所以总的来说，models主要于业务数据有关。
 
 ## views 
@@ -83,11 +82,117 @@ views是一个可见的模型呈现，它呈现一个被过滤的它们当前状
 
 让我们使用一个原生的js简单模板来进一步探索视图。下面我们能够看到一个创建了单个图片视图的函数。同时使用一个model实例和一个controller实例。
 
-我们定义了一个实用的render()在我们视图中，它的责任是使用js模板引擎来渲染photoModel的内容，以及更新我们视图的内容。
+我们定义了一个实用的render()在我们视图中，它的责任是使用js模板引擎来渲染photoModel的内容，以及更新由phonoEl涉及到的我们视图的内容。
 
-## controllers
+phonoModel添加了我们的render()回调作为他订阅者之一，以至于通过观察者模式我们能够触发视图的更新，在模型改变的时候。
+
+有人可能想知道用户交互起到什么作用在这里。当用户点击点击视图中的任意元素时，直到下一步要做什么不是视图的责任。他依赖于控制器给他做决定。在我们的简单实现中，这是通过给photoEl添加事件监听器来完成的，他将委托给控制器来处理点击行为，传递模型信息以备不时之需。
+
+这个架构的好处是，每个组件在开发应用程序功能中按需扮演着它自己的独立角色。
+
+```js
+var buildPhotoView = function ( photoModel, photoController ) {
+ 
+  var base = document.createElement( "div" ),
+      photoEl = document.createElement( "div" );
+ 
+  base.appendChild(photoEl);
+ 
+  var render = function () {
+          // We use a templating library such as Underscore
+          // templating which generates the HTML for our
+          // photo entry
+          photoEl.innerHTML = _.template( "#photoTemplate", {
+              src: photoModel.getSrc()
+          });
+      };
+ 
+  photoModel.addSubscriber( render );
+ 
+  photoEl.addEventListener( "click", function () {
+    photoController.handleEvent( "click", photoModel );
+  });
+ 
+  var show = function () {
+    photoEl.style.display = "";
+  };
+ 
+  var hide = function () {
+    photoEl.style.display = "none";
+  };
+ 
+  return {
+    showView: show,
+    hideView: hide
+  };
+ 
+};
+```
+
+## 模板
+
+在支持MVC/MV*的js框架的上下文中，js模板和它相关的视图值得简短讨论一下，就像我们在上一章简短的谈及。
+
+手动通过字符串拼接在内存中创建的大量html标签块，长期被认为是一个性能差的实践。这样做的开发人员陷入了低效地遍历数据地困境，包裹嵌套在div中地数据，以及使用过时的document.write技术，来注射模板到dom中。这通常意味着保持脚本标签内联和我们的标准标签，代码很快会变得难以阅读，并且更重要的是，维护像是灾难，尤其是在构建非平凡大小的应用程序。
+
+js模板解决方案，经常被用来定义视图的模板作为包含模板变量的标签（要么存储外部要么带有像text/template的自定义类型的脚本标签）。变量可能使用变量语法来划定界限（例如：{{name}}）以及框架一般足够聪明的接收json格式的数据（模式形式能够转换成json数据）,以至于我们只需要关注和维护整洁的模型和模板。大部分与入口有关的繁重工作都由矿建本身来关照。这有大量好处，特别是在选择外部存储模板时，因为在构建较大的应用程序时，这可以让位于根据需要动态加载模板。
+
+下面我们看到两个html模板的例子，一个使用流行的Handlebars.js框架的实现和使用Underscore的模板另一个实现。
+
+Handlebars.js
+
+```js
+<li class="photo">
+  <h2>{{caption}}</h2>
+  <img class="source" src="{{src}}"/>
+  <div class="meta-data">
+    {{metadata}}
+  </div>
+</li>
+```
+
+Underscore.js Microtemplates
+
+```js
+<li class="photo">
+  <h2><%= caption %></h2>
+  <img class="source" src="<%= src %>"/>
+  <div class="meta-data">
+    <%= metadata %>
+  </div>
+</li>
+```
+
+注意模板不是它们本身视图，来自Struts Model2架构的开发人员可能觉得一个模板是一个视图，但是它不是。一个视图是一个观察一个模型的对象，并且持续更新可视的呈现。模板可能会成为一个指定一个视图对象的部分或者甚至全部的定义方式，以至于它能够从模板规格中被生成。
+
+在经典的web开发中，它还值得注意，独立视图之间导航需要页面刷新的用法。但是在单页应js用程序中,一旦数据通过ajax从服务器获取到，它能在相同页面的新视图中被动态的刷新，没有任何必要的刷新。
+
+因此导航的角色就落在了路由器身上，它坚持管理应用程序状态（例如：允许用户标记一个它们已经导航过的特定视图）。然而作为路由器，既不是mvc一部分，也不是在每个类mvc框架中，这章中，我不会继续深入更多的细节。
+
+总的来说，视图是我们的应用程序数据的可视化呈现。
+
+## 控制器
 
 控制器是models和view之间的中间人，它经典的责任是在用户操作views时，用来更新model。
+
+在我们的图片画廊应用程序中，控制器的责任是处理用户编辑特定图片视图的改变，当用户完成编辑时，会更新特定图片模型。
+
+记住，控制器在mvc中担任一个角色：视图策略模式的简化。在策略模式方面，视图根据视图的考量委托给控制器。所以，那是策略模式如何工作。当视图觉得合适的时候，它会将处理用户事件委托给控制器。如果视图觉得合适，它会委托控制器来处理模型改变事件，但是这不是控制器的传统角色。
+
+依据大部分mvc框架与传统的mvc的区别而言，它与控制器有关。这个变化的理由，然而在我看来，框架作者最初了解服务端mvc解释，意识到不能1：1的在客户端翻译，以及重新解释mvc中的c表示它们觉得更有意义的事情。然而这个这个问题时主观的，既增加了理解经典mvc模式的复杂度，当然又增加了现代化框架的控制器角色的复杂度。
+
+作为案例，让我们简要回顾下流行架构框架backbon.js的架构。backbone包含模型和视图，（有点类似于我们前面回顾的内容）但是事实上，它没有真实的控制器。它的视图和路由器行为和控制器有点相似，但是，事实上也不是自己的控制器。
+
+在这方面，在官方文档或者在博客文章中，可能与提到的相反，backbone既不是一个真实的MVC/MVP框架也不是一个MVVM框架。事实上，最好把它看作mv*家族的一员，它以自己的方式处理架构。当然这个没有错误，但区分经典mvc和 mv *是很重要的，我们是否应该开始依赖于关于前者的经典文献的建议来帮助后者。
+
+## 另一个库（spine.js）中的控制器vs backbone.js
+
+spine.js
+
+我们现在知道了控制器的传统责任是用来更新模型在用户更新视图的时候。有趣的是，在撰写本文时，最流行的jsMVC/MV*框架（backbone.js）并没有它自己明确的控制器概念。
+
+因此，复查另一个mvc矿建的控制器来鉴别不同的实现对我们来说是有用的，以及进一步演示，非传统的框架如何扮演控制器的角色。对于这个，让我们看看spine.js中的控制器案例。
+
 
 ## mvc给了我们什么？
 
