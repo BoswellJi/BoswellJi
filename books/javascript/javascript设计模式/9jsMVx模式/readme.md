@@ -193,13 +193,82 @@ spine.js
 
 因此，复查另一个mvc矿建的控制器来鉴别不同的实现对我们来说是有用的，以及进一步演示，非传统的框架如何扮演控制器的角色。对于这个，让我们看看spine.js中的控制器案例。
 
+在这个案例中，我们将会有一个叫做PhotoController的控制器，它会管理应用程序中的单独图片。当视图更新的时候，它会确保相应的模型也会被更新。（例如，一个用户编辑的图片元数据）
+
+注意：我们一点也没有深入研究spine.js，但是我们只要稍微看看控制器中能做做什么：
+
+```js
+// Controllers in Spine are created by inheriting from Spine.Controller
+ 
+var PhotosController = Spine.Controller.sub({
+ 
+  init: function () {
+    this.item.bind( "update", this.proxy( this.render ));
+    this.item.bind( "destroy", this.proxy( this.remove ));
+  },
+ 
+  render: function () {
+    // Handle templating
+    this.replace( $( "#photoTemplate" ).tmpl( this.item ) );
+    return this;
+  },
+ 
+  remove: function () {
+    this.el.remove();
+    this.release();
+  }
+});
+```
+
+在spine中，控制器被认为是应用程序的胶水，添加和相应dom事件，渲染模板，以及视图和模型保持同步。（在我们知道什么是控制器的上下文中，这很有意义）
+
+我们正在上面的例子中使用render()和remove()来安装update和destroy监听器事件。当一个照片条目开始更新，我们重新渲染视图来相应元数据的改变。相似的，如果照片被从画廊中删除掉，我们会从视图中移除它。在render()函数中，我们正在使用underscore为模板（通过_template()）来渲染ID为phoneTemplate的js模板。这个简单返回一个被用来填充photoEl内容的被编译的html字符串。
+
+这个提供给我们一个非常轻量，简单的管理模型与视图之间改变的方法。
+
+Backbone.js
+
+之后在这章，我们将会重新再访Backbone和传统mvc之间的不同，但是现在让我们聚焦在控制器。
+
+在Backbone中，Backbone.View和Backbone.Router都共享控制器的责任。不久之前，Backbone曾经出现过它自己的Backbone.Controller,但是因为这个组件的命名对于它所使用的上下文没有意义，之后被重命名为Router。
+
+路由器处理了更多的控制器职责，因为它能够为模型绑定事件，并让我们的视图相应dom事件和渲染。因为Tim Branyen之前还指出，可能根本不需要Backbone.Router，所以，思考使用Router范例的方式是可行的：
+
+```js
+var PhotoRouter = Backbone.Router.extend({
+  routes: { "photos/:id": "route" },
+ 
+  route: function( id ) {
+    var item = photoCollection.get( id );
+    var view = new PhotoView( { model: item } );
+ 
+    $('.content').html( view.render().el );
+  }
+});
+```
+
+总的来说，这章的要点是控制器管理逻辑和应用程序中模型与视图之间的合作。
 
 ## mvc给了我们什么？
 
 在mvc中关注点分离促进一个应用程序功能和启用的简单模块化。
 
-1. 更容易整体维护。
+1. 更容易整体维护。当需要对应用程序进行更新时，很明显，这些更改是以数据为中心，意味着对模型（可能还有控制器）的更改，或者仅仅是可视化的，意味着对视图的更改。
+2. 解耦模型和视图意味着，给业务逻辑编写单元测试明显更直接。
+3. 在整个应用程序中消除低级模型和控制器代码的重复。
+4. 依赖应用程序的尺寸和角色的分离，这个模块化允许开发者负责核心逻辑，以及开发人员在用户界面上同时工作。
 
+## js中的smalltalk-80 mvc
+
+虽然大多现代js框架努力演化mvc的流程来更好的符合web应用程序开发的不同需求。有一个框架，它努力坚持在smalltalk-80中创造的模式的纯格式。由Peter Michaux 提供的一个实现Maria.js，他是忠诚于mvc的起源。Models是模型，Views是视图，控制器就是控制器。尽管一些开发者可能感觉一个mv*框架应该获取更多注意力，万一你想要一个原始的mvc的js实现，这是一个值得注意的有用的参考。
+
+## 深入研究
+
+在书的这一点上，我们应该对mvc模式提供了什么有了一个基础的理解。但是仍然有一些迷人的信息值得关注。
+
+GoF没有把MVC称为一种设计模式，而宁可说是，构建一个用户界面的类集合。在他们看来，它实际上是三种经典设计模式的变种：`观察者模式`，`策略模式`，以及`组合模式`。取决于mvc如何在框架中实现，他可能还使用工厂模式和模板模式。Gof中提到的这些模式当使用mvc时非常有用。
+
+像我们已经讨论过的，模型代表应用程序的数据，然而视图是呈现在用户的屏幕上。例如，mvc依赖观察者模式进行一些它的核心的交流（吃惊的是，没有在许多关于mvc模式的文章中被谈及）。当一个模型被更改时，它通知它的观察者，更新某些东西-这个可能是mvc种最重要的关系。这个关系的观察者本质是促进多个视图联合到相同的模型上。
 
 ## MVP Model-view-presenter
 
