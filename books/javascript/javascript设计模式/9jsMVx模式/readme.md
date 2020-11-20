@@ -320,3 +320,77 @@ backbone贡献者赞同这种思维方式，当她将视图分离成各自不同
 mvvm是一个基于mvc和mvp的架构模式，它想要更清晰的划分业务逻辑中的用户接口开发和应用程序中的行为。为了这个目的，这个模式的许多实现使得定义数据绑定的用途允许视图上的工作从其他层分离。
 
 这个促使UI和开发工作几乎同时在相同的代码基础中发生。ui开发在它们的文档标签中编写vm的绑定，其中的model和vm由工作在应用程序逻辑的开发者来维护。
+
+## 历史
+
+mvvm最初是由微软定义用在wpf和silverlight中使用的。2005年由jhon crossman官方在博客宣布关于avalon。它还在adobe flex社区流行起来，成为简单使用mvc的一种替代方法。
+
+微软在采用mvvm名称之前，然而，社区出现了一场从mvp到mvpm的运动：模型，视图，模型展现。Martin Fowler早在2004年就写过一篇关于演示模型的文章，专们为那些有兴趣阅读着方面文章的人写的。模型呈现的概念出现的时间比本文长的多，但是，它被认为是这个想法的重大突破，并极大的促进了它的普及。
+
+微软宣布mvvm作为mvpm的替代者后，在alt.net圈引起了相当大的反应。许多人声称，该公司在gui领域的主导地位给了它们一个机会来接管整个社区，并根据市场需求对现有概念进行重新命名。一群进步的人认识到，虽然mvvm和mvpm实际上是相同的想法，但它们在不同的包中出现。
+
+最近几年，mvvm已经以结构框架的形式在js中实现，例如KnockoutJS, Kendo MVVM and Knockback.js，并且在社区总体取得了积极的响应。
+
+现在，让我们回顾组成mvvm的三个组件。
+
+## 模型
+
+与mv*家庭的其他成员一样，mvvm中的模型代表我们应用程序将一起工作的特定领域数据或者信息。一个典型的特定领域数据可能是一个用户账户（例如，名称，头像，电子邮件），或者一个音乐轨迹（例如，标题，年，相册）。
+
+模型持有信息，但是典型地不能处理行为。它们不能格式化信息或者影响数据如何在浏览器中出现，因为这不是它们的责任。反而，数据的格式化由视图来处理，尽管行为被认为是应该被封装在与模型交互的另一个层的业务逻辑（viewmodel）。
+
+这个规则的唯一例外是验证，模型验证用于定义或更新现有模型的数据被认为是可以接受的。（输入的电子邮件地址是否满足特定正则表达式的要求）
+
+在KnockoutJS中，模型属于上述定义，但是经常使用ajax调用服务端服务来读取和写入模型数据。
+
+如果我们构建一个简单的todo应用程序，代表单个todo事项的KnockoutJS模型看着像下面这样：
+
+```js
+var Todo = function ( content, done ) {
+    this.content = ko.observable(content);
+    this.done = ko.observable(done);
+    this.editing = ko.observable(false);
+};
+```
+
+注意：你可能会注意到上面的代码片段，我们正调用了一个KnockoutJS 命名空间ko上的方法observable()。在KnockoutJS中，可观察者是特定的js对象，它能够通知订阅者关于变更和自动化侦测依赖。这个允许我们在模型属性的值被修改的时候，同步模型和viewmodel。
+
+## 视图
+
+和mvc一样，视图是用户真实与应用程序交互的唯一部分。他们是代表viewmodel状态的交互式用户界面。在这个意义上，视图被认为是主动而不是被动。在mvc和mvp中的视图也是如此。在mvc,mvp和mvvm中，一个视图还可以是被动的，但是这个意味着什么呢？
+
+一个被动的视图只能输入展示并且不能接收任何用户输入。
+
+在我们的应用程序中，这样的视图也许还对模型没有真正的了解并且能够由提出人来操作。mvvm的活跃视图包含需要viewmodel的理解的数据绑定，事件和行为。虽然这些行为能够被映射到属性上，视图仍然负责处理viewmodel中的事件。
+
+记住视图在这里不负责处理状态很重要。保持与viewmodel同步。
+
+KnockoutJS视图是简单的带有连接到viewmodel的指定绑定的html文档。KnockoutJS视图展示viewmodel中的信息，给它传递命令（元素上的用户点击）以及随着viewmodel的状态变化而更新。然而，使用viewmodel中的数据生成标记的模板还能被用于这个目的。
+
+给一个简单的初始案例，我们可以注意到jsmvvm框架KnockoutJS，如何允许viewmodel的定义以及它在标签中的相关绑定。
+
+viewmodel
+
+```js
+var aViewModel = {
+    contactName: ko.observable("John")
+};
+ko.applyBindings(aViewModel);
+```
+
+view
+
+```js
+<p><input id="source" data-bind="value: contactName, valueUpdate: 'keyup'" /></p>
+<div data-bind="visible: contactName().length > 10">
+    You have a really long name!
+</div>
+<p>Contact name: <strong data-bind="text: contactName"></strong></p>
+
+```
+
+我们的输入文本框从contactName获取它的初始值，无论contactName什么时候改变都会自动更新这个值。因为数据绑定是双向的，键入文本框会更新contactName响应的所以值总是同步。
+
+尽管实现特定于KnockoutJS，<div>包含文本’you have a really long name‘,还包含简单的验证。如果输入超过了10个字符，它才会展示，否则它一直隐藏。
+
+向前一个更高级的案例。

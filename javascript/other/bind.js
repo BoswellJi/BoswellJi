@@ -1,4 +1,4 @@
-Function.prototype.bind2 = function (context) {
+const bind = function (context) {
   if (typeof this !== 'function') {
     throw new Error('非函数');
   }
