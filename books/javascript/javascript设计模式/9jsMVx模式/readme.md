@@ -399,4 +399,157 @@ view
 
 尽管实现特定于KnockoutJS，<div>包含文本’you have a really long name‘,还包含简单的验证。如果输入超过了10个字符，它才会展示，否则它一直隐藏。
 
-向前一个更高级的案例。
+下面有一个更高级的案例。我们回到我们的代办应用程序。这是一个修剪的KnockoutJS视图，包括所有必要的数据绑定，或许看起来像下面这样。
+
+```js
+<div id="todoapp">
+    <header>
+        <h1>Todos</h1>
+        <input id="new-todo" type="text" data-bind="value: current, valueUpdate: 'afterkeydown', enterKey: add"
+               placeholder="What needs to be done?"/>
+    </header>
+    <section id="main" data-bind="block: todos().length">
+ 
+        <input id="toggle-all" type="checkbox" data-bind="checked: allCompleted">
+        <label for="toggle-all">Mark all as complete</label>
+ 
+        <ul id="todo-list" data-bind="foreach: todos">
+ 
+           <!-- item -->
+            <li data-bind="css: { done: done, editing: editing }">
+                <div class="view" data-bind="event: { dblclick: $root.editItem }">
+                    <input class="toggle" type="checkbox" data-bind="checked: done">
+                    <label data-bind="text: content"></label>
+                    <a class="destroy" href="#" data-bind="click: $root.remove"></a>
+                </div>
+                <input class="edit" type="text"
+                       data-bind="value: content, valueUpdate: 'afterkeydown', enterKey: $root.stopEditing, selectAndFocus: editing, event: { blur: $root.stopEditing }"/>
+            </li>
+ 
+        </ul>
+ 
+    </section>
+</div>
+```
+
+注意，基础的标签布局相对直接，包含了一个添加新项目的输入框，用于将项目标记为完整的切换器和使用li格式的代办项目的模板列表。
+
+在上面标签中的数据绑定能够被分解像下面这样：
+
+## ViweModel
+
+viwemodel被认为是一个行为像一个数据转换器的特定控制器。它更改模型信息到视图信息中，从视图传递命令到模型。
+
+例如，让我们想想一下，我们有一个包含unix格式的数据属性的模型。而不是用户的日期视角的数据。转换属性到它的展示格式在当中是很重要的，我们的模型简单的保存数据的原生格式。我们的视图包含格式化的日期以及我们的viewmodel行为像两者的中间人。
+
+从这个意义上来说，viewmodel更像是一个模型，而不是视图，但是它处理大部分的视图展示逻辑。viewmodel也许还暴露出帮助维护视图状态的方法，基于视图上的行为更新模型以及触发视图上的事件。
+
+总的来说（总之），viwemodel位于我们的ui层之后。通过视图暴露需要的数据，可以被视为视图的数据和操作源。
+
+KnockoutJS解释viewmodel作为数据和操作的代表，它能够在ui上执行。这个不是ui本身，也不是持久化的数据模型，而宁可说是，一个层，它还可以保存用户正在使用的尚未保存的数据。Knockout的viewmodel由不了解html标签的js对象来实现。它的实现的抽象方法允许它们保持简单，意味着更多复杂的行为可以根据需要更容易地在顶层管理。
+
+因此，我们地代办应用程序地部分KnockoutJS viewmodel可能看起来像下面这样。
+
+```js
+// our main ViewModel
+    var ViewModel = function ( todos ) {
+        var self = this;
+ 
+    // map array of passed in todos to an observableArray of Todo objects
+    self.todos = ko.observableArray(
+    ko.utils.arrayMap( todos, function ( todo ) {
+        return new Todo( todo.content, todo.done );
+    }));
+ 
+    // store the new todo value being entered
+    self.current = ko.observable();
+ 
+    // add a new todo, when enter key is pressed
+    self.add = function ( data, event ) {
+        var newTodo, current = self.current().trim();
+        if ( current ) {
+            newTodo = new Todo( current );
+            self.todos.push( newTodo );
+            self.current("");
+        }
+    };
+ 
+    // remove a single todo
+    self.remove = function ( todo ) {
+        self.todos.remove( todo );
+    };
+ 
+    // remove all completed todos
+    self.removeCompleted = function () {
+        self.todos.remove(function (todo) {
+            return todo.done();
+        });
+    };
+ 
+    // writeable computed observable to handle marking all complete/incomplete
+    self.allCompleted = ko.computed({
+ 
+        // always return true/false based on the done flag of all todos
+        read:function () {
+            return !self.remainingCount();
+        },
+ 
+        // set all todos to the written value (true/false)
+        write:function ( newValue ) {
+            ko.utils.arrayForEach( self.todos(), function ( todo ) {
+                //set even if value is the same, as subscribers are not notified in that case
+                todo.done( newValue );
+            });
+        }
+    });
+ 
+    // edit an item
+    self.editItem = function( item ) {
+        item.editing( true );
+    };
+ ..
+```
+
+上面，我们基础地提供了需要添加地方法，编辑或者删除以及标记所有剩余项目为正在完成地逻辑。与前面地例子相比，viewmodel中唯一值得注意地真正区别是，可观察数组。在KnockoutJS中，如果我们想要在单独地对象上侦测和响应变更，我们能够使用可观察者。但是如果我们希望侦测和响应事物集合地变更，我们能是使用可观察着数组替代。一个如何使用可观察对象数据的更简单的案例也许看起来像这样：
+
+```js
+// Define an initially an empty array
+var myObservableArray = ko.observableArray();
+ 
+// Add a value to the array and notify our observers
+myObservableArray.push( 'A new todo item' );
+```
+
+如果感兴趣，我们能够从上面的TodoMVC查看完整的Knockout.js代办应用程序 。
+
+## 扼要重述：视图和viewmodel
+
+视图和视图模型使用事件绑定和事件来通信。正如我们在我们的初始化视图模型案例中看到的，视图模型不仅暴露模型属性而且访问其他方法和特性，例如验证。
+
+我们的视图处理它们自己的用户界面事件，必要时，映射它们到视图模型。视图模型上的模型和属性是同步的以及通过双向数据绑定来更新。
+
+触发器还允许我们进一步响应在我们的模型属性的状态中的变更。
+
+## 扼要重述：视图模型和模型
+
+尽管可能会出现，视图模型完整的负责mvvm中的模型，有一些值得注意的微妙的关系。视图模型能够暴露以数据绑定为目的的模型或者还可以包含暴露在视图中的获取和操作的属性的界面。
+
+## 赞成和反对
+
+现在，我们有希望能够更好的鉴赏mvvm是什么以及它是如何工作的。让我们查看使用这个模式的优点和缺点：
+
+优点：
+
+mvvm促进更容易并行ui的开发，以及构建驱动它的块。
+抽象视图而因此减少在它背后的代码中的业务逻辑的数量。
+视图模型比事件驱动的代码更容易单元测试。
+视图模型可以被测试，而不用关系ui自动化和交互。
+
+缺点：
+
+对于简单的ui，mvvm可能被过度使用。
+尽管数据绑定能够被定义并且很好的进行工作，但是它们比命令代码更难调试，在命令代码中，我们设置断点很简单。
+在重大应用程序中的数据绑定会创建大量薄记。我们也不想出现绑定比被绑定到的对象更重的情况。
+在巨大的应用程序中，预先设计视图模型以获得必要的泛化量可能更加困难。
+
+## 更宽松的数据绑定的mvvm
