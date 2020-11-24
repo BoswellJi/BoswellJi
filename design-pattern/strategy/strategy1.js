@@ -25,24 +25,25 @@ const validator = {
     return this.message.length !== 0;
   },
   // 验证类型
+  // 先定义好策略，根据使用的策略进行验证
   types: {
     isNonEmpty: {
       validate(value) {
         return value !== '';
       },
-      instructions: 'error'
+      instructions: 'error1'
     },
     isNumber: {
       validate(value) {
         return typeof value === 'number';
       },
-      instructions: 'error'
+      instructions: 'error2'
     },
     isAlphaNum: {
       validate(value) {
         return (/[^a-z0-9]/.test(value));
       },
-      instructions: 'error'
+      instructions: 'error3'
     }
   }
 };
@@ -50,7 +51,7 @@ const validator = {
 validator.validate({
   firstName: 'isNonEmpty',
   age: 2,
-  username: '#'
+  username: ''
 });
 
 console.log(validator.message);
