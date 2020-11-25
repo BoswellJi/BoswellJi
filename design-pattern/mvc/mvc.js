@@ -3,7 +3,6 @@
  * model: 维护自身的增删改查操作；
  * view:  维护自身页面的view的增删改查的操作；
  * controller: 控制用户的命令需要调用哪个模型，模型会更新哪个视图；（调度）
- * 
  */
 
 // controller
@@ -54,4 +53,5 @@ Animal.view = {
     document.getElementById('animalDo').innerHTML = Animal.model.getAnimalAction();
   }
 };
+
 Animal.start();
