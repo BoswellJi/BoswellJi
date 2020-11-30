@@ -119,6 +119,7 @@
 u = 不可数名词, uncountable noun的缩写
 c = 可数名词, countable noun的缩写
 pl = 复数, plural的缩写
+pref = prefix 前缀
 
 * 语气
   + 虚拟语气
