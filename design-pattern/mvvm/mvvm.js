@@ -1,7 +1,5 @@
 
-/**
- * 检测数据变更
- */
+// 检测数据变更
 class Observer {
   constructor(data) {
     let keys = Object.keys(data);
@@ -12,6 +10,7 @@ class Observer {
 }
 
 /**
+ * 定义响应式对象
  * @param {Object} data 数据源
  * @param {String} key 键
  * @param {String} val 值
@@ -43,7 +42,8 @@ function defineReactive(data, key, val) {
 }
 
 /**
- * 检查是否为对象，为对象进行递归监听 
+ * 检查是否为对象，为对象进行递归监听
+ * @params data 被观察的对象
  */
 function observer(data) {
   if (Object.prototype.toString.call(data) === '[object,Object]') {
@@ -53,9 +53,7 @@ function observer(data) {
   }
 }
 
-/**
- * 观察属性变化
- */
+// 观察属性变化
 class Watch {
   constructor(exp, cb) {
     this.exp = exp;
@@ -65,9 +63,7 @@ class Watch {
   }
 }
 
-/**
- * 收集每个key的依赖
- */
+// 收集每个key的依赖
 class Dep {
   constructor() {
     this.subs = [];
