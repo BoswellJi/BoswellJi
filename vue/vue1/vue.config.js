@@ -1,3 +1,5 @@
 module.exports = {
-  // publicPath:1
+  chainWebpack: config => {
+    config.optimization.minimize(false)
+  }
 }

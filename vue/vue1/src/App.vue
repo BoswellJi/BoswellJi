@@ -1,37 +1,35 @@
 <template>
   <div id="app" @click="clickFn">
-    {{msg}}
-    {{msgCopy}}
+    {{ msg }}
+    {{ msgCopy }}
   </div>
 </template>
 
 <script>
-
-
 export default {
   name: "App",
-  components: {
-    
-  },
+  components: {},
   created() {
-     
+    const arr = [1, 2, [3, 4]];
+    const arrTemp = arr.flat();
+    // console.log(arr);
   },
-  computed:{
-    msgCopy(){
-      return this.a+'d';
-    }
+  computed: {
+    msgCopy() {
+      return this.a + "d";
+    },
   },
-  data(){
+  data() {
     return {
-      msg:'abc',
-      name:'jmz'
+      msg: "abc",
+      name: "jmz",
     };
   },
-  methods:{
-    clickFn(){
-      this.a='jjj';
-      this.msg='name';
-    }
+  methods: {
+    clickFn() {
+      this.a = "jjj";
+      this.msg = "name";
+    },
   },
 };
 </script>
