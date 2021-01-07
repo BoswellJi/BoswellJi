@@ -1,35 +1,20 @@
 <template>
-  <div id="app" @click="clickFn">
-    {{ msg }}
-    {{ msgCopy }}
+  <div>
+    <test></test>
   </div>
 </template>
 
 <script>
+import test from './components/Test.vue';
 export default {
   name: "App",
-  components: {},
-  created() {
-    const arr = [1, 2, [3, 4]];
-    const arrTemp = arr.flat();
-    // console.log(arr);
-  },
-  computed: {
-    msgCopy() {
-      return this.a + "d";
-    },
+  components:{
+    test
   },
   data() {
     return {
-      msg: "abc",
       name: "jmz",
     };
-  },
-  methods: {
-    clickFn() {
-      this.a = "jjj";
-      this.msg = "name";
-    },
   },
 };
 </script>
