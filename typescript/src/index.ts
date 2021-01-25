@@ -1,33 +1,48 @@
-import 'reflect-metadata';
+import { injectable, inject, Container } from 'inversify';
+import "reflect-metadata";
+
+const TYPES = {
+  Katana: Symbol.for("Katana"),
+  Shuriken: Symbol.for("Shuriken"),
+};
+
+@injectable()
+class Katana {
+  public hit() {
+    console.log('cut');
+    return "cut!";
+  }
+}
+
+@injectable()
+class Shuriken {
+  constructor(
+    @inject(TYPES.Katana) public katana: Katana
+  ) {
+
+  }
+
+  public throw() {
+    return "hit!";
+  }
+}
 
 /**
- * 装饰器中会定义装饰对象的元数据（函数对象，参数，）
+ * ioc容器：
+ * 
+ * 1. 将所有类都注入到容器中，作为依赖使用
  */
+const myContainer = new Container();
+myContainer.bind<Shuriken>(TYPES.Shuriken).to(Shuriken);
+myContainer.bind<Katana>(TYPES.Katana).to(Katana);
 
-@a
-class A {
-  constructor(public name: string, age: number) {
-    // 使用反射获取到元数据
-  }
+/**
+ * 从容器中获取到指定token的依赖的实例
+ */
+const shuriken = myContainer.get<Shuriken>(TYPES.Shuriken);
+shuriken.katana.hit();
 
-  @b
-  a(a: number, b: string) {
-    return a + b;
-  }
+class Test{
 }
 
-
-
-function a(target: any) {
-  // 构造函数的元数据
-  console.log(Reflect.getMetadata("design:paramtypes", target), 'af');
-  console.log(target, 'a');
-}
-
-function b(target: any, key: string) {
-  // 构造函数的属性的元数据
-  console.log(Reflect.getMetadata("design:paramtypes", target, key), 'bf');
-  console.log(arguments, 'b');
-}
-
-
+console.log(Reflect.getMetadataKeys(Test));
