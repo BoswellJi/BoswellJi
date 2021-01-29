@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   mode:'development',
   entry: './typescript/src/index.ts',
-  devtool: 'source-map',
+  // devtool: 'source-map',
   module: {
     rules: [
       {
@@ -19,5 +19,6 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'typescript/dist'),
+    publicPath:'/'
   },
 };
