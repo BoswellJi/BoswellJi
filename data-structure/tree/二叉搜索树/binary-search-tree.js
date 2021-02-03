@@ -1,9 +1,3 @@
-/**
- * 二叉查找树
- * 1. 左子树节点数据小于父节点数据
- * 2. 右子树节点数据大于父节点数据
- */
-
 function Node(key) {
     this.key = key;
     this.left = null;
