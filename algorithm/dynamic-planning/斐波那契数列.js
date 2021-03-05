@@ -24,6 +24,7 @@ function recurFib(n) {
 }
 
 /**
+ * 从下到上 从小到大
  * 斐波那契数列之和
  * @param {*} n 数列长度
  */
@@ -40,4 +41,34 @@ function recurFib(n) {
   return sum;
 }
 
-console.log(recurFib(6));
+/**
+ * 斐波那契数列之和，递归版本
+ * @param {*} n 数列长度
+ */
+console.time();
+function recurFib1(n) {
+  if (n == 0 || n == 1) return n;
+  return recurFib1(n - 2) + recurFib1(n - 1);
+}
+recurFib1(20);
+console.timeEnd();
+
+
+/**
+ * 从上到下 从大到小
+ */
+console.time();
+const memo = [];
+function recurFib(n) {
+  if (n == 0 || n == 1) return n;
+
+  if (!memo[n]) {
+    memo[n] = recurFib(n - 2) + recurFib(n - 1);
+  }
+
+  return memo[n];
+}
+recurFib(20);
+console.timeEnd();
+
+
