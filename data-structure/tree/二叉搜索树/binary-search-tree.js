@@ -15,13 +15,14 @@ BinarySearchTree.prototype = {
     *  @param {Node} newNode 插入的新节点
     */
     insertNode(node, newNode) {
+        // 新节点的值小于老节点的值就放到左边分支
         if (newNode.key < node.key) {
             if (node.left === null) {
                 node.left = newNode;
             } else {
                 this.insertNode(node.left, newNode);
             }
-        } else {
+        } else { // 新节点的值大于老节点的值就放到右边分支
             if (node.right === null) {
                 node.right = newNode;
             } else {
@@ -43,8 +44,10 @@ BinarySearchTree.prototype = {
         }
     },
     /**
-     * 中序遍历
-     * 1. 从左树中遍历，找到最小的开始
+     * 中序遍历：左边遍历完成再输出节点值
+     * 1. 先输出左子树节点，再输出根，最后输出右子树节点（先输出左子树，就会从最小的开始输出，右子树从最小的开始）；
+     * 2. 从小到大输出；
+     * 3. 左子树与右子树根据大小混合输出；
      * @param {*} node 
      * @param {*} cb 
      */
@@ -56,8 +59,9 @@ BinarySearchTree.prototype = {
         }
     },
     /**
-     * 先序遍历
-     * 1. 从根节点开始，先访问左侧节点，在访问右侧节点
+     * 先序遍历：先输出节点值
+     * 1. 先输出根，
+     * 1. 左子树是从大到小，右子树是从小到大；（先输出左子树，再输出右子树
      * @param {*} node 
      * @param {*} cb 
      */
@@ -69,8 +73,8 @@ BinarySearchTree.prototype = {
         }
     },
     /**
-     * 后序遍历
-     * 1. 从根节点开始首先遍历左树，然后遍历右树，最后是根节点
+     * 后序遍历：
+     * 1. 先输出右子树的值，再输出左子树的值，最后根（先输出右子树，就会从最大的开始输出）
      * @param {*} node 
      * @param {*} cb 
      */
@@ -168,15 +172,16 @@ BinarySearchTree.prototype = {
 };
 
 var binTree = new BinarySearchTree();
+
 binTree.insert(6);
+binTree.insert(3);
 binTree.insert(2);
+binTree.insert(1);
 binTree.insert(3);
 binTree.insert(4);
 binTree.insert(5);
 binTree.insert(7);
-binTree.insert(7);
 binTree.insert(8);
-binTree.insert(9);
 
 binTree.removeNode(binTree.root, 0);
 
@@ -184,22 +189,22 @@ function printNode(val) {
     console.log(val);
 }
 
-console.log('先序遍历');
-/**
- * 1. 根节点
- * 2. 左右子树，都是从小到大（从左子树开始
- */
-binTree.preOrderTraverse(binTree.root, printNode);
-
 console.log('中序遍历');
 /**
  * 从小到大升序遍历
  */
 binTree.inOrderTraverse(binTree.root, printNode);
 
+console.log('先序遍历');
+/**
+ * 1. 根节点
+ * 2. 从右子树开始遍历，
+ */
+binTree.preOrderTraverse(binTree.root, printNode);
+
 console.log('后序遍历');
 /**
- * 1. 左右子树都是从大到小（从左子树开始
+ * 1. 左子树都是从小到大，右子树从大到小
  * 2. 根节点
  */
 binTree.postOrderTraverse(binTree.root, printNode);
