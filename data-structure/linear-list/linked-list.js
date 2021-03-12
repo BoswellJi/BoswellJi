@@ -14,6 +14,8 @@ function LinkedList() {
     this.head = null;
 }
 
+exports.LinkedList = LinkedList;
+
 LinkedList.prototype = {
     append(el) {
         var node = new Node(el),
@@ -110,7 +112,6 @@ LinkedList.prototype = {
     showAll() {
         let head = this.getHead();
         while (head) {
-            console.log(head.element);
             head = head.next;
         }
     },

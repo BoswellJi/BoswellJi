@@ -2,12 +2,6 @@ var commonChars = function (A) {
   let first = A[0];
   let arr = [];
 
-  // A.forEach((item) => {
-  //   if (item.length < first.length) {
-  //     first = item;
-  //   }
-  // });
-
   const charArr = first.split('');
 
   charArr.forEach((char) => {
