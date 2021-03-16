@@ -9,9 +9,10 @@ function quickSort(arr) {
   if (arr.length < 2) {
     return arr;
   }
-  const less = [],
-    great = [],
-    max = arr[0];
+  
+  let less = [];
+  let great = [];
+  let max = arr[0];
 
   for (let i = 1, len = arr.length; i < len; i++) {
     if (arr[i] > max) {
@@ -21,7 +22,7 @@ function quickSort(arr) {
     }
   }
 
-  return quickSort(less).concat([max],quickSort(great));
+  return quickSort(less).concat([max], quickSort(great));
 }
 
-console.log(quickSort([1, 2, 3, 4, 5, 1, 2,1,3,4,5,6,7]));
+console.log(quickSort([1, 2, 3, 4, 5, 1, 2, 1, 3, 4, 5, 6, 7]));

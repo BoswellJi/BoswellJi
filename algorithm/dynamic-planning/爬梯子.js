@@ -19,6 +19,24 @@ function climbStairs(n) {
   }
 
   return dp[n];
-};
+}
 
-console.log(climbStairs(3));
+console.time();
+const map = {};
+const dp = [];
+
+function climbStairs(n) {
+  if (map[n]) return map[n];
+
+  if (n == 1) return 1;
+  if (n == 2) return 2;
+
+  dp[n] = climbStairs(n - 1) + climbStairs(n - 2);
+
+  map[n] = dp[n];
+
+  return dp[n];
+}
+console.log(climbStairs(100));
+
+console.timeEnd();
