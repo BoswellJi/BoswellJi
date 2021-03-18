@@ -1,26 +1,35 @@
 /**
- * DP[k][i] 第i天最多k笔交易下的最大利润
+ * buy[i][j] 进行恰好j笔交易，手上恰好持有一支股票，这种情况下的最大利润；
  *
- * 这样就可以根据初始状态一步一步地推到目标状态
- *
- * DP[0][0] = 0;
- *
- * DP[k][i] = max(DP[k][i-1],DP[k-1][i-1]+prices[i]);
+ * sell[i][j] 进行j笔交易，手上恰好不持股票，这种情况下的最大利润；
  */
 
-function maxProfit(prices, times) {
-  let DP = new Array(times+1).fill([]);
+function maxProfit(k, prices) {
+  if (prices.length <= 0) {
+    return 0;
+  }
 
-  for (let k = 1; k < times + 1; k++) {
-    let tempMax = -prices[0];
-    for (let i = 1; i < prices.length; i++) {
-      DP[k][i] = Math.max(DP[k][i - 1], prices[i] + tempMax);
-      tempMax = Math.max(tempMax, DP[k - 1][i - 1] - prices[i]);
+  const n = prices.length;
+  k = Math.min(k, Math.floor(n / 2));
+  const buy = new Array(n).fill(0).map(() => new Array(k + 1).fill(0));
+  const sell = new Array(n).fill(0).map(() => new Array(k + 1).fill(0));
+
+  buy[0][0] = -prices[0];
+  sell[0][0] = 0;
+  for (let i = 1; i <= k; i++) {
+    buy[0][i] = sell[0][i] = -Number.MAX_VALUE;
+  }
+
+  for (let i = 1; i < n; i++) {
+    buy[i][0] = Math.max(buy[i - 1][0], sell[i - 1][0] - prices[i]);
+    for (let j = 1; j <= k; j++) {
+      buy[i][j] = Math.max(buy[i - 1][j], sell[i - 1][j] - prices[i]);
+      sell[i][j] = Math.max(sell[i - 1][j], buy[i - 1][j - 1] + prices[i]);
     }
   }
 
-  return DP[times][prices.length - 1];
+  return Math.max(...sell[n - 1]);
 }
 
-const profit = maxProfit([1, 2, 3], 3);
+const profit = maxProfit(5, [2,4,1,9,10]);
 console.log(profit);
