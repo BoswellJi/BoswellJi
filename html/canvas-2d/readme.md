@@ -36,6 +36,13 @@
   2. 当设置元素的width和height属性时，实际上是同时修改该元素本身的大小，与元素绘图表面的大小。设置css来设定canvas元素的大小，只会改变元素本身的大小，不会影响到绘图表面；
   3. 使用css这是canvas大小等于缩放了坐标系；
 
+```公式
+  转换一些限制左，右，上，下的实数坐标系为范围从左边为0右边为800以及上边为0下边为600的像素坐标系。
+
+  newX = ((oldX-left)/(right-left)) * 800；
+  newY = ((oldY-top)/(bottom-top))* 600; 
+``` 
+
   ## 绘制模型
 
   1. 理解canvas如何绘制图形，图像，文本，需要理解阴影，alpha通道，剪辑区域及图像合成等内容；
@@ -69,11 +76,15 @@
 
 * [incubator-echarts/echarts](https://github.com/apache/incubator-echarts)
 
-``` 
-图表与可视化库
 ```
 
+图表与可视化库
+
+``` 
+
 * [zrender](https://github.com/ecomfe/zrender)
+
 ```
+
 一个轻量的提供给echart的2d绘制的canvas库
 ```
