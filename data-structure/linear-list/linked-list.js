@@ -112,6 +112,7 @@ LinkedList.prototype = {
     showAll() {
         let head = this.getHead();
         while (head) {
+            console.log(head);
             head = head.next;
         }
     },
@@ -128,12 +129,15 @@ const list1 = new LinkedList();
 list1.append(2);
 list1.append(4);
 list1.append(6);
+list1.append(7);
 
-// 遍历链表
-list.showAll();
+// list.showAll();
 
-const listAll = mergeTwoLists(list1,list);
+// const listAll = mergeTwoLists(list1, list);
+// console.log(listAll);
 
+const l1 = reverseBetween(list1.head, 2,4);
+console.log(l1);
 
 // 合并有序链表
 function mergeTwoLists(l1, l2) {
@@ -151,29 +155,68 @@ function mergeTwoLists(l1, l2) {
         return l1;
     }
 };
+
 // 反转链表
-function reverseList1(head) {
+function reverse(head) {
     if (head == null || head.next == null) {
         return head
     }
-    const current = reverseList(head.next);
+
+    let curr = head.next;
+    let tmp;
+    let current;
+    while (curr) {
+        tmp = curr.next
+        curr.next = current
+        current = curr
+        curr = tmp
+    }
 
     head.next.next = head;
     head.next = null
     return current;
 };
-function reverseList(head) {
-    let prev = null, curr = head, tmp
-    // 从头节点开始
-    while (curr) {
-        // 后一个节点
-        tmp = curr.next
-        // 当前节点的前一个节点
-        curr.next = prev
-        // 当前节点给前一个
-        prev = curr
-        // 后一个给到当前
-        curr = tmp
+
+/**
+ * 反转链表
+ * @param {*} head 
+ */
+function reverse(head) {
+    if (head.next == null) return head;
+    const last = reverse(head.next);
+    head.next.next = head;
+    head.next = null;
+    return last;
+}
+
+/**
+ * 反转链表的第n位
+ * @param {*} head 
+ * @param {*} n 
+ */
+var successor = null;
+function reverse(head, n) {
+    if (n == 1) {
+        successor = head.next;
+        return head;
     }
-    return prev
-};
+    let last = reverse(head.next, n - 1);
+    head.next.next = head;
+    head.next = successor;
+    return last;
+}
+
+/**
+ * 反转链表的其中一部分
+ * @param {*} head 
+ * @param {*} m 
+ * @param {*} n 
+ * @returns 
+ */
+function reverseBetween(head, m, n) {
+    if (m == 1) {
+        return reverse(head, n);
+    }
+    head.next = reverseBetween(head.next, m - 1, n - 1);
+    return head;
+}
