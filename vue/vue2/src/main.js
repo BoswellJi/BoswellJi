@@ -3,10 +3,9 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 
-new Vue({
-  created() {
-    console.log('Vue', this);
-  },
+const vm = new Vue({
   render: h => h(App),
-}).$mount('#app')
+});
+
+vm.$mount('#app');
 
