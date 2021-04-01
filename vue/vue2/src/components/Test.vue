@@ -1,6 +1,13 @@
+<template>
+  <div>
+    <test1></test1>
+  </div>
+</template>
 <script>
+import textMixin from "./text-mixin";
 export default {
   name: "test",
+  mixins: [textMixin],
   props: {
     name: String,
   },
@@ -19,13 +26,6 @@ export default {
     clickhandle() {
       this.text = "test1";
     },
-  },
-  render(h) {
-    return (
-      <div on-click={this.clickhandle}>
-        {this.text} {this.name}
-      </div>
-    );
   },
 };
 </script>
