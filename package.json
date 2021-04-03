@@ -8,8 +8,11 @@
   },
   "dependencies": {
     "@sigi/di": "^2.4.4",
+    "express": "^4.17.1",
     "inversify": "^5.0.5",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "vue": "^2.6.12",
+    "vue-server-renderer": "^2.6.12"
   },
   "devDependencies": {
     "jest": "^26.6.3",

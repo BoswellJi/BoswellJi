@@ -1,12 +1,10 @@
-const { test1, fetchUserInfo, forEach, timeGame } = require("./index");
-
 const val = { object: {} };
 val.circularReference = val;
 val[Symbol("foo")] = "foo";
 val.map = new Map([["prop", "value"]]);
 val.array = [-0, Infinity, NaN];
 
-beforeAll(() => {});
+beforeAll(() => { });
 
 test("test function return test1", () => {
   expect(test1()).toBe("test1");
