@@ -67,7 +67,7 @@ ko.applyBindings(aViewModel);
 
 view
 
-```js
+```html
 <p><input id="source" data-bind="value: contactName, valueUpdate: 'keyup'" /></p>
 <div data-bind="visible: contactName().length > 10">
     You have a really long name!
@@ -82,7 +82,7 @@ view
 
 下面有一个更高级的案例。我们回到我们的代办应用程序。这是一个修剪的KnockoutJS视图，包括所有必要的数据绑定，或许看起来像下面这样。
 
-```js
+```html
 <div id="todoapp">
     <header>
         <h1>Todos</h1>

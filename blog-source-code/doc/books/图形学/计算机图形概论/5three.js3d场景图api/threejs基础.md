@@ -22,16 +22,16 @@ three.js库由大量的类组成。最基本的三个是，THREE. Scene, THREE. 
 场景是三个对象中最简单的。一个场景能够被是使用一个没有参数的构造函数THREE. Scene类型的对象来创建.
 
 ``` js
-scene = new THREE.Scene
+const scene = new THREE.Scene
 ```
 
 scene.add(item)函数通常被用来添加照相机，灯光，和图形对象到场景中。它可能是你唯一需要调用的scene函数, scene.remove(item)函数会从场景中移除一个项目，也偶尔有用。
 
 有两种类型的相机，一种是正射投影，一种是透视投影。它们用 `THREE.Camera` 的子类， `THREE.OrthographicCamera` 和 `THREE.PerspectiveCamera` 类来表示。使用Opengl中熟悉的参数来指定投影。
 
-``` js
-camera = new THREE.OrthographicCamera(left, right, top, bottom, near, far);
-camera = new THREE.PerspectiveCamera(fieldOfViewAngle, aspect, near, far);
+```js
+var camera = new THREE.OrthographicCamera(left, right, top, bottom, near, far);
+var camera = new THREE.PerspectiveCamera(fieldOfViewAngle, aspect, near, far);
 ```
 
 正射照相机参数指定可视空间的`x, y, z`限制，在眼睛坐标系中，就是说，在一个坐标系系统中，照相机在`（0, 0, 0）`位置看向z轴的负轴方向, 和视图中指向上的y轴。`near`和`far`参数根据到照相机的距离给出`z`限制。对于正射投影，`near`可以是负的，放置`near`的裁剪面在照相机的后面。除了指定上和下裁剪面的参数顺序颠倒之外，与openglglOrtho()函数是相同的。

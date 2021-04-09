@@ -1,36 +1,40 @@
 <template>
   <div>
-    <!-- <test :name="name"></test> -->
+    <test @testClickHandle="testClickHandle"></test>
+    <test1 @test1ClickHandle="test1ClickHandle"></test1>
     <div id="text">
       {{ text }}
     </div>
-    <button @click="clickhandle">点击</button>
+    <button @click="appClickhandle">点击</button>
   </div>
 </template>
 
 <script>
-// @ts-ignore
 import test from "./components/test";
+import test1 from "./components/test1";
+import hoc from "./hoc.jsx";
+import { createHOC } from "vue-hoc";
+
+const options = {
+  created() {
+    console.log("Created");
+  },
+};
 
 export default {
   name: "App",
   components: {
-    test,
+    testHoc: hoc(test),
+    test: createHOC(test, options),
+    test1: createHOC(test1, options),
   },
   mounted() {
     // 这里有一个任务更新队列的问题,所以是有顺序的
     this.$nextTick(function () {
       const dom = document.querySelector("#text");
-      // @ts-ignore
       console.log(dom.innerHTML);
     });
     this.text = "async";
-  },
-  beforeUpdate() {
-    console.log("app before update");
-  },
-  updated() {
-    console.log("app updated");
   },
   data() {
     return {
@@ -39,7 +43,15 @@ export default {
     };
   },
   methods: {
-    clickhandle() {},
+    appClickhandle() {
+
+    },
+    test1ClickHandle(e) {
+      console.log(e);
+    },
+    testClickHandle(e) {
+      console.log(e);
+    },
   },
 };
 </script>

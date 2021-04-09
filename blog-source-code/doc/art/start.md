@@ -1,5 +1,70 @@
 # 前言
 
+## 声明
+
+这个人才是作者，我只是为了学习方便才拿过来的，@[HcySunYang](https://github.com/HcySunYang)，感谢。
+
+## 目录
+
+### core
+
+* [1start-learn.md](./1start-learn.md)
+* [2vue-constructor.md](./2vue-constructor.md)
+* [3vue-example.md](./3vue-example.md)
+* [4vue-normalize.md](./4vue-normalize.md)
+* [5vue-merge.md](./5vue-merge.md)
+* [6vue-init-start.md](./6vue-init-start.md)
+* [7vue-reactive.md](./7vue-reactive.md)
+* [8vue-reactive-dep-watch.md](./8vue-reactive-dep-watch.md)
+* [9vue-state-init.md](./9vue-state-init.md)
+* [10vue-core-idea.md](./10vue-core-idea.md)
+* [80vue-compiler-start.md](./80vue-compiler-start.md)
+* [81vue-parse-ast.md](./81vue-parse-ast.md)
+* [82vue-parsing.md](./82vue-parsing.md)
+* [83vue-codegen.md](./83vue-codegen.md)
+* [84vue-vdom.md](./84vue-vdom.md)
+* [85vue-vdom-patch.md](./85vue-vdom-patch.md)
+
+### more
+
+* [README.md](./more/README.md)
+* [vue-hoc.md](./more/vue-hoc.md)
+
+### appendix
+
+* [compiler-options.md](./appendix/compiler-options.md)
+* [core-util.md](./appendix/core-util.md)
+* [README.md](./appendix/README.md)
+* [shared-util.md](./appendix/shared-util.md)
+* [vue-global-api.md](./appendix/vue-global-api.md)
+* [vue-ins.md](./appendix/vue-ins.md)
+* [vue-prototype.md](./appendix/vue-prototype.md)
+* [web-util.md](./appendix/web-util.md)
+
+## 为什么开源？
+
+因为：`vue` 没收大家一分钱，我们怎么能踩着 `vue` 的肩膀收大家得钱，如果你感受到我们的诚意可以选择捐赠。
+
+## 需要你的帮助
+
+* 如果你在阅读过程中发现错别字，可以直接点击文章最下边的 **错别字纠正** 链接，帮助修改错别字。
+* 如果你在阅读过程中发现任何问题，请到Github仓库：[vue-design](https://github.com/HcySunYang/vue-design) 提交 `issue`。
+* 关于 `Vue` 的使用或者源码方面的问题，大家就别去 `Vue` 的仓库中开 `issue` 问了，少给开发者找麻烦也算做贡献。不过欢迎大家来 [vue-design](https://github.com/HcySunYang/vue-design) 中开 `issue` 讨论。
+
+## 捐赠
+
+在你捐赠之前，我希望你能优先选择捐赠 `vue`: [这份爱应该给Vue](https://cn.vuejs.org/support-vuejs/#One-time-Donations)
+
+如果你真的能从这套文章中感受到我们的诚意且真正学到知识，并且你愿意再慷慨一点的话，那真是太好了，这将成为我们更新文章的动力，说实话写高质量的文章很费精力。可以选择：
+
+* `A`：微信
+
+<img :src="$withBase('/weixin.jpg')" alt="foo" width="300">
+
+* `B`：支付宝
+
+<img :src="$withBase('/zfb.jpg')" alt="foo" width="300">
+
 ## 前言之前
 
 有的同学可能会有疑问，比如：**你又不是作者本人，你的分析靠谱吗**、**Vue.js又不是你写的，谁知道你分析的对不对** 等等。
