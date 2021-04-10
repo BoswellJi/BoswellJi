@@ -1,5 +1,5 @@
 <template>
-  <div @click="clickhandle">test</div>
+  <div @click="clickhandle">test{{ text }}</div>
 </template>
 <script>
 // @ts-ignore
@@ -11,13 +11,14 @@ export default {
   },
   data() {
     return {
-      text: "test",
+      text: "",
     };
   },
   methods: {
     clickhandle() {
       // @ts-ignore
-      this.$emit('testClickHandle','testClickHandle');
+      this.text = this.text == undefined ? 0 : undefined;
+      this.$emit("testClickHandle", "testClickHandle");
     },
   },
 };
