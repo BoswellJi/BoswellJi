@@ -1,6 +1,9 @@
 <script>
 	export default {
 		onLaunch: function() {
+			uni.showLoading({
+				title:'loading'
+			});
 			console.log('App Launch')
 		},
 		onShow: function() {
