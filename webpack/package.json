@@ -1,0 +1,19 @@
+{
+  "name": "webpack-learn",
+  "version": "1.0.0",
+  "description": "1. 开始加载入口模块，为的是执行模块；",
+  "main": "webpack.config.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "dev":"webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.33.2",
+    "webpack-cli": "^4.6.0"
+  }
+}

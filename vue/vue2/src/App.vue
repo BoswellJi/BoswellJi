@@ -2,9 +2,9 @@
   <div>
     <test @testClickHandle="testClickHandle"></test>
     <test1 @test1ClickHandle="test1ClickHandle"></test1>
-    <div id="text">
-      {{ text }}
-    </div>
+    <div id="text">{{text}}</div>
+    <div >{{name}}</div>
+    <div>{{age}}</div>
     <button @click="appClickhandle">点击</button>
   </div>
 </template>
@@ -17,7 +17,7 @@ import { createHOC } from "vue-hoc";
 
 const options = {
   created() {
-    console.log("Created");
+    console.log("Created",'createHOC');
   },
 };
 
@@ -28,23 +28,27 @@ export default {
     test: createHOC(test, options),
     test1: createHOC(test1, options),
   },
+  created(){
+    console.log(this);
+  },
   mounted() {
     // 这里有一个任务更新队列的问题,所以是有顺序的
     this.$nextTick(function () {
       const dom = document.querySelector("#text");
       console.log(dom.innerHTML);
     });
-    this.text = "async";
   },
   data() {
     return {
       text: "sync",
       name: "Boswell",
+       age: 21,
     };
   },
   methods: {
     appClickhandle() {
-
+      this.text = 'sync1';
+      this.name = 'ok';
     },
     test1ClickHandle(e) {
       console.log(e);

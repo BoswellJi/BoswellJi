@@ -21,7 +21,9 @@ export default {
 			name:'df'
     };
   },
-  onLoad() {},
+  onLoad() {
+    
+  },
   methods: {
     tapHandle() {
       this.title = this.title == "Boswell" ? "Hello" : "Boswell";
