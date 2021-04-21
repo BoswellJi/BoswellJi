@@ -1,10 +1,10 @@
 /**
+ * 第一种写法：
  * 二分搜索的前提：有序的数组；
  * @param {*} arr 
  * @param {*} target 
  * @returns 
  */
-
 function searchNumber(arr, target) {
   let left = 0;
   let right = arr.length - 1;
@@ -25,6 +25,60 @@ function searchNumber(arr, target) {
   }
 
   return -1;
+}
+
+/**
+ * 第二种写法：
+ * 二分搜索的前提：有序的数组；
+ * @param {*} arr 
+ * @param {*} target 
+ * @returns 
+ */
+ function searchNumber(arr, target) {
+  let left = 0;
+  let right = arr.length;
+  
+  while (left < right) {
+    // 计算中间位置
+    let mid =  (right + left) / 2;
+
+    if (arr[mid] == target) {
+      right = mid;
+    } else if (arr[mid] < target) {
+      left = mid + 1;
+    } else if (arr[mid] > target) {
+      right = mid ;
+    }
+  }
+
+  return left;
+}
+
+/**
+ * 第三种写法：
+ * 二分搜索的前提：有序的数组；
+ * @param {*} arr 
+ * @param {*} target 
+ * @returns 
+ */
+ function searchNumber(arr, target) {
+  let left = 0;
+  let right = arr.length;
+  
+  while (left < right) {
+    // 计算中间位置
+    let mid =  (right + left) / 2;
+
+    if (arr[mid] == target) {
+      left = mid + 1;
+    } else if (arr[mid] < target) {
+      left = mid + 1;
+    } else if (arr[mid] > target) {
+      right = mid ;
+    }
+  }
+
+  return left-1;
 }
 
 /**
