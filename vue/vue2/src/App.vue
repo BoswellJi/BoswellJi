@@ -1,10 +1,17 @@
 <template>
   <div>
     <test @testClickHandle="testClickHandle"></test>
-    <test1 @test1ClickHandle="test1ClickHandle"></test1>
-    <div id="text">{{text}}</div>
-    <div >{{name}}</div>
-    <div>{{age}}</div>
+    <test1 @test1ClickHandle="test1ClickHandle">
+      <template v-slot:default="slotProps">
+        default slot content<br />
+        user:{{ slotProps.user.name }}<br />
+        person:{{ slotProps.person.name }}<br />
+      </template>
+      <template v-slot:header="slotProps"> header slot content </template>
+    </test1>
+    <div id="text">{{ text }}</div>
+    <div>{{ name }}</div>
+    <div>{{ age }}</div>
     <button @click="appClickhandle">点击</button>
   </div>
 </template>
@@ -17,7 +24,7 @@ import { createHOC } from "vue-hoc";
 
 const options = {
   created() {
-    console.log("Created",'createHOC');
+    console.log("Created", "createHOC");
   },
 };
 
@@ -28,8 +35,8 @@ export default {
     test: createHOC(test, options),
     test1: createHOC(test1, options),
   },
-  created(){
-    console.log(this);
+  created() {
+    
   },
   mounted() {
     // 这里有一个任务更新队列的问题,所以是有顺序的
@@ -42,13 +49,13 @@ export default {
     return {
       text: "sync",
       name: "Boswell",
-       age: 21,
+      age: 21,
     };
   },
   methods: {
     appClickhandle() {
-      this.text = 'sync1';
-      this.name = 'ok';
+      this.text = "sync1";
+      this.name = "ok";
     },
     test1ClickHandle(e) {
       console.log(e);

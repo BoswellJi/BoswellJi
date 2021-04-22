@@ -14,3 +14,9 @@
 * web worker : 逻辑层（线程
 
 * iframe： 渲染层（线程
+
+## 运行时
+
+* 小程序对js的支持程度：
+  - 语法：babel
+  - api: polyfill
