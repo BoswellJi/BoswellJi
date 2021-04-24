@@ -7,7 +7,9 @@
         user:{{ slotProps.user.name }}<br />
         person:{{ slotProps.person.name }}<br />
       </template>
-      <template v-slot:header="slotProps"> header slot content </template>
+      <template v-slot:header="slotProps">
+        {{ slotProps }}
+      </template>
     </test1>
     <div id="text">{{ text }}</div>
     <div>{{ name }}</div>
@@ -35,9 +37,7 @@ export default {
     test: createHOC(test, options),
     test1: createHOC(test1, options),
   },
-  created() {
-    
-  },
+  created() {},
   mounted() {
     // 这里有一个任务更新队列的问题,所以是有顺序的
     this.$nextTick(function () {
