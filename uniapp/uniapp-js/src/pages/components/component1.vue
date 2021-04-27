@@ -1,6 +1,10 @@
 <template>
   <view class="content">
-   component1
+    <view>
+      component1
+    </view>
+    <slot :user="name"></slot>
+    <slot :name="'header'" :title="title"></slot>
   </view>
 </template>
 
@@ -9,15 +13,11 @@ export default {
   data() {
     return {
       title: "Hello",
-			name:'df'
+      name: "df",
     };
   },
-  methods: {
-     
-  },
+  methods: {},
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

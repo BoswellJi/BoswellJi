@@ -1,6 +1,4 @@
-## vue-cli
-
-
+## uniapp与vue编译结果的异同
 
 ## 模板
 

@@ -1,11 +1,21 @@
 <template>
   <view class="content">
-    <image class="logo" src="/static/logo.png"></image>
     <view>
       <text class="title">{{ title }}</text>
       <button @tap="tapHandle">点击</button>
     </view>
-    <component1></component1>
+    <component1>
+       <template v-slot.default="slotProps">
+        <view>
+          default slot content{{slotProps.user}}
+        </view>
+       </template>
+       <template v-slot.header="slotProps">
+        <view>
+          header  slot content{{slotProps.title}}
+        </view>
+       </template>
+    </component1>
   </view>
 </template>
 
