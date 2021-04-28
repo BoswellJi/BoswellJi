@@ -12,9 +12,12 @@
   + 计算机网络
 
 * 兼容性：
+  + 平台的支持程度；
 
 * 工程化：
   + 单元测试；
+  + 语法检查；
+  + 代码规范；
   + 构建打包；
 
 * 3D图形系统开发：
@@ -28,21 +31,37 @@
 
 ## 学习方法
 
-1. 每天坚持学：algorithm,data structure,English,JavaScript,WebGL;
-2. 带着学：uniapp,vue,design pattern;
+1. 每天坚持学：algorithm,data structure,uniapp,vue;
+2. 带着学：design pattern,WebGL,English,JavaScript;
 3. 一定不能让自己陷入，重复学习，反复学习，那些非重点的部分的知识，这会干扰判断；
 
 ## 学习规划
 
 上午：
-
 8:00 - 9:00 图形
 
 中午：
-
 12:00 - 13:00 金融
 
 晚上：
-
 21:00 - 22:00 算法
 22:30 - 23:30 金融
+
+## 作为程序员（前端工程师），我可以实现哪些东西落地？
+
+## 应用产品
+
+* pc程序；
+* android/ios程序；
+* web程序；
+* 小程序；
+
+## 工具产品
+
+* 命令行工具: npm
+* 组件: element
+* 类库: lodash
+* 框架: vue
+* 打包工具：webpack
+* 编译工具：babel
+* 编程语言： js
