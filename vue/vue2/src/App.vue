@@ -1,6 +1,6 @@
 <template>
   <div>
-    <test @testClickHandle="testClickHandle"></test>
+    <test @testClickHandle="appClickhandle"></test>
     <test1 @test1ClickHandle="test1ClickHandle">
       <template v-slot:default="slotProps">
         default slot content<br />
@@ -11,10 +11,6 @@
         {{ slotProps }}
       </template>
     </test1>
-    <div id="text">{{ text }}</div>
-    <div>{{ name }}</div>
-    <div>{{ age }}</div>
-    <button @click="appClickhandle">点击</button>
   </div>
 </template>
 
@@ -37,13 +33,13 @@ export default {
     test: createHOC(test, options),
     test1: createHOC(test1, options),
   },
-  created() {},
   mounted() {
     // 这里有一个任务更新队列的问题,所以是有顺序的
     this.$nextTick(function () {
       const dom = document.querySelector("#text");
-      console.log(dom.innerHTML);
+      console.log(dom?.innerHTML);
     });
+    console.log(this);
   },
   data() {
     return {
@@ -59,10 +55,7 @@ export default {
     },
     test1ClickHandle(e) {
       console.log(e);
-    },
-    testClickHandle(e) {
-      console.log(e);
-    },
+    }
   },
 };
 </script>

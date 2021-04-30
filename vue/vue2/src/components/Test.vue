@@ -2,7 +2,6 @@
   <div @click="clickhandle">test{{ text }}</div>
 </template>
 <script>
-// @ts-ignore
 export default {
   name: "test",
   components: {},
@@ -16,7 +15,6 @@ export default {
   },
   methods: {
     clickhandle() {
-      // @ts-ignore
       this.text = this.text == undefined ? 0 : undefined;
       this.$emit("testClickHandle", "testClickHandle");
     },

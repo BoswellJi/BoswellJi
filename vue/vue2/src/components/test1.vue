@@ -11,11 +11,10 @@
  * 具名插槽
  * 作用域插槽
  */
-// @ts-ignore
 export default {
   name: "test1",
   created(){
-    console.log(this);
+    
   },
   data() {
     return {
@@ -26,7 +25,6 @@ export default {
   },
   methods: {
     clickhandle() {
-      // @ts-ignore
       this.$emit("test1ClickHandle", "test1ClickHandle");
     },
   },

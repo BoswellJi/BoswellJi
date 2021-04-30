@@ -41,3 +41,41 @@ const vnode: VNode = {
     appContext: null
 }
 ```
+
+## vue 执行流程
+
+- createApp()
+
+  - ensureRenderer
+
+    - createRenderer
+      - render
+      - createAppAPI
+
+  - createApp(createAppAPI 中的)
+    - createAppContext
+    - App object
+
+- mount()
+  - mount
+    - createVnode
+      - normalizeChildren
+    - render
+      - patch
+        - processComponent
+          - mountComponent
+            - setupComponent
+      - unmount
+
+
+## renderer
+
+* 从根组件开始渲染 App.vue
+```js
+// 组件参数：
+{
+  name: "App",
+  props: {msg: ()=>{}},
+  render:()=>{},
+}
+```
