@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    {{msg}}
     <div id="con"></div>
   </div>
 </template>
