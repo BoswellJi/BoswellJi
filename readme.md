@@ -15,19 +15,19 @@
   + 平台的支持程度；
 
 * 工程化：
-  + 单元测试；
-  + 语法检查；
-  + 代码规范；
-  + 构建打包；
+  + 单元测试`jest`；
+  + 语法检查`eslint`；
+  + 代码规范`prettier`；
+  + 构建打包`webpack`；
 
 * 3D图形系统开发：
-  + 图形学/WebGL
+  + 图形学/WebGL`three.js`
 
 * 小程序：
-  + uniapp
+  + 框架`uniapp`
 
 * web
-  + vue
+  + 框架`vue,vue-router,vuex,elementEl,element plus`
 
 ## 学习方法
 

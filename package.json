@@ -1,0 +1,21 @@
+{
+  "name": "computer-science",
+  "description": "* 学习并不是为了学习而学习的，学习是为了能够使用，应用到对应的领域，`做出产品，做出贡献，成就事业，成就自己`；",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dqrjmz/computer-science.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dqrjmz/computer-science/issues"
+  },
+  "homepage": "https://github.com/dqrjmz/computer-science#readme"
+}

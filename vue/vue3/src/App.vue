@@ -6,6 +6,8 @@
   <teleport to="#con">
     <div>teleport</div>
   </teleport>
+  {{num}}
+  <input v-model="num" />
 </template>
 
 <script>
@@ -27,7 +29,7 @@ export default {
     }
 
     onMounted(() => {
-      console.log("test");
+      console.log("onMounted");
     });
 
     return {
@@ -59,5 +61,5 @@ export default {
 
 .fade-enter-from, .fade-leave-to {
     opacity: 0;
-  }
+}
 </style>
