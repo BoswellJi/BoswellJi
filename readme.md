@@ -17,13 +17,13 @@
   + 平台的支持程度；
 
 * 工程化：
-  + 单元测试`jest`；
-  + 语法检查`eslint`；
-  + 代码规范`prettier`；
-  + 构建打包`webpack`；
+  + 单元测试`jest`
+  + 语法检查`eslint`
+  + 代码规范`prettier`
+  + 构建打包`webpack`
 
 * 3D图形系统开发：
-  + 图形学/WebGL`three.js`
+  + 图形学/WebGL`three.js，spritejs`
 
 * 小程序：
   + 框架`uniapp`
