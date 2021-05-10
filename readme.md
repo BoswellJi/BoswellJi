@@ -1,3 +1,5 @@
+[![Boswell's GitHub stats](https://github-readme-stats.vercel.app/api?username=BoswellJi)](https://github.com/anuraghazra/github-readme-stats)
+
 ## 学习目标
 
 * 学习并不是为了学习而学习的，学习是为了能够使用，应用到对应的领域，`做出产品，做出贡献，成就事业，成就自己`；
