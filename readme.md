@@ -1,4 +1,4 @@
-[![Boswell's GitHub stats](https://github-readme-stats.vercel.app/api?username=BoswellJi)](https://github.com/anuraghazra/github-readme-stats)
+![Boswell's GitHub stats](https://github-readme-stats.vercel.app/api?username=BoswellJi)
 
 ## 学习目标
 
