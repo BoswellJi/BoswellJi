@@ -1,3 +1,8 @@
+## 脚本引擎v8/jscore
+
+* 支持语法与api；
+* 宿主平台提供宿主api;
+
 ## javascript
 
 * [decimal.js](https://github.com/MikeMcl/decimal.js)
