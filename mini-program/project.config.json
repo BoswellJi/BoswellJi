@@ -20,12 +20,13 @@
     "compileHotReLoad": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
-    "useApiHostProcess": true,
+    "useApiHostProcess": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
+    "enableEngineNative": false,
     "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
@@ -37,6 +38,8 @@
   },
   "compileType": "miniprogram",
   "scripts": {},
+  "appid": "wxcec398226b49b584",
+  "projectname": "test",
   "condition": {
     "game": {
       "list": []

@@ -1,12 +1,13 @@
 <script>
+import { container ,TYPES} from "./test";
 export default {
-  onLaunch: function () {
-    console.log("App Launch");
+  onLaunch: function() {
+    console.log(container.get(TYPES.Katana));
   },
-  onShow: function () {
+  onShow: function() {
     console.log("App Show");
   },
-  onHide: function () {
+  onHide: function() {
     console.log("App Hide");
   },
 };

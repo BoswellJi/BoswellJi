@@ -23,6 +23,8 @@
 
 ### 职业技能
 
+基础：
+
 1. 熟练掌握js,vue;
 2. 掌握ts,css,html,vue-router,vuex,vue-cli,vue-ssr,uniapp（小程序跨端框架）,elementUI,vs code等;
 3. 熟悉canvas,webgl,webpack,vite,http,nodejs,设计模式，算法，英语等；

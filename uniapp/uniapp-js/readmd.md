@@ -73,3 +73,19 @@
 * 组件跨端；
 * api跨端；
 * 各端的特色；（每个端都会有不同的
+
+## uniapp使用了vue的哪些功能？
+
+* 响应式系统；
+* 组件化系统；
+* slot组件；
+* vuex状态管理;
+* 生命周期；
+
+## 没有使用vue的哪些功能？
+
+* vnode: vue在小程序中没有vnode的概念，因为直接是vue模板到mini模板;
+* router: 小程序中是页面与页面之间的跳转的，vue是组件与组件；
+* diff: 小程序中diff的是data；
+
+[vue的支持程度](http://uniapp.dcloud.io/vue-api?id=%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE)
