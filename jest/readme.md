@@ -2,6 +2,17 @@
 
 - 专注于简单的 js 测试框架
 
+## 几个函数
+
+* afterAll
+* afterEach
+* beforeAll
+* beforeEach
+* describe:
+* test:
+* expect:
+* it:
+
 ## 特性
 
 * 匹配器：

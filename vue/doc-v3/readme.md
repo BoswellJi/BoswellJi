@@ -58,11 +58,11 @@ const vnode: VNode = {
 
 - mount()
   - mount
-    - createVnode
+    - createVnode: 这里创建根组件的vnode
       - normalizeChildren
     - render
       - patch
-        - processComponent
+        - processComponent: 安装组件，从根组件开始，递归安装每个元素/组件；
           - mountComponent
             - setupComponent
       - unmount
@@ -70,7 +70,8 @@ const vnode: VNode = {
 
 ## renderer
 
-* 从根组件开始渲染 App.vue
+* 从根组件开始渲染 App.vue：vnode
+
 ```js
 // 组件参数：
 {

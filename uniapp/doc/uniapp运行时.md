@@ -2,31 +2,16 @@
 
 - 依赖模块
 
-  - uni-mp-weixin/dist/index.js：创建小程序的配置参数
-
-    - api：
-      - createApp
-      - createComponent
-      - createPage
-      - createSubpackageApp
-      - default
-
-  - mp-vue/dist/mp.runtime.esm.js：
-
-    - api:
-      - default：Vue
-
-  - (webpack)/buildin/global.js：
-
-    - api:
-      - g
-
-  - vue-loader/lib/runtime/componentNormalizer.js：创建组件
-    - api:
-      - default
+  - ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js：uni core
+  - ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js：vue core
+  - ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js： component core
+  
+  - ./node_modules/@babel/runtime/regenerator/index.js: ployfill
+  - ./node_modules/regenerator-runtime/runtime.js: ployfill
+  - (webpack)/buildin/global.js: 
 
 - 文件
-  - runtime.js: webpack 的模块加载器
+  - runtime.js: webpack的模块加载器
   - vendor.js: 运行时的依赖库(mpvue)
   - main.js: app.js
 

@@ -6,6 +6,9 @@
 
 <script>
 export default {
+  onLoad(){
+    console.log(this,'Page');
+  },
   data() {
     return {
 

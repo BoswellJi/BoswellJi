@@ -16,15 +16,18 @@
         </view>
        </template>
     </component1>
+    <component2></component2>
   </view>
 </template>
 
 <script>
 import component1 from '../components/component1';
+import component2 from '../components/component2';
 
 export default {
   components: {
-    component1
+    component1,
+    component2
   },
   data() {
     return {
@@ -32,10 +35,13 @@ export default {
       name: 'df'
     };
   },
-  onLoad() {},
+  onLoad() {
+    console.log(this,'Page');
+  },
   methods: {
     tapHandle() {
       this.title = this.title == 'Boswell' ? 'Hello' : 'Boswell';
+      uni.navigateTo({ url: '/pages/second/index?name=Boswell' })
     }
   }
 };

@@ -1,8 +1,8 @@
 <script>
-import { container ,TYPES} from "./test";
+// import { container ,TYPES} from "./test";
 export default {
   onLaunch: function() {
-    console.log(container.get(TYPES.Katana));
+    console.log(this,'APP');
   },
   onShow: function() {
     console.log("App Show");
