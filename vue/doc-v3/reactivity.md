@@ -17,7 +17,7 @@
 
 ## computed api
 
-* computed
+* computed：调用了computed方法之后，执行this.reactiveProp的getter,可以收集到依赖（computed function
 
 
 ## watch api

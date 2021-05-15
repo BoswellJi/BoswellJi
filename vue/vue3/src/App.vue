@@ -1,14 +1,15 @@
 <template>
   jmz
-  <img alt="Vue logo" src="./assets/logo.png" @click="clickHandle" />
+  <!-- <img alt="Vue logo" src="./assets/logo.png"  /> -->
   <transition name="fade" appear>
-    <HelloWorld v-if="fadeShow" msg="Welcome to Your Vue.js App" />
+    <HelloWorld  msg="App" />
   </transition>
   <teleport to="#con">
     <div>teleport</div>
   </teleport>
-  <input v-model="num" />
-  {{ reactiveState.name }}
+  <!-- <input v-model="num" v-if="fadeShow" /> -->
+  <div @click="clickHandle">点击</div>
+  {{ reactiveState.name }}{{testComputed}}
 </template>
 
 <script>
@@ -20,13 +21,23 @@ export default {
   components: {
     HelloWorld,
   },
+  computed:{
+    testComputed(){
+      return this.reactiveState.name;
+    }
+  },
+  watch:{
+    ['reactiveState.name'](){
+      return 'hhh';
+    }
+  },
   setup() {
     const fadeShow = ref(true);
     const reactiveState = reactive({
       name: "Boswell",
     });
     function clickHandle() {
-      reactiveState.name = "2";
+      reactiveState.name = false;
     }
 
     onMounted(() => {
