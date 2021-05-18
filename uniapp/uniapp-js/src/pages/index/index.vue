@@ -5,16 +5,21 @@
       <button @tap="tapHandle">点击</button>
     </view>
     <component1>
-       <template v-slot.default="slotProps">
+      <template v-slot:default="scope">
         <view>
-          default slot content{{slotProps.user}}
+          default  slot content{{scope}}
         </view>
-       </template>
-       <template v-slot.header="slotProps">
+       </template> 
+       <template v-slot:header="scope">
         <view>
-          header  slot content{{slotProps.title}}
+          header  slot content{{scope}}
         </view>
-       </template>
+       </template> 
+       <template v-slot:body="scope">
+        <view>
+          body  slot content{{scope}}
+        </view>
+       </template> 
     </component1>
     <component2></component2>
   </view>
@@ -25,6 +30,10 @@ import component1 from '../components/component1';
 import component2 from '../components/component2';
 
 export default {
+  provide: {
+    foo: 'bar'
+  },
+
   components: {
     component1,
     component2
@@ -36,7 +45,7 @@ export default {
     };
   },
   onLoad() {
-    console.log(this,'Page');
+    // console.log(this.foo,'Page');
   },
   methods: {
     tapHandle() {

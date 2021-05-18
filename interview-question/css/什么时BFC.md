@@ -4,12 +4,15 @@
 
 ## 什么是Box?
 
-* 盒模型，每个html元素有自己的盒模型，
+* 盒模型，每个html元素有自己的盒模型;
+* 不同类型的box会参与不同的Formatting Context;
 
 ## 什么是formatting context?
 
-* 页面的一块渲染区域，有一套自己的渲染规则，它决定着子元素将如何定位，以及与其他元素的关系和相互作用。常见的formatting context有block formatting context,inline formatting context(IFC);
+* 页面的一块渲染区域，有一套自己的渲染规则，它决定着子元素将如何定位，以及与其他元素的关系和相互作用。
+* 常见的formatting context有`block formatting context`,`inline formatting context(IFC)`,css3中有`gfc，ffc`;
 * 容器内的子元素不会影响到外面的元素；
+
 
 ## BFC中的布局规则？
 

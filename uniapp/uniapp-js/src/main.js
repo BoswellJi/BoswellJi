@@ -10,3 +10,5 @@ const app = new Vue({
 })
 
 app.$mount()
+
+export default undefined;
