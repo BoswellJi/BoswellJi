@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "test": "jest"
+    "test": "jest",
+    "start": "webpack"
   },
   "dependencies": {
     "core-js": "^3.6.4",
@@ -31,6 +32,8 @@
     "eslint-plugin-vue": "^6.1.2",
     "jest": "^26.6.3",
     "vue-jest": "^3.0.7",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0"
   }
 }

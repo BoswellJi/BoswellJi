@@ -1,7 +1,7 @@
 <template>
   <div>
     <test @testClickHandle="appClickhandle"></test>
-    <test1 @test1ClickHandle="test1ClickHandle">
+    <!-- <test1 @test1ClickHandle="test1ClickHandle">
       <template v-slot:default="slotProps">
         default slot content<br />
         user:{{ slotProps.user.name }}<br />
@@ -10,7 +10,8 @@
       <template v-slot:header="slotProps">
         {{ slotProps }}
       </template>
-    </test1>
+    </test1> -->
+    <async-example></async-example>
   </div>
 </template>
 
@@ -29,9 +30,10 @@ const options = {
 export default {
   name: "App",
   components: {
-    testHoc: hoc(test),
-    test: createHOC(test, options),
-    test1: createHOC(test1, options),
+    // testHoc: hoc(test),
+    // test: createHOC(test, options),
+    // test1: createHOC(test1, options),
+    test
   },
   mounted() {
     // 这里有一个任务更新队列的问题,所以是有顺序的
