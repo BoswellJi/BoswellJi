@@ -1,7 +1,7 @@
 <template>
   <div>
-    <test @testClickHandle="appClickhandle"></test>
-    <!-- <test1 @test1ClickHandle="test1ClickHandle">
+    <!-- <test @testClickHandle="appClickhandle"></test>
+    <test1 @test1ClickHandle="test1ClickHandle">
       <template v-slot:default="slotProps">
         default slot content<br />
         user:{{ slotProps.user.name }}<br />
@@ -10,13 +10,16 @@
       <template v-slot:header="slotProps">
         {{ slotProps }}
       </template>
-    </test1> -->
-    <async-example></async-example>
+    </test1>
+    <async-example></async-example> -->
+    <router-view></router-view>
+    <router-link to="/a">test3</router-link>
+    <router-link to="/b">test2</router-link>
   </div>
 </template>
 
 <script>
-import test from "./components/test";
+import test from "./components/Test";
 import test1 from "./components/test1";
 import hoc from "./hoc.jsx";
 import { createHOC } from "vue-hoc";
@@ -30,18 +33,16 @@ const options = {
 export default {
   name: "App",
   components: {
-    // testHoc: hoc(test),
-    // test: createHOC(test, options),
-    // test1: createHOC(test1, options),
+    testHoc: hoc(test),
+    test: createHOC(test, options),
+    test1: createHOC(test1, options),
     test
   },
   mounted() {
     // 这里有一个任务更新队列的问题,所以是有顺序的
     this.$nextTick(function () {
       const dom = document.querySelector("#text");
-      console.log(dom?.innerHTML);
     });
-    console.log(this);
   },
   data() {
     return {

@@ -1,7 +1,6 @@
 <template>
   <div @click="clickhandle">
-    <slot :user="user" :person="user"> This is default content; </slot>
-    <slot name="header"></slot>
+    test1
   </div>
 </template>
 <script>

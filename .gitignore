@@ -1,8 +1,0 @@
-﻿# 略文件或者目录
-node_modules
-
-.vscode
-.idea
-.package-lock.json
-
-dist

@@ -1,5 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
+import router from './router';
 
 Vue.config.productionTip = false;
 
@@ -9,6 +10,7 @@ Vue.component('async-example',()=> import('./components/async-test3'))
 // 生成vnode之后是update，patch
 const vm = new Vue({
   render: (h) => h(App),
+  router
 });
 
-vm.$mount("#app");
+vm.$mount("#app"); 
