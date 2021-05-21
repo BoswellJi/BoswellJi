@@ -33,39 +33,30 @@
 - 将延迟执行模块添加到延迟列表中；
 - checkDeferredModules：执行加载好的 chunk;
 
-## vue 的渲染过程：
+## 组件实例
 
-- new Vue()
-- init
+- new Vue(): Vue
+- Vue.extend(): Component
 
-- \$mount
+## vue初始化的组件渲染过程：
+
+- app.$mount
 - compile(template 编译为 render function)
 - render
-- vnode
-- patch
-- dom
-
-## vue 的组件化过程：
-
-- $mount
-- compile(template 编译为 render function)
-- render
+  - createElement
+    - createComponent
+      - baseCtor.extend(Ctor)
+      - installComponentHooks
+      - 实例化 vnode:
+        - `这里会将子组件的构造函数，设置给componentOptions属性`；
 - update
-
-  - createComponent
-
-    - baseCtor.extend(Ctor)
-    - installComponentHooks
-    - 实例化 vnode
-
   - patch
     - createEle
       - createComponent
         - init（vnode init hook）
         - createComponentInstanceForVnode()
           - new vnode.componentOptions.Ctor(): 通过 vnode 创建组件实例
-        - \$mount
-          - mountComponent
+        - child.$mount
 
 ## render function
 

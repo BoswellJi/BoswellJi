@@ -1,8 +1,4 @@
-## vue（web客户端开发库
-
 ## 用户界面的渲染类型
-
-* 阻塞渲染；
 
 * 中断渲染；
 
@@ -12,9 +8,19 @@
 
 ## 渲染器
 
+* html
+* canvas
+* native
+
 ## 响应式系统
 
+* Object.defineProperty();
+* 依赖收集
+* 状态变更，视图更新
+
 ## 虚拟DOM 
+
+* vnode tree
 
 ## diff
 
@@ -32,7 +38,6 @@
 * hoc 
 * render prop
 * hook：逻辑复用和组件表达进行一定程度的解耦；
-
 
 ## packages
 
