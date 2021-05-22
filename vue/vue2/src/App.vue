@@ -15,13 +15,15 @@
     <router-view></router-view>
     <router-link to="/a">test3</router-link>
     <router-link to="/b">test2</router-link>
+    <test4></test4>
   </div>
 </template>
 
 <script>
-import test from "./components/Test";
+import test from "./components/test";
 import test1 from "./components/test1";
-import hoc from "./hoc.jsx";
+import test4 from "./components/test4";
+import hoc from "./hoc.js";
 import { createHOC } from "vue-hoc";
 
 const options = {
@@ -36,7 +38,7 @@ export default {
     testHoc: hoc(test),
     test: createHOC(test, options),
     test1: createHOC(test1, options),
-    test
+    test4
   },
   mounted() {
     // 这里有一个任务更新队列的问题,所以是有顺序的
