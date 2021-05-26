@@ -1,0 +1,18 @@
+{
+  "name": "babel1",
+  "version": "1.0.0",
+  "description": "* babel polyfills：能够通过不同策略将不同polyfill注入到编译代码中；`api填补(core.js,regenerator)`\r   - polyfill providers: 注入方法；\r   - method：\r     - entry-global：整个全部导出；\r     - usage-global：只导入使用到的api;\r     - usage-pure：局部变量不污染全局；",
+  "main": "babel.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src --out-dir dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2"
+  }
+}
