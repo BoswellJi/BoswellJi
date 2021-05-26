@@ -12,6 +12,7 @@
   + 设计模式
   + 数据结构和算法
   + 计算机网络
+  + 图形学
 
 * 兼容性：
   + 平台的支持程度；
@@ -33,21 +34,21 @@
 
 ## 学习方法
 
-1. 每天坚持学：algorithm,data structure,uniapp,vue;
-2. 带着学：design pattern,WebGL,English,JavaScript;
+1. 每天坚持学：English,algorithm,data structure,uniapp,vue;
+2. 带着学：design pattern,WebGL,JavaScript;
 3. 一定不能让自己陷入，重复学习，反复学习，那些非重点的部分的知识，这会干扰判断；
 
 ## 学习规划
 
 上午：
-8:00 - 9:00 图形
+8:00 - 9:00 algorithm,data structure,interview handbook
 
 中午：
-12:00 - 13:00 金融
+12:00 - 13:00 finance
 
 晚上：
-21:00 - 22:00 算法
-22:30 - 23:30 金融
+21:00 - 22:00 algorithm,data structure,interview handbook
+22:30 - 23:30 finance
 
 ## 作为程序员（前端工程师），我可以实现哪些东西落地？
 

@@ -59,11 +59,12 @@
   + vue-core
   + vue-router
   + vue-vuex
-  + vue-rx
-  + vue-apollo
   + vue-cli
+  + vite
+  + vue-loader
   + vue-test-utils
   + vue-devtools
   + vue-ui-framework
   + vue-fire
-  + vue-loader
+  + vue-rx
+  + vue-apollo
