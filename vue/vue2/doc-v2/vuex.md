@@ -29,3 +29,30 @@
 ## 总结
 
 * Flex就像眼镜，当你需要的时候，你会知道的；
+
+## 使用vuex不意味着你应该放所有的状态在vuex终
+
+* 它会使得你的状态变化更明显以及可调式，但是它也会使得你的代码更加的繁琐和间接；
+* 如果状态是属于单个组件，应该把它放到本地状态中去，这个需要在开发过程中开发者自己做权衡；
+
+## state
+
+## getter
+
+* 与组件的computed option相同，为了组合data中的数据的使用，getter中的data就是state;
+
+## mutation
+
+* 只能通过store的commit方法触发，为了是状态变化过程的可预测；
+* 执行的只能是同步程序，这样才可以获取到程序之前和之后state;
+
+## action
+
+* 处理异步操作；
+* 可以访问到回调函数中的{state,getters,mutations,actions};
+* 多action组合，这就需要action中返回Promise;
+
+## module
+
+* 有单独的state,getter,mutation,action;
+* 注意namespaced option,没有的情况下，`state是不会添加到根模块上的`；
