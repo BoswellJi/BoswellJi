@@ -1,6 +1,7 @@
 <template>
   <div @click="increment">
     test2/{{num}}
+    <router-view></router-view>
   </div>
 </template>
 

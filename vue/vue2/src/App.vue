@@ -1,21 +1,38 @@
 <template>
   <div>
-    <test @testClickHandle="appClickhandle"></test>
-    <test1 @test1ClickHandle="test1ClickHandle">
-      <template v-slot:default="slotProps">
-        default slot content<br />
-        user:{{ slotProps.user.name }}<br />
-        person:{{ slotProps.person.name }}<br />
-      </template>
-      <template v-slot:header="slotProps">
-        {{ slotProps }}
-      </template>
-    </test1>
-    <async-example></async-example>
-    <router-view></router-view>
-    <router-link to="/a">test3</router-link>
-    <router-link to="/b">test2</router-link>
-    <test4></test4>
+    <transition name="v" appear>
+      <router-view></router-view>
+    </transition>
+
+    <transition-group name="v">
+      <span v-for="(item, index) in items" v-bind:key="index" class="list-item">
+        {{ item }}
+      </span>
+    </transition-group>
+
+    <button v-on:click="add">Add</button>
+    <button v-on:click="remove">Remove</button>
+
+    <a href="#/a/jmzc1">test3</a>
+    <a href="#/b">test2</a>
+    <a href="#/c/20/d/Boswell">test4</a>
+    <div>
+      <test @testClickHandle="appClickhandle"></test>
+    </div>
+    <div>
+      <test1 @test1ClickHandle="test1ClickHandle">
+        <template v-slot:default="slotProps">
+          default slot content<br />
+          user:{{ slotProps.user.name }}<br />
+          person:{{ slotProps.person.name }}<br />
+        </template>
+        <template v-slot:header="slotProps">
+          {{ slotProps }}
+        </template>
+      </test1>
+    </div>
+    <div>test4: <test4></test4></div>
+    <div>async-exampl：<async-example></async-example></div>
     <div @click="getAge">
       <div>state:{{ $store.state.age }}</div>
       <div>getterAge:{{ getterAge }}</div>
@@ -72,6 +89,7 @@ export default {
       text: "sync",
       name: "Boswell",
       age: 21,
+      items: [1, 2, 2, 3, 4],
     };
   },
   methods: {
@@ -79,10 +97,19 @@ export default {
     ...mapActions(["getAge"]),
     appClickhandle() {
       // this.$store.commit('addAge');
-      this.$store.dispatch('getAge');
+      this.$store.dispatch("getAge");
     },
     test1ClickHandle(e) {
       console.log(e);
+    },
+    add: function() {
+      this.items.splice(this.randomIndex(), 0, this.nextNum++);
+    },
+    remove: function() {
+      this.items.splice(this.randomIndex(), 1);
+    },
+    randomIndex: function() {
+      return Math.floor(Math.random() * this.items.length);
     },
   },
 };
@@ -96,5 +123,49 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.v-enter {
+  opacity: 0;
+}
+
+.v-enter-active {
+  transition: opacity 0.5s;
+}
+
+.v-enter-to {
+  opacity: 1;
+}
+
+.v-leave {
+  opacity: 1;
+}
+
+.v-leave-active {
+  transition: opacity 0.5s;
+}
+
+.v-leave-to {
+  opacity: 0;
+}
+
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

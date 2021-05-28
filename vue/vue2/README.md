@@ -13,3 +13,5 @@
 
 - 流程：
   - vm._render()->h/createElement->createComponent->Vue.extend(...)`mergeOptions()->installComponentHooks(vnode的hook)->vnode`->vm._update()->vm._patch_()`createElem,patchVnode`，从createElement会重新执行；
+
+  ## render function只要依赖发生变化就会重新调用

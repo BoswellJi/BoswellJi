@@ -60,3 +60,57 @@ interface Location {
 
 * match: function
   - 找到匹配的Route
+
+* 路由的跳转有两种方式触发：
+  - 手动route.push，改写history stack，触发route的响应式，重新渲染视图；
+  - 浏览器的前进，自动触发popstate事件，后退按钮，触发route的响应式，重新渲染视图；
+
+
+## 初始化路由表
+
+- createMatcher();
+- createRouteMap()
+  - pathList：路径列表
+  - pathMap: 路径与RouteRecord映射，别名当作路径
+  - nameMap：名字/路径别名与RouteRecord映射
+- addRouteRecord();
+  - record instance
+  - children
+  - alias
+  - name
+
+## 初始化路由跳转流程
+
+- new VueRouter()
+- new Vue()
+- beforeCreate
+- _router.init
+- transitionTo
+
+## 手动路由跳转流程
+- this.$router.push:
+- history.push
+- history.transitionTo
+- this.$router.match：获取目标路由
+- normalizeLocation：获取目标地址
+- history.confirmTransition
+- 守护任务
+- history.confirmTransition回调
+- updateRoute
+- replaceState
+- pushState
+- handleScroll
+- afterHook
+
+## 匹配目标路由的使用地方
+
+1. `<view-link>`组件，每次数据发生变化都要调用；
+2. `history.transitionTo`跳转;
+
+## 路由导航
+
+*这里提一下，跟测试代码类似*
+
+* 全局
+* 每个路由
+* 组件
