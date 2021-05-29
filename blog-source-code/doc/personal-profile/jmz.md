@@ -25,9 +25,9 @@
 
 基础：
 
-1. 熟练掌握js,vue;
-2. 掌握ts,css,html,vue-router,vuex,vue-cli,vue-ssr,uniapp（小程序跨端框架）,elementUI,vs code等;
-3. 熟悉canvas,webgl,webpack,vite,http,nodejs,设计模式，算法，英语等；
+1. 熟练掌握html,css,js,vue;
+2. 掌握ts,vue-router,vuex,vue-cli,uniapp（小程序跨端框架）,elementUI,vs code等;
+3. 熟悉canvas,webgl,webpack,http,nodejs,设计模式，算法，英语等；
 4. 了解threejs(3D),spritejs(2D),基本前端工程化概念等;
 
 语言（编程）方面：
@@ -48,7 +48,6 @@
 #### 特点
 
 1. 注重计算机基础，注重英语，关注技术社区，坚持学习；
-
 2. 够阅读英文技术文章；
 
 ### 项目经历
@@ -367,3 +366,15 @@
 > 地址
 
 - [项目](https://github.com/dqrjmz/webpack1)
+
+#### 咪店优选小程序
+
+#### 神奇会员小程序
+
+#### 喵客云管理后台
+
+https://meowcloud.1jingxi.com
+
+#### 供货商管理后台
+
+https://pop.1jingxi.com
