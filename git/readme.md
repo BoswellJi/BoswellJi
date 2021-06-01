@@ -11,3 +11,6 @@
 
     - 已经用 `git commit` 提交了代码:
       + `git reset --hard commitid`;
+  
+  + 清除本地提交缓存：
+    - git rm -r --cached .idea/
