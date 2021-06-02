@@ -16,8 +16,8 @@
       <div>元素列表的transition组件使用</div>
       <transition-group name="list" tag="p">
         <span
-          v-for="(item,index) in items"
-          :key="item"
+          v-for="(item, index) in items"
+          :key="index"
           :data-index="index"
           class="list-item"
         >
@@ -44,7 +44,7 @@
 
       <div>元素之间的过度</div>
       <transition name="v" appear mode="out-in">
-        <div v-if="testIndex===1" key="6">1</div>
+        <div v-if="testIndex === 1" key="6">1</div>
         <div v-else key="2">2</div>
       </transition>
       <button v-on:click="testIndex = testIndex === 1 ? 2 : 1">
@@ -68,13 +68,14 @@
       </div>
       <div>test4: <test4></test4></div>
       <div>async-exampl：<async-example></async-example></div>
-      <div @click="getAge">
+      <div @click="test1ClickHandle">
         <div>state:{{ $store.state.age }}</div>
         <div>getterAge:{{ getterAge }}</div>
         <div>mod1Name：{{ mod1Name }}</div>
         <div>mod1NameCopy:{{ mod1NameCopy }}</div>
         <div>getterMod1Name:{{ getterMod1Name }}</div>
       </div>
+      <comp1 :msg="testIndex"></comp1>
     </div>
   </transition>
 </template>
@@ -103,6 +104,15 @@ export default {
     asyncComp: () => ({
       component: import("./components/async-comp"),
     }),
+    Comp1: {
+      props: {
+        msg: Number,
+      },
+      render(h) {
+        console.log("comp1 render");
+        return h("div",{},'comp1');
+      },
+    },
   },
   mounted() {
     // 这里有一个任务更新队列的问题,所以是有顺序的
@@ -131,7 +141,7 @@ export default {
       items: [1, 2, 2, 3, 4],
       nextNum: 10,
       compName: "test",
-      testIndex:0,
+      testIndex: 0,
     };
   },
   methods: {
@@ -141,7 +151,7 @@ export default {
       this.$store.dispatch("getAge");
     },
     test1ClickHandle(e) {
-      console.log(e);
+      this.testIndex++;
     },
     add: function() {
       this.items.splice(this.randomIndex(), 0, this.nextNum++);
@@ -171,7 +181,8 @@ export default {
   display: inline-block;
   margin-right: 10px;
 }
-.list-enter, .list-leave-to {
+.list-enter,
+.list-leave-to {
   opacity: 0;
   transform: translateY(30px);
 }

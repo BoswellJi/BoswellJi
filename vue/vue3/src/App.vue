@@ -10,16 +10,26 @@
   <!-- <input v-model="num" v-if="fadeShow" /> -->
   <div @click="clickHandle">点击</div>
   {{ reactiveState.name }}{{testComputed}}
+  <comp1 :msg="fadeShow"></comp1>
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
-import { ref, onMounted, reactive } from "vue";
+import { ref, onMounted, reactive,h } from "vue";
 
 export default {
   name: "App",
   components: {
     HelloWorld,
+    Comp1:{
+      props:{
+        msg:Boolean
+      },
+      render(){
+        console.log('comp1 render');
+        return h('div');
+      }
+    }
   },
   computed:{
     testComputed(){
@@ -37,7 +47,7 @@ export default {
       name: "Boswell",
     });
     function clickHandle() {
-      reactiveState.name = false;
+      fadeShow.value = !fadeShow.value;
     }
 
     onMounted(() => {
