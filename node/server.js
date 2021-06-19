@@ -2,8 +2,8 @@ const http = require("http");
 const fs = require("fs");
 
 const server = http.createServer((req, res) => {
-  res.writeHead(200, {
-    "Content-Type": "text/html",
+  res.writeHead(304, {
+    // "Content-Type": "text/html",
 
     /***
      * 资源的标识符，类似于指纹，用来对比资源是否真正发生变化
@@ -21,7 +21,7 @@ const server = http.createServer((req, res) => {
     /***
      * Expires是绝对时间，
      */
-    Expires: "Wed, 21 Oct 2115 07:28:00 GMT",
+    // Expires: "Wed, 21 Oct 2115 07:28:00 GMT",
 
     /***
      * 最后修改时间，告诉浏览器文件的最后修改时间，在过期时间之后，比对修改时间确定是否需要修改文件
@@ -30,7 +30,7 @@ const server = http.createServer((req, res) => {
      *
      * 对比的响应头： If-Modified-Since
      */
-    "Last-Modified": "Wed, 21 Oct 2115 07:28:00 GMT",
+    // "Last-Modified": "Wed, 21 Oct 2115 07:28:00 GMT",
   });
 
   fs.readFile("./index.html", "utf8", (err, data) => {
