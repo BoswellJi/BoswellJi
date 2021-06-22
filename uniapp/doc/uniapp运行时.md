@@ -1,32 +1,47 @@
 ## uniapp 是如何让 vue 在小程序运行时运行的
 
-- 依赖模块
+## 依赖模块
+- ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js：uni core
+  - 暴露的api:
+    - createApp
+    - createPage
+    - createComponent
+    - createPlugin
+    - createSubpackageApp
+    - uni: baseApi,todoApis,extraApi,eventApi,api,wx
 
-  - ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js：uni core
-  - ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js：vue core 修改后的
-  - ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js： component core
+- ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js：vue core 修改后的
+  - 暴露的api:
+    - Vue
 
-  - ./node_modules/@babel/runtime/regenerator/index.js: ployfill
-  - ./node_modules/regenerator-runtime/runtime.js: ployfill
-  - (webpack)/buildin/global.js:
+- ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js： component core
 
-- 文件
-  - runtime.js: webpack 的模块加载器
-  - vendor.js: 运行时的依赖库(mpvue)
-  - main.js: app.js
+- ./node_modules/@babel/runtime/regenerator/index.js: ployfill
+- ./node_modules/regenerator-runtime/runtime.js: ployfill
+- (webpack)/buildin/global.js:
 
-## 实现
+## 文件
+- runtime.js: webpack 的模块加载器
+- vendor.js: 运行时的依赖库(mpvue)
+- main.js: app.js
+
+## 小程序初始化
 
 - 没有安装组件的步骤`mountComponent`:
-
   - 因为模板是直接编译为 wxml 文件;
 
 - 创建组件实例：
-
-  - 从 new Vue()开始，这个是根实例；App.wxml`createApp`
+  - 从 new Vue()开始，这个是根实例；App.wxml`createApp`,在main.js中
   - 从 Vue.extend()开始，这个是组件；Page.wxml`createPage`
   - 从 Vue.extend()开始，这个是组件；Component.wxml`createComponent`
 
 - 依赖注入（provide/inject）:
   - Vue.component()创建组件时，`this.init()`调用初始化方法中处理；
   - 每个组件有$parent,从当前组件开始，一层一层向上找;
+
+## 修改响应式数据
+
+- this.props = 'value';
+  - watcher.run();
+    - vm._update(vm_render(),hydrating);
+

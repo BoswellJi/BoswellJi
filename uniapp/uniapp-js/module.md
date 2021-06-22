@@ -1,6 +1,6 @@
 ## 模块加载流程
 
-### runtime.js:
+### runtime.js: webpack生成的模块加载器
 
 - 初始化模块加载器
 
@@ -25,3 +25,6 @@
     - 每个模块导出接口都挂载到exports对象上；
     - `{default: obj }`
 
+### vendor.js: uniapp的运行时库
+
+### main.js: 项目入口
