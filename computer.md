@@ -68,3 +68,44 @@
   + vue-fire
   + vue-rx
   + vue-apollo
+
+## 学习方法
+
+1. 每天坚持学：English,algorithm,data structure,uniapp,vue;
+2. 带着学：design pattern,WebGL,JavaScript;
+3. 一定不能让自己陷入，重复学习，反复学习，那些非重点的部分的知识，这会干扰判断；
+
+## 学习目标
+
+* 学习并不是为了学习而学习的，学习是为了能够使用，应用到对应的领域，`做出产品，做出贡献，成就事业，成就自己`；
+
+## 学习规划
+
+上午：
+8:00 - 9:00 algorithm,data structure,interview handbook
+
+中午：
+12:00 - 13:00 finance
+
+晚上：
+21:00 - 22:00 algorithm,data structure,interview handbook
+22:30 - 23:30 finance
+
+## 作为程序员（前端工程师），我可以实现哪些东西落地？
+
+### 应用产品
+
+* pc程序；
+* android/ios程序；
+* web程序；
+* 小程序；
+
+### 工具产品
+
+* 命令行工具: npm
+* 组件: element
+* 类库: lodash
+* 框架: vue
+* 打包工具：webpack
+* 编译工具：babel
+* 编程语言： js
