@@ -30,3 +30,8 @@
 * web
   + 框架`vue,vue-router,vuex,elementEl,element plus`
 
+## 提交信息规则
+
+```js
+/^(revert: )?(feat|fix|polish|docs|style|refactor|perf|test|workflow|ci|chore|types)(\(.+\))?: .{1,50}/
+```
