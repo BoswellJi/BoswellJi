@@ -12,19 +12,15 @@
 * canvas
 * native
 
-## 响应式系统
+## mvvm
 
 * Object.defineProperty();
 * 依赖收集
 * 状态变更，视图更新
 
-## 虚拟DOM 
-
-* vnode tree
-
 ## diff
 
-* 算法的核心在于两个vnode的多个子节点的比较；
+* 算法的核心在于两个vnode相同时多个子节点的比较；
 * 对比算法是渲染的性能所在；[对比的次数，操作dom的次数]
 
 ## 组件化

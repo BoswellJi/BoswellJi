@@ -27,11 +27,21 @@
 
 ## 小程序初始化
 
+- 从main.js模块开始执行，这里会执行
+  - new Vue()
+  - createApp()根组件没有视图，所以不需要amount方法
+
+- 接着是页面的初始化
+  - createPage()
+  - Vue.extend()
+  - attached中实例化组件：将组件中的data初始化为响应式对象
+  - amount实例化观察者Watcher来观察数据变更
+
 - 没有安装组件的步骤`mountComponent`:
   - 因为模板是直接编译为 wxml 文件;
 
 - 创建组件实例：
-  - 从 new Vue()开始，这个是根实例；App.wxml`createApp`,在main.js中
+  - 从 new Vue()开始，这个是根实例；App.wxml`createApp`,在main.js中，_init方法初始化的是当前组件的各种功能；
   - 从 Vue.extend()开始，这个是组件；Page.wxml`createPage`
   - 从 Vue.extend()开始，这个是组件；Component.wxml`createComponent`
 
