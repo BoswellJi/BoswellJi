@@ -1,8 +1,8 @@
 /**
  * 问题：在给定的数组中，找出，最大的有序上升的子序列（不是必须连续的，唯一的）
  */
-
  function getSequence(arr) {
+  // 复制数组
   const p = arr.slice()
   const result = [0]
   let i, j, u, v, c
