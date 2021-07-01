@@ -1,0 +1,17 @@
+{
+  "name": "rollup-test",
+  "version": "1.0.0",
+  "description": "* 原生只支持es module，在不支持es module的环境中会智能降级；（想要导入其他模块类型的模块代码需要使用插件）\r * 根据es module的静态分析，可以对代码进行树摇，将废弃代码处理掉；\r *",
+  "main": "index.js",
+  "scripts": {
+    "dev": "rollup --config rollup.config.js -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-json": "^4.1.0",
+    "rollup": "^2.52.6",
+    "rollup-plugin-terser": "^7.0.2"
+  }
+}

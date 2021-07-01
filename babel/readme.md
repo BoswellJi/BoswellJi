@@ -15,3 +15,18 @@
 ## 作为next javascript的编译器，怎么保证能够及时在项目里使用最新特性？（babel与标准如何同步）
 
 * @babel/preset-env: 编译js代码的编译器预先配置,纯tc39标准的语法，api；
+
+## browserslist的配置项目：
+
+* defaults:
+* by usage statistics:
+* last versions:
+* dead:
+* nodejs versions:
+* brosers version:
+* extends broserslist-config-myproject:
+* supports es6-module:
+* browserslist config:
+* since 2015 or last 2 years
+* unreleased versions or unreleased chrome versions:
+* not ie<=8
