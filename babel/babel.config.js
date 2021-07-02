@@ -12,7 +12,7 @@ module.exports = {
          * entry:
          */
         useBuiltIns: "usage",
-        corejs: { version: "3.8", proposals: true },
+        corejs: { version: "3.6", proposals: false },
       },
     ],
     [

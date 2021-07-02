@@ -30,3 +30,10 @@
 * since 2015 or last 2 years
 * unreleased versions or unreleased chrome versions:
 * not ie<=8
+
+## babel版本
+"@babel/core": "^7.14.6"
+"@babel/preset-env": "^7.14.7"
+"core-js@3.8"
+
+* 这个版本中支持这点ecmascript是怎样的？

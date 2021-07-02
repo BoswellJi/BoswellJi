@@ -1,3 +1,5 @@
 const nameT: string = 'Boswell';
 
-console.log(nameT);
+const p = new Promise(()=>{});
+
+p.then

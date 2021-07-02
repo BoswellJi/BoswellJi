@@ -1,24 +1,31 @@
-import json from "@rollup/plugin-json";
-import { terser } from "rollup-plugin-terser";
+import typescript from '@rollup/plugin-typescript';
+import { babel,  getBabelOutputPlugin } from '@rollup/plugin-babel';
+const path = require('path');
 
 export default {
-  input: "./src/index.js",
+  input: "./src/index.ts",
+  external: ["vue"],
   output: [
     {
-      dir:'dist',
-      format: "cjs",
+      dir: "dist",
+      format: "es",
+      globals: {
+        vue: "Vue",
+      },
     },
-    // iife模块格式不支持代码分割
     // {
-    //   dir:'dist',
-    //   format: "iife",
-    //   name: "version",
-    //   plugins: [
-    //     terser({
-    //       compress:false,
-    //     }),
-    //   ],
+    //   dir: "dist",
+    //   format: "es",
+    //   entryFileNames:'[name]1.js',
+    //   globals: {
+    //     vue: "Vue",
+    //   },
     // },
   ],
-  plugins: [json()],
+  plugins: [
+    getBabelOutputPlugin({
+      configFile: path.resolve(__dirname, 'babel.config.js')
+    }),
+    typescript(),
+  ],
 };
