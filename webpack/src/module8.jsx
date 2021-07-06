@@ -1,0 +1,1 @@
+export const mod8 = <div>mod8</div>

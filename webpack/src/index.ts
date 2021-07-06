@@ -1,8 +1,7 @@
 import './css-module1.css';
-import { person } from './js/1';
+import { createApp } from 'vue';
+import App  from './module3.vue';
 
-const app: HTMLDivElement | null = document.querySelector('#app');
+createApp(App).mount('#app');
 
-app && (app.innerHTML = '哈哈');
 
-person.name = 'hh';

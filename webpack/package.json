@@ -10,7 +10,7 @@
     "dev": "webpack -w",
     "serve": "webpack serve",
     "format": "prettier --write --parser typescript \"./src/*.ts?(x)\"",
-    "fix":"eslint --fix"
+    "fix": "eslint --fix"
   },
   "keywords": [],
   "author": "",
@@ -19,8 +19,11 @@
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-typescript": "^7.14.5",
+    "@types/webpack-env": "^1.15.2",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
+    "@vue/babel-plugin-jsx": "^1.0.6",
+    "@vue/compiler-sfc": "^3.1.4",
     "autoprefixer": "^10.2.6",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.6",
@@ -36,13 +39,18 @@
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.3.2",
     "style-loader": "^3.0.0",
+    "ts-loader": "^9.2.3",
     "typescript": "^4.3.5",
     "typescript-eslint-parser": "^22.0.0",
+    "vue-loader": "^16.3.0",
+    "vue-template-compiler": "^2.6.14",
     "webpack": "^5.33.2",
     "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "core-js": "^3.8.3"
+    "core-js": "^3.8.3",
+    "vue": "^3.1.4",
+    "vue-tsx-support": "^3.2.0"
   }
 }

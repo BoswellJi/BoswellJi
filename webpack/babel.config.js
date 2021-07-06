@@ -6,7 +6,9 @@ module.exports = {
         useBuiltIns: "usage",
         corejs: { version: "3.8", proposals: true },
       },
-    ],
-    ["@babel/preset-typescript"],
+    ]
   ],
+  "plugins": [
+    ["@vue/babel-plugin-jsx", {}]
+  ]
 };

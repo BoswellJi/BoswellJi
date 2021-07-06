@@ -3,6 +3,7 @@ const webpack = require('webpack')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
   mode: 'development',
@@ -30,26 +31,40 @@ module.exports = {
       template: './src/index.html',
       title: '单页',
     }),
+    new VueLoaderPlugin(),
   ],
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: ['babel-loader','eslint-loader'],
-        exclude: /node_modules/,
+        use: [
+          'babel-loader',
+          {
+            loader: 'ts-loader',
+            options: {
+              appendTsxSuffixTo: [/\.vue$/]
+            }
+          }
+        ],
       },
       {
         test: /\.jsx?$/,
-        use: [ 'babel-loader','eslint-loader'],
+        use: ['babel-loader'],
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/i,
+        test: /\.css$/,
+        exclude: /node_modules/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
+      {
+        test: /\.vue$/,
+        exclude: /node_modules/,
+        loader: 'vue-loader'
+      }
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.jsx'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx', '.vue'],
   },
 }
