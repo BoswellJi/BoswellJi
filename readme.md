@@ -12,16 +12,17 @@
   + 浏览器
   + 编译器
 
-* 兼容性：
-  + 平台的支持程度；
-
 * 工程化：
+  + 版本管理`git git-extension`
   + 单元测试`jest`
   + 语法检查`eslint`
-  + 代码规范`prettier`
+  + 代码排版`prettier`
+  + 代码编译`babel`
+  + 样式编译`postcss`
   + 构建打包`webpack`
+  + 目标环境(兼容性)`browserslist`
 
-* 3D图形系统开发：
+* 3D图形：
   + 图形学/WebGL`three.js`
 
 * 小程序：

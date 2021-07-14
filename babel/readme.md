@@ -41,3 +41,12 @@
 
 * 这个版本中支持ecmascript的api的polyfill是怎样的，版本情况？
 
+## 版本更新
+
+* 早期预设废弃；
+* 阶段预设废弃；
+* @babel/polyfill中移除提案polyfills;
+
+## 组成部分
+
+* 主要的babel包只转换js语法;
