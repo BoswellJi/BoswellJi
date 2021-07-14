@@ -17,7 +17,7 @@
 
 > 地址
 
-- [图片](../project/iclock.md)
+- [图片](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/iclock.md)
 
 #### 财喵
 
@@ -46,7 +46,7 @@
 
 > 地址
 
-- [图片](../project/lucky-cat.md)
+- [图片](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/lucky-cat.md)
 
 #### 财喵后台管理系统
 
@@ -76,7 +76,7 @@
 
 > 地址
 
-- [图片](../project/lucky-cat-admin.md)
+- [图片](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/lucky-cat-admin.md)
 
 #### 客服聊天系统
 
@@ -101,7 +101,7 @@
 
 > 地址
 
-- [图片](../project/customer.md)
+- [图片](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/customer.md)
 
 #### 客服聊天系统
 
@@ -125,7 +125,7 @@
 
 > 地址
 
-- [图片](../project/customer-admin.md)
+- [图片](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/customer-admin.md)
 
 #### 各种营销页面
 
@@ -151,7 +151,7 @@
 
 > 地址
 
-- [图片](../project/zhuanti.md)
+- [图片](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/zhuanti.md)
 
 #### 固定资产管理
 
@@ -170,7 +170,7 @@
 
 > 地址
 
-- [图片](../project/assets.md)
+- [图片](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/assets.md)
 
 #### 固定资产管理
 
@@ -198,7 +198,7 @@
 
 > 地址
 
-- [项目](../project/assets-admin.md)
+- [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/assets-admin.md)
 
 #### 企业员工与学生管理系统
 
@@ -272,7 +272,7 @@
 
 > 地址
 
-- [项目](../project/meitu.md)
+- [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/meitu.md)
 
 #### 游戏管理后台
 
@@ -298,7 +298,7 @@
 
 > 地址
 
-- [项目](../project/game-admin.md)
+- [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/game-admin.md)
 
 #### 基于 webpack 的多页面脚手架
 
