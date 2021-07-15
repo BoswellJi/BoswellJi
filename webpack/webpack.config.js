@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const { ModuleFederationPlugin } = webpack.container;
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -9,7 +10,7 @@ module.exports = {
   mode: 'development',
   devtool: 'source-map',
   entry: {
-    index: './src/index.ts',
+    index: './src/index.js',
   },
   output: {
     filename: '[name].bundle.js',
@@ -32,6 +33,17 @@ module.exports = {
       title: '单页',
     }),
     new VueLoaderPlugin(),
+    new ModuleFederationPlugin({
+      name: "home",
+      filename: "remoteEntry.js",
+      remotes: {
+        home: "home@http://localhost:3002/remoteEntry.js",
+      },
+      exposes: {
+        "./Content": "./src/module3",
+        "./Button": "./src/module4",
+      },
+    }),
   ],
   module: {
     rules: [
@@ -66,5 +78,8 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx', '.vue'],
+    alias:{
+      a:'vue'
+    }
   },
 }

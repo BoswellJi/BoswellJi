@@ -20,7 +20,7 @@
   + 代码编译`babel`
   + 样式编译`postcss`
   + 构建打包`webpack`
-  + 目标环境(兼容性)`browserslist`
+  + 目标环境(兼容性+降级方案)`browserslist`
 
 * 3D图形：
   + 图形学/WebGL`three.js`
