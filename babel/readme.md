@@ -33,10 +33,13 @@
 
 ## babel版本
 "@babel/core": "^7.14.6"
+
+* 这个版本中支持的ecmascript语法是怎样的，版本情况？
+
 "@babel/preset-env": "^7.14.7"
 "core-js@3.8"
 
-* 这个版本中支持这点ecmascript是怎样的？
+* 这个版本中支持ecmascript的api的polyfill是怎样的，版本情况？
 
 ## 版本更新
 
