@@ -12,7 +12,7 @@ body {
 }
 
 :--heading {
-  background-image: image-set(url(http://img/heading.png) 1x, url(http://img/heading@2x.png) 2x);
+  background-image: image-set(url(http://heading.png) 1x, url(http://img/heading@2x.png) 2x);
 
   @media (--viewport-medium) {
     margin-block: 0;

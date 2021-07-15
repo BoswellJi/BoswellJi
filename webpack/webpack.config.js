@@ -1,50 +1,63 @@
 const path = require('path')
 const webpack = require('webpack')
 const { ModuleFederationPlugin } = webpack.container;
-
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader');
+
+const plugins = [
+  /***
+   * 将模块注入为全局模块
+   */
+  new webpack.ProvidePlugin({
+    module1: path.resolve(path.join(__dirname, 'src/module1')),
+  }),
+  new MiniCssExtractPlugin({
+    filename: 'bundle.[name].css',
+  }),
+  new HtmlWebpackPlugin({
+    template: './src/index.html',
+    title: '单页',
+  }),
+  new VueLoaderPlugin()
+  /***
+   * 微前端模块策略
+   */
+  // new ModuleFederationPlugin({
+  //   name: "home",
+  //   filename: "remoteEntry.js",
+  //   remotes: {
+  //     home: "home@http://localhost:3002/remoteEntry.js",
+  //   },
+  //   exposes: {
+  //     "./Content": "./src/module3",
+  //     "./Button": "./src/module4",
+  //   },
+  // }),
+];
+
+if (process.env.NODE_ENV === 'data') {
+  plugins.push(new BundleAnalyzerPlugin());
+}
 
 module.exports = {
   mode: 'development',
   devtool: 'source-map',
   entry: {
-    index: './src/index.js',
+    index: './src/index.ts',
   },
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: 'http://www.cc.com'
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 9000,
   },
-  plugins: [
-    new webpack.ProvidePlugin({
-      module1: path.resolve(path.join(__dirname, 'src/module1')),
-    }),
-    new MiniCssExtractPlugin({
-      filename: 'bundle.[name].css',
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      title: '单页',
-    }),
-    new VueLoaderPlugin(),
-    new ModuleFederationPlugin({
-      name: "home",
-      filename: "remoteEntry.js",
-      remotes: {
-        home: "home@http://localhost:3002/remoteEntry.js",
-      },
-      exposes: {
-        "./Content": "./src/module3",
-        "./Button": "./src/module4",
-      },
-    }),
-  ],
+  plugins: plugins,
   module: {
     rules: [
       {
@@ -78,8 +91,20 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx', '.vue'],
-    alias:{
-      a:'vue'
+    alias: {
+      a: 'vue'
+    }
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'initial',
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
     }
   },
 }
