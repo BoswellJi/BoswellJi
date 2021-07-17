@@ -6,6 +6,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader');
 
+const handler = (percentage, message, ...args) => {
+  console.info(percentage, message, ...args);
+};
+
 const plugins = [
   /***
    * 将模块注入为全局模块
@@ -20,7 +24,8 @@ const plugins = [
     template: './src/index.html',
     title: '单页',
   }),
-  new VueLoaderPlugin()
+  new VueLoaderPlugin(),
+  new webpack.ProgressPlugin(handler),
   /***
    * 微前端模块策略
    */
