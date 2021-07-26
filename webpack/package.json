@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "webpack -w",
     "serve": "webpack serve",
-    "stats":"set NODE_ENV=data && webpack -w",
+    "stats": "set NODE_ENV=data && webpack -w",
     "format": "prettier --write --parser typescript \"./src/*.ts?(x)\"",
     "fix": "eslint --fix"
   },

@@ -5,3 +5,5 @@ import App  from './module3.vue';
 createApp(App).mount('#app');
 
 console.log(module1);
+
+new Promise((r,s)=>{})
