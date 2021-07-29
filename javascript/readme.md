@@ -1,13 +1,3 @@
-## 脚本引擎v8/jscore
-
-* 支持语法与api；
-* 宿主平台提供宿主api;
-
-`平台对于语言的语法不支持，需要使用编译器来编译`；
-`平台对于语言的api不支持，需要使用polyfill来填充`；
-
-## javascript
-
 * [decimal.js](https://github.com/MikeMcl/decimal.js)
 
 ``` 
