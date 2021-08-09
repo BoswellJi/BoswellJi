@@ -6,4 +6,6 @@ createApp(App).mount('#app');
 
 console.log(module1);
 
-new Promise((r,s)=>{})
+new Promise((r,s)=>{});
+
+console.log('jjj');

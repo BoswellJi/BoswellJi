@@ -9,6 +9,9 @@ module.exports = {
     ]
   ],
   "plugins": [
-    ["@vue/babel-plugin-jsx", {}]
+    ["@vue/babel-plugin-jsx", {}],
+    ['transform-remove-console', {
+      exclude: ['log']
+    }]
   ]
 };

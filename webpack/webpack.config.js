@@ -1,10 +1,11 @@
-const path = require('path')
-const webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 const { ModuleFederationPlugin } = webpack.container;
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
+const NoConsolePlugin = require('no-console-webpack-plugin');
 
 const handler = (percentage, message, ...args) => {
   console.info(percentage, message, ...args);
@@ -112,4 +113,4 @@ module.exports = {
       },
     }
   },
-}
+};
