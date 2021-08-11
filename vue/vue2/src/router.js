@@ -1,6 +1,6 @@
 import VueRouter from "vue-router";
 import Vue from "vue";
-import test from "./components/test";
+import test from "./components/Test";
 import test1 from "./components/test1";
 import test2 from "./components/test2";
 import test3 from "./components/test3";

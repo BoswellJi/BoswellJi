@@ -27,9 +27,7 @@
       <button v-on:click="add">Add</button>
       <button v-on:click="remove">Remove</button>
 
-      <div>
-        异步组件的transition组件使用
-      </div>
+      <div>异步组件的transition组件使用</div>
       <transition name="v" appear>
         <async-comp></async-comp>
       </transition>
@@ -76,17 +74,21 @@
         <div>getterMod1Name:{{ getterMod1Name }}</div>
       </div>
       <comp1 :msg="testIndex"></comp1>
+
+      <treeselect v-model="value" :multiple="false" :options="options" />
     </div>
   </transition>
 </template>
 
 <script>
-import test from "./components/test";
+import test from "./components/Test";
 import test1 from "./components/test1";
 import test4 from "./components/test4";
 import hoc from "./hoc.js";
 import { createHOC } from "vue-hoc";
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
+import Treeselect from "@riophae/vue-treeselect";
+import "@riophae/vue-treeselect/dist/vue-treeselect.css";
 
 const options = {
   created() {
@@ -97,6 +99,7 @@ const options = {
 export default {
   name: "App",
   components: {
+    Treeselect,
     testHoc: hoc(test),
     test: createHOC(test, options),
     test1: createHOC(test1, options),
@@ -110,13 +113,13 @@ export default {
       },
       render(h) {
         console.log("comp1 render");
-        return h("div",{},'comp1');
+        return h("div", {}, "comp1");
       },
     },
   },
   mounted() {
     // 这里有一个任务更新队列的问题,所以是有顺序的
-    this.$nextTick(function() {
+    this.$nextTick(function () {
       const dom = document.querySelector("#text");
     });
     this.$store.state.name;
@@ -142,6 +145,38 @@ export default {
       nextNum: 10,
       compName: "test",
       testIndex: 0,
+
+      value: null,
+      options: [
+        {
+          id: "a",
+          label: "a",
+          children: [
+            {
+              id: "aa",
+              label: "aa",
+            },
+            {
+              id: "ab",
+              label: "ab",
+              children:[
+                {
+                  id:'abb',
+                  label:'34'
+                }
+              ]
+            },
+          ],
+        },
+        {
+          id: "b",
+          label: "b",
+        },
+        {
+          id: "c",
+          label: "c",
+        },
+      ],
     };
   },
   methods: {
@@ -153,13 +188,13 @@ export default {
     test1ClickHandle(e) {
       this.testIndex++;
     },
-    add: function() {
+    add: function () {
       this.items.splice(this.randomIndex(), 0, this.nextNum++);
     },
-    remove: function() {
+    remove: function () {
       this.items.splice(this.randomIndex(), 1);
     },
-    randomIndex: function() {
+    randomIndex: function () {
       return Math.floor(Math.random() * this.items.length);
     },
   },
