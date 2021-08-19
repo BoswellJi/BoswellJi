@@ -1,48 +1,51 @@
 <template>
-  jmz
-  <!-- <img alt="Vue logo" src="./assets/logo.png"  /> -->
-  <transition name="fade" appear>
-    <HelloWorld  msg="App" />
-  </transition>
-  <teleport to="#con">
-    <div>teleport</div>
-  </teleport>
-  <!-- <input v-model="num" v-if="fadeShow" /> -->
-  <div @click="clickHandle">点击</div>
-  {{ reactiveState.name }}{{testComputed}}
-  <comp1 :msg="fadeShow"></comp1>
+  <div>
+    <transition name="fade" appear>
+      <HelloWorld msg="App" />
+    </transition>
+    <teleport to="#con">
+      <div>teleport</div>
+    </teleport>
+    <div @click="clickHandle">点击</div>
+    <comp1 :msg="fadeShow"></comp1>
+
+    <div v-memo="[value1,value2]">
+      {{value1}}{{value2}}
+    </div>
+  </div>
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
-import { ref, onMounted, reactive,h } from "vue";
+import { ref, onMounted, reactive, h } from "vue";
 
 export default {
   name: "App",
   components: {
     HelloWorld,
-    Comp1:{
-      props:{
-        msg:Boolean
+    Comp1: {
+      props: {
+        msg: Boolean,
       },
-      render(){
-        console.log('comp1 render');
-        return h('div');
-      }
-    }
+      render() {
+        return h("div");
+      },
+    },
   },
-  computed:{
-    testComputed(){
+  computed: {
+    testComputed() {
       return this.reactiveState.name;
-    }
+    },
   },
-  watch:{
-    ['reactiveState.name'](){
-      return 'hhh';
-    }
+  watch: {
+    ["reactiveState.name"]() {
+      return "hhh";
+    },
   },
   setup() {
     const fadeShow = ref(true);
+    const value1 = ref("value1");
+    const value2 = ref("value2");
     const reactiveState = reactive({
       name: "Boswell",
     });
@@ -50,14 +53,14 @@ export default {
       fadeShow.value = !fadeShow.value;
     }
 
-    onMounted(() => {
-      // console.log("onMounted");
-    });
+    onMounted(() => {});
 
     return {
       clickHandle,
       fadeShow,
       reactiveState,
+      value1,
+      value2,
     };
   },
 };

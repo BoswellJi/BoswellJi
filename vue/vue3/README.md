@@ -1,24 +1,6 @@
-# vue3
+## 版本中每个部分的意义：
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+* 例如3.2.1
+  - 3: 版本之间存在断层的可能
+  - 2: 添加新功能
+  - 1: 修复问题
