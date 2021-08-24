@@ -3,6 +3,11 @@
 * 转换新语法；
 * 点上缺失特性；
 
+## 运行流程
+
+* source code - parse -> ast - transform -> ast - generator -> target code
+* babel 6.0起，transform不在babel core中处理，放到plugin中处理
+
 ## 插件
 
 * babel polyfills：能够通过不同策略将不同polyfill注入到编译代码中；`api填补(core.js,regenerator)`
