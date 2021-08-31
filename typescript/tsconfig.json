@@ -40,6 +40,7 @@
     // "noUnusedParameters": true,            /* Report errors on unused parameters. */
     "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
     // "noFallthroughCasesInSwitch": true,    /* Report errors for fallthrough cases in switch statement. */
+    "noImplicitOverride": true, // 类继承中的函数重载，需要使用关键字override显示定义
     
     /* Module Resolution Options */
     "moduleResolution": "node", /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
@@ -74,17 +75,16 @@
   },
   // 包含被编译目录
   "include": [
-    "./src/ts",
-    "types"
+    "src/**/*",
+    "types/**/*"
   ],
   // 不编译的目录
   "exclude": [
-    "./node_modules",
-    "./dist",
-    "./src/js"
-  ],
-  // 包含被编译的文件
-  "files": [
-    "./types/namespace.d.ts"
+    "node_modules",
+    "dist"
   ]
+  // 包含被编译的文件
+  // "files": [
+    
+  // ]
 }
