@@ -123,6 +123,7 @@ export default {
       const dom = document.querySelector("#text");
     });
     this.$store.state.name;
+    console.log(process.env.NODE_ENV,'process.env.NODE_ENV');
   },
   computed: {
     ...mapGetters(["getterAge"]),
