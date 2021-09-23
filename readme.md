@@ -2,41 +2,53 @@
 
 ## 学习范围
 
-* 基础
-  + 英语
-  + 编程语言
-  + 设计模式
-  + 数据结构和算法
-  + 计算机网络
-  + 图形学
-  + 浏览器
-  + 编译器
+- 语言
 
-* 开发效率
-  + 开发工具
-  + 公共库,工具方法,组件等沉淀
+  - JS/TS/Vue/Angular/React
+  - English/Chinese
 
-* 工程化
-  + 版本管理`git git-extension`
-  + 单元测试`jest`
-  + 语法检查`eslint`
-  + 代码排版`prettier`
-  + 代码编译`babel`
-  + 样式编译`postcss`
-  + 构建打包`webpack`
-  + 目标环境(兼容性+降级方案)`browserslist`
+- 平台
 
-* 3D图形
-  + 图形学/WebGL`three.js`
+  - 浏览器
+  - 小程序
+  - Node
 
-* 小程序
-  + 框架`uniapp`
+- 思想
 
-* web
-  + 框架`vue,vue-router,vuex,elementEl,element plus`
+  - 设计模式
+  - 数据结构和算法
+  - 程序架构
+  - 工程化
+
+- 基础
+
+  - 电路
+  - 计算机组成原理
+  - 计算机网络
+  - 操作系统
+  - 图形学
+  - 编译器
+
+- 工程化
+
+  - 开发效率`vscode,开发工具,公共库,工具方法,组件等沉淀`
+  - 版本管理`git,git-extension`
+  - 单元测试`jest`
+  - 语法检查`eslint`
+  - 代码格式化`prettier`
+  - 代码编写格式`editorconfig`
+  - 代码编译`babel`
+  - 样式编译`postcss`
+  - 构建打包`webpack`
+  - 目标环境(兼容性+降级方案)`browserslist`
+  - 持续集成
+
+- 规范
+
+  - css: BEM
 
 ## 提交信息规则
 
 ```js
-/^(revert: )?(feat|fix|polish|docs|style|refactor|perf|test|workflow|ci|chore|types)(\(.+\))?: .{1,50}/
+/^(revert: )?(feat|fix|polish|docs|style|refactor|perf|test|workflow|ci|chore|types)(\(.+\))?: .{1,50}/;
 ```
