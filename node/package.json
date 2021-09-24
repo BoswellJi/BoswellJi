@@ -8,5 +8,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "pdfkit": "^0.12.3",
+    "xlsx": "^0.17.2"
+  }
 }
