@@ -123,7 +123,7 @@ export default {
       const dom = document.querySelector("#text");
     });
     this.$store.state.name;
-    console.log(process.env.NODE_ENV,'process.env.NODE_ENV');
+    console.log(process.env.NODE_ENV, "process.env.NODE_ENV");
   },
   computed: {
     ...mapGetters(["getterAge"]),
@@ -160,12 +160,12 @@ export default {
             {
               id: "ab",
               label: "ab",
-              children:[
+              children: [
                 {
-                  id:'abb',
-                  label:'34'
-                }
-              ]
+                  id: "abb",
+                  label: "34",
+                },
+              ],
             },
           ],
         },
@@ -195,7 +195,9 @@ export default {
     remove: function () {
       this.items.splice(this.randomIndex(), 1);
     },
-    randomIndex: function () {
+    /**
+     */
+    randomIndex(a) {
       return Math.floor(Math.random() * this.items.length);
     },
   },
