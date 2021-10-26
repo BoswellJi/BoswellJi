@@ -5,7 +5,7 @@
 
 - 语言
 
-  - [JS](https://github.com/tc39)/[TS](https://github.com/microsoft/TypeScript)/[Vue](https://github.com/vuejs/vue)/[Angular](https://github.com/angular/angular)/[React](https://github.com/facebook/react)/[NodeJs](https://github.com/nodejs/node)
+  - [JS](https://github.com/tc39)/[TS](https://github.com/microsoft/TypeScript)/[Vue](https://github.com/vuejs/vue)/[Angular](https://github.com/angular/angular)/[React](https://github.com/facebook/react)/[Three.js](https://github.com/mrdoob/three.js)/[NodeJs](https://github.com/nodejs/node)
   - English/Chinese
 
 - 平台
@@ -23,7 +23,7 @@
 
 - 基础
 
-  - 电路
+  - 数字电路
   - 计算机组成原理
   - 计算机网络
   - 操作系统
