@@ -1,10 +1,11 @@
 ![Boswell's GitHub stats](https://github-readme-stats.vercel.app/api?username=BoswellJi)
 
+
 ## 学习范围
 
 - 语言
 
-  - JS/TS/Vue/Angular/React
+  - [JS](https://github.com/tc39)/[TS](https://github.com/microsoft/TypeScript)/[Vue](https://github.com/vuejs/vue)/[Angular](https://github.com/angular/angular)/[React](https://github.com/facebook/react)/[NodeJs](https://github.com/nodejs/node)
   - English/Chinese
 
 - 平台

@@ -1,19 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    video{
+    video {
       width: 100%;
-      margin-bottom: 1000px;
-      margin-top: 500px;
     }
   </style>
 </head>
+
 <body>
-  <video controls="controls" src="https://oss.kaoyanvip.cn/attach/file1632621484159.mp4"></video>
+  <!-- 
+    
+* ios自动播放需要muted,webkit-playsinline,playsinline 
+* chorme自动播放需要muted
+* 没有controls属性浏览器中会被卡死视频
+* 小米中不设置controls不起作用
+
+   -->
+  <video id="video" controls muted webkit-playsinline="true" playsinline="true" autoplay="true" preload="auto"
+    src="https://oss.kaoyanvip.cn/attach/file1632621484159.mp4"></video>
+
+  <script>
+    setTimeout(() => {
+      try {
+        document.getElementById('video').play();
+      } catch (err) {
+        console.log('自动播放失败');
+      }
+    }, 1000);
+  </script>
 </body>
+
 </html>
