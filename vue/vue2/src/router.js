@@ -27,9 +27,14 @@ const routes = [
   { path: "/c/:id/d/:name", component: test4 },
   { path: "/video", component: video },
   { path: "/html2canvas", component: html2canvas },
+  {
+    path: '/three',
+    component: () => import('./components/three')
+  }
 ];
 
 const router = new VueRouter({
+  mode: 'history',
   routes,
   // mode:'history'
 });
