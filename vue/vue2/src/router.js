@@ -30,6 +30,10 @@ const routes = [
   {
     path: '/three',
     component: () => import('./components/three')
+  },
+  {
+    path: '/video.js',
+    component: () => import('./components/video.js')
   }
 ];
 

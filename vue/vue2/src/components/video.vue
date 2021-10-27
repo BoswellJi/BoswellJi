@@ -1,55 +1,75 @@
 <template>
   <div>
-     <video
-      class="js-video"
+    <!-- 方案1 -->
+    <video
       id="video"
-      controls
-      muted
       webkit-playsinline="true"
       playsinline="true"
-      autoplay="true"
-      preload="auto"
-      src="https://oss.kaoyanvip.cn/attach/file1632621484159.mp4"
-    ></video>  
-    <canvas id="js-canvas"></canvas>
+    >
+      <source src="https://oss.kaoyanvip.cn/attach/file1632621484159.mp4" type="video/mp4">
+    </video>
+
+    <!-- 方案2 -->
+    <div id="vs"></div>
+
+    <!-- 方案3 -->
+    <iframe src="/video.html"></iframe>
+
+    <!-- 方案4 -->
+    <canvas id="canvas"></canvas>
     <div id="videodiv"></div>
   </div>
 </template>
 
 <script>
-import { CanvasVideoPlayer } from "../lib/canvas-video-player";
+import Player from "xgplayer";
 
 export default {
   mounted() {
-    // var canvasVideo = new CanvasVideoPlayer({
-    //   videoSelector: ".js-video",
-    //   canvasSelector: ".js-canvas",
-    // });
-    // canvasVideo.play();
+    this.fn1();
+  },
+  destroyed() {
+    document.documentElement.removeEventListener("click", this.play);
+  },
+  methods: {
+    fn2() {
+      const player = new Player({
+        id: "vs",
+        url: "https://oss.kaoyanvip.cn/attach/file1632621484159.mp4",
+        autoplay: true,
+        controls: false,
+        volume: 0
+      });
+    },
+    fn1() {
+      const video = document.getElementById("video");
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
 
-    const video = document.getElementById('video');
-    const canvas = document.getElementById("js-canvas");
-    const ctx = canvas.getContext("2d");
+      this.video = video;
 
-    render();
-    
-    function render() {
-      window.requestAnimationFrame(render);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height); //绘制视频
-    }
+      // video.muted = true;
+      video.volume = 0;
+      video.controls = true;
+      video.autoplay = true;
+      video.preload = "auto";
+
+      console.log(video.volume);
+
+      render();
+
+      function render() {
+        window.requestAnimationFrame(render);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height); //绘制视频
+      }
+    },
   },
 };
 </script>
 
 <style>
-#js-canvas {
-  position: absolute;
-  z-index: 12;
-  left:1px;
-}
-
-video{
+video {
   width: 100%;
 }
 </style>
