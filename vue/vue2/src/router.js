@@ -34,6 +34,10 @@ const routes = [
   {
     path: '/video.js',
     component: () => import('./components/video.js')
+  },
+  {
+    path: '/vant',
+    component: () => import('./components/vant')
   }
 ];
 
