@@ -38,6 +38,10 @@ const routes = [
   {
     path: '/vant',
     component: () => import('./components/vant')
+  },
+  {
+    path: '/html2pdf',
+    component: () => import('./components/html2pdf.js')
   }
 ];
 
