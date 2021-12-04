@@ -1,9 +1,9 @@
 <template>
-  <div id="temp">
-    template
+  <div class="temp" ref="temp">
+    <div @click="download">template</div>
     <van-pagination v-model="currentPage" :total-items="24" :items-per-page="5" />
     <a href="https://www.baidu.com">badu</a>
-    <img src="/favicon.ico" alt="">
+    <img src="/favicon.ico" alt="" />
   </div>
 </template>
 
@@ -20,14 +20,21 @@ export default {
       currentPage: 1,
     };
   },
-  mounted() {
-    var element = document.getElementById("temp");
-    html2pdf(element).toPdf(()=>{
-      console.log(arguments);
-    })
+  mounted() {},
+  methods: {
+    download() {
+      const element = this.$refs.temp;
+      html2pdf(element);
+    },
   },
 };
 </script>
 
-<style>
+<style lang="sass" scoped>
+.temp {
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
