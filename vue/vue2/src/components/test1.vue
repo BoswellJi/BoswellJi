@@ -1,6 +1,6 @@
 <template>
   <div @click="clickhandle">
-    test1
+    <test :data-name="dataName"></test>
   </div>
 </template>
 <script>
@@ -10,21 +10,23 @@
  * 具名插槽
  * 作用域插槽
  */
+import test from './Test.vue';
 export default {
   name: "test1",
+  components:{
+    test
+  },
   created(){
     
   },
   data() {
     return {
-      user: {
-        name: "Boswell",
-      },
+      dataName:''
     };
   },
   methods: {
     clickhandle() {
-      this.$emit("test1ClickHandle", "test1ClickHandle");
+      this.dataName = Math.random()+'';
     },
   },
 };

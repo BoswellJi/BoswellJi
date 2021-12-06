@@ -12,6 +12,7 @@
   "dependencies": {
     "jimp": "^0.16.1",
     "jsqr": "^1.4.0",
+    "pdf2json": "^2.0.0",
     "pdfkit": "^0.12.3",
     "qrcode": "^1.4.4",
     "xlsx": "^0.17.2"

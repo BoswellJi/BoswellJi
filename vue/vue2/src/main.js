@@ -2,6 +2,14 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from './router';
 import vuex from './store';
+import Sortable from "sortablejs";
+import { Swap } from "sortablejs/modular/sortable.core.esm";
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+Sortable.mount(new Swap());
+
+Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 

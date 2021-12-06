@@ -42,6 +42,22 @@ const routes = [
   {
     path: '/html2pdf',
     component: () => import('./components/html2pdf.js')
+  },
+  {
+    path:'/vuedraggable',
+    component:()=>import('./components/vuedraggable'),
+  },
+  {
+    path:'/test1',
+    component:()=>import('./components/test1')
+  },
+  {
+    path:'/jspdf',
+    component:()=>import('./components/jspdf'),
+    props:{
+      a:1,
+      b:2
+    }
   }
 ];
 
