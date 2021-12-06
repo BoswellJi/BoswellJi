@@ -29,12 +29,3 @@ export default {
   },
 };
 </script>
-
-<style lang="sass" scoped>
-.temp {
-  height: 600px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-</style>

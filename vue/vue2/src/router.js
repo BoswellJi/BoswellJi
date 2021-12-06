@@ -42,6 +42,10 @@ const routes = [
   {
     path: '/html2pdf',
     component: () => import('./components/html2pdf.js')
+  },
+  {
+    path: '/pdfmake',
+    component: () => import('./components/pdfmake')
   }
 ];
 
