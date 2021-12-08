@@ -58,6 +58,10 @@ const routes = [
       a:1,
       b:2
     }
+  },
+  {
+    path: '/pdfmake',
+    component: () => import('./components/pdfmake')
   }
 ];
 
