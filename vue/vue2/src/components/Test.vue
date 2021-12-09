@@ -1,5 +1,5 @@
 <template>
-  <div @click="clickhandle">test{{ dataName }}dfdf</div>
+  <div @click="clickhandle">test{{ dataName }}</div>
 </template>
 <script>
 export default {

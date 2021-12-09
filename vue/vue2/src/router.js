@@ -1,6 +1,6 @@
 import VueRouter from "vue-router";
 import Vue from "vue";
-import test from "./components/Test";
+import test from "./components/test";
 import test1 from "./components/test1";
 import test2 from "./components/test2";
 import test3 from "./components/test3";
@@ -13,13 +13,28 @@ Vue.use(VueRouter);
 const routes = [
   { path: "/", component: test1, },
   {
-    path: "/a",
+    path: "/test2",
     component: test2,
     alias: "/jmz",
+    props: {
+      'test2': true
+    },
     children: [
       {
-        path: "jmzc1",
-        component: test,
+        path: "test3",
+        component: test3,
+        props: {
+          'test3': true
+        },
+        children: [
+          {
+            path: 'test4',
+            component: test4,
+            props: {
+              'test4': true
+            },
+          }
+        ]
       },
     ],
   },
@@ -44,19 +59,19 @@ const routes = [
     component: () => import('./components/html2pdf.js')
   },
   {
-    path:'/vuedraggable',
-    component:()=>import('./components/vuedraggable'),
+    path: '/vuedraggable',
+    component: () => import('./components/vuedraggable'),
   },
   {
-    path:'/test1',
-    component:()=>import('./components/test1')
+    path: '/test1',
+    component: () => import('./components/test1')
   },
   {
-    path:'/jspdf',
-    component:()=>import('./components/jspdf'),
-    props:{
-      a:1,
-      b:2
+    path: '/jspdf',
+    component: () => import('./components/jspdf'),
+    props: {
+      a: 1,
+      b: 2
     }
   },
   {

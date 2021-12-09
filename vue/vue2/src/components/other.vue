@@ -83,7 +83,7 @@
 <script>
 import test from "./Test";
 import test1 from "./test1";
-import test4 from "./test4";
+import test4 from "./test4.vue";
 import hoc from "../hoc.js";
 import { createHOC } from "vue-hoc";
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex";

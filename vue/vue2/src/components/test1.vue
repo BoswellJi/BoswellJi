@@ -10,7 +10,7 @@
  * 具名插槽
  * 作用域插槽
  */
-import test from './Test.vue';
+import test from './test';
 export default {
   name: "test1",
   components:{
@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-      dataName:''
+      dataName:'ttt'
     };
   },
   methods: {
