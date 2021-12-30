@@ -70,7 +70,7 @@ var PhotoGallery = Backbone.Collection.extend({
 
 所以总的来说，models主要于业务数据有关。
 
-## views 
+## 视图 
 
 views是一个可见的模型呈现，它呈现一个被过滤的它们当前状态的view。尽管smallTalk视图是关于绘制和维护位图，js视图是关于构建和维护dom元素。
 
@@ -99,13 +99,13 @@ var buildPhotoView = function ( photoModel, photoController ) {
   base.appendChild(photoEl);
  
   var render = function () {
-          // We use a templating library such as Underscore
-          // templating which generates the HTML for our
-          // photo entry
-          photoEl.innerHTML = _.template( "#photoTemplate", {
-              src: photoModel.getSrc()
-          });
-      };
+    // We use a templating library such as Underscore
+    // templating which generates the HTML for our
+    // photo entry
+    photoEl.innerHTML = _.template( "#photoTemplate", {
+        src: photoModel.getSrc()
+    });
+  };
  
   photoModel.addSubscriber( render );
  
@@ -125,7 +125,6 @@ var buildPhotoView = function ( photoModel, photoController ) {
     showView: show,
     hideView: hide
   };
- 
 };
 ```
 
@@ -173,7 +172,7 @@ Underscore.js Microtemplates
 
 ## 控制器
 
-控制器是models和view之间的中间人，它经典的责任是在用户操作views时，用来更新model。
+控制器是models和view之间的中间人，它通常的责任是在用户操作views时，用来更新model。
 
 在我们的图片画廊应用程序中，控制器的责任是处理用户编辑特定图片视图的改变，当用户完成编辑时，会更新特定图片模型。
 

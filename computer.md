@@ -57,13 +57,10 @@
   - mvc
   - mvp
   - mvvm
-  - 依赖注入
+  - DI
+  - flux/redux
 
-- 前端构建
-
-- 前端框架
-
-## web 知识架构
+## web
 
 - html
 
@@ -102,25 +99,6 @@
   - vue-rx
   - vue-apollo
 
-## 学习目标
+- build
 
-- 学习并不是为了学习而学习的，学习是为了能够使用，应用到对应的领域，`做出产品，做出贡献，成就事业，成就自己`；
-
-## 作为程序员（前端工程师），我可以实现哪些东西落地？
-
-### 应用产品
-
-- pc 程序；
-- android/ios 程序；
-- web 程序；
-- wxminapp 程序；
-
-### 工具产品
-
-- 命令行工具: npm
-- 组件: element
-- 类库: lodash
-- 框架: vue
-- 打包工具：webpack
-- 编译工具：babel
-- 编程语言： js
+- framework

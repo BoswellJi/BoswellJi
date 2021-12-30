@@ -93,6 +93,7 @@ $(function () {
     initialize: function () {
       this.listenTo(this.model, 'change', this.render);
       this.listenTo(this.model, 'destroy', this.remove);
+      console.log(this.model,'test');
     },
 
     // Re-render the titles of the todo item.
@@ -242,8 +243,8 @@ var People = Backbone.Model.extend({
 });
 
 var Peoples = Backbone.Collection.extend({
+  mode: People,
   initialize: function (models, options) {
-    // 触发
     this.bind('add', options.view.addOnePerson);
   }
 });
@@ -252,13 +253,13 @@ var AppView1 = Backbone.View.extend({
   el: $('body'),
   initialize: function () {
     this.peoples = new Peoples(null, { view: this });
+    console.log(this.model,'tes1');
   },
   events: {
     'click #check': 'checkIn'
   },
   checkIn: function () {
-    // 更新model
-    var person = new People({ name: 'jmz', ctime: '123' });
+    var person = new People({ name: 'Boswell', ctime: '123' });
     this.peoples.add(person);
   },
   addOnePerson:function(model){
