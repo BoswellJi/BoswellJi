@@ -66,7 +66,6 @@ Graph.prototype = {
   dfs(v) {
     this.marked[v] = true;
     if (this.adj[v] != undefined) {
-      console.log('vertex:' + v);
       for (let i = 0, len = this.adj[v].length; i < len; i++) {
         if (!this.marked[i]) {
           this.dfs(i);

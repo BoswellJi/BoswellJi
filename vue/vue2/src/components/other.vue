@@ -81,8 +81,8 @@
 </template>
 
 <script>
-import test from "./Test";
-import test1 from "./test1";
+import test from "./test.vue";
+import test1 from "./test1.vue";
 import test4 from "./test4.vue";
 import hoc from "../hoc.js";
 import { createHOC } from "vue-hoc";

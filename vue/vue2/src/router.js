@@ -77,7 +77,7 @@ const routes = [
   {
     path: '/pdfmake',
     component: () => import('./components/pdfmake')
-  }
+  },
 ];
 
 const router = new VueRouter({

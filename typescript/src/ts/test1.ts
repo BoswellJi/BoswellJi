@@ -1,10 +1,8 @@
-import {age} from './test2';
+import { age } from '@/ts/test2';
 
-const personName: string = "Boswell";
+const personName: string = 'Boswell';
 const sayFn: () => void = () => {};
 
 age;
 
-const p = new Promise((reslove,reject)=>{
-    
-});
+const p = new Promise((reslove, reject) => {});

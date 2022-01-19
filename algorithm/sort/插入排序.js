@@ -14,7 +14,6 @@ function insertSort(arr) {
     // 从排好的里面与新的进行对比，前面的大于后面的就把大的换过去, 两两对比
     while (i > 0 && arr[inner - 1] > temp) {
       arr[inner] = arr[inner - 1];
-      // 迭代，跟前面的所有数都进行对比
       --inner;
     }
     arr[inner] = temp;
