@@ -5,13 +5,17 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "pwa-node",
+      "name": "Launch via NPM",
       "request": "launch",
-      "name": "Launch Program",
+      "runtimeArgs": [
+        "run",
+        "start"
+      ],
+      "runtimeExecutable": "npm",
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${file}"
+      "type": "pwa-node"
     }
   ]
 }

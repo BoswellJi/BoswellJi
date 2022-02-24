@@ -1,16 +1,27 @@
-import React,{ useState } from 'react';
+import { autorun, reaction } from 'mobx';
+import React, { useState } from 'react';
+import { Todo, TodoList, TodoListView } from './mobx-components';
 
 function App() {
   console.log(0);
   const [state, setState] = useState(0);
-
-  const changeState = ()=>{
+  const store = new TodoList([new Todo("Get Coffee"), new Todo("Write simpler code")]);
+  const changeState = () => {
     setState(state + 1)
   }
+
+  autorun((data) => {
+    console.log('autorun', data);
+  });
+
+  reaction(() => store.unfinishedTodoCount, (data) => {
+    console.log('reaction', data);
+  });
 
   return (
     <div className="App">
       {state}
+      <TodoListView todoList={store} />
       <Test1></Test1>
       <Test2></Test2>
       <button onClick={changeState}>click0</button>
@@ -18,11 +29,11 @@ function App() {
   );
 }
 
-function Test1(){
+function Test1() {
   console.log(1);
   const [state, setState] = useState(0);
 
-  const changeState = ()=>{
+  const changeState = () => {
     setState(state + 1)
   }
 
@@ -44,8 +55,8 @@ class Test2 extends React.Component {
     console.log(2);
   }
 
-  shouldComponentUpdate(nextProps,nextState){
-    console.log(2,nextProps,nextState);
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log(2, nextProps, nextState);
     return false;
   }
 
