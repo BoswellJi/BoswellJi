@@ -3,7 +3,6 @@
 | 姓名     | 季明壮                        |
 | -------- | ----------------------------- |
 | 岗位     | 前端工程师                    |
-| 工作经验 | 5 年                          |
 | 联系电话 | 13812872860                   |
 | 邮箱     | aiyoudqrjmz@163.com           |
 | 毕业学校 | 沙洲职业工学院（2013-9~2016-6 |
@@ -11,32 +10,38 @@
 
 ## 工作经历
 
-| 年份             | 公司                       | 岗位       |
+| 年份           | 公司                       | 岗位       |
 | -------------- | -------------------------- | ---------- |
-| 2016-1~2017-10  | 同程旅游                   | 前端工程师 |
-| 2017-10~2019-3  | 苏州爱洛克信息技术有限公司 | 前端工程师 |
-| 2019-3~2021-8    | 智能晴雨                   | 前端工程师 |
-| 2021-8~至今    | 研途教育科技                  | 前端工程师 |
+| 2016-1~2017-10 | 同程旅游                   | 前端工程师 |
+| 2017-10~2019-3 | 苏州爱洛克信息技术有限公司 | 前端工程师 |
+| 2019-3~2021-8  | 智能晴雨                   | 前端工程师 |
+| 2021-8~至今    | 研途教育科技               | 前端工程师 |
 
 ## 职业技能
 
-基础：
-
-1. 熟练 html,css,js,vue 等;
-2. 掌握 vue-router,vuex,vue-cli,uniapp,elementUI,vs code,git等;
-3. 熟悉 ts,canvas,webpack,http,nodejs,design pattern,algorithm,data structure等；
-4. 了解 webgl,threejs(3D),spritejs(2D),前端工程化等;
+1. 熟练 html,css,js,vue2.x/3.x等；
+2. 掌握 vue-router,vuex,vue-cli,uniapp,elementUI,vs code,git等；
+3. 熟悉 ts,webpack,http,nodejs,design pattern,algorithm,data structure等；
+4. 了解 canvas,webgl,threejs(3D),spritejs(2D),frontend engineering等；
 
 ## 项目经历
 
-### 专题
+### 根据当前页面的架构优化搜索框的使用体验
 
-- 原生js
+- 框架
+  - vue2.x
+
+- 库
+  - vuex
+  - vue-router
+  - element-ui
+  - axios
+  - lodash
+  - less
+
+> 职责
 
 > 地址
-
-- [项目1](https://h5.kaoyanvip.cn/zt/eykxj/)
-- [项目2](https://h5.kaoyanvip.cn/zt/kxj/)
 
 ### 学生专属择校报告
 
@@ -46,16 +51,21 @@
 - 库
   - vuex
   - vue-router
-  - vant
+  - element-ui
   - axios
   - lodash
-  - moment
-  - compressorjs
+  - vuedraggable
+  - echarts
+  - less
 
 > 职责
 
-- 这是一个hybrid app,提供给学生用来模拟考试，我负责全部任务的开发工作；
-- 与原生开发人员进行对接，来获取用户token,
+- 开发可视化的学生专属择校报告(pdf)生成，通过组件的拖拽来配置报告中的模块生成pdf报告；
+- 实现了pdf生成需要用到的全部配置组件；
+- 实现了基于vuedraggable组件的拖拽系统；
+- 实现了根据配置报告中的组件是否存在自动生成目录；
+- 实现了编辑完成后的草稿存储；
+- 实现了将canva转图片url后上传报告；
 
 > 地址
 
@@ -106,6 +116,23 @@
 > 地址
 
 - [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/mishop.md)
+
+### 专题
+
+- 框架
+  - 无
+
+- 库
+  - 无
+
+> 职责
+
+- 使用原生javascript编写营销h5页面；
+
+> 地址
+
+- [项目1](https://h5.kaoyanvip.cn/zt/eykxj/)
+- [项目2](https://h5.kaoyanvip.cn/zt/kxj/)
 
 ### 咪店优选小程序
 

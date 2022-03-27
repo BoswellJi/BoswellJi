@@ -8,4 +8,6 @@
  
 ## react server component
 
-## concurrence mode
+## concurrence mode/time slicing
+
+## reconciliation algorithm
