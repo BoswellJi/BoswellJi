@@ -1,5 +1,5 @@
 ## 个人简介
-  - [个人简历](./personal-profile/jmz.md)
+  - [个人简历](./personal-profile/boswell.md)
 
 # 2021-04-09
 
@@ -10,8 +10,6 @@
 
 ## js(翻译)
   - [javascript异步模式快速指南](./js/async.md)
-
-## ts
 
 # 2018-12-23
 

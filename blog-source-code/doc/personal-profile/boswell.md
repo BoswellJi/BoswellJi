@@ -91,11 +91,18 @@
   - lodash
   - moment
   - compressorjs
+  - qs
+  - less
 
 - 职责
+  - 首期的考试营销报名页面的开发；
+  - 开考60s视频的开发，协商原生人员开启`web video`默认播放声音；
+  - 试卷封面页面开发；
+  - 试卷展示页面的开发，实现了与原生交互取消原生导航条，使用自定义导航条的功能；
+  - 实现了缓存
 
 - 地址
-  - [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/mishop.md)
+  - [项目](../project/mock-exam.md)
 
 ### 订单退费审核流程
 
@@ -118,7 +125,7 @@
 
 > 地址
 
-- [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/mishop.md)
+- [项目](../project/order-refund.md)
 
 ### 专题
 
