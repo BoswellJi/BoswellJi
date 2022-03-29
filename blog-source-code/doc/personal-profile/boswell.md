@@ -2,6 +2,7 @@
 
 | 姓名     | 季明壮                        |
 | -------- | ----------------------------- |
+| 网名     | Boswell                    |
 | 岗位     | 前端工程师                    |
 | 联系电话 | 13812872860                   |
 | 邮箱     | aiyoudqrjmz@163.com           |
@@ -19,14 +20,16 @@
 
 ## 职业技能
 
-1. 熟练 html,css,js,vue2.x/3.x等；
-2. 掌握 vue-router,vuex,vue-cli,uniapp,elementUI,vs code,git等；
-3. 熟悉 ts,webpack,http,nodejs,design pattern,algorithm,data structure等；
-4. 了解 canvas,webgl,threejs(3D),spritejs(2D),frontend engineering等；
+1. 熟练 `html`,`css`,`js`,`vue2.x/3.x`等；
+2. 掌握 `vue-router`,`vuex`,`vue-cli`,`uniapp`,`elementUI`,`vs code`,`git`等；
+3. 熟悉 `ts`,`webpack`,`http`,`nodejs`,`design pattern`,`algorithm`,`data structure`等；
+4. 了解 `canvas`,`webgl`,`threejs(3D)`,`spritejs(2D)`,`frontend engineering`等；
 
-## 项目经历
+## 2021-8~至今：研途教育科技
 
-### 根据当前页面的架构优化搜索框的使用体验
+### 优化搜索框
+
+> 描述：根据当前页面的架构优化搜索框的使用体验，多页面的数据搜索，使用多个相同搜索字段，但是切换之后每次会刷新组件,希望可以实现相同字段在切换路由时不清空；
 
 - 框架
   - vue2.x
@@ -39,11 +42,15 @@
   - lodash
   - less
 
-> 职责
+- 功能
+  - 通过vuex实现了相同搜索字段的全局状态存储，使得每次切换都可以获取缓存，不会每次初始化，从而提升用户体验；
 
-> 地址
+- 地址
+  - [项目](../project/search-box.md)
 
 ### 学生专属择校报告
+
+> 描述：预定义多个配置组件，通过拖拽的方式放置到报告页面中进行配置，然后生成pdf报告；
 
 - 框架
   - vue2.x
@@ -58,20 +65,20 @@
   - echarts
   - less
 
-> 职责
+- 职责
+  - 实现了`pdf`生成需要用到的全部配置组件；
+  - 实现了基于`vuedraggable`组件的拖拽系统；
+  - 实现了根据配置报告中的组件是否存在自动生成目录；
+  - 实现了编辑完成后的实时草稿存储；
+  - 实现了将canva转文件进行上传获取图片url后上传报告；
+  - 实现了后端生成pdf的模板html,通过`css`的`@page`特性给打印的文档配置样式；
 
-- 开发可视化的学生专属择校报告(pdf)生成，通过组件的拖拽来配置报告中的模块生成pdf报告；
-- 实现了pdf生成需要用到的全部配置组件；
-- 实现了基于vuedraggable组件的拖拽系统；
-- 实现了根据配置报告中的组件是否存在自动生成目录；
-- 实现了编辑完成后的草稿存储；
-- 实现了将canva转图片url后上传报告；
-
-> 地址
-
-- [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/mishop.md)
+- 地址
+  - [项目](../project/student-report.md)
 
 ### 模拟考试
+
+> 描述：这是一个hybrid app,提供给学生用来模拟考试,有多门课程的试卷;
 
 - 框架
   - vue2.x
@@ -85,14 +92,10 @@
   - moment
   - compressorjs
 
-> 职责
+- 职责
 
-- 这是一个hybrid app,提供给学生用来模拟考试，我负责全部任务的开发工作；
-- 与原生开发人员进行对接，来获取用户token,
-
-> 地址
-
-- [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/mishop.md)
+- 地址
+  - [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/mishop.md)
 
 ### 订单退费审核流程
 
@@ -119,20 +122,22 @@
 
 ### 专题
 
+> 描述：营销h5页面，抽奖等；
+
 - 框架
   - 无
 
 - 库
   - 无
 
-> 职责
+- 职责
+  - 实现了使用原生javascript编写营销h5页面；
+  - 实现了转盘抽奖，以及转盘的减速运动；
+  - 实现了无缝滚动效果；
 
-- 使用原生javascript编写营销h5页面；
-
-> 地址
-
-- [项目1](https://h5.kaoyanvip.cn/zt/eykxj/)
-- [项目2](https://h5.kaoyanvip.cn/zt/kxj/)
+- 地址
+  - [项目1](https://h5.kaoyanvip.cn/zt/eykxj/)
+  - [项目2](https://h5.kaoyanvip.cn/zt/kxj/)
 
 ### 咪店优选小程序
 
