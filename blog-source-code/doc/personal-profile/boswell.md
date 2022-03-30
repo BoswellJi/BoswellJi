@@ -9,15 +9,6 @@
 | 毕业学校 | 沙洲职业工学院（2013-9~2016-6 |
 | 专业     | 网站开发与网络营销            |
 
-## 工作经历
-
-| 年份           | 公司                       | 岗位       |
-| -------------- | -------------------------- | ---------- |
-| 2016-1~2017-10 | 同程旅游                   | 前端工程师 |
-| 2017-10~2019-3 | 苏州爱洛克信息技术有限公司 | 前端工程师 |
-| 2019-3~2021-8  | 智能晴雨                   | 前端工程师 |
-| 2021-8~至今    | 研途教育科技               | 前端工程师 |
-
 ## 职业技能
 
 1. 熟练 `html`,`css`,`js`,`vue2.x/3.x`等；
@@ -95,16 +86,22 @@
   - less
 
 - 职责
-  - 首期的考试营销报名页面的开发；
-  - 开考60s视频的开发，协商原生人员开启`web video`默认播放声音；
-  - 试卷封面页面开发；
-  - 试卷展示页面的开发，实现了与原生交互取消原生导航条，使用自定义导航条的功能；
-  - 实现了缓存
+  - 实现了通过与app交互，获取token进行考试登录，未登录情况下，唤起app登录；
+  - 实现了首期的考试营销报名页面；
+  - 实现了开考60s祝福视频，协商app开启`web video`默认播放声音；
+  - 实现了试卷封面页面开发；
+  - 实现了考场功能，试卷展示，题目切换，考试时长计算，退出考场提示，查看已做答列表；
+  - 实现了与app交互取消app导航条，使用自定义导航条；
+  - 实现了恢复考场的功能，例如因为异常app崩溃，再次恢复考试时，重新回到最后一题；
+  - 实现了图片上传时，对图片进行压缩后上传；
+  - 实现了分享海报；
 
 - 地址
   - [项目](../project/mock-exam.md)
 
 ### 订单退费审核流程
+
+> 描述：
 
 - 框架
   - vue2.x
@@ -116,20 +113,18 @@
   - axios
   - lodash
   - moment
-  - compressorjs
 
-> 职责
+- 职责
+  - 实现了多级审批人配置以及最大审批人限制；
+  - 实现了对数据格式整理，符合树组件传值方式，以及初始化时针对选中元素在渲染vnode时对样式改写；
+  - 实现了数据驱动的动态表单，增加了程序的扩展性； 
 
-- 这是一个hybrid app,提供给学生用来模拟考试，我负责全部任务的开发工作；
-- 与原生开发人员进行对接，来获取用户token,
-
-> 地址
-
-- [项目](../project/order-refund.md)
+- 地址
+  - [项目](../project/order-refund.md)
 
 ### 专题
 
-> 描述：营销h5页面，抽奖等；
+> 描述：营销h5活动，抽奖等；
 
 - 框架
   - 无
@@ -146,6 +141,8 @@
   - [项目1](https://h5.kaoyanvip.cn/zt/eykxj/)
   - [项目2](https://h5.kaoyanvip.cn/zt/kxj/)
 
+## 2019-3~2021-8：智能晴雨       
+
 ### 咪店优选小程序
 
 - 框架
@@ -157,17 +154,14 @@
   - vue
   - vue-router
 
-> 职责
+- 职责
+  - 实现了分享海报，购物车，商户上货/下架，优惠支付，商户裂变，卡券核销，会员卡任务，商品分享大厅等多个功能模块；
+  - 实现了各种会场专题等业务；
+  - 实现了图片下载，地理位置获取，微信支付等核心mixins；
+  - 实现了canvas 2d海报工具函数开发；
 
-- 分享海报，购物车，商户上货/下架，优惠支付，商户裂变，卡券核销，会员卡任务，商品分享大厅等多个功能模块的开发；
-- 各种会场专题等业务开发；
-- 项目各个模块日常维护与迭代；
-- 图片下载，地理位置获取，微信支付等核心mixin编写；
-- canvas 2d海报工具函数开发；
-
-> 地址
-
-- [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/mishop.md)
+- 地址
+  - [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/mishop.md)
 
 ### 神奇会员小程序
 
@@ -180,17 +174,16 @@
   - vue
   - vue-router
 
-> 职责
+- 职责
+  - 实现了线下支付流程，商户详情页交互，商户及用户提现，多入口聚合数据列表，商品详情到下单全流程等功能模块的开发；
+  - 实现了自定义价格输入的键盘；
+  - 实现了整体项目的接口重构；
+  - 实现了项目各个模块日常维护与迭代；
+  - 实现了图片下载，地理位置获取，微信支付等核心mixin编写；
+  - 实现了canvas 2d海报工具函数开发；
 
-- 线下支付流程，商户详情页交互，商户及用户提现，多入口聚合数据列表，商品详情到下单全流程等功能模块的开发；
-- 整体项目的接口重构；
-- 项目各个模块日常维护与迭代；
-- 图片下载，地理位置获取，微信支付等核心mixin编写；
-- canvas 2d海报工具函数开发；
-
-> 地址
-
-- [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/discount.md)
+- 地址
+  - [项目](../project/discount.md)
 
 ### 喵客云管理后台
 
@@ -205,14 +198,12 @@
   - moment
   - 等
 
-> 职责
+- 职责
+  - 多类型素材分享管理，定制模板，支付码与推广码等功能模块的开发；
+  - 项目各个模块日常维护与迭代；
 
-- 多类型素材分享管理，定制模板，支付码与推广码等功能模块的开发；
-- 项目各个模块日常维护与迭代；
-
-> 地址
-
-- [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/cloud.md)
+- 地址
+  - [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/cloud.md)
 
 ### 供货商管理后台
 
@@ -227,31 +218,16 @@
   - moment
   - 等
 
-> 职责
+- 职责
+  - 供应商入驻流程，商品管理，维护商品上架，上下架卡券商品，等功能模块开发；
+  - 项目各个模块日常维护与迭代；
 
-- 供应商入驻流程，商品管理，维护商品上架，上下架卡券商品，等功能模块开发；
-- 项目各个模块日常维护与迭代；
+- 地址
+  - [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/pop.md)
 
-> 地址
+## 2017-10~2019-3：苏州爱洛克信息技术有限公司 
 
-- [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/pop.md)
-
-### vue3 脚手架
-
-> 特性
-
-- 支持最新的css特性编写vue组件样式；
-- 支持最新的es语法编写vue组件；
-- 支持jsx编写vue组件；
-- 支持ts编写vue组件；
-- 支持tsx编写vue组件；
-- 支持单文件组件(sfc)编写vue组件；
-
-> 地址
-
-- [项目](https://github.com/BoswellJi/BoswellJi/tree/master/webpack)
-
-### iclock
+### 官网
 
 > 游戏平台官网，项目主要采用：
 
@@ -553,4 +529,24 @@
 
 - [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/game-admin.md)
 
+## 学习与积累
 
+### vue3 脚手架
+
+- 特性
+  - 支持最新的css特性编写vue组件样式；
+  - 支持最新的es语法编写vue组件；
+  - 支持jsx编写vue组件；
+  - 支持ts编写vue组件；
+  - 支持tsx编写vue组件；
+  - 支持单文件组件(sfc)编写vue组件；
+
+- 地址
+  - [项目](https://github.com/BoswellJi/BoswellJi/tree/master/webpack)
+
+### 学习javascript设计模式
+
+- 阅读与翻译
+
+- 地址
+  - [项目](https://github.com/BoswellJi/BoswellJi/tree/master/book/javascript/javascript设计模式)
