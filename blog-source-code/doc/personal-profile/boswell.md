@@ -37,7 +37,7 @@
   - 通过vuex实现了相同搜索字段的全局状态存储，使得每次切换都可以获取缓存，不会每次初始化，从而提升用户体验；
 
 - 地址
-  - [项目](../project/search-box.md)
+  - [项目](https://github.com/BoswellJi/BoswellJi/blob/master/blog-source-code/doc/project/search-box.md)
 
 ### 学生专属择校报告
 
@@ -65,7 +65,7 @@
   - 实现了后端生成pdf的模板html,通过`css`的`@page`特性给打印的文档配置样式；
 
 - 地址
-  - [项目](../project/student-report.md)
+  - [项目](https://github.com/BoswellJi/BoswellJi/blob/master/blog-source-code/doc/project/student-report.md)
 
 ### 模拟考试
 
@@ -97,7 +97,7 @@
   - 实现了分享海报；
 
 - 地址
-  - [项目](../project/mock-exam.md)
+  - [项目](https://github.com/BoswellJi/BoswellJi/blob/master/blog-source-code/doc/project/mock-exam.md)
 
 ### 订单退费审核流程
 
@@ -120,7 +120,7 @@
   - 实现了数据驱动的动态表单，增加了程序的扩展性； 
 
 - 地址
-  - [项目](../project/order-refund.md)
+  - [项目](https://github.com/BoswellJi/BoswellJi/blob/master/blog-source-code/doc/project/order-refund.md)
 
 ### 专题
 
@@ -183,7 +183,7 @@
   - 实现了canvas 2d海报工具函数开发；
 
 - 地址
-  - [项目](../project/discount.md)
+  - [项目](https://github.com/BoswellJi/BoswellJi/blob/master/blog-source-code/doc/project/discount.md)
 
 ### 喵客云管理后台
 
@@ -549,4 +549,4 @@
 - 阅读与翻译
 
 - 地址
-  - [项目](https://github.com/BoswellJi/BoswellJi/tree/master/book/javascript/javascript设计模式)
+  - [项目](https://github.com/BoswellJi/BoswellJi/blob/master/books/javascript/javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/readme.md)
