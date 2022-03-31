@@ -2,7 +2,7 @@
 
 | 姓名     | 季明壮                        |
 | -------- | ----------------------------- |
-| 网名     | Boswell                    |
+| 网名     | Boswell                       |
 | 岗位     | 前端工程师                    |
 | 联系电话 | 13812872860                   |
 | 邮箱     | aiyoudqrjmz@163.com           |
@@ -225,7 +225,7 @@
 - 地址
   - [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/pop.md)
 
-## 2017-10~2019-3：苏州爱洛克信息技术有限公司 
+## 2017-3~2019-3：苏州爱洛克信息技术有限公司 
 
 ### 官网
 
@@ -529,24 +529,6 @@
 
 - [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/game-admin.md)
 
-## 学习与积累
+## 2016-1~2017-3：同程旅行
 
-### vue3 脚手架
-
-- 特性
-  - 支持最新的css特性编写vue组件样式；
-  - 支持最新的es语法编写vue组件；
-  - 支持jsx编写vue组件；
-  - 支持ts编写vue组件；
-  - 支持tsx编写vue组件；
-  - 支持单文件组件(sfc)编写vue组件；
-
-- 地址
-  - [项目](https://github.com/BoswellJi/BoswellJi/tree/master/webpack)
-
-### 学习javascript设计模式
-
-- 阅读与翻译
-
-- 地址
-  - [项目](https://github.com/BoswellJi/BoswellJi/blob/master/books/javascript/javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/readme.md)
+### 实习生

@@ -1,1 +1,5 @@
-export const mod8 = <div>mod8</div>
+export default {
+  render() {
+    return <div>jsx</div>;
+  }
+}

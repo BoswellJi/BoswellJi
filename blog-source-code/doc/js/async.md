@@ -1,6 +1,6 @@
 ## javascript异步模式快速指南
 
-> 原文：[JAVASCRIPT ASYNC PATTERNS QUICK GUIDE](https://www.imaginarycloud.com/blog/asynch-javascript-patterns-guide/) 作者：Joel Reis 原技术博文由 Joel Reis 撰写发布 译者：google翻译 整理：J哥哥 
+> 原文：[JAVASCRIPT ASYNC PATTERNS QUICK GUIDE](https://www.imaginarycloud.com/blog/asynch-javascript-patterns-guide/) 作者：Joel Reis 原技术博文由 Joel Reis 撰写发布 译者：google翻译 整理：Boswell 
 
 从Web应用程序到服务器和移动应用程序，从小型程序到大型项目，JavaScript无处不在。这是接受任何项目的主要选择，因为它是2018年，JS是一种更成熟的语言，有一个庞大的社区支持它。
 

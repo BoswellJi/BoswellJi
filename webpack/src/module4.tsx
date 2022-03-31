@@ -1,1 +1,5 @@
-export const com4 = <div>com4</div>;
+export default {
+  render() {
+    return <div>tsx</div>;
+  }
+}

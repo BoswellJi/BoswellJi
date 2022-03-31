@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "webpack -w",
+    "build": "webpack",
     "serve": "webpack serve",
     "stats": "set NODE_ENV=data && webpack -w",
     "format": "prettier --write --parser typescript \"./src/*.ts?(x)\"",
@@ -55,7 +56,9 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "pinia": "^2.0.12",
     "vue": "^3.2.31",
+    "vue-router": "^4.0.14",
     "vue-tsx-support": "^3.2.0"
   }
 }
