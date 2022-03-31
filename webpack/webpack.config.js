@@ -60,7 +60,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/webpack/dist/'
+    publicPath: '/dist/'
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
