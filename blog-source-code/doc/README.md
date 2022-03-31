@@ -7,6 +7,10 @@
 - [js语言特性](./js/feature.md)
 - [js运行机制](./js/mechanism.md)
 
+## Typescript
+
+- [ts中的类型](./ts/readme.md)
+
 ## Css
 
 - [css性能优化](./css/performance.md)

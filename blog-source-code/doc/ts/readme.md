@@ -1,5 +1,3 @@
-## typescript
-
 ## ts项目中使用js代码包
 
 ```.d.ts
