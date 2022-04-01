@@ -29,5 +29,5 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "types/**/*.d.ts"
-  ]
+, "src/commonjs2.js", "src/commonjs1.js"  ]
 }
