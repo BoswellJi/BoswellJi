@@ -1,5 +1,7 @@
 ## [个人简历](./personal-profile/boswell.md)
 
+- <a href="http://localhost:8080/myBlog/static/boswell.pdf" download="boswell.pdf">下载</a>
+
 ## Javascript
 
 - [js设计模式翻译](https://github.com/BoswellJi/BoswellJi/blob/master/books/javascript/javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/readme.md)

@@ -37,25 +37,25 @@ test.js文件的同级目录定义一个test.d.ts文件
 
 ## 工具类型
 
-* Partial<T>
-* Required<T>
-* Readonly<T>
-* Record<K,T>
-* Pick<T>
-* Omit<T>
-* Exclude<T>
-* Extract<T>
-* NonNullable<T>
-* Parameters<T>
-* ConstructorParameters<T>
-* RetureType<T>
-* InstanceType<T>
-* ThisParameters<T>
-* OmitThisParameters<T>
-* ThisType<T>
+* `Partial<T>`
+* `Required<T>`
+* `Readonly<T>`
+* `Record<K,T>`
+* `Pick<T> `
+* `Omit<T> `
+* `Exclude<T>`
+* `Extract<T>`
+* `NonNullable<T>`
+* `Parameters<T> `
+* `ConstructorParameters<T>`
+* `RetureType<T> `
+* `InstanceType<T> `
+* `ThisParameters<T> `
+* `OmitThisParameters<T> `
+* `ThisType<T> `
 
 **字符串的基本操作**
-* Uppercase<StringT>
-* Lowercase<StringT>
-* Capitalize<StringT>
-* Uncapitalize<String>
+* `Uppercase<StringT>`
+* `Lowercase<StringT>`
+* `Capitalize<StringT>`
+* `Uncapitalize<String>`
