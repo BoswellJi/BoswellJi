@@ -1,6 +1,6 @@
 ## [个人简历](./personal-profile/boswell.md)
 
-- <a href="http://localhost:8080/myBlog/static/boswell.pdf" download="boswell.pdf">下载</a>
+- <a href="/myBlog/image/boswell.pdf" download="boswell.pdf">下载</a>
 
 ## Javascript
 
@@ -117,6 +117,7 @@
 ## architecture
 
 - [架构简介](./architecture/readme.md)
+- [框架的共性](./architecture/framework.md)
 
 ## Interview
 
