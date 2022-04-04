@@ -94,12 +94,9 @@
 ## Render
 
 * [渲染简介](./render/html.md)
+* [图形系统简介](./graphics/readme.md)
 * [vue渲染](./render/vue.md)
 * [svg渲染](./render/svg.md)
-
-## Graphics
-
-* [图形系统简介](./graphics/readme.md)
 
 ## Compiler
 
@@ -142,3 +139,5 @@
 ## English
 
 - [语法](https://github.com/BoswellJi/BoswellJi/tree/master/english)
+
+## Thought

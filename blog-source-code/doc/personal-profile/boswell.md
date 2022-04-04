@@ -181,6 +181,7 @@
   - 实现了项目各个模块日常维护与迭代；
   - 实现了图片下载，地理位置获取，微信支付等核心mixin编写；
   - 实现了canvas 2d海报工具函数开发；
+  - 实现了根据日期分页导致列表一屏不够递归继续加载到满足条件的功能；
 
 - 地址
   - [项目](https://github.com/BoswellJi/BoswellJi/blob/master/blog-source-code/doc/project/discount.md)
