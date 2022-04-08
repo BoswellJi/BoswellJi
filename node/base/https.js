@@ -1,6 +1,6 @@
-const https = require('https');
+const http = require('http');
 
-https.get('https://encrypted.google.com/', (res) => {
+http.get('https://www.baidu.com/', (res) => {
   console.log('statusCode:', res.statusCode);
   console.log('headers:', res.headers);
 
