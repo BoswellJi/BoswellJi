@@ -1,6 +1,8 @@
-const http = require('http');
+const https = require('https');
 
-http.get('https://www.baidu.com/', (res) => {
+// https://scrm.hj.vc/auxC 
+// https://kaoyanvip-scrm.intous.com
+https.get('https://kaoyanvip-scrm.intous.com/jump/wxa_url/promotion/683', (res) => {
   console.log('statusCode:', res.statusCode);
   console.log('headers:', res.headers);
 

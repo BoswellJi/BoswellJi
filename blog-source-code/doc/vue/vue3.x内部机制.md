@@ -58,16 +58,18 @@
 
 ## 安装过程
 
+> Patch: root vnode 开始，判断传入的vnode类型，进行不同类型的处理，组件，片段进行递归处理；
+
 - mount
 - render
 - patch
-- processComponent
-- mountComponent
-- setupRenderEffect
-  - componentUpdateFn
-    - renderComponentRoot: 执行组件的 render function
-    - patch
-      - 因为没有old vnode,所以走的都是安装方法（mountElement
+  - processComponent
+  - mountComponent
+  - setupRenderEffect
+    - componentUpdateFn
+      - renderComponentRoot: 执行组件的 render function
+      - patch
+        - 因为没有old vnode,所以走的都是安装方法（mountElement
 
 ## 更新过程
 
@@ -80,7 +82,7 @@
 
 ## 对比vnode
 
-`diff核心：判断是否有节点需要移动，以及应该如何移动和寻找出那些需要被添加或移除的节点`
+> diff核心：判断是否有节点需要移动，以及应该如何移动和寻找出那些需要被添加或移除的节点
 
 1. 首先进行预处理，比较相同的前缀和后缀元素`j,prevEnd,nextEnd`
    - j > prevEnd && j <= nextEnd:  j -> nextEnd 之间的节点应该被添加

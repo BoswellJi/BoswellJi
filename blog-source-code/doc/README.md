@@ -78,6 +78,7 @@
 - [https](./http/https.md)
 - [tls](./http/tls.md)
 - [url](./http/url.md)
+- [error](./http/error.md)
 
 ## Error
 

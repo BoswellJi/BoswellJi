@@ -27,6 +27,14 @@
   - addVnodes：oldVnodeChild 不存在，直接添加
   - removeVnodes：newVnodeChild 不存在，直接删除
 
+## new Watcher()
+
+> 将getter函数作为监听器，响应式数据变化时，执行监听器。
+
+- updateComponent
+- initWatch
+- initComputed
+
 ## reactive（MVVM
 
 `响应式的核心就是，给带有响应式数据的回调函数，根据其中的响应式数据来创建Watcher,在触发响应式时更新这些回调函数`
