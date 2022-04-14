@@ -143,6 +143,15 @@
 
 - 每个`.vue`文件，编译之后都会为带有`render function`的`options`对象；
 
-```js
+## slot组件
 
+> 编译后的slot组件。也就是说，如果不适用`<slot></slot>`组件的话，想要展示`<test>text</test>`中的插槽内容，使用`vm.slots.default()`获取vnode,传入`h/createVnode`中。
+
+```js 
+// slot
+const slot = {
+  render: function _sfc_render(_ctx, _cache) {
+    return renderSlot(_ctx.$slots, "default");
+  }
+}
 ```
