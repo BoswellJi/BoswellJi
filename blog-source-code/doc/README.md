@@ -8,6 +8,7 @@
 - [js 异步模式快速指南翻译](./js/async.md)
 - [js 语言特性](./js/feature.md)
 - [js 运行机制](./js/mechanism.md)
+- [js 警告](./js/warn.md)
 
 ## Typescript
 
@@ -155,7 +156,6 @@
 
 - [语法架构](./english/readme.md)
 
-
 - 成分
 
   - [主语](./english/成分/主语.md)
@@ -211,3 +211,5 @@
 - [翻译技巧](./english/翻译/readme.md)
 
 ## Thought
+
+- [对编程语言的思考](./thought/readme.md)
