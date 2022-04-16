@@ -1,6 +1,6 @@
-<template>
+<template functional>
   <div>
-    test3
+    test3{{context}}
   </div>
 </template>
 
@@ -9,11 +9,9 @@ export default {
   props: {
     msg: String,
   },
-  data: () => ({
-    count: 0,
-  }),
-  methods: {
-
+  created(){
+    console.log(this);
   },
+  methods: {},
 };
 </script>
