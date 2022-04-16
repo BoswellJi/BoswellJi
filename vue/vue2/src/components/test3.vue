@@ -1,6 +1,7 @@
-<template functional>
+<template>
   <div>
-    test3{{context}}
+    test3
+    <router-view></router-view>
   </div>
 </template>
 
@@ -8,10 +9,16 @@
 export default {
   props: {
     msg: String,
+    test3: Boolean
   },
   created(){
-    console.log(this);
+    console.log(this.$props,this.$route,3);
   },
-  methods: {},
+  data: () => ({
+    count: 0,
+  }),
+  methods: {
+
+  },
 };
 </script>

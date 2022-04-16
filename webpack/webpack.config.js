@@ -27,6 +27,10 @@ const plugins = [
   }),
   new VueLoaderPlugin(),
   new webpack.ProgressPlugin(handler),
+  new webpack.DefinePlugin({
+    __VUE_OPTIONS_API__: true,
+    __VUE_PROD_DEVTOOLS__: false
+  }),
   /***
    * 微前端模块策略
    */
@@ -56,7 +60,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: 'http://www.cc.com'
+    publicPath: '/dist/'
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),

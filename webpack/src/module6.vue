@@ -1,5 +1,5 @@
 <template>
-  <div>module6</div>
+  <div>script vue template</div>
 </template>
 
 <script lang="ts">

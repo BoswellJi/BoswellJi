@@ -4,20 +4,17 @@
   "description": "blog",
   "main": "index.js",
   "scripts": {
-    "dev": "vuepress dev ./doc",
-    "build": "vuepress build ./doc",
+    "dev": "vuepress dev doc",
+    "build": "vuepress build doc",
     "deploy": "bash deploy.sh"
   },
   "author": "",
   "license": "ISC",
   "keywords": [],
   "devDependencies": {
-    "@vuepress/plugin-google-analytics": "^2.0.0-beta.7",
-    "vuepress": "^1.8.2"
+    "vite": "^2.8.6",
+    "vuepress": "^2.0.0-beta.36"
   },
   "repository": "",
-  "dependencies": {
-    "file-loader": "^5.0.2",
-    "url-loader": "^3.0.0"
-  }
+  "dependencies": {}
 }

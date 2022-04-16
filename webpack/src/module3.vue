@@ -1,31 +1,19 @@
 <template>
   <div>
-    module3:{{ name }}
-    <module5></module5>
-    <com4></com4>
-    <module7></module7>
-    <mod8></mod8>
+    <router-view></router-view>
+    <button @click="setState">{{ name }} {{num}}</button>
   </div>
 </template>
 
-<script lang="ts">
-import module5 from './module5.vue';
-import { com4 } from './module4.tsx';
-import module7 from './module7.vue';
-import {mod8} from './module8.jsx';
+<script lang="ts" setup>
+  import { ref } from 'vue';
+  import add,{ esmAdd, num } from './esm';
 
-export default {
-  components: {
-    module5,
-    com4,
-    module7,
-    mod8
-  },
-  data() {
-    return {
-      name: 'Boswell'
-    };
+  const name = ref('hhh');
+
+  function setState() {
+    // esmAdd();
+    add();
+    console.log(num);
   }
-}
-
 </script>

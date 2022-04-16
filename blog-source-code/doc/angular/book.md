@@ -1,6 +1,6 @@
 ## 你想要买一本关于angular内部机制的书吗？
 
-> 原文：[Would you buy a book on Angular internals?](https://blog.angularindepth.com/would-you-buy-a-book-on-angular-change-detection-8239a8ef64b7) 作者：Max Koretskyi 原技术博文由 Max Koretskyi 撰写发布，他目前于 ag-Grid 担任开发大使(Developer Advocate) 译者：google翻译 整理：J哥哥 
+> 原文：[Would you buy a book on Angular internals?](https://blog.angularindepth.com/would-you-buy-a-book-on-angular-change-detection-8239a8ef64b7) 作者：Max Koretskyi 原技术博文由 Max Koretskyi 撰写发布，他目前于 ag-Grid 担任开发大使(Developer Advocate) 译者：google翻译 整理：Boswell 
 
 在过去的6个月里，我花了大部分的空闲时间对Angular进行逆向工程并撰写相关文章。我探索不同的主题，如调试Angular应用程序，ExpressionChangedAfterItHasBeenCheckedError错误的原因，什么是forwardRef和组件装饰器等。但我花费大部分时间的主题是@angular/core包的一部分-  视图，DI，编译器和变更检测（CD）。到目前为止，我的大多数文章都关注变化检测。这是一个引人入胜的机制，实际上是框架中第二个最重要的部分（在编译器之后），它完成框架中的大部分“可见”工作 - DOM更新，子组件的输入属性更新和查询列表更新。以下是我关于更改检测的一些博客帖子，这些帖子在google结果的前5位，具体取决于查询的措辞：
 

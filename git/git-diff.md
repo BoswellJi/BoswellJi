@@ -1,1 +1,0 @@
-* `git diff master origin/master 或 git diff featureA origin/next`: 对比本地远程分支差异

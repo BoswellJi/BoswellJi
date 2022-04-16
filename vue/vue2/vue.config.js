@@ -1,8 +1,6 @@
-
-
 module.exports = {
-  chainWebpack(config){
-    config.mode('development');
-    config.optimization.minimize(false);
-  }
+  devServer: {
+    proxy: 'http://exam.kaoyan-vip.cn',
+    disableHostCheck: true
+  },
 }

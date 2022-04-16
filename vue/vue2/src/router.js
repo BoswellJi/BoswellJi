@@ -13,13 +13,28 @@ Vue.use(VueRouter);
 const routes = [
   { path: "/", component: test1, },
   {
-    path: "/a",
+    path: "/test2",
     component: test2,
     alias: "/jmz",
+    props: {
+      'test2': true
+    },
     children: [
       {
-        path: "jmzc1",
-        component: test,
+        path: "test3",
+        component: test3,
+        props: {
+          'test3': true
+        },
+        children: [
+          {
+            path: 'test4',
+            component: test4,
+            props: {
+              'test4': true
+            },
+          }
+        ]
       },
     ],
   },
@@ -44,13 +59,25 @@ const routes = [
     component: () => import('./components/html2pdf.js')
   },
   {
+    path: '/vuedraggable',
+    component: () => import('./components/vuedraggable'),
+  },
+  {
+    path: '/test1',
+    component: () => import('./components/test1')
+  },
+  {
+    path: '/jspdf',
+    component: () => import('./components/jspdf'),
+    props: {
+      a: 1,
+      b: 2
+    }
+  },
+  {
     path: '/pdfmake',
     component: () => import('./components/pdfmake')
   },
-  {
-    path:'/elementui',
-    component: () => import('./components/elementui')
-  }
 ];
 
 const router = new VueRouter({

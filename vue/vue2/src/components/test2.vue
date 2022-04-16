@@ -1,17 +1,22 @@
 <template>
   <div @click="increment">
-    test2
+    test2/{{ num }}
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Button",
-  computed:{
-    num(){
-      return this.count
-    }
+  props:{
+    test2: Boolean
+  },
+  created() {
+    console.log(this.$props, this.$route,2);
+  },
+  computed: {
+    num() {
+      return this.count;
+    },
   },
   data: () => ({
     count: 0,

@@ -4,9 +4,6 @@
  * @param {*} arr 
  */
 function selectSort(arr) {
-  if (!arr || !(arr instanceof Array)) {
-    throw new TypeError('非数组类型');
-  }
   let minIndex;
 
   for (let i = 0, len = arr.length; i < len; i++) {

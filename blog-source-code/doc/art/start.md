@@ -59,11 +59,11 @@
 
 * `A`：微信
 
-<img :src="$withBase('/weixin.jpg')" alt="foo" width="300">
+<img src="https://user-images.githubusercontent.com/14146560/103476829-08354580-4df4-11eb-82ad-353b9d9d0dc5.jpg" alt="foo" width="300">
 
 * `B`：支付宝
 
-<img :src="$withBase('/zfb.jpg')" alt="foo" width="300">
+<img src="https://user-images.githubusercontent.com/14146560/103476829-08354580-4df4-11eb-82ad-353b9d9d0dc5.jpg" alt="foo" width="300">
 
 ## 前言之前
 

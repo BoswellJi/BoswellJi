@@ -1,12 +1,15 @@
 <template>
-  <div @click="clickhandle">test{{ text }}</div>
+  <div @click="clickhandle">test{{ dataName }}</div>
 </template>
 <script>
 export default {
   name: "test",
   components: {},
   props: {
-    name: String,
+    dataName: String,
+  },
+  mounted(){
+    console.log('mounted');
   },
   data() {
     return {
@@ -16,7 +19,6 @@ export default {
   methods: {
     clickhandle() {
       this.text = this.text == undefined ? 0 : undefined;
-      this.$emit("testClickHandle", "testClickHandle");
     },
   },
 };
