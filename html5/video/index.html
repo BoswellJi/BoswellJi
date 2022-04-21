@@ -8,7 +8,7 @@
   <title>Document</title>
   <style>
     video {
-      width: 100%;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -22,17 +22,20 @@
 * 小米中不设置controls不起作用
 
    -->
-  <video id="video" controls muted webkit-playsinline="true" playsinline="true" autoplay="true" preload="auto"
-    src="https://oss.kaoyanvip.cn/attach/file1632621484159.mp4"></video>
-
+  <video id="video" height="200" width="200" controls muted webkit-playsinline="true" playsinline="true" autoplay="true"
+    preload="auto" src="https://oss.kaoyanvip.cn/attach/file1632621484159.mp4"></video>
   <script>
-    setTimeout(() => {
-      try {
-        document.getElementById('video').play();
-      } catch (err) {
-        console.log('自动播放失败');
-      }
-    }, 1000);
+    document.body.querySelector('#video').addEventListener('click', function () {
+      console.log('test');
+    }, false);
+
+    // video.addEventListener('click', function () {
+    //   console.log('test');
+    // }, false);
+    
+    video.addEventListener('touchstart', function () {
+      console.log('test');
+    }, false);
   </script>
 </body>
 

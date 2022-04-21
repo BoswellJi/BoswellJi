@@ -17,6 +17,7 @@
 ## Css
 
 - [css 性能优化](./css/performance.md)
+- [css 开发技巧](./css/trick.md)
 
 ## Vue
 
@@ -89,6 +90,7 @@
 ## Compatibility
 
 - [xiaomi](./compatibility/xiaomi/readme.md)
+- [video](./compatibility/video.md)
 
 ## Performance
 
