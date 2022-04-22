@@ -134,12 +134,15 @@
 
 - 职责
   - 实现了使用原生javascript编写营销h5页面；
+  - 实现了使用vue3编写营销h5页面；
   - 实现了转盘抽奖，以及转盘的减速运动；
   - 实现了无缝滚动效果；
 
 - 地址
   - [项目1](https://h5.kaoyanvip.cn/zt/eykxj/)
   - [项目2](https://h5.kaoyanvip.cn/zt/kxj/)
+  - [项目3](https://h5.kaoyanvip.cn/zt/minizzy?d=ytXsyPimnJukZj6M6f)
+  - [项目4](https://h5.kaoyanvip.cn/zt/23mbc)
 
 ## 2019-3~2021-8：智能晴雨       
 

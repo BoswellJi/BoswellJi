@@ -135,11 +135,12 @@
    - 为组件正确地使用 DYNAMIC_SLOTS
    - 使用 $stable hint
 
-## vue渲染
+## 运行时编译的vue渲染
 
-- 同步渲染，从父组件开始到子组件递归渲染，整个过程是同步的
+- 同步渲染，从父组件开始到子组件递归渲染，整个过程是同步的；
+- `patch`方法执行开始：从根组件开始作为一个组件进行处理，生成`vnode`,进行遍历安装；
 
-## 预编译Vue
+## 预编译后的Vue渲染
 
 - 每个`.vue`文件，编译之后都会为带有`render function`的`options`对象；
 
@@ -154,4 +155,20 @@ const slot = {
     return renderSlot(_ctx.$slots, "default");
   }
 }
+```
+
+## 模板ref
+
+* 被编译为vnode的`props`；
+* 创建vnode的处理中即组件的`render function`，会将`props`中的`ref`处理为`{ i: currentRenderingInstance, r: ref, k: ref_key, f: !!ref_for }`
+
+```js
+// html标签
+_createElementVNode("button", {
+  ref: "el",
+  onClick: onClick
+})
+
+// vue组件
+_createVNode(_component_com1, { ref: "el" }, null)
 ```
