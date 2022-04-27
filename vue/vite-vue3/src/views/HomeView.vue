@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import TheWelcome from '@/components/TheWelcome.vue'
+import { ref } from "vue";
+const model = ref(new Set());
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <input type="checkbox" value="1" v-model="model" />
   </main>
 </template>
