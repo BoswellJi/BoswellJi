@@ -1,6 +1,6 @@
 module.exports = {
   // site config
-  base:'/myBlog/',
+  base:'/MyBlog/',
   lang: 'en-US',
   title: 'Hello, Boswell!',
   description: "Boswell's blog",

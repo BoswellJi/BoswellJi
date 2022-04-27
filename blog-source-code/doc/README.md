@@ -1,6 +1,6 @@
 ## [个人简历](./personal-profile/boswell.md)
 
-- <a href="/myBlog/image/boswell.pdf" download="boswell.pdf">下载</a>
+- <a href="/MyBlog/image/boswell.pdf" download="boswell.pdf">下载</a>
 
 ## Javascript
 
@@ -8,7 +8,7 @@
 - [js 异步模式快速指南翻译](./js/async.md)
 - [js 语言特性](./js/feature.md)
 - [js 运行机制](./js/mechanism.md)
-- [js 警告](./js/warn.md)
+- [js 警告](./js/warning.md)
 
 ## Typescript
 
@@ -27,6 +27,7 @@
 - [vue-starport 原理](./vue/vue-startport内部机制.md)
 - [vue2.x 源码分析](./art/start.md)
 - [vue2.x 原理](./vue/vue2.x内部机制.md)
+- [vue 警告](./vue/warning.md)
 
 ## React
 
@@ -35,6 +36,14 @@
 ## Angular
 
 - [你想要买一本关于 angular 内部机制的书吗？](./angular/book.md)
+
+## 微信公众平台
+
+- [微信开发](./wx-platform/wx-gzh.md)
+
+## 微信小程序
+
+- [运行机制](./wx-platform/微信小程序实现原理.md)
 
 ## Flutter
 
