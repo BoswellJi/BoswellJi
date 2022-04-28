@@ -64,11 +64,15 @@
 
 ## Jest
 
-- [jest 简介](./jest/readme.md)
+- [Jest 简介](./jest/readme.md)
 
 ## Cypress
 
-- [cypress 简介](./cypress/readme.md)
+- [Cypress 简介](./cypress/readme.md)
+
+## Appium
+
+- [Appium 简介](./appium/readme.md)
 
 ## Git
 
