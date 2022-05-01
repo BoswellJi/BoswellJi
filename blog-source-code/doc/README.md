@@ -1,6 +1,6 @@
 ## [个人简历](./personal-profile/boswell.md)
 
-- <a href="/myBlog/image/boswell.pdf" download="boswell.pdf">下载</a>
+- <a href="/MyBlog/image/boswell.pdf" download="boswell.pdf">下载</a>
 
 ## Javascript
 
@@ -20,11 +20,15 @@
 
 ## Vue
 
-- [vue3.x 的源码阅读与注释](https://github.com/BoswellJi/vue-next)
+- [vue3.x 源码解析1](https://github.com/BoswellJi/vue-next)
+- [vue3.x 源码解析2](https://github.com/hkc452/slamdunk-the-vue3/tree/master)
 - [vue3.x 脚手架](https://github.com/BoswellJi/BoswellJi/tree/master/webpack)
 - [vue3.x 原理](./vue/vue3.x内部机制.md)
 - [vue-starport 原理](./vue/vue-startport内部机制.md)
-- [vue2.x 源码分析](./art/start.md)
+- [vue2.x 源码分析1](https://github.com/HcySunYang/vue-design)
+- [vue2.x 源码分析2](https://github.com/ustbhuangyi/vue-analysis)
+- [vue2.x 源码分析3](https://github.com/answershuto/learnVue)
+- [vue2.x 源码分析4](https://mp.weixin.qq.com/s?__biz=MzUxNjQ1NjMwNw==&mid=2247484028&idx=1&sn=771e76a666a83edec1ae1105f6e6b60e&chksm=f9a66860ced1e176d91a9bf22f0c5c9c70a761757f319ebc9faa01224409d6d4928f250dbb56&scene=178&cur_album_id=1619085427984957440#rd)
 - [vue2.x 原理](./vue/vue2.x内部机制.md)
 
 ## React
@@ -34,6 +38,10 @@
 ## Angular
 
 - [你想要买一本关于 angular 内部机制的书吗？](./angular/book.md)
+
+## Nodejs
+
+- [关于包管理器](./nodejs/package-manager.md)
 
 ## Flutter
 
