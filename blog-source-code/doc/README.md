@@ -8,15 +8,18 @@
 - [js 异步模式快速指南翻译](./js/async.md)
 - [js 语言特性](./js/feature.md)
 - [js 运行机制](./js/mechanism.md)
-- [js 警告](./js/warn.md)
+- [js 警告](./js/warning.md)
 
 ## Typescript
 
-- [ts 中的类型](./ts/readme.md)
+- [ts 简介](./ts/readme.md)
+- [ts 类型系统](./ts/类型系统.md)
+- [ts 声明文件](./ts/声明文件.md)
 
 ## Css
 
 - [css 性能优化](./css/performance.md)
+- [css 开发技巧](./css/trick.md)
 
 ## Vue
 
@@ -30,10 +33,16 @@
 - [vue2.x 源码分析3](https://github.com/answershuto/learnVue)
 - [vue2.x 源码分析4](https://mp.weixin.qq.com/s?__biz=MzUxNjQ1NjMwNw==&mid=2247484028&idx=1&sn=771e76a666a83edec1ae1105f6e6b60e&chksm=f9a66860ced1e176d91a9bf22f0c5c9c70a761757f319ebc9faa01224409d6d4928f250dbb56&scene=178&cur_album_id=1619085427984957440#rd)
 - [vue2.x 原理](./vue/vue2.x内部机制.md)
+- [vue 警告](./vue/warning.md)
 
 ## React
 
 - [reactv18.0 发布](./react/reactv18.0.md)
+- [react 并发模式](./react/concurrent-mode.md)
+- [react vnode数据结构](./react/fiber.md)
+- [react 对比算法](./react/diff.md)
+- [react 高阶组件](./react/hoc.md)
+- [react hook](./react/hooks.md)
 
 ## Angular
 
@@ -43,6 +52,14 @@
 
 - [关于包管理器](./nodejs/package-manager.md)
 
+## 微信公众平台
+
+- [微信开发](./wx-platform/wx-gzh.md)
+
+## 微信小程序
+
+- [运行机制](./wx-platform/微信小程序实现原理.md)
+
 ## Flutter
 
 - [flutter 简介](./flutter/readme.md)
@@ -50,10 +67,20 @@
 ## Uniapp
 
 - [Uniapp 原理分析](./uniapp/readme.md)
+- [Uniapp 编译期](./uniapp/uniapp编译期.md)
+- [Uniapp 运行时](./uniapp/uniapp运行时.md)
 
 ## Jest
 
-- [jest 简介](./jest/readme.md)
+- [Jest 简介](./jest/readme.md)
+
+## Cypress
+
+- [Cypress 简介](./cypress/readme.md)
+
+## Appium
+
+- [Appium 简介](./appium/readme.md)
 
 ## Git
 
@@ -97,6 +124,7 @@
 ## Compatibility
 
 - [xiaomi](./compatibility/xiaomi/readme.md)
+- [video](./compatibility/video.md)
 
 ## Performance
 
@@ -191,8 +219,8 @@
   - [并列句](./english/句子/并列句.md)
   - [定语从句](./english/句子/定语从句.md)
   - [名词性从句](./english/句子/名词性从句.md)
-  - [同位语从句](./english/句子/同位语从句.md)
-  - [同位语从句](./english/句子/同位语从句.md)
+    - [同位语从句](./english/句子/同位语从句.md)
+  - [状语从句](./english/句子/状语从句.md)
   - [主谓](./english/句子/主谓.md)
   - [主谓宾](./english/句子/主谓宾.md)
   - [主谓宾宾补](./english/句子/主谓宾宾补.md)
@@ -201,7 +229,6 @@
 
 - 特殊句式
 
-  - [状语从句](./english/句子/状语从句.md)
   - [比较结构](./english/特殊句式/比较结构.md)
   - [插入语](./english/特殊句式/插入语.md)
   - [倒装句](./english/特殊句式/倒装句.md)

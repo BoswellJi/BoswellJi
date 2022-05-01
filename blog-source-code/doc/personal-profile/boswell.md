@@ -8,36 +8,17 @@
 | 邮箱     | aiyoudqrjmz@163.com           |
 | 毕业学校 | 沙洲职业工学院（2013-9~2016-6 |
 | 专业     | 网站开发与网络营销            |
+| 网站   |  https://boswellji.github.io/MyBlog   | 
 
 ## 职业技能
 
-1. 熟练 `html`,`css`,`javascript`,`vue2.x/3.x`等；
-2. 掌握 `vue-router`,`vuex`,`elementUI`,`vs code`,`git`等；
-3. 熟悉 `uniapp`,`vue-cli`,`typescript`,`webpack`,`http`,`nodejs`,`design pattern`,`algorithm`,`data structure`等；
-4. 了解 `canvas`,`webgl`,`threejs(3D)`,`spritejs(2D)`,`frontend engineering`等；
+0. 精通 `javascript`,`vue2.x/3.x`；
+1. 熟练 `html`,`css`,`vue-router`,`vuex`,`elementUI`,`git`,`微信小程序开发`等；
+2. 掌握 `uniapp`,`vue-cli`,`typescript`,`webpack`,`http`,`less`等；
+3. 熟悉 `frontend engineering`,`nodejs`,`design pattern`,`algorithm`,`data structure`等；
+4. 了解 `canvas`,`webgl`,`threejs(3D)`,`spritejs(2D)`等；
 
 ## 2021-8~至今：研途教育科技
-
-### 优化搜索框
-
-> 描述：根据当前页面的架构优化搜索框的使用体验，多页面的数据搜索，使用多个相同搜索字段，但是切换之后每次会刷新组件,希望可以实现相同字段在切换路由时不清空，项目主要采用：
-
-- 框架
-  - vue2.x
-
-- 库
-  - vuex
-  - vue-router
-  - element-ui
-  - axios
-  - lodash
-  - less
-
-- 功能
-  - 通过vuex实现了相同搜索字段的全局状态存储，使得每次切换都可以获取缓存，不会每次初始化，从而提升用户体验；
-
-- 地址
-  - [项目](https://github.com/BoswellJi/BoswellJi/blob/master/blog-source-code/doc/project/search-box.md)
 
 ### 学生专属择校报告
 
@@ -126,20 +107,17 @@
 
 > 描述：营销h5活动，抽奖等，项目主要采用：
 
-- 框架
-  - 无
-
-- 库
-  - 无
-
 - 职责
   - 实现了使用原生javascript编写营销h5页面；
-  - 实现了转盘抽奖，以及转盘的减速运动；
-  - 实现了无缝滚动效果；
+  - 实现了使用vue3编写营销h5页面；
+  - 实现了使用原生javascript编写转盘抽奖，以及转盘的减速运动；
+  - 实现了使用原生javascript编写无缝滚动效果；
 
 - 地址
   - [项目1](https://h5.kaoyanvip.cn/zt/eykxj/)
   - [项目2](https://h5.kaoyanvip.cn/zt/kxj/)
+  - [项目3](https://h5.kaoyanvip.cn/zt/minizzy?d=ytXsyPimnJukZj6M6f)
+  - [项目4](https://h5.kaoyanvip.cn/zt/23mbc)
 
 ## 2019-3~2021-8：智能晴雨       
 
