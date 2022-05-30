@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="resetButton">重置</button>
+  <canvas id="canvas" width="800" height="800"></canvas>
+
+  <script>
+    let canvas = document.querySelector('#canvas'),
+      ctx = canvas.getContext('2d'),
+      resetButton = document.querySelector('#resetButton'),
+      image = new Image(),
+      imageData,
+      mousedown = {},
+      rubberbandRectangle = {},
+      dragging = false;
+
+    function windowToCanvas(canvas, x, y) {
+      // 获取canvas 坐标
+      const canvasRectangle = canvas.getBoundingClientRect();
+      // 计算鼠标坐标
+      return {
+        x: x - canvasRectangle.left,
+        y: y - canvasRectangle.top
+      };
+    }
+
+    function captureRubberbandPixels() {
+      // 获取绘制的矩形重点的像素
+      imageData = ctx.getImageData(rubberbandRectangle.left, rubberbandRectangle.top, rubberbandRectangle.width, rubberbandRectangle.height);
+    }
+
+    function restoreRubberbandPixels() {
+      ctx.putImageData(imageData, rubberbandRectangle.left, rubberbandRectangle.top);
+    }
+
+    function drawRubberband() {
+      ctx.strokeRect(rubberbandRectangle.left + ctx.lineWidth, rubberbandRectangle.top + ctx.lineWidth, rubberbandRectangle.width - 2 * ctx.lineWidth, rubberbandRectangle.height - 2 * ctx.lineWidth);
+    }
+
+    function setRubberbandRectangle(x, y) {
+      // 设置选取矩形的坐标与尺寸，因为，左上角是坐标点，所以要选择x小的作为x轴
+      rubberbandRectangle.left = Math.min(x, mousedown.x);
+      rubberbandRectangle.top = Math.min(y, mousedown.y);
+      rubberbandRectangle.width = Math.abs(x - mousedown.x);
+      rubberbandRectangle.height = Math.abs(y - mousedown.y);
+    }
+
+    function updateRubberband() {
+      captureRubberbandPixels();
+      drawRubberband();
+    }
+
+
+    function rubberbandStart(x, y) {
+      // 记录鼠标按下坐标
+      mousedown.x = x;
+      mousedown.y = y;
+
+      rubberbandRectangle.left = mousedown.x;
+      rubberbandRectangle.top = mousedown.y;
+
+      dragging = true;
+    }
+
+    function rubberbandStretch(x, y) {
+      // 方形宽度大于 边框宽 && 高度大于边框高
+      if (rubberbandRectangle.width > 2 * ctx.lineWidth && rubberbandRectangle.height > 2 * ctx.lineWidth) {
+        if (imageData !== undefined) {
+          restoreRubberbandPixels();
+        }
+      }
+      // 重新设置方形  
+      setRubberbandRectangle(x, y);
+      if (rubberbandRectangle.width > 2 * ctx.lineWidth && rubberbandRectangle.height > 2 * ctx.lineWidth) {
+        updateRubberband();
+      }
+    }
+
+    function rubberbandEnd() {
+      // 将去掉边框的选区中的内容， 放到整个canvas中
+      ctx.drawImage(canvas, rubberbandRectangle.left + ctx.lineWidth * 2, rubberbandRectangle.top + ctx.lineWidth * 2, rubberbandRectangle.width - ctx.lineWidth * 4, rubberbandRectangle.height - ctx.lineWidth * 4, 0, 0, canvas.width, canvas.height);
+      dragging = false;
+      imageData = undefined;
+    }
+
+    canvas.addEventListener('mousemove', function (e) {
+      let loc;
+      // 点击下可以拖动
+      if (dragging) {
+        // 获取当前鼠标坐标
+        loc = windowToCanvas(canvas, e.clientX, e.clientY);
+        // 
+        rubberbandStretch(loc.x, loc.y);
+      }
+    });
+
+    canvas.addEventListener('mousedown', function (e) {
+      // 获取鼠标坐标
+      const loc = windowToCanvas(canvas, e.clientX, e.clientY);
+      // 阻止默认事件
+      e.preventDefault();
+      // 开始画图
+      rubberbandStart(loc.x, loc.y);
+    });
+
+    canvas.addEventListener('mouseup', function (e) {
+      rubberbandEnd();
+    });
+
+    image.src = './anatomy-of-a-frame.jpg';
+    image.addEventListener('load', function (e) {
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    });
+
+    resetButton.addEventListener('click', function (e) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    });
+
+    ctx.strokeStyle = 'navy';
+    ctx.lineWidth = 1;
+
+  </script>
+</body>
+
+</html>

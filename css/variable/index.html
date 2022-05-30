@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css variable</title>
+
+  <style>
+    :root {
+      --txt-color: red;
+    }
+
+    body {
+      color: var(--txt-color,blue);
+    }
+
+    .first{
+      --txt-color: #ccc;
+    }
+
+    .first-p1{
+      color: var(--txt-color);
+    }
+    
+    .second{
+      color: var(--txt-color);
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="first">
+    <p class="first-p1">
+      first
+    </p>
+  </div>
+  <div class="second">
+    second
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+1. 小米手机浏览器中，给`video`元素的`body,html`等元素设置`overflow-x:hidden`样式后，播放`video`视频会自动脱离文档流，其他浏览器不会；

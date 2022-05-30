@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.17</title>
+  <style>
+    #rubberbandDiv{
+      position: absolute;
+      border: 2px solid blue;
+      cursor: crosshair;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="controls">
+    <input type="button" id="resetButton" value="reset">
+  </div>
+  <div id="rubberbandDiv"></div>
+  <canvas id="canvas" width="800" height="520"></canvas>
+
+  <script>
+    let canvas = document.querySelector('#canvas'),
+      ctx = canvas.getContext('2d'),
+      rubberbandDiv = document.querySelector('#rubberbandDiv'),
+      resetButton = document.querySelector('#resetButton'),
+      image = new Image(),
+      mousedown = {},
+      rubberbandRectangle = {},
+      dragging = false;
+
+    /**
+     * 记录点击开始的位置
+     * @param x x轴
+     * @param y y轴
+     */
+    function rubberbandStart(x, y) {
+      mousedown.x = x;
+      mousedown.y = y;
+
+      rubberbandRectangle.left = mousedown.x;
+      rubberbandRectangle.top = mousedown.y;
+
+      moveRubberbandDiv();
+      showRubberbandDiv();
+
+      dragging = true;
+    }
+
+    /**
+     * 选择框
+     */ 
+    function rubberbandStretch(x, y) {
+      // 选择框的位置
+      rubberbandRectangle.left = x < mousedown.x ? x : mousedown.x;
+      rubberbandRectangle.top = y < mousedown.y ? y : mousedown.y;
+
+      rubberbandRectangle.width = Math.abs(x - mousedown.x);
+      rubberbandRectangle.height = Math.abs(y - mousedown.y);
+
+      moveRubberbandDiv();
+      resizeRubberbandDiv();
+    }
+
+    function rubberbandEnd() {
+      const bbox = canvas.getBoundingClientRect();
+      try {
+        // 将选中区域，绘制到整个canvas
+        ctx.drawImage(canvas,
+          rubberbandRectangle.left - bbox.left,
+          rubberbandRectangle.top - bbox.top,
+          rubberbandRectangle.width,
+          rubberbandRectangle.height, 0, 0, canvas.width, canvas.height);
+      } catch (e) { }
+
+      resetRubberbandRectangle();
+      rubberbandDiv.style.width = 0;
+      rubberbandDiv.style.height = 0;
+      hideRubberbandDiv();
+
+      dragging = false;
+    }
+
+    /**
+     * 修改div的尺寸和位置
+     */
+    function moveRubberbandDiv() {
+      rubberbandDiv.style.top = rubberbandRectangle.top + 'px';
+      rubberbandDiv.style.left = rubberbandRectangle.left + 'px';
+    }
+    function resizeRubberbandDiv() {
+      rubberbandDiv.style.width = rubberbandRectangle.width + 'px';
+      rubberbandDiv.style.height = rubberbandRectangle.height + 'px';
+    }
+    function showRubberbandDiv() {
+      rubberbandDiv.style.display = 'inline';
+    }
+    function hideRubberbandDiv() {
+      rubberbandDiv.style.display = 'none';
+    }
+
+    function resetRubberbandRectangle() {
+      rubberbandRectangle = { top: 0, left: 0, width: 0, height: 0 };
+    }
+
+    canvas.addEventListener('mousedown', function (e) {
+      const x = e.clientX,
+        y = e.clientY;
+      e.preventDefault();
+      rubberbandStart(x, y);
+    });
+
+    window.addEventListener('mousemove', function (e) {
+      const x = e.clientX,
+        y = e.clientY;
+      e.preventDefault();
+      if (dragging === true) {
+        rubberbandStretch(x, y);
+      }
+    });
+
+    window.addEventListener('mouseup', function (e) {
+      e.preventDefault();
+      rubberbandEnd();
+    });
+
+    image.addEventListener('load', function (e) {
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    });
+
+    resetButton.addEventListener('click', function (e) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    });
+
+    image.src = './anatomy-of-a-frame.jpg';
+  </script>
+</body>
+
+</html>

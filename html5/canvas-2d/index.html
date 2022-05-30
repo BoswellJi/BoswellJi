@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>canvas</title>
+
+  <style>
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #container {
+      width: 100%;
+      height: 100%;
+    }
+
+    #canvas{
+      /* background: url(https://bkimg.cdn.bcebos.com/pic/38dbb6fd5266d0167927ca029b2bd40735fa35d9?x-bce-process=image/resize,m_lfit,w_268,limit_1/format,f_jpg) no-repeat center center; */
+
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+  <div id="container"></div>
+
+  <script>
+    const canvas = document.querySelector('#canvas'),
+      container = document.querySelector('#container'),
+      ctx = canvas.getContext('2d'),
+      cw = window.innerWidth,
+      ch = window.innerHeight;
+
+    function fillScreen() {
+      canvas.width = cw;
+      canvas.height = ch;
+    }
+    fillScreen();
+  </script>
+  <!-- <script src="./spritejs.min.js"></script>
+  <script src="./sprite.js"></script> -->
+  <!-- <script src="./base.js"></script> -->
+  <!-- <script src="./animate.js"></script> -->
+  <!-- <script src="./ball.js"></script> -->
+  <!-- <script src="./image-video.js"></script> -->
+  <!-- <script src="./event.js"></script> -->
+  <script src="./canvas-core-book.js"></script>
+</body>
+
+</html>

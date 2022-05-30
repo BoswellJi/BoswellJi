@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    video {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 
+    
+* ios自动播放需要muted,webkit-playsinline,playsinline 
+* chorme自动播放需要muted
+* 没有controls属性浏览器中会被卡死视频
+* 小米中不设置controls不起作用
+
+   -->
+  <video id="video" height="200" width="200" controls muted webkit-playsinline="true" playsinline="true" autoplay="true"
+    preload="auto" src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"></video>
+    <!-- https://oss.kaoyanvip.cn/attach/file1632621484159.mp4 -->
+  <script>
+    document.body.querySelector('#video').addEventListener('click', function () {
+      console.log('test');
+    }, false);
+
+    // video.addEventListener('click', function () {
+    //   console.log('test');
+    // }, false);
+    
+    video.addEventListener('touchstart', function () {
+      console.log('test');
+    }, false);
+  </script>
+</body>
+
+</html>

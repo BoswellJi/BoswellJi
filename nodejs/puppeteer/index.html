@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      background: url('https://yantu.oss-cn-shanghai.aliyuncs.com/shareimg/9pmxC2LDJuCyVhCWv7bZA6.png');
+      background-size: 300px auto;
+      font-family: Sans-serif, Monospace;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    td {
+      border: 1px solid #333;
+      padding: 5px 0;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    @media print {
+      -webkit-print-color-adjust: exact;
+    }
+
+    @page {
+      size: A4;
+      border-bottom: 0.25pt solid #666;
+      border-top: 0.25pt solid #666;
+
+      @top-left {
+        content: "";
+        display: block;
+        width: 79px;
+        height: 28px;
+        background: url(https://oss.kaoyanvip.cn/attach/file1638166703094.png);
+        vertical-align: top;
+        margin: 15pt 0 20pt 0;
+      }
+
+      @top-center {
+        content: "XXX同学专属择校报告";
+        color: #333;
+        vertical-align: top;
+        margin: 20pt 0 30pt 0;
+      }
+
+      @top-right {
+        content: "更懂考研，更懂你";
+        color: #333;
+        font-size: 9pt;
+        vertical-align: top;
+        margin: 20pt 0 30pt 0;
+      }
+
+      @bottom-right {
+        content: counter(page) " / "counter(pages);
+        vertical-align: top;
+        margin: 10pt 0 30pt 0;
+        color: #333;
+        font-size: 9pt;
+      }
+
+      @bottom-left {
+        content: "苏州研途教育科技有限公司";
+        color: #333;
+        font-size: 9pt;
+        vertical-align: top;
+        margin: 10pt 0 30pt 0;
+      }
+    }
+
+    @page: first {
+      margin: 0;
+    }
+
+    .margin-top-20 {
+      margin-top: 20px;
+    }
+
+    .paragraph {
+      text-indent: 11px;
+      font-size: 16px;
+      line-height: 1.5em;
+      margin: 0;
+    }
+
+    .module-tip {
+      font-size: 18px;
+      color: #478df6;
+      margin: 20px 0 10px;
+    }
+
+    .page-pdf {
+      margin: 30px 30px;
+    }
+
+    .pdf-title {
+      font-size: 18px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .wrapper {
+      line-height: 1.5em;
+    }
+
+    .cover-img {
+      width: 795px;
+      height: 1124px;
+      margin-bottom: 20px;
+    }
+
+    .base-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      min-height: 1124px;
+      margin-top: 200px;
+    }
+
+    .base-info-logo {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+      display: block;
+    }
+
+    .base-info-content {
+      width: 150px;
+      margin: 0 auto;
+    }
+
+    .base-info-content td {
+      border: 0;
+      padding: 10px 10px;
+      white-space: nowrap;
+      vertical-align: bottom;
+    }
+
+    .base-info-content .item {
+      border-bottom: 1px solid #000;
+      padding-left: 20px;
+    }
+
+    .catalog {
+      min-height: 1124px;
+      margin-top: 200px;
+    }
+
+    .catalog .title {
+      font-size: 18px;
+      color: #333;
+      text-align: center;
+    }
+
+    .catalog .one-line {
+      padding: 10px 0;
+    }
+
+    .catalog .left {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      float: left;
+      width: 95%;
+    }
+
+    .catalog .right {
+      float: right;
+    }
+
+    .next-title {
+      margin-left: 20px;
+      padding: 10px 0;
+    }
+
+    .next-title .left {
+      width: 480px;
+    }
+
+    .study-situation table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+
+    .study-situation .study-situationtr {
+      font-size: 0;
+    }
+
+    .study-situation td {
+      text-align: center;
+      border: 1px solid #333;
+      padding: 5px 0;
+      margin: 0;
+      font-size: 14px;
+      width: 20%;
+    }
+
+    .select-school-list table {
+      width: 500px;
+      margin: 0 auto;
+    }
+
+    .school-analysis-img {
+      width: 700px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .school-analysis table {
+      width: 500px;
+      margin: 0 auto;
+    }
+
+    .course {
+      padding: 20px 0;
+      margin-top: 30px;
+    }
+
+    .course-img {
+      width: 180px;
+      height: 110px;
+      margin-right: 20px;
+      float: left;
+    }
+
+    .course-content {
+      float: left;
+      width: 400px;
+    }
+
+    .course-title {
+      font-size: 16px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .course-sub-title {
+      color: #949494;
+      margin-top: 5px;
+      word-break: break-all;
+      font-size: 14px;
+    }
+
+    .course-btn {
+      width: 140px;
+      font-size: 14px;
+      height: 26px;
+      display: block;
+      background-color: #494ff5;
+      border-radius: 4px;
+      text-align: center;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .course-price {
+      background-color: #f7f8fc;
+      margin-top: 5px;
+      padding: 0;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+
+    .course-price .label {
+      color: #949494;
+      font-size: 14px;
+    }
+
+    .course-price .symbol {
+      padding-left: 10px;
+      color: #ff3333;
+      font-weight: 500;
+    }
+
+    .course-price .amount {
+      font-size: 20px;
+      line-height: 1;
+      color: #ff3333;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper page">
+    <img class="cover-img" src="https://oss.kaoyanvip.cn/attach/file1638497480952.png" />
+    <div class="base-info">
+      <img src="https://oss.kaoyanvip.cn/attach/file1637748332302.png" class="base-info-logo">
+      <table class="base-info-content">
+        <tr>
+          <td>学员姓名:</td>
+          <td class="item">一对一</td>
+        </tr>
+        <tr>
+          <td>学员姓名:</td>
+          <td class="item">一对一</td>
+        </tr>
+        <tr>
+          <td>学员姓名:</td>
+          <td class="item">一对一</td>
+        </tr>
+        <tr>
+          <td>学员姓名:</td>
+          <td class="item">一对一一对一一对一</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="catalog">
+      <div class="title">目录</div>
+      <div class="item">
+        <div class="one-line">
+          <span
+            class="left">page1........................
+          </span>
+          <span class="right">
+            10
+          </span>
+        </div>
+        <div class="next-title">
+          <span
+            class="left">page1.1......................
+          </span>
+          <span class="right">
+            10
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="study-situation page-pdf">
+      <div class="pdf-title">1.学员基本情况及评价</div>
+      <table>
+        <tr>
+          <td>项目</td>
+          <td>类别</td>
+          <td>分数评级</td>
+          <td colspan="2">自我评价</td>
+        </tr>
+        <tr>
+          <td rowspan="2">英语水平</td>
+          <td>四级分数</td>
+          <td>
+            <span>'暂无' </span>
+          </td>
+          <td rowspan="2">自我评价</td>
+          <td rowspan="2">
+            <span> '暂无'</span>
+          </td>
+        </tr>
+        <tr>
+          <td>六级分数</td>
+          <td> <span> '暂无'</span></td>
+        </tr>
+
+        <tr>
+          <td rowspan="3">数学</td>
+          <td>高等数学</td>
+          <td>
+            <span> '暂无'</span>
+          </td>
+          <td rowspan="3">自我评价</td>
+          <td rowspan="3">
+            <span>
+              '暂无'</span>
+          </td>
+        </tr>
+        <tr>
+          <td>线性代数</td>
+          <td>
+            <span> '暂无'</span>
+          </td>
+        </tr>
+        <tr>
+          <td>概率统计</td>
+          <td>
+            <span> '暂无'</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td>是否跨考</td>
+          <td colspan="2">
+            <span> '暂无'</span>
+          </td>
+          <td>专业自我评价</td>
+          <td>
+            <span>
+              '暂无'</span>
+          </td>
+        </tr>
+        <tr>
+          <td>意向专业</td>
+          <td colspan="2">
+
+            <span> '暂无'</span>
+          </td>
+          <td>意向院校</td>
+          <td>
+
+            <span> '暂无'</span>
+          </td>
+        </tr>
+        <tr>
+          <td>意向院校层次</td>
+          <td colspan="2">
+
+            <span> '暂无'</span>
+          </td>
+          <td>优先级</td>
+          <td>
+
+            <span> '暂无'</span>
+          </td>
+        </tr>
+
+      </table>
+
+      <p class="margin-top-20">
+        四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数
+      </p>
+    </div>
+
+    <div class="research-direction page-pdf">
+      <div class="pdf-title">2.专业研究方向及就业</div>
+      <p class="paragraph">研究方向是读研期间的主体，也是将来就业深造的方向。通过了解该专业研究内容及就业前景，更全面地认识所选择的专业。</p>
+      <p class="module-tip">2.1.研究方向内容</p>
+      <p>
+        四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数
+      </p>
+      <p class="module-tip">2.2.就业前景</p>
+      <p>
+        四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数四级分数
+      </p>
+    </div>
+
+    <div class="select-school-list page-pdf">
+      <div class="pdf-title">3.专业排名</div>
+      <p class="paragraph">专业排名代表院校在全国范围内的专业水准。参考资料主要有教育部第四轮学科教学评估结果（第五轮未出）、软科排名、中国研究生教育及学科专业评价报告等。</p>
+      <p class="paragraph">
+        鉴于教育部第四轮学科教学评估结果是由教育部学位与研究生教育发展中心发布，具有较高的权威性和认可度，且专业实力与学科实力相互彰显，因此可以通过了解教育部第四轮学科评估报告，全面了解全国专业水平较高的不同层次院校；排名等级越高，学科专业实力越强，同等级下排名不分先后。
+      </p>
+      <table>
+        <tr>
+          <td>项目</td>
+          <td>类别</td>
+        </tr>
+        <tr>
+          <td>项目</td>
+          <td>类别</td>
+        </tr>
+        <tr>
+          <td>项目</td>
+          <td>类别</td>
+        </tr>
+        <tr>
+          <td>项目</td>
+          <td>类别</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="school-recommend-intro page-pdf">
+      <div class="pdf-title">4.院校推荐结果</div>
+      <p>
+        鉴于教育部第四轮学科教学评估结果是由教育部学位与研究生教育发展中心发布，具有较高的权威性和认可度，且专业实力与学科实力相互彰显，因此可以通过了解教育部第四轮学科评估报告，全面了解全国专业水平较高的不同层次院校；排名等级越高，学科专业实力越强，同等级下排名不分先后。
+      </p>
+      <table>
+        <tr>
+          <td>
+            <div>
+              院校层次：
+              details.schoolLevel
+            </div>
+          </td>
+          <td>
+            <div>专业层次： details.major </div>
+          </td>
+          <td>
+            <div>招生人数： details.number </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>录取最高分： details.highestPoint </div>
+          </td>
+          <td>
+            <div>录取最低分： details.lowestPoint </div>
+          </td>
+          <td>
+            <div>录取平均分： details.averagePoint </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>一志愿复试人数： details.reExamNumber </div>
+          </td>
+          <td colspan="2">
+            <div>是否调剂： typeof details.isAdjust === 'boolean' ? details.isAdjust ? "是" : "否" : "" </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <div>考试科目： details.subject </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <div>参考书目： details.books </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="school-analysis page-pdf">
+      <div class="pdf-title">5. 院校解析</div>
+      <p class="module-tip">5.1院校基本信息对比</p>
+      <div id="main1" style="width: 500px;height:200px;"></div>
+      <div id="main2" style="width: 500px;height:200px;"></div>
+      <p class="module-tip">5.2院校目标分数拆解</p>
+      <table>
+        <tr>
+          <td>项目</td>
+          <td>类别</td>
+          <td>项目</td>
+          <td>类别</td>
+          <td>项目</td>
+          <td>类别</td>
+        </tr>
+        <tr>
+          <td>项目</td>
+          <td>类别</td>
+          <td>项目</td>
+          <td>类别</td>
+          <td>项目</td>
+          <td>类别</td>
+        </tr>
+        <tr>
+          <td>项目</td>
+          <td>类别</td>
+          <td>项目</td>
+          <td>类别</td>
+          <td>项目</td>
+          <td>类别</td>
+        </tr>
+        <tr>
+          <td>项目</td>
+          <td>类别</td>
+          <td>项目</td>
+          <td>类别</td>
+          <td>项目</td>
+          <td>类别</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="select-school-summary page-pdf">
+      <div class="pdf-title">6. 择校总结</div>
+      <p>
+        鉴于教育部第四轮学科教学评估结果是由教育部学位与研究生教育发展中心发布，具有较高的权威性和认可度，且专业实力与学科实力相互彰显，因此可以通过了解教育部第四轮学科评估报告，全面了解全国专业水平较高的不同层次院校；排名等级越高，学科专业实力越强，同等级下排名不分先后。
+      </p>
+    </div>
+
+    <div class="select-school-summary page-pdf">
+      <div class="pdf-title">7. 课程推荐</div>
+      <div class="course">
+        <img ref="canvas" width="380" height="210" class="course-img"
+          src="https://oss.kaoyanvip.cn/attach/file1638497609090.png">
+        <div class="course-content">
+          <div class="course-title">课程推荐</div>
+          <div class="course-sub-title"> product.sub_title || "XXX" </div>
+          <div class="course-sub-title">有效期：{{ product.valid_end_time || "XXX" }} 共{{product.class_hours}}课时</div>
+          <div class="course-price">
+            <span class="label">价格</span>
+            <span class="symbol">&yen;</span>
+            <span class="amount"> product.price </span>
+          </div>
+          <a href="`https://m.kaoyanvip.cn/course/detail/${product.uuid}`" target="_blank" class="course-btn">查看详情</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</body>
+
+</html>

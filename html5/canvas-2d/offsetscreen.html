@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas1"></canvas>
+  <canvas id="canvas2"></canvas>
+
+  <script>
+    const one = document.querySelector('#canvas1'),
+      two = document.querySelector('#canvas2'),
+      // 获取canvas 中的ImageBitmapRenderingContext 渲染上下文
+      ctxOne = one.getContext('bitmaprenderer'),
+      ctxTwo = two.getContext('bitmaprenderer'),
+      // 新建offscreencanvas
+      offscreen = new OffscreenCanvas(256, 256),
+      // 离屏canvas中获取webgl 渲染上下文
+      gl = offscreen.getContext('webgl'),
+      // 从OffscreenCanvas最近渲染的图像创建一个ImageBitmap对象
+      bitmapOne = offscreen.transferToImageBitmap(),
+      bitmapTwo = offscreen.transferToImageBitmap();
+
+    ctxOne.transferToImageBitmap(bitmapOne);
+    ctxTwo.transferToImageBitmap(bitmapTwo);
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "postcss-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "postcss src/index.css --output dist/index.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.2.6",
+    "cssnano": "^5.0.6",
+    "postcss": "^8.3.5",
+    "postcss-cli": "^8.3.1",
+    "postcss-preset-env": "^6.7.0"
+  },
+  "dependencies": {
+    "postcss-discard-comments": "^5.0.1",
+    "postcss-use": "^3.0.0"
+  }
+}

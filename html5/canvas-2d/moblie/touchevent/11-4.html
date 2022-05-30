@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <script>
+    const canvas = document.querySelector('#canvas');
+
+    /**
+     * 包含canvas上的鼠标与触摸事件
+     */
+    canvas.addEventListener('touchstart',function(e){
+      e.preventDefault();
+      mouseDownOrTouchStart(windowToCanvas(e.pageX,e.pageY));
+    });
+
+    canvas.addEventListener('touchmove',function(e){
+      e.preventDefault();
+      mouseMoveOrTouchMove(windowToCanvas(e.pageX,e.pageY));
+    });
+
+    canvas.addEventListener('touchend',function(e){
+      e.preventDefault();
+      mouseUpOrTouchEnd(windowToCanvas(e.pageX,e.pageY));
+    });
+
+    canvas.addEventListener('mousedown',function(e){
+      e.preventDefault();
+      mouseDownOrTouchStart(windowToCanvas(e.pageX,e.pageY));
+    });
+
+    canvas.addEventListener('mousemove',function(e){
+      e.preventDefault();
+      mouseMoveOrTouchMove(windowToCanvas(e.pageX,e.pageY));
+    });
+
+    canvas.addEventListener('mouseup',function(e){
+      e.preventDefault();
+      mouseUpOrTouchEnd(windowToCanvas(e.pageX,e.pageY));
+    });
+
+    function mouseDownOrTouchStart(loc){
+
+    }
+
+    function mouseMoveOrTouchMove(loc){
+
+    }
+
+    function mouseUpOrTouchEnd(loc){
+
+    }
+
+
+  </script>
+</body>
+</html>

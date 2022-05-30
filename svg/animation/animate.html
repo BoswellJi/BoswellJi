@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>animate</title>
+</head>
+
+<body>
+
+  <svg>
+    <rect x="120" y="20" width="100" height="100">
+      <animate attributeName="rx" values="0;50;0" dur="10s" repeatCount="indefinite" />
+    </rect>
+    <rect x="40" y="40" width="100" height="100" fill="red">
+      <animate attributeName="width" from="100" to="50" dur="1s" fill="freeze" repeatCount="indefinite"></animate>
+      <animate attributeName="x" from="40" to="100" dur="1s" fill="freeze" repeatCount="indefinite"></animate>
+    </rect>
+    <circle r="5" fill="red">
+      <animateMotion dur="10s" repeatCount="indefinite" path="M20,50 C20,-50 180,150 180,50 C180,50 20,150 20,50 z" />
+    </circle>
+    <polygon points="60,30 90,90 30,90">
+      <animateTransform attributeName="transform" type="rotate" from="0 60 70" to="360 60 70" dur="10s"
+        repeatCount="indefinite"></animateTransform>
+    </polygon>
+  </svg>
+
+  <svg>
+    <pattern id="Triangle" width="10" height="10" patternUnits="userSpaceOnUse">
+      <!-- <image width="10" height="10" xlink:href="./anatomy-of-a-frame.jpg"></image> -->
+      <rect width="6" height="6" fill="red"></rect>
+    </pattern>
+    <circle cx="60" cy="60" r="50" fill="url(#Triangle)" />
+  </svg>
+</body>
+
+</html>
