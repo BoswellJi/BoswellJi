@@ -1,16 +1,17 @@
-const p = new Promise((reslove, reject) => {
+const p1 = new Promise((reslove, reject) => {
   setTimeout(() => {
-    name.a;
     reslove(1);
-  }, 0)
+  }, 2000)
+}).then(res => {
+  return new Promise((reslove)=>{
+    setTimeout(()=>{
+      reslove('eee')
+    },2000);
+  });
 });
 
-p
-  .then(res => {
-    console.log(res);
-  })
-  .then(res => {
-    console.log(res);
-  }).catch(err => {
-    console.log(err,'self');
-  })
+Promise.all([
+  p1
+]).then((res) => {
+  console.log(res);
+});
