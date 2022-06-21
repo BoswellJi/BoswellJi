@@ -1,0 +1,7 @@
+<view class="box">
+  <view class="bullet-box first" wx:for="{{bullets[0]}}" wx:key="index" id="{{item}}">
+    {{item}}
+  </view>
+  <view class="bullet-box second" wx:for="{{bullets[1]}}" wx:key="index" id="{{item}}">
+    {{item}}</view>
+</view>

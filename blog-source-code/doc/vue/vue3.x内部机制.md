@@ -52,6 +52,10 @@
   - new ReactiveEffect()
   - effect.run
 
+## EffectScope
+
+- 组件的实例属性`scope`为`EffectScope`实例；
+
 ## 副作用调度(effect scheduling)
 
 - todo...
