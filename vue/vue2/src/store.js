@@ -1,10 +1,10 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue';
+import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
 const state = {
-  name: "Boswell",
+  name: 'Boswell',
   age: 21,
 };
 
@@ -22,19 +22,19 @@ const mutations = {
 
 const actions = {
   getAge({ state, commit }) {
-    commit("addAge");
+    commit('addAge');
   },
 };
 
 const modules = {
   mod1: {
-    namespaced:true,
+    namespaced: true,
     state: {
-      mod1Name: "mod1",
+      mod1Name: 'mod1',
     },
     getters: {
       getterMod1Name(state) {
-        return state.mod1Name + "test";
+        return state.mod1Name + 'test';
       },
     },
   },
@@ -46,5 +46,5 @@ export default new Vuex.Store({
   mutations,
   actions,
   modules,
-  devtools: false
+  devtools: false,
 });
