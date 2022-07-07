@@ -1,7 +1,9 @@
 <template>
   <div class="hello">
     {{msg}}
-    <div id="con"></div>
+    <teleport to="#con">
+      <div>teleport</div>
+    </teleport>
   </div>
 </template>
 

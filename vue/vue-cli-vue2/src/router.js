@@ -11,7 +11,8 @@ import html2canvas from './components/html2canvas';
 Vue.use(VueRouter);
 
 const routes = [
-  { path: '/', component: test1 },
+  { path: '/test1', component: test1 },
+  { path: '/test', component: test },
   {
     path: '/test2',
     component: test2,
@@ -38,7 +39,7 @@ const routes = [
       },
     ],
   },
-  { path: '/b', component: test3 },
+  { path: '/test3', component: test3 },
   { path: '/c/:id/d/:name', component: test4 },
   { path: '/video', component: video },
   { path: '/html2canvas', component: html2canvas },
@@ -78,6 +79,22 @@ const routes = [
     path: '/pdfmake',
     component: () => import('./components/pdfmake'),
   },
+  {
+    path: '/elementui',
+    component: () => import('./components/elementui'),
+  },
+  {
+    path:'/vue3-1',
+    component: () => import('./components/vue3-1'),
+  },
+  {
+    path:'/vue3-2',
+    component: () => import('./components/vue3-1'),
+  },
+  {
+    path:'/mult-page-vue2',
+    component: () => import('./components/vue3-1'),
+  }
 ];
 
 const router = new VueRouter({

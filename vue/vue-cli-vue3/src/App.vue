@@ -1,6 +1,6 @@
 <template>
   <div>
-    <transition name="fade" appear>
+    <!-- <transition name="fade" appear>
       <HelloWorld msg="App" />
     </transition>
     <teleport to="#con">
@@ -12,6 +12,9 @@
     <div v-memo="[value1,value2]">
       {{value1}}{{value2}}
     </div>
+
+    <div id="con"></div> -->
+    vue3-1
   </div>
 </template>
 
@@ -50,7 +53,7 @@ export default {
       name: "Boswell",
     });
     function clickHandle() {
-      fadeShow.value = !fadeShow.value;
+      console.log('test');
     }
 
     onMounted(() => {});

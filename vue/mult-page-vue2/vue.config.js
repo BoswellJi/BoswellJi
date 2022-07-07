@@ -15,4 +15,10 @@ dirs.forEach((dir) => {
 
 module.exports = {
   pages,
+  devServer: {
+    port: 7300,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+  },
 };
