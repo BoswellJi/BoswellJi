@@ -33,6 +33,7 @@
 - [vue2.x 源码分析3](https://github.com/answershuto/learnVue)
 - [vue2.x 源码分析4](https://mp.weixin.qq.com/s?__biz=MzUxNjQ1NjMwNw==&mid=2247484028&idx=1&sn=771e76a666a83edec1ae1105f6e6b60e&chksm=f9a66860ced1e176d91a9bf22f0c5c9c70a761757f319ebc9faa01224409d6d4928f250dbb56&scene=178&cur_album_id=1619085427984957440#rd)
 - [vue2.x 原理](./vue/vue2.x内部机制.md)
+- [vue2.x 知识点](./vue/vue2.x知识点/index.md)
 - [vue 警告](./vue/warning.md)
 
 ## React
@@ -110,6 +111,7 @@
 
 - [缓存](./http/cache.md)
 - [安全](./http/security.md)
+- [tcp](./http/tcp.md)
 - [http1.1](./http/http1.1.md)
 - [http2.0](./http/http2.0.md)
 - [https](./http/https.md)

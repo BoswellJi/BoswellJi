@@ -5,7 +5,7 @@
 
 ## vnode描述抽象内容
 
-* 组件就是一个抽象的内容；因为你的意图不是要在页面中渲染<component></component>，而是要渲染组件的内容；
+* 组件就是一个抽象的内容；因为你的意图不是要在页面中渲染`<component></component>`，而是要渲染组件的内容；
 * 除了组件之外还有两种抽象内容需要描述：`Fragment`,`portal`;
 
 * Fragment: 当一块模板有多个元素没有容器时，创建Fragment节点；

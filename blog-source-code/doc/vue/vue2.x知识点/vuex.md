@@ -1,8 +1,8 @@
 ## 映射
 
-* template => view
-* data => state
-* methods => actions
+* `template => view`
+* `data => state`
+* `methods => actions`
 
 
 ## 当多个组件共享同一份数据
@@ -49,7 +49,7 @@
 ## action
 
 * 处理异步操作；
-* 可以访问到回调函数中的{state,getters,mutations,actions};
+* 可以访问到回调函数中的`{state,getters,mutations,actions}`;
 * 多action组合，这就需要action中返回Promise;
 
 ## module
