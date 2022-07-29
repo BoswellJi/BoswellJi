@@ -94,6 +94,10 @@ const routes = [
   {
     path:'/mult-page-vue2',
     component: () => import('./components/vue3-1'),
+  },
+  {
+    path:'/import-html-entry',
+    component: () => import('./components/import-html-entry'),
   }
 ];
 
