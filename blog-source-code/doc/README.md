@@ -2,6 +2,10 @@
 
 - <a href="/MyBlog/image/boswell.pdf" download="boswell.pdf">下载</a>
 
+## Todo
+
+- [技术储备](./Todo/index.md)
+
 ## Javascript
 
 - [js 设计模式翻译](https://github.com/BoswellJi/BoswellJi/blob/master/books/javascript/javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/readme.md)
@@ -52,6 +56,7 @@
 ## Microfrontend
 
 - [核心概念](./Microfrontend/核心概念.md)
+- [乾坤](./Microfrontend/qiankun.md)
 
 ## Nodejs
 
