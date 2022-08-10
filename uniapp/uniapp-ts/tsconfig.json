@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    
+    "types": [
+
+    ],
+    "paths": {
+      
+    },
+    "lib": [
+      
+    ]
+  },
+  "exclude": [
+    "node_modules",
+  ]
+}

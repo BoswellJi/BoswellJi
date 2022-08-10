@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    const ctx = document.querySelector('#canvas').getContext('2d');
+
+    function drawDashedLine(ctx, x1, y1, x2, y2, dashLength) {
+      dashLength = dashLength === undefined ? 5 : dashLength;
+
+      const deltaX = x2 - x1,
+        deltaY = y2 - y1,
+        numDashes = Math.floor(Math.sqrt(deltaX * deltaX + deltaY * deltaY) / dashLength);
+
+      for (let i = 0; i < numDashes; i++) {
+        ctx[i % 2 === 0 ? 'moveTo' : 'lineTo'](x1 + deltaX / numDashes * i, y1 + deltaY / numDashes * i);
+      }
+      ctx.stroke();
+    }
+
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = 'blue';
+    drawDashedLine(ctx, 20, 20, ctx.canvas.width - 20, 20);
+    drawDashedLine(ctx, canvas.width - 20, 20, canvas.width - 20, canvas.height - 20, 10);
+
+  </script>
+</body>
+
+</html>

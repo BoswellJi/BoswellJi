@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./index.js" type="module"></script>
+
+  <!-- 
+    直接操作dom性能查的原因：
+
+    1. dom引擎和js引擎相互独立，但是有互斥；
+    2. js掉用dom api,js引擎需要挂起，转换传入参数数据，激活dom引擎，dom重绘后再转换可能有的返回值，最后激活js引擎；
+    
+    优化：降低引擎切换频率，减小dom变更规模；需要做dom操作的批处理；
+   -->
+</body>
+</html>

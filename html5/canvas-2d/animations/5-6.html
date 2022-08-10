@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    基于时间的运动：   每秒钟移动的像素数量是固定的；
+    不会随着硬件的不同而不同，因为它是随着时间来变化的；
+
+    基于帧速率的运动： 运动速度随着动画的帧速率变化而变化；
+    帧速率： 每秒钟，展示的帧数，会随着硬件的不同而不同
+
+    丢帧：每秒钟60帧会感到动画非常的平滑，如果每秒钟30帧，会看到某帧突然跳到另一帧，非常的突然，生硬；没有过度
+
+    每秒的像素数 * 一帧需要的秒数 = 一帧走的像素数
+   -->
+
+
+  <script>
+    function updateTimeBased(time) {
+      let disc = null,
+        // 一帧秒数
+        elapsedTime = time - lastTime;
+
+      for (let i = 0; i < disc.length; i++) {
+        disc = discs[i];
+        deltaX = disc.velocityX;
+
+        //  每秒像素数  * 一帧秒数（每帧的像素数，速度
+        deltaX = disc.velocityX * (elapsedTime / 1000);
+        deltaY = disc.velocityY * (elapsedTime / 1000);
+
+        if (disc.x + deltaX + disc.radius > topContext.canvas.width || disc.deltaX - disc.radius < 0) {
+          disc.velocityX = -disc.velocityX;
+          deltaX = -deltaX;
+        }
+
+        if (disc.y + deltaY + disc.radius > topContext.canvas.height || disc.y + deltaY - disc.radius < 0) {
+          disc.velocityY = -disc.velocityY;
+          deltaY = -deltaY;
+        }
+
+        disc.x = disc.x + deltaX;
+        disc.y = disc.y + deltaY;
+
+        lastTime = time;
+      }
+    }
+  </script>
+</body>
+
+</html>

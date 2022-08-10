@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+    setTimeout: 会有最小的时间间隔，第一次调用10ms 之后 5s
+    setTimeout,setInterval: 是主动触发更新
+
+    我们需要让浏览器在它觉得可以绘制下一帧时通知你， requestAnimationFrame()方法来实现此功能，会自行决定帧速率
+
+   -->
+
+  <script>
+    function animate(e) {
+      console.log(e);
+    }
+    requestAnimationFrame(animate);
+
+    // polyfill式方法
+    window.requestNextAnimationFrame = (function () {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function (callback, element) {
+          let self = this,
+            start,
+            finish;
+
+          window.setTimeout(function () {
+            start = +new Date();
+            callback(start);
+            finish = +new Date();
+            self.timeout = 100 / 60 - (finish - start);
+          }, self.timeout);
+        }
+    })();
+
+    //  w3c规范定义的requestAnimationFrame功能的 Polyfil方法
+    window.requestNextAnimationFrame = (function () {
+      let originalWebkitMethod,
+        wrapper,
+        callback,
+        geckoVersion = 0,
+        userAgent = navigator.userAgent,
+        index = 0,
+        self = this;
+
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function (callback, element) {
+          // 指代window
+          let self = this,
+            start,
+            finish;
+
+          // 修改原生方法，（装饰器模式
+          if (window.webkitRequestAnimationFrame) {
+            // 包装原生方法
+            wrapper = function (item) {
+              if (titme === undefined) {
+                titme = +new Date();
+              }
+              // 给原生方法传值
+              self.callback(time);
+            }
+
+            // 保存原生方法的引用
+            originalWebkitMethod = window.webkitRequestAnimationFrame;
+            // 重新定义原生方法
+            window.webkitRequestAnimationFrame = function (callback, element) {
+              // 给window添加callback函数
+              self.callback = callback;
+              // 调用原生方法
+              originalWebkitMethod(wrapper, element);
+            }
+          }
+
+          if (window.mozRequestAnimationFrame) {
+            // 查找用户代理中的rv 字符串
+            index = userAgent.indexOf('rv');
+
+            // 用户代理中没有所查找字符串
+            if (userAgent.indexOf('Gecko') != -1) {
+              geckoVersion = userAgent.substr(index + 3, 3);
+
+              if (geckoVersion === '2.0') {
+                window.mozRequestAnimationFrame = undefined;
+              }
+            }
+          }
+
+          window.setTimeout(function () {
+            start = +new Date();
+            callback(start);
+            finish = +new Date();
+            self.timeout = 100 / 60 - (finish - start);
+          }, self.timeout);
+        }
+    })();
+
+  </script>
+</body>
+
+</html>

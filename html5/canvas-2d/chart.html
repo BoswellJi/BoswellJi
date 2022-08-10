@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas" width="500" height="500"></canvas>
+
+  <script>
+    let canvas = document.querySelector('#canvas'),
+      ctx = canvas.getContext('2d'),
+      targetArr = [200, 300, 23, 300, 40],
+      arr = [0, 0, 0, 0, 0],
+      width = 450 / 5,
+      max = Math.max.apply(null, targetArr),
+      height = max / 50,
+      cachePoints = [];
+
+    function event() {
+      canvas.addEventListener('mousemove', function (e) {        
+        draw();
+
+        const x = e.clientX,
+          y = e.clientY;
+        ctx.save();
+        ctx.strokeStyle = 'red';
+
+        ctx.beginPath();
+        ctx.setLineDash([2]);
+        ctx.moveTo(0, y);
+        ctx.lineTo(500, y);
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.setLineDash([2]);
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, 500);
+        ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
+      });
+
+      canvas.addEventListener('mouseup', function (e) {
+        const c = canvas.getBoundingClientRect();
+        cachePoints.push({
+          x: e.clientX,
+          y: e.clientY
+        });
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, 500, 500);
+      for (let i = 0, len = cachePoints.length; i < len; i++) {
+        const y = cachePoints[i].y,
+          x = cachePoints[i].x;
+
+        ctx.save();
+        ctx.strokeStyle = 'red';
+
+        ctx.beginPath();
+        ctx.setLineDash([2]);
+        ctx.moveTo(0, y);
+        ctx.lineTo(500, y);
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.setLineDash([2]);
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, 500);
+        ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
+      }
+
+      ctx.beginPath();
+      ctx.moveTo(50, 0);
+      ctx.lineTo(50, 450);
+      ctx.closePath();
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(50, 450);
+      ctx.lineTo(450, 450);
+      ctx.closePath();
+      ctx.stroke();
+
+      for (let i = 0, len = arr.length; i < len; i++) {
+        ctx.beginPath();
+        ctx.rect(width * i + 20 + 50, 500 - arr[i] - 50, 20, arr[i]);
+        ctx.fill();
+        ctx.save();
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        ctx.fillText('第一', width * i + 20 + 50 + 10, 460);
+        ctx.beginPath();
+        ctx.moveTo(width * i + 20 + 50 + 10, 450);
+        ctx.lineTo(width * i + 20 + 50 + 10, 460);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.strokeStyle = 'red';
+      ctx.moveTo(20 + 50 + 10, 500 - 200 - 50);
+      for (let i = 1, len = arr.length; i < len; i++) {
+        ctx.lineTo(width * i + 20 + 50 + 10, 500 - arr[i] - 50);
+      }
+      ctx.stroke();
+      ctx.closePath();
+      ctx.restore();
+
+      for (let i = 0; i <= height; i++) {
+        ctx.save();
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('第一', 40, 450 - i * 50);
+
+        ctx.beginPath();
+        ctx.moveTo(50, 450 - i * 50);
+        ctx.lineTo(40, 450 - i * 50);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+
+    event();
+    draw();
+
+    setInterval(function () {
+      for (let i = 0; i < 5; i++) {
+        if (arr[i] != targetArr[i]) {
+          arr[i]++;
+        }
+      }
+      draw();
+    }, 16);
+
+  </script>
+</body>
+
+</html>

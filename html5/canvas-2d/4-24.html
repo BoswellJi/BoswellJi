@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    const canvas = document.querySelector('#canvas'),
+      container = document.querySelector('#container'),
+      ctx = canvas.getContext('2d'),
+      cw = window.innerWidth,
+      ch = window.innerHeight;
+
+    function fillScreen() {
+      canvas.width = cw;
+      canvas.height = ch;
+    }
+    fillScreen();
+
+    let dragging = true,
+      imageData,
+      magnifyRectangle = {},
+      magnifyingGlassX,
+      magnifyingGlassY,
+      magnificationScale = 1;
+
+    canvas.addEventListener('mousemove', function (e) {
+      if (dragging) {
+        eraseMagnifyGlass();
+        drawMagnifyingGlass(windowToCanvas(e.clientX,e.clientY));
+      }
+    });
+
+    function windowToCanvas(x, y) {
+      const bbox = canvas.getBoundingClientRect();
+      return {
+        x: x - bbox.left * (canvas.width / bbox.width),
+        y: y - bbox.top * (canvas.height / bbox.height)
+      };
+    }
+
+    function eraseMagnifyGlass() {
+      if (imageData != null) {
+        ctx.putImageData(imageData, magnifyRectangle.x, magnifyRectangle.y);
+      }
+    }
+
+    /**
+    * 计算当前放大镜所在位置的最小外接矩形
+    * 并捕获该范围内的像素，以便下次应用程序在绘制新的放大镜时可以用它擦掉旧的图像
+    */
+    function drawMagnifyingGlass(mouse) {
+      let scaledMagnifyRectangle = null;
+
+      magnifyingGlassX = mouse.x;
+      magnifyingGlassY = mouse.y;
+
+      calculateMagnifyRectangle(mouse);
+      imageData = ctx.getImageData(magnifyRectangle.x, magnifyRectangle.y, magnifyRectangle.width, magnifyRectangle.height);
+      ctx.save();
+
+      scaledMagnifyRectangle = {
+        width: magnifyRectangle.width * magnificationScale,
+        height: magnifyRectangle.height * magnificationScale
+      };
+
+      setClip();
+
+      ctx.drawImage(canvas, magnifyRectangle.x,
+        magnifyRectangle.y,
+        magnifyRectangle.width,
+        magnifyRectangle.height,
+        magnifyRectangle.x + magnifyRectangle.width / 2 - scaledMagnifyRectangle.width / 2,
+        magnifyRectangle.y + magnifyRectangle.height / 2 - scaledMagnifyRectangle.height / 2,
+        scaledMagnifyRectangle.width,
+        scaledMagnifyRectangle.height
+      );
+      ctx.restore();
+      drawMagnifyingGlassCircle(mouse);
+    }
+
+    function setClip() {
+      ctx.beginPath();
+      ctx.arc(magnifyingGlassX, magnifyingGlassY, magnifyingGlassRadius, 0, Math.PI, false);
+      ctx.clip();
+    }
+  </script>
+</body>
+
+</html>
