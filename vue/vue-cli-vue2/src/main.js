@@ -6,7 +6,7 @@ import Sortable from 'sortablejs';
 import { Swap } from 'sortablejs/modular/sortable.core.esm';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import { loadMicroApp, registerMicroApps, start } from 'qiankun';
+import { registerMicroApps, start } from 'qiankun';
 
 Sortable.mount(new Swap());
 Vue.use(ElementUI);
@@ -15,22 +15,22 @@ Vue.component('async-example', () => import('./components/async-test3'));
 
 registerMicroApps([
   {
-    name: 'vue3-1',
-    entry: '//localhost:7100',
+    name: 'vue1', // app name registered
+    entry: '//localhost:8081',
     container: '#container',
-    activeRule: '/vue3-1',
+    activeRule(location) {
+      const url = location.pathname.startsWith('/app1')
+      console.log(location.pathname);
+      return location.pathname.startsWith('/app1')
+    }
   },
   {
-    name: 'vue3-2',
-    entry: '//localhost:7200',
+    name: 'vue2', // app name registered
+    entry: '//localhost:8082',
     container: '#container',
-    activeRule: '/vue3-2',
-  },
-  {
-    name: 'mult-page-vue2',
-    entry: '//localhost:7300',
-    container: '#container',
-    activeRule: '/mult-page-vue2',
+    activeRule(location){
+      return location.pathname.startsWith('/app2')
+    }
   },
 ]);
 

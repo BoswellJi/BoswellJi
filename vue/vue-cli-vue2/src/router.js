@@ -94,13 +94,24 @@ const routes = [
   {
     path:'/mult-page-vue2',
     component: () => import('./components/vue3-1'),
+  },
+  {
+    path:'/import-html-entry',
+    component: () => import('./components/import-html-entry'),
+  },
+  {
+    path:'/app1/*',
+    component: () => import('./components/micoapp'),
+  },
+  {
+    path:'/app2/*',
+    component: () => import('./components/micoapp'),
   }
 ];
 
 const router = new VueRouter({
   mode: 'history',
   routes,
-  // mode:'history'
 });
 
 export default router;
