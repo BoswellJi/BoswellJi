@@ -15,22 +15,16 @@ Vue.component('async-example', () => import('./components/async-test3'));
 
 registerMicroApps([
   {
-    name: 'vue3-1',
-    entry: '//localhost:7100',
+    name: 'vue1', // app name registered
+    entry: '//localhost:8081',
     container: '#container',
-    activeRule: '/vue3-1',
+    activeRule: '/app1'
   },
   {
-    name: 'vue3-2',
-    entry: '//localhost:7200',
+    name: 'vue2', // app name registered
+    entry: '//localhost:8082',
     container: '#container',
-    activeRule: '/vue3-2',
-  },
-  {
-    name: 'mult-page-vue2',
-    entry: '//localhost:7300',
-    container: '#container',
-    activeRule: '/mult-page-vue2',
+    activeRule: '/app2'
   },
 ]);
 
