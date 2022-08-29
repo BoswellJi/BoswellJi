@@ -6,17 +6,6 @@
 
 - 所有普通的 spa
 
-### 拆分应用
-
-- 拆分代码仓库，构建，部署
-
-#### 拆分方法
-
-- One code repo, one build
-- npm package
-- Monorepos
-- Dynamic Module Loading
-
 #### 微前端框架的必备特性
 
 - 注册微应用
@@ -45,10 +34,11 @@
 
 #### 涉及到的技术
 
-- Proxy
-- Shadow DOM
-- CustomEvent
+- Web Component
+  - Shadow DOM
+  - CustomEvent
 - JS SandBox
+  - Proxy
   - 通过给执行的 js 包一层`with(global){}`实现
   - `iframe`实现
   - 根据当前微应用，生成一份`window`状态,离开后还原`指定微应用`状态实现

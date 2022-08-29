@@ -12,6 +12,7 @@
 - [js 异步模式快速指南翻译](./js/async.md)
 - [js 语言特性](./js/feature.md)
 - [js 运行机制](./js/mechanism.md)
+- [js Date](./js/date.md)
 - [js 警告](./js/warning.md)
 
 ## Typescript
