@@ -7,4 +7,4 @@
 /^(revert: )?(feat|fix|polish|docs|style|refactor|perf|test|workflow|ci|chore|types)(\(.+\))?: .{1,50}/;
 ```
 
-test
+Boswell
