@@ -64,11 +64,11 @@
 
 - [关于包管理器](./nodejs/package-manager.md)
 
-## 微信公众平台
+## WX Platform
 
 - [微信开发](./wx-platform/wx-gzh.md)
 
-## 微信小程序
+## WX Miniprogram
 
 - [运行机制](./wx-platform/微信小程序实现原理.md)
 
