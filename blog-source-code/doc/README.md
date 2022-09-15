@@ -1,4 +1,4 @@
-## [个人简历](./personal-profile/boswell.md)
+## [Personal Profile](./personal-profile/boswell.md)
 
 - <a href="/MyBlog/image/boswell.pdf" download="boswell.pdf">下载</a>
 
@@ -32,7 +32,7 @@
 - [vue3.x 源码解析 2](https://github.com/hkc452/slamdunk-the-vue3/tree/master)
 - [vue3.x 脚手架](https://github.com/BoswellJi/BoswellJi/tree/master/webpack)
 - [vue3.x 原理](./vue/vue3.x内部机制.md)
-- [vue-starport 原理](./vue/vue-startport内部机制.md)
+- [vue3.x-starport 原理](./vue/vue-startport内部机制.md)
 - [vue2.x 源码分析 1](https://github.com/HcySunYang/vue-design)
 - [vue2.x 源码分析 2](https://github.com/ustbhuangyi/vue-analysis)
 - [vue2.x 源码分析 3](https://github.com/answershuto/learnVue)
@@ -56,8 +56,8 @@
 
 ## Microfrontend
 
-- [核心概念](./Microfrontend/core.md)
-- [乾坤](./Microfrontend/qiankun.md)
+- [core concept](./Microfrontend/core.md)
+- [qiankun](./Microfrontend/qiankun.md)
 - [single-spa](./Microfrontend/single-spa.md)
 
 ## Nodejs
@@ -195,66 +195,101 @@
 
 ## Books
 
-- [javascript](https://github.com/BoswellJi/BoswellJi/tree/master/books/english)
-- [算法](https://github.com/BoswellJi/BoswellJi/tree/master/books/算法)
-- [图形学](https://github.com/BoswellJi/BoswellJi/tree/master/books/图形学)
-- [WebGL](https://github.com/BoswellJi/BoswellJi/tree/master/books/webgl)
-- [English](https://github.com/BoswellJi/BoswellJi/tree/master/books/english)
+#### JavaScript
+
+- [JavaScript 权威指南](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/javascript权威指南)
+- [JavaScript 编程精粹](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/javascript编程精粹)
+- [JavaScript 语言精髓与编程语言实践](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/javascript语言精髓与编程语言实践)
+- [数据结构与算法 javascript 描述](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/数据结构与算法javascript描述)
+
+#### Algorithm
+
+- [算法设计与分析基础](https://github.com/BoswellJi/BoswellJi/tree/master/books/算法/算法设计与分析基础)
+
+#### Graphics
+
+- [计算机图形概论](https://github.com/BoswellJi/BoswellJi/tree/master/books/图形学/计算机图形概论)
+- [WebGL 编程指南](https://github.com/BoswellJi/BoswellJi/tree/master/books/webgl/webgl编程指南)
+- [WebGL 高级编程](https://github.com/BoswellJi/BoswellJi/tree/master/books/webgl/webgl高级编程)
+- [交互式计算机图形学-基于 WebGL 的自顶向下方法](https://github.com/BoswellJi/BoswellJi/tree/master/books/webgl/交互式计算机图形学-基于webgl的自顶向下方法)
+
+#### English
+
+- [English-grammar-guide](https://github.com/BoswellJi/BoswellJi/tree/master/books/english/English-grammar-guide)
+- [english-grammar-in-use](https://github.com/BoswellJi/BoswellJi/tree/master/books/english/english-grammar-in-use)
+
+## Translation
+
+#### JavaScript
+
+- [JavaScript 规范](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/ecmascript规格)
+- [JavaScript 设计模式](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/javascript设计模式)
+- [探索 ES6](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/探索ES6)
+- [深层 javascript：理论和技巧](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/深层javascript：理论和技巧)
+- [现代化 js 实战](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/现代化js实战)
+- [给不耐烦的程序员的 javascript](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/给不耐烦的程序员的javascript)
+- [话说 javascript](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/话说javascript)
+
+## Sharing
+
+- [微前端](./ppt/micro-frontend.md)
 
 ## English
 
 - [语法架构](./english/readme.md)
 
-- 成分
+#### 成分
 
-  - [主语](./english/成分/主语.md)
-  - [谓语](./english/成分/谓语.md)
-  - [宾语](./english/成分/宾语.md)
-  - [表语](./english/成分/表语.md)
-  - [定语](./english/成分/定语.md)
-  - [状语](./english/成分/状语.md)
+- [主语](./english/成分/主语.md)
+- [谓语](./english/成分/谓语.md)
+- [宾语](./english/成分/宾语.md)
+- [表语](./english/成分/表语.md)
+- [定语](./english/成分/定语.md)
+- [状语](./english/成分/状语.md)
 
-- 词性
+#### 词性
 
-  - [代词](./english/词性/代词.md)
-  - [动词](./english/词性/动词.md)
-  - [副词](./english/词性/副词.md)
-  - [感叹词](./english/词性/感叹词.md)
-  - [冠词](./english/词性/冠词.md)
-  - [介词](./english/词性/介词.md)
-  - [连词](./english/词性/连词.md)
-  - [名词](./english/词性/名词.md)
-  - [数词](./english/词性/数词.md)
-  - [形容词](./english/词性/形容词.md)
+- [代词](./english/词性/代词.md)
+- [动词](./english/词性/动词.md)
+- [副词](./english/词性/副词.md)
+- [感叹词](./english/词性/感叹词.md)
+- [冠词](./english/词性/冠词.md)
+- [介词](./english/词性/介词.md)
+- [连词](./english/词性/连词.md)
+- [名词](./english/词性/名词.md)
+- [数词](./english/词性/数词.md)
+- [形容词](./english/词性/形容词.md)
 
-- 句子
+#### 句子
 
-  - [并列句](./english/句子/并列句.md)
-  - [定语从句](./english/句子/定语从句.md)
-  - [名词性从句](./english/句子/名词性从句.md)
-    - [同位语从句](./english/句子/同位语从句.md)
-  - [状语从句](./english/句子/状语从句.md)
-  - [主谓](./english/句子/主谓.md)
-  - [主谓宾](./english/句子/主谓宾.md)
-  - [主谓宾宾补](./english/句子/主谓宾宾补.md)
-  - [主谓双宾](./english/句子/主谓双宾.md)
-  - [主系表](./english/句子/主系表.md)
+- [并列句](./english/句子/并列句.md)
+- [定语从句](./english/句子/定语从句.md)
+- [名词性从句](./english/句子/名词性从句.md)
+  - [同位语从句](./english/句子/同位语从句.md)
+- [状语从句](./english/句子/状语从句.md)
+- [主谓](./english/句子/主谓.md)
+- [主谓宾](./english/句子/主谓宾.md)
+- [主谓宾宾补](./english/句子/主谓宾宾补.md)
+- [主谓双宾](./english/句子/主谓双宾.md)
+- [主系表](./english/句子/主系表.md)
 
-- 特殊句式
+#### 特殊句式
 
-  - [比较结构](./english/特殊句式/比较结构.md)
-  - [插入语](./english/特殊句式/插入语.md)
-  - [倒装句](./english/特殊句式/倒装句.md)
-  - [短语](./english/特殊句式/短语.md)
-  - [反义疑问句](./english/特殊句式/反义疑问句.md)
-  - [非谓语动词](./english/特殊句式/非谓语动词.md)
-  - [感叹句](./english/特殊句式/感叹句.md)
-  - [关系词](./english/特殊句式/关系词.md)
-  - [祈使句](./english/特殊句式/祈使句.md)
-  - [强调句](./english/特殊句式/强调句.md)
-  - [同位语](./english/特殊句式/同位语.md)
-  - [虚拟语气](./english/特殊句式/虚拟语气.md)
-  - [there-be](./english/特殊句式/there-be.md)
+- [比较结构](./english/特殊句式/比较结构.md)
+- [插入语](./english/特殊句式/插入语.md)
+- [倒装句](./english/特殊句式/倒装句.md)
+- [短语](./english/特殊句式/短语.md)
+- [反义疑问句](./english/特殊句式/反义疑问句.md)
+- [非谓语动词](./english/特殊句式/非谓语动词.md)
+- [感叹句](./english/特殊句式/感叹句.md)
+- [关系词](./english/特殊句式/关系词.md)
+- [祈使句](./english/特殊句式/祈使句.md)
+- [强调句](./english/特殊句式/强调句.md)
+- [同位语](./english/特殊句式/同位语.md)
+- [虚拟语气](./english/特殊句式/虚拟语气.md)
+- [there-be](./english/特殊句式/there-be.md)
+
+#### 翻译
 
 - [翻译技巧](./english/翻译/readme.md)
 

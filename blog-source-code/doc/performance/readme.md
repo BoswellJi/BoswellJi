@@ -1,14 +1,10 @@
-## 性能
-
 ## 页面性能的衡量标准
 
 * 加载性能（尽量快速的将当前需要的资源加载进来）
 * 渲染性能（页面在操作的过程中，反应有没有延时，出现卡顿现象）
 
 1. 它在发生吗？  FP(first paint),FCP(first content paint)
-
 2. 它是否有用？ FMP(first meaningful paint)
-
 3. 它是否可用？ TTI(Time to interactive) 
 
 * 时机：js脚本都被加载并处理完了，主线程处于空闲状态了的时间；
