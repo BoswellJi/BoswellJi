@@ -31,8 +31,37 @@
 ## 运行流程
 
 - registerApplication(): 注册微应用
+
   - sanitizeArguments(): 处理参数(边界情况处理)： 参数形式，参数有效性，规范化参数/统一参数格式
+
   - apps.push(): 新增一个微应用实例
+
     - `{loadErrorTime,status,parcels,devtools,name,loadApp,activeWhen,customProps}`
-  - ensureJQuerySupport():
+
+  - ensureJQuerySupport(): 为了保证 jquery 注册事件时，`hashchange`,`popstate`两个事件被正确绑定
+
   - reroute():
+
+    - getAppChanges(): 将微应用根据状态进行分类
+
+      - appsToLoad: 加载失败，未被加载，正在加载源代码
+
+      - appsToMount: 未被启动，未被安装但路径活跃的
+
+      - appsToUnmount: 已被安装
+
+      - appsToUnload: 未被启动，未被安装并且路径不活跃的
+
+    - performAppChanges():
+
+    - loadApps(): 开始加载微应用
+
+      - toLoadPromise(): 加载微应用并修改微应用状态
+
+      - callAllEventListeners():
+
+- start(): 开始安装微应用
+
+  - reroute():
+
+  - performAppChanges():

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <a href="/a" id="a" onclick="">a</a>
+
+  <script>
+    document.querySelector('#a').addEventListener('click', function (e) {
+      const urlBefore = window.location.href;
+      history.pushState(null, '/a', '/a');
+      const urlAfter = window.location.href;
+      e.preventDefault();
+    });
+
+    window.addEventListener('popstate', function (e) {
+      console.log(e);
+    });
+  </script>
+</body>
+
+</html>

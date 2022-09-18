@@ -1,23 +1,25 @@
 /* eslint-disable */
 import './public-path';
-import { createApp } from 'vue'
-import App from './App.vue'
-import {createRouter,createWebHashHistory,createWebHistory} from 'vue-router';
+import { createApp } from 'vue';
+import App from './App.vue';
+import {
+  createRouter,
+  createWebHashHistory,
+  createWebHistory,
+} from 'vue-router';
 
 let router = null;
 let instance = null;
 
-function render(props){
+function render(props) {
   const { container } = props;
   router = createRouter({
     history: createWebHistory('/app1/'),
-    routes:[
-      { path: '/about', component: () => import('./test1.vue') }
-    ], 
-  })
+    routes: [{ path: '/about', component: () => import('./test1.vue') }],
+  });
 
-  instance = createApp(App).use(router)
-  instance.mount(container ? container.querySelector('#app') : '#app')
+  instance = createApp(App).use(router);
+  instance.mount(container ? container.querySelector('#app') : '#app');
 }
 
 export async function bootstrap() {
@@ -30,8 +32,6 @@ export async function mount(props) {
 }
 
 export async function unmount() {
-  // instance.$destroy();
-  // instance.$el.innerHTML = '';
   instance = null;
   router = null;
 }
