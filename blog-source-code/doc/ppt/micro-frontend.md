@@ -51,16 +51,78 @@
 
 ## 实现方案
 
-- Single-Spa
+#### Single-spa：
 
-- qiankun
+- 介绍
+
+Single-spa 是一个将多个单页面应用聚合为一个整体应用的 JavaScript 微前端框架。核心就是定义了一套协议。协议包含主应用的配置信息(注册子应用)和子应用的生命周期(启动，安装，卸载)，通过这套协议，主应用可以方便的知道在什么情况下（路由匹配）激活哪个子应用。
+
+```js
+// 注册子应用
+registerApplication({
+  name: '@vue-mf/navbar',
+  app: () => System.import('@vue-mf/navbar'),
+  activeWhen: '/',
+  customProps: {
+    githubLink: 'https://github.com/vue-microfrontends/root-config',
+  },
+});
+
+// 子应用导出的生命周期
+export const bootstrap = vueLifecycles.bootstrap;
+export const mount = vueLifecycles.mount;
+export const unmount = vueLifecycles.unmount;
+```
+
+提示：只能是单页应用，这取决于 Single-spa 加载子应用的方式为 js 模块作为入口的。
+
+由此可见，Single-spa 并不参与子应用的任何流程，主要是根据路由匹配情况来管理子应用的安装，卸载。
+
+- 运行机制
+
+参看博客 todo...
+
+- 缺点
+
+1. single-spa 是通过 js 文件去加载子应用。
+
+```js
+{
+  "imports": {
+    "@vue-mf/root-config": "https://vue.microfrontends.app/root-config/685cb799969ab697700620a8663570a87834fdc7/vue-mf-root-config.js",
+    "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.5.1/lib/system/single-spa.min.js",
+    "@vue-mf/styleguide": "https://vue.microfrontends.app/styleguide/566ace2deeba4ca56b38fca7fa52d4d89ac32634/vue-mf-styleguide.js",
+    "@vue-mf/navbar": "https://vue.microfrontends.app/navbar/01794334ef10fb4059f6658465f42597d24cb9d1/js/app.js",
+    "vue": "https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js",
+    "@vue-mf/dogs-dashboard": "https://vue.microfrontends.app/dogs-dashboard/48cef902e48d293e1588320c0d855f7252742ab6/js/app.js",
+    "@vue-mf/rate-dogs": "https://vue.microfrontends.app/rate-dogs/f5951b9fe7521f1134394244e239a47929239efb/js/app.js",
+    "vue-router": "https://cdn.jsdelivr.net/npm/vue-router@3.1.6/dist/vue-router.min.js",
+    "@vue-mf/root-config/": "https://vue.microfrontends.app/root-config/685cb799969ab697700620a8663570a87834fdc7/",
+    "@vue-mf/navbar/": "https://vue.microfrontends.app/navbar/01794334ef10fb4059f6658465f42597d24cb9d1/js/",
+    "@vue-mf/dogs-dashboard/": "https://vue.microfrontends.app/dogs-dashboard/48cef902e48d293e1588320c0d855f7252742ab6/js/",
+    "@vue-mf/styleguide/": "https://vue.microfrontends.app/styleguide/566ace2deeba4ca56b38fca7fa52d4d89ac32634/",
+    "@vue-mf/rate-dogs/": "https://vue.microfrontends.app/rate-dogs/f5951b9fe7521f1134394244e239a47929239efb/js/"
+  }
+}
+```
+
+2. single-spa 本身缺少 js 隔离和 css 隔离。
+
+#### qiankun
+
+- 介绍
+
+qiankun 是基于 single-spa 提出的微前端框架, 提供了更加开箱即用的 API（single-spa+sandbox+import-html-entry）。
 
 ## 参考
 
+- [新一代 Web 建站技术栈的演进：SSR、SSG、ISR、DPR 都在做什么？](https://zhuanlan.zhihu.com/p/365113639)
 - [Micro Frontends](https://micro-frontends.org/)
-- [微前端框架 之 single-spa 从入门到精通](https://juejin.cn/post/6862661545592111111)
-- [微前端框架 之 qiankun 从入门到源码分析](https://juejin.cn/post/6885211340999229454)
 - [Why Not Iframe](https://www.yuque.com/kuitos/gky7yw/gesexv)
 - [微前端的核心价值](https://www.yuque.com/kuitos/gky7yw/rhduwc)
+- [微前端究竟是什么？微前端核心技术揭秘！](https://mp.weixin.qq.com/s/u9F1IUJfsuJBseOsPIK5qQ)
+- [qiankun 源码深挖](https://www.jianshu.com/p/9703726b4c9f)
 - [基于 qiankun 的微前端应用实践](https://zhuanlan.zhihu.com/p/356225293)
 - [可能是你见过最完善的微前端解决方案](https://zhuanlan.zhihu.com/p/78362028)
+- [微前端框架 之 single-spa 从入门到精通](https://juejin.cn/post/6862661545592111111)
+- [微前端框架 之 qiankun 从入门到源码分析](https://juejin.cn/post/6885211340999229454)
