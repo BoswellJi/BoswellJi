@@ -80,7 +80,7 @@ export const unmount = vueLifecycles.unmount;
 
 - 运行机制
 
-参看博客 todo...
+[参看博客:](https://boswellji.github.io/MyBlog/Microfrontend/single-spa.html#%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6)
 
 - 缺点
 
@@ -113,6 +113,14 @@ export const unmount = vueLifecycles.unmount;
 - 介绍
 
 qiankun 是基于 single-spa 提出的微前端框架, 提供了更加开箱即用的 API（single-spa+sandbox+import-html-entry）。
+
+- 运行机制
+
+  - 运行流程： [https://boswellji.github.io/MyBlog/Microfrontend/qiankun.html#%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6](https://boswellji.github.io/MyBlog/Microfrontend/qiankun.html#%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6)
+  - 沙盒：快照沙盒，遗留沙盒，代理沙盒
+  - 样式隔离：
+  - 通信：主子应用通信
+  - import-html-entry
 
 ## 参考
 

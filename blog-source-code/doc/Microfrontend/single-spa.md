@@ -41,12 +41,8 @@ Single-spa 是一个将多个单页面应用聚合为一个整体应用的 JavaS
 - registerApplication(): 注册微应用
 
   - sanitizeArguments(): 处理参数(边界情况处理)： 参数形式，参数有效性，规范化参数/统一参数格式
-  - apps.push(): 新增一个微应用实例
-
-    - `{loadErrorTime,status,parcels,devtools,name,loadApp,activeWhen,customProps}`
-
+  - apps.push(): 新增一个微应用实例， `{loadErrorTime,status,parcels,devtools,name,loadApp,activeWhen,customProps}`
   - ensureJQuerySupport(): 为了保证 jquery 注册事件时，`hashchange`,`popstate`两个事件被正确绑定
-
   - reroute(): 根据路由匹配情况，重新处理子应用
 
     - getAppChanges(): 将微应用根据状态进行分类
