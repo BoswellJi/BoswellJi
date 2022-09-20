@@ -57,26 +57,13 @@
 
 Single-spa 是一个将多个单页面应用聚合为一个整体应用的 JavaScript 微前端框架。核心就是定义了一套协议。协议包含主应用的配置信息(注册子应用)和子应用的生命周期(启动，安装，卸载)，通过这套协议，主应用可以方便的知道在什么情况下（路由匹配）激活哪个子应用。
 
-```js
-// 注册子应用
-registerApplication({
-  name: '@vue-mf/navbar',
-  app: () => System.import('@vue-mf/navbar'),
-  activeWhen: '/',
-  customProps: {
-    githubLink: 'https://github.com/vue-microfrontends/root-config',
-  },
-});
-
-// 子应用导出的生命周期
-export const bootstrap = vueLifecycles.bootstrap;
-export const mount = vueLifecycles.mount;
-export const unmount = vueLifecycles.unmount;
-```
-
 提示：只能是单页应用，这取决于 Single-spa 加载子应用的方式为 js 模块作为入口的。
 
 由此可见，Single-spa 并不参与子应用的任何流程，主要是根据路由匹配情况来管理子应用的安装，卸载。
+
+- 基本用法
+
+参看代码
 
 - 运行机制
 
@@ -114,9 +101,13 @@ export const unmount = vueLifecycles.unmount;
 
 qiankun 是基于 single-spa 提出的微前端框架, 提供了更加开箱即用的 API（single-spa+sandbox+import-html-entry）。
 
+- 基本用法
+
+参看代码
+
 - 运行机制
 
-  - 运行流程:[https://boswellji.github.io/MyBlog/Microfrontend/qiankun.html#%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6](https://boswellji.github.io/MyBlog/Microfrontend/qiankun.html#%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6)
+  - 参看博客:[https://boswellji.github.io/MyBlog/Microfrontend/qiankun.html#%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6](https://boswellji.github.io/MyBlog/Microfrontend/qiankun.html#%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6)
   - 沙盒：快照沙盒，遗留沙盒，代理沙盒
   - 样式隔离：
   - 通信：主子应用通信
