@@ -1,20 +1,17 @@
-## 是什么？
-
-* 块级格式化上下文（block formatting context）; 
+## 块级格式化上下文（block formatting context）
 
 ## 什么是Box?
 
 * 盒模型，每个html元素有自己的盒模型;
 * 不同类型的box会参与不同的Formatting Context;
 
-## 什么是formatting context?
+## 什么是formatting context
 
-* 页面的一块渲染区域，有一套自己的渲染规则，它决定着子元素将如何定位，以及与其他元素的关系和相互作用。
-* 常见的formatting context有`block formatting context`,`inline formatting context(IFC)`,css3中有`gfc，ffc`;
+* 页面的一块渲染区域，有一套自己的渲染规则，它决定着子元素将如何定位，以及与其他元素的关系和相互作用；
+* 常见的`formatting context`有`block formatting context(BFC)`,`inline formatting context(IFC)`,css3中有`GFC,FFC`；
 * 容器内的子元素不会影响到外面的元素；
 
-
-## BFC中的布局规则？
+## BFC中的布局规则
 
 * 内部box会垂直方向，一个接一个放置；
 * box垂直方向的距离有margin决定，属于同一个BFC的两个相邻margin会发生重叠；
@@ -32,7 +29,7 @@
 
 ## BFC的作用
 
-- 根据BFC容器的布局规则，在需要的时候，创建BFC容器来布局。
+根据BFC容器的布局规则，在需要的时候，创建BFC容器来布局。
 
 1. 避免margin重叠；
 2. 自适应两栏布局；
