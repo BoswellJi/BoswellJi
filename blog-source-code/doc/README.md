@@ -230,8 +230,6 @@
 - [给不耐烦的程序员的 javascript](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/给不耐烦的程序员的javascript)
 - [话说 javascript](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/话说javascript)
 
-## 
-
 ## Sharing
 
 - [微前端](./ppt/micro-frontend.md)
