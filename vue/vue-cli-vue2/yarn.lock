@@ -1775,9 +1775,9 @@
   integrity sha512-oxnCNGj88fL+xzV+dacXs44HcDwf1ovs3AuEzvP7mqXw7fQntqIhQ1BRmynh4qEKQSSSRSWVyXRjmTbZIX9V2Q==
 
 "@xmldom/xmldom@^0.7.2":
-  version "0.7.5"
-  resolved "https://registry.yarnpkg.com/@xmldom/xmldom/-/xmldom-0.7.5.tgz#09fa51e356d07d0be200642b0e4f91d8e6dd408d"
-  integrity sha512-V3BIhmY36fXZ1OtVcI9W+FxQqxVLsPKcNjWigIaa81dLC9IolJl5Mt4Cvhmr0flUnjSpTdrbMTSbXqYqV5dT6A==
+  version "0.7.8"
+  resolved "https://registry.yarnpkg.com/@xmldom/xmldom/-/xmldom-0.7.8.tgz#a8d0a0067c9554c187b0d04e86ad1845053c0e06"
+  integrity sha512-PrJx38EfpitFhwmILRl37jAdBlsww6AZ6rRVK4QS7T7RHLhX7mSs647sTmgr9GIxe3qjXdesmomEgbgaokrVFg==
 
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
@@ -5235,6 +5235,13 @@ import-from@^2.1.0:
   integrity sha512-0vdnLL2wSGnhlRmzHJAg5JHjt1l2vYhzJ7tNLGbeVg0fse56tpGaH0uzH+r9Slej+BSXXEHvBKDEnVSLLE9/+w==
   dependencies:
     resolve-from "^3.0.0"
+
+import-html-entry@^1.12.0:
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/import-html-entry/-/import-html-entry-1.14.0.tgz#9a05928373bb7e9362cd8dd428a82387a87524ff"
+  integrity sha512-CQQMV+2rxHCLMSXsajV1cjT1g6xi3ujMAPnGwR96xHaN5/JEVIOUGkM7LDRn73dk8E8NaHmOf3rvPPExPPe1xw==
+  dependencies:
+    "@babel/runtime" "^7.7.2"
 
 import-html-entry@^1.9.0:
   version "1.12.0"
