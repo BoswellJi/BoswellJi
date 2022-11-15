@@ -176,10 +176,17 @@
 
 - [设计模式简介](./design-pattern/readme.md)
 
-## architecture
+## Architecture
 
 - [架构简介](./architecture/readme.md)
 - [框架的共性](./architecture/framework.md)
+
+## Development Mode
+
+- [BDD](./development-mode/bdd.md)
+- [DDD](./development-mode/ddd.md)
+- [TDD](./development-mode/tdd.md)
+- [ATDD](./development-mode/atdd.md)
 
 ## Interview
 
