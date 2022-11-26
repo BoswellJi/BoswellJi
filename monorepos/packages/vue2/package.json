@@ -1,5 +1,5 @@
 {
-  "name": "vue2-1",
+  "name": "vue2",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
@@ -9,6 +9,7 @@
     "type-check": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "lodash": "^4.17.21",
     "vue": "^2.7.7",
     "xlsx": "^0.18.5"
   },
