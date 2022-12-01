@@ -25,3 +25,9 @@
 - `commit`: 每条提交记录，如果 develop 分支已经合进 master 分支，但是 develop 分支提交的代码没了，此时 master 分支已经 push,develop 分支的代码是不能再合进 master 了，因为 develop 分支的 commit 已经合进 master 分支，不能重复合并 commit，只能回退修改被冲突掉的代码;
 - 清除本地提交缓存：`git rm -r --cached .idea/`;
 - 生成公钥: `ssh-keygen -o`;
+
+## 打补丁
+
+- [git rebase](https://blog.csdn.net/weixin_42310154/article/details/119004977): 当执行 rebase 操作时，git 会从两个分支的共同祖先开始提取待变基分支上的修改，然后将待变基分支指向基分支的最新提交，最后将刚才提取的修改应用到基分支的最新提交的后面。
+
+- [git cherry-pick](https://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html): 这时分两种情况。一种情况是，你需要另一个分支的所有代码变动，那么就采用合并（git merge）。另一种情况是，你只需要部分代码变动（某几个提交），这时可以采用 Cherry pick。
