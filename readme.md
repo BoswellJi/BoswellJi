@@ -74,10 +74,23 @@
 ## 开发工具
 
 - vscode
+
 - vetur
+- 别名路径跳转
+- Auto Rename Tag
+- Better Comments
+- CSS Peek
+- ESLint
+- Git Blame
+- Live Server
+- Prettier
+- Vue Peek
+- vue-helper
+- WXML-Language Service
 
-## 微信小程序
+### 微信小程序
 
+- 微信开发者工具
 - wxml
 - wxss
-- wx.js
+- wxjs
