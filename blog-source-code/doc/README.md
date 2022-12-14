@@ -71,6 +71,7 @@
 ## WX Miniprogram
 
 - [运行机制](./wx-platform/微信小程序实现原理.md)
+- [踩坑](./wx-platform/wxminiproject-bug.md)
 
 ## Flutter
 
