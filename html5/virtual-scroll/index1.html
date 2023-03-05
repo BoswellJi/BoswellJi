@@ -1,0 +1,102 @@
+<style>
+  .list-container {
+    overflow: auto;
+    border: 1px solid black;
+    height: 500px;
+  }
+</style>
+
+<body>
+  <!-- 外部容器用来固定列表容器的高度，同时生成滚动条 -->
+  <div class="list-container">
+    <!-- 内部容器用来装元素，高度是所有元素高度的和 -->
+    <div class="list-container-inner"></div>
+  </div>
+
+  <script>
+    /** --------- 一些基本变量 -------- */
+    const itemHeight = 60
+    const height = 500
+
+    /** --------- 生成数据 -------- */
+    const getRandomHeight = () => {
+      // 返回 [60, 150] 之间的随机数
+      return Math.floor(Math.random() * (150 - itemHeight + 1) + itemHeight)
+    }
+    const initData = () => {
+      const data = []
+      for (let i = 0; i < 15; i++) {
+        data.push({ content: `内容:${i}`, height: getRandomHeight(), color: i % 2 ? 'red' : 'yellow' })
+      }
+      return data
+    }
+    const data = initData()
+
+    const cacheHeightMap = {}
+    const outerContainer = document.querySelector('.list-container')
+
+    const scrollCallback = () => {
+      let contentHeight = 0
+      let paddingTop = 0
+      let upperHeight = 0
+      let startIndex
+      let endIndex
+      const innerContainer = document.querySelector('.list-container-inner')
+      const scrollTop = Math.max(outerContainer.scrollTop, 0)
+
+      // 遍历所有的元素，获取当前元素的高度、列表总高度、startIndex、endIndex
+      for (let i = 0; i < data.length; i++) {
+        // 初始化的时候因为元素还没有渲染，无法获取元素的高度
+        // 所以用元素的最小高度itemHeight来进行计算，保证渲染的元素个数能占满列表
+        const cacheHeight = cacheHeightMap[i]
+        const usedHeight = cacheHeight === undefined ? itemHeight : cacheHeight
+        contentHeight += usedHeight
+        if (contentHeight >= scrollTop && startIndex === undefined) {
+          startIndex = i
+          paddingTop = contentHeight - usedHeight
+        }
+        if (contentHeight > scrollTop + height && endIndex === undefined) {
+          endIndex = i
+          upperHeight = contentHeight
+        }
+      }
+
+      // 应对列表所有元素没有占满整个容器的情况
+      if (endIndex === undefined) {
+        endIndex = data.length - 1
+        upperHeight = contentHeight
+      }
+
+      // 未渲染的元素的高度由padding-top和padding-bottom代替，保证滚动条位置正确
+      // 这里如果把设置pading的操作放在渲染元素之后，部分浏览器滚动到最后一个元素时会有问题
+      const paddingBottom = contentHeight - upperHeight
+      innerContainer.setAttribute('style', `padding-top: ${paddingTop}px; padding-bottom: ${paddingBottom}px`)
+
+      // 从data取出要渲染的元素并渲染到容器中
+      const viewData = data.slice(startIndex, endIndex + 1)
+      innerContainer.innerHTML = ''
+      const fragment = document.createDocumentFragment()
+      for (let i = 0; i < viewData.length; i++) {
+        const item = document.createElement('div')
+        const itemData = viewData[i]
+        item.innerHTML = itemData.content
+        item.setAttribute('style', `height: ${itemData.height}px; background: ${itemData.color}`)
+        fragment.appendChild(item)
+      }
+      innerContainer.appendChild(fragment)
+
+      // 存储已经渲染出来的元素的高度，供后面使用
+      const children = innerContainer.children
+      let flag = startIndex
+      for (const child of children) {
+        cacheHeightMap[flag] = child.offsetHeight
+        flag++
+      }
+    }
+
+    // 首屏渲染
+    scrollCallback()
+    // 监听外部容器的滚动事件
+    outerContainer.addEventListener('scroll', scrollCallback)
+  </script>
+</body>

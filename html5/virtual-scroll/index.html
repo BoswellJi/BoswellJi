@@ -1,0 +1,64 @@
+<style>
+  .list-container {
+    overflow: auto;
+    border: 1px solid black;
+    height: 500px;
+  }
+</style>
+
+<body>
+  <!-- 外部容器用来固定列表容器的高度，同时生成滚动条 -->
+  <div class="list-container">
+    <!-- 内部容器用来装元素，高度是所有元素高度的和 -->
+    <div class="list-container-inner"></div>
+  </div>
+
+  <script>
+    /** --------- 一些基本变量 -------- */
+    const itemHeight = 60
+    const height = 500
+
+    /** --------- 生成数据 -------- */
+    const initData = () => {
+      const data = []
+      for (let i = 0; i < 15; i++) {
+        data.push({ content: `内容:${i}`, height: itemHeight, color: i % 2 ? 'red' : 'yellow' })
+      }
+      return data
+    }
+    const data = initData()
+
+    const contentHeight = itemHeight * data.length
+    const outerContainer = document.querySelector('.list-container')
+
+    const scrollCallback = () => {
+      // 获取当前要渲染的元素的坐标
+      const scrollTop = Math.max(outerContainer.scrollTop, 0)
+      const startIndex = Math.floor(scrollTop / itemHeight)
+      const endIndex = startIndex + Math.ceil(height / itemHeight)
+      const innerContainer = document.querySelector('.list-container-inner')
+
+      // 从data取出要渲染的元素并渲染到容器中
+      const viewData = data.slice(startIndex, endIndex + 1)
+      innerContainer.innerHTML = ''
+      for (let i = 0; i < viewData.length; i++) {
+        const item = document.createElement('div')
+        const itemData = viewData[i]
+        item.innerHTML = itemData.content
+        item.setAttribute('style', `height: ${itemData.height}px; background: ${itemData.color}`)
+        innerContainer.appendChild(item)
+      }
+
+      // 未渲染的元素由padding-top和padding-bottom代替，保证滚动条位置正确
+      const paddingTop = startIndex * itemHeight
+      const paddingBottom = (data.length - endIndex) * itemHeight
+      innerContainer.setAttribute('style', `padding-top: ${paddingTop}px; padding-bottom: ${paddingBottom}px`)
+    }
+
+    // 首屏渲染
+    scrollCallback()
+
+    // 监听外部容器的滚动事件
+    outerContainer.addEventListener('scroll', scrollCallback)
+  </script>
+</body>

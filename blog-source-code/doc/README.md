@@ -71,6 +71,7 @@
 ## WX Miniprogram
 
 - [运行机制](./wx-platform/微信小程序实现原理.md)
+- [踩坑](./wx-platform/wxminiproject-bug.md)
 
 ## Flutter
 
@@ -176,10 +177,17 @@
 
 - [设计模式简介](./design-pattern/readme.md)
 
-## architecture
+## Architecture
 
 - [架构简介](./architecture/readme.md)
 - [框架的共性](./architecture/framework.md)
+
+## Development Mode
+
+- [BDD](./development-mode/bdd.md)
+- [DDD](./development-mode/ddd.md)
+- [TDD](./development-mode/tdd.md)
+- [ATDD](./development-mode/atdd.md)
 
 ## Interview
 
@@ -229,8 +237,6 @@
 - [现代化 js 实战](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/现代化js实战)
 - [给不耐烦的程序员的 javascript](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/给不耐烦的程序员的javascript)
 - [话说 javascript](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/话说javascript)
-
-## 
 
 ## Sharing
 
