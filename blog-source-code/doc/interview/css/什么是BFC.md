@@ -1,4 +1,4 @@
-## 块级格式化上下文（block formatting context）
+# 块级格式化上下文（block formatting context）
 
 ## 什么是Box?
 
