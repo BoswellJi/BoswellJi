@@ -4,7 +4,7 @@
 
 ## Todo
 
-- [技术储备](./Todo/index.md)
+- [技术储备](./todo/index.md)
 
 ## Javascript
 
