@@ -1,11 +1,14 @@
-import { Controller, Get, Req} from '@nestjs/common';
-import { Body, Query } from '@nestjs/common/decorators';
+import { Controller, Get, Req } from '@nestjs/common';
+import { Body, Query, Res } from '@nestjs/common/decorators';
+import { Response, Request } from 'express';
 
 @Controller()
 export class AppController {
 
   @Get()
-  findAll(@Req() request: Request,@Body() body: BodyInit,@Query() query) {
-    return query;
+  findAll(@Req() req: Request, @Body() body: BodyInit, @Query() query, @Res() res: Response) {
+    console.log(req);
+
+    res.end('test');
   }
 }
