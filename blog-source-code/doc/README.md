@@ -1,6 +1,10 @@
+# Boswell
+
 ## [Personal Profile](./personal-profile/boswell.md)
 
-- <a href="/MyBlog/image/boswell.pdf" download="boswell.pdf">下载</a>
+```html
+<a href="/MyBlog/image/boswell.pdf" download="boswell.pdf">下载</a>
+```
 
 ## Todo
 
@@ -40,6 +44,7 @@
 - [vue2.x 原理](./vue/vue2.x内部机制.md)
 - [vue2.x 知识点](./vue/vue2.x知识点/index.md)
 - [vue 警告](./vue/warning.md)
+- [vue 第一课](./learn/1.md)
 
 ## React
 
@@ -201,34 +206,38 @@
 
 - [计算机基础](./base/readme.md)
 
+## Operating System
+
+- [操作系统术语](./operating-system/term.md)
+
 ## Books
 
-#### JavaScript
+### JavaScript
 
 - [JavaScript 权威指南](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/javascript权威指南)
 - [JavaScript 编程精粹](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/javascript编程精粹)
 - [JavaScript 语言精髓与编程语言实践](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/javascript语言精髓与编程语言实践)
 - [数据结构与算法 javascript 描述](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/数据结构与算法javascript描述)
 
-#### Algorithm
+### Algorithm
 
 - [算法设计与分析基础](https://github.com/BoswellJi/BoswellJi/tree/master/books/算法/算法设计与分析基础)
 
-#### Graphics
+### Graphics
 
 - [计算机图形概论](https://github.com/BoswellJi/BoswellJi/tree/master/books/图形学/计算机图形概论)
 - [WebGL 编程指南](https://github.com/BoswellJi/BoswellJi/tree/master/books/webgl/webgl编程指南)
 - [WebGL 高级编程](https://github.com/BoswellJi/BoswellJi/tree/master/books/webgl/webgl高级编程)
 - [交互式计算机图形学-基于 WebGL 的自顶向下方法](https://github.com/BoswellJi/BoswellJi/tree/master/books/webgl/交互式计算机图形学-基于webgl的自顶向下方法)
 
-#### English
+### English
 
 - [English-grammar-guide](https://github.com/BoswellJi/BoswellJi/tree/master/books/english/English-grammar-guide)
 - [english-grammar-in-use](https://github.com/BoswellJi/BoswellJi/tree/master/books/english/english-grammar-in-use)
 
 ## Translation
 
-#### JavaScript
+### JavaScript
 
 - [JavaScript 规范](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/ecmascript规格)
 - [JavaScript 设计模式](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/javascript设计模式)
@@ -246,7 +255,7 @@
 
 - [语法架构](./english/readme.md)
 
-#### 成分
+### 成分
 
 - [主语](./english/成分/主语.md)
 - [谓语](./english/成分/谓语.md)
@@ -255,7 +264,7 @@
 - [定语](./english/成分/定语.md)
 - [状语](./english/成分/状语.md)
 
-#### 词性
+### 词性
 
 - [代词](./english/词性/代词.md)
 - [动词](./english/词性/动词.md)
@@ -268,7 +277,7 @@
 - [数词](./english/词性/数词.md)
 - [形容词](./english/词性/形容词.md)
 
-#### 句子
+### 句子
 
 - [并列句](./english/句子/并列句.md)
 - [定语从句](./english/句子/定语从句.md)
@@ -281,7 +290,7 @@
 - [主谓双宾](./english/句子/主谓双宾.md)
 - [主系表](./english/句子/主系表.md)
 
-#### 特殊句式
+### 特殊句式
 
 - [比较结构](./english/特殊句式/比较结构.md)
 - [插入语](./english/特殊句式/插入语.md)
@@ -297,7 +306,7 @@
 - [虚拟语气](./english/特殊句式/虚拟语气.md)
 - [there-be](./english/特殊句式/there-be.md)
 
-#### 翻译
+### 翻译
 
 - [翻译技巧](./english/翻译/readme.md)
 
