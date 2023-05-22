@@ -1,11 +1,18 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const tableData = [
-  {
-    name: 'Boswell'
+<script lang="ts">
+export default {
+  setup() {
+    return {
+      tableData: [
+        {
+          name: 'Boswell'
+        }
+      ]
+    }
+  },
+  beforeCreate() {
+    console.log((this.tableData = []))
   }
-]
+}
 
 // if (import.meta.hot) {
 //   import.meta.hot.accept((newModule) => {
