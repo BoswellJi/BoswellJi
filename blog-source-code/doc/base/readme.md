@@ -28,6 +28,7 @@
 
   - 线性数学
   - webgl
+  - webgpu
 
 - 算法与数据结构
 
@@ -63,29 +64,19 @@
 ## web
 
 - html
-
 - css
-
 - ecmascript
-
 - web api
-
   - dom
   - bom
-
 - browser
-
   - render engine
   - script engine
   - event loop
-
 - nodejs
-
   - event loop
   - api
-
 - vue
-
   - vue-core
   - vue-router
   - vue-vuex
@@ -98,7 +89,5 @@
   - vue-fire
   - vue-rx
   - vue-apollo
-
 - build
-
 - framework

@@ -21,6 +21,7 @@
 - [ts 类型系统](./ts/类型系统.md)
 - [ts 声明文件](./ts/声明文件.md)
 - [ts 警告](./ts/warning.md)
+- [oop 的 5 大原则](./ts/oop/oop的5大原则.md)
 
 ## Css
 
