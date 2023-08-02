@@ -1,12 +1,12 @@
 // @ts-nocheck
 import { HttpService } from '@nestjs/axios';
-import { Controller, Get, Req, Request, Post } from '@nestjs/common';
+import { Controller, Get, Req, Request, Post, Headers } from '@nestjs/common';
 import { Body } from '@nestjs/common/decorators';
 import { firstValueFrom } from 'rxjs';
 
 @Controller()
 export class AppController {
-  root = 'http://www.qa.lvcang.cn';
+  root = 'http://www.t.lvcang.cn';
 
   constructor(private readonly httpService: HttpService) {}
 
@@ -17,7 +17,7 @@ export class AppController {
     const url = this.root + request.url;
 
     console.log('*************************');
-    console.log(url);
+    console.log('url:' + url);
     console.log('*************************');
 
     const get = this.httpService.get(url, {
@@ -36,8 +36,6 @@ export class AppController {
     console.log('*************************');
     console.log('url:' + url, 'body:' + JSON.stringify(body));
     console.log('*************************');
-
-    console.log(request.headers);
 
     const post = this.httpService.post(url, body, {
       headers: {

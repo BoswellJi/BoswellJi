@@ -8,6 +8,10 @@ layout: center
 
 月兔：使用 WASM，为云计算和边缘计算而生的智能开发平台
 
+<div class="color-[red] mt-10">
+另一层含义： 让国内的基础软件学者和工业界开发者能够在自己的平台上沉淀积累，这在工程和学术的角度都具有重要意义。
+</div>
+
 ---
 layout: center
 ---
@@ -30,244 +34,169 @@ layout: center
 
 # 什么是边缘计算(Edge Computing)
 
-
 边缘计算(Edge Computing)指的是在网络边缘结点来处理、分析数据。是一种分布式计算模型，它将计算和数据存储放置在靠近数据源头的边缘设备中，而不是在远程的数据中心或云服务器中进行处理。
 
 边缘计算旨在解决传统计算模型中的延迟和带宽限制问题，这些问题在需要实时响应或大规模数据处理时尤为明显。通过在边缘设备上进行本地计算，可以减少数据在网络中传输的时间和成本，并提高应用程序的响应速度和性能。
 
 边缘计算的另一个优点是它可以提高数据隐私和安全性。由于数据不必在云服务器或其他远程数据中心中传输，边缘设备上的数据可以更好地保护隐私，并降低数据泄露的风险。
 
+---
+
+# 为什么是 Moonbit
+
+1. 现有的 Wasm 供给端（比如 C++和 Rust）作为底层开发语言，并不是程序员理想的开发环境。
+
+```txt
+没用过动态类型语言的静态类型语言程序员和没用过静态类型语言的动态类型语言的程序员，是不知道动态类型语言的表达能力有到灵活的。
+```
+
+2. 语言和 IDE 的设计、构建系统同时进行并且垂直整合，以确保 IDE 的效率。
+
+3. 为了实现全局优化，Moonbit 平台进行了架构上的改进，以提高生成代码的性能和体积。
+
+4. 类型系统更强大，比如支持模式匹配、代数数据类型、不可变数据结构，以及更多的类型推导。
+
+5. 提供自动内存管理，减轻开发者的心智负担，更适合面向应用开发。
+
+6. 支持多种编程范例，包括函数式和面向对象的。
 
 ---
 
-# MoonBit包含哪些东西
+# MoonBit 包含哪些东西
 
-* 通用程序语言设计
-* 编译器
-* 构建系统
-* IDE
-* 部署工具
-
+- 通用程序语言设计
+- 编译器
+- 构建系统
+- IDE
+- 部署工具
 
 <div class="color-[red] mt-10">在语言设计、编译器和构建系统上实现高度的垂直整合，为用户提供更佳的开发体验和性能，致力打造未来世界级的基础软件生态。</div>
 
+---
+
+# MoonBit 编程语言
+
+- 函数
+- 控制结构
+- 内置数据结构
+- 变量绑定
+- 数据类型
+- 模式匹配
+- 泛型
+- 统一函数调用语法
+- 运算符重载
+- 访问控制
+- 字符串插值
+
+<div class="w-[50%] absolute right-0 top-20">
+
+```code 
+func fib(n: Int) -> Int {
+  match n {
+    0 | 1 => 1
+    _ => fib(n - 1) + fib(n - 2)
+  }
+}
+
+func init {
+  fib(3).print()
+}
+```
+</div>
 
 ---
 
-# MoonBit编程语言
+# 编译器
 
-* 定位
-  1. Moonbit定位的是工业语言<span class="color-[red]">（根据ReScript的前车之鉴）</span>
-
-* 特点
-  1. 编译快
-  2. 输出体积小
-  3. 运行性能快
+<img class="w-[60%] mx-auto" src="https://pic4.zhimg.com/v2-7dd33933880005492a7c5d5df21342a7_r.jpg" />
 
 ---
 
-# MoonBit编程语言: 编译快
+# 构建系统
 
-<img class="h-[80%] mx-auto" src="https://pic4.zhimg.com/v2-7dd33933880005492a7c5d5df21342a7_r.jpg" />
+命令行工具
+
+- 二进制下载
+- 暂时只提供 Ubuntu(兼容 20.04 以及 22.04)和 m1 芯片版 macOS(12 以及 13)
+
+<img src="https://file.40017.cn/elongclub/build-boswell.png" />
+
+---
+
+# IDE
+
+<img class="w-[100%]" src="https://file.40017.cn/elongclub/ide-boswell.png" />
+---
+
+# 部署工具
 
 <div>
-在进行大规模并行编译时的同时，Moonbit能够储存用于分离式编译的高层IR，在链接时保存完整的代码信息，从而在链接时实现更多优化，提升程序的运行性能。这一模式也能更好地进行无用代码剪枝，输出更小的代码体积。
+暂无
 </div>
 
 ---
-
-## preload: false
-
-# Animations
-
-Animations are powered by [@vueuse/motion](https://motion.vueuse.org/).
-
-```html
-<div v-motion :initial="{ x: -80 }" :enter="{ x: 0 }">Slidev</div>
-```
-
-<div class="w-60 relative mt-6">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-square.png"
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-circle.png"
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-triangle.png"
-    />
-  </div>
-
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
-</div>
-
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 40, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn More](https://sli.dev/guide/animations.html#motion)
-
-</div>
-
----
-
-# LaTeX
-
-LaTeX is supported out-of-box powered by [KaTeX](https://katex.org/).
-
-<br>
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-
-$$
-\begin{array}{c}
-
-\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &
-= \frac{4\pi}{c}\vec{\mathbf{j}}    \nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\
-
-\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\
-
-\nabla \cdot \vec{\mathbf{B}} & = 0
-
-\end{array}
-$$
-
-<br>
-
-[Learn more](https://sli.dev/guide/syntax#latex)
-
----
-
-# Diagrams
-
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
-
-<div class="grid grid-cols-3 gap-10 pt-4 -mb-6">
-
-```mermaid {scale: 0.5}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectivness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
-```
-
-</div>
-
-[Learn More](https://sli.dev/guide/syntax.html#diagrams)
-
----
-
-src: ./pages/multiple-entries.md
-hide: false
-
----
-
----
-
 layout: center
-class: text-center
+---
+
+# 对于我们来说有什么样的机会
+
+- 在技术成熟之前掌握占的先机。
+- 云计算领域的了解。
+- 准备好技术大一统。
+
+---
+layout: center
+---
+
+# 什么是TailwindCSS？
+
+一个功能类优先的 CSS 框架，用于快速构建定制的用户界面
 
 ---
 
-# Learn More
+# 特点
 
-[Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
+
+<div class="flex flex-wrap justify-between  gap-y-[20px]">
+  <div class="w-[50%]">
+    <h3>1.原子化 CSS (Atomic CSS)</h3>
+    <div>CSS 原子化是指定义一组表示单一用途样式单元的类</div>
+  </div>
+
+   <div class="w-[50%]">
+    <h3>2.较好的语义化</h3>
+    <div class="">使用 TailwindCss 你不用花精力来定义类名，你可以使用内置具有良好语义化的类名，实现样式效果。</div>
+  </div>
+
+   <div class="w-[50%]">
+    <h3>3.约束性</h3>
+    <div>使用 TailwindCss 功能类，是从预定义的设计系统中选择样式，这使得构建统一的 UI 变得更加容易。</div>
+  </div>
+
+   <div class="w-[50%]">
+    <h3>4.响应式</h3>
+    <div>TailwindCss 中的每个功能类都可以有条件的应用于不同的断点（breakpoints），在不同分辨率设备上，可以轻松切换属性。内联样式中，无法使用媒体查询。</div>
+  </div>
+
+   <div class="w-[50%]">
+    <h3>5.Hover, focus, 以及其它状态</h3>
+    <div>与 TailwindCss 处理 响应式设计 类似，通过为功能类添加适当的状态变体前缀，可以对处于 hover 、focus 和其它状态的元素设置样式, 而内联样式无法设置 hover 或者 focus 这样的状态。</div>
+  </div>
+  
+</div>
+
+---
+
+# 语法预览
+
+<img src="https://file.40017.cn/elongclub/tail-boswell.png" />
+
+---
+layout: center
+---
+# 实践体验
+
+- 开发阶段极度流畅
+- 项目侵入性不强
+- 可渐进式使用
+- 上手时候有一定记忆成本
