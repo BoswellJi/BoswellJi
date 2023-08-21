@@ -6,10 +6,6 @@
 <a href="/MyBlog/image/boswell.pdf" download="boswell.pdf">下载</a>
 ```
 
-## Todo
-
-- [技术储备](./todo/index.md)
-
 ## Javascript
 
 - [js 设计模式翻译](https://github.com/BoswellJi/BoswellJi/blob/master/books/javascript/javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/readme.md)
@@ -24,11 +20,18 @@
 - [ts 简介](./ts/readme.md)
 - [ts 类型系统](./ts/类型系统.md)
 - [ts 声明文件](./ts/声明文件.md)
+- [ts 警告](./ts/warning.md)
+- [oop 的 5 大原则](./ts/oop/oop的5大原则.md)
 
 ## Css
 
 - [css 性能优化](./css/performance.md)
 - [css 开发技巧](./css/trick.md)
+- [css 警告](./css/warning.md)
+
+## Html
+
+- [html 警告](./html/warning.md)
 
 ## Vue
 
@@ -43,8 +46,8 @@
 - [vue2.x 源码分析 4](https://mp.weixin.qq.com/s?__biz=MzUxNjQ1NjMwNw==&mid=2247484028&idx=1&sn=771e76a666a83edec1ae1105f6e6b60e&chksm=f9a66860ced1e176d91a9bf22f0c5c9c70a761757f319ebc9faa01224409d6d4928f250dbb56&scene=178&cur_album_id=1619085427984957440#rd)
 - [vue2.x 原理](./vue/vue2.x内部机制.md)
 - [vue2.x 知识点](./vue/vue2.x知识点/index.md)
-- [vue 警告](./vue/warning.md)
 - [vue 第一课](./learn/1.md)
+- [vue 警告](./vue/warning.md)
 
 ## React
 
@@ -139,11 +142,6 @@
 ## Error
 
 - [系统异常](./exception/readme.md)
-
-## Compatibility
-
-- [xiaomi](./compatibility/xiaomi/readme.md)
-- [video](./compatibility/video.md)
 
 ## Performance
 

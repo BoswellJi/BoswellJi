@@ -6,8 +6,14 @@ import { CatsService } from './cats/cats.service';
 import { HttpModule } from '@nestjs/axios';
 
 @Module({
-  imports: [HttpModule],
+  imports: [
+    HttpModule.register({
+      headers: {
+        'Content-Encoding': 'gzip',
+      },
+    }),
+  ],
   controllers: [AppController, CatsController],
   providers: [AppService, CatsService],
 })
-export class AppModule { }
+export class AppModule {}
