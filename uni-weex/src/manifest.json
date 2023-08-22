@@ -10,6 +10,7 @@
         "usingComponents" : true,
         "nvueStyleCompiler" : "uni-app",
         "compilerVersion" : 3,
+        "renderer": "native",
         "splashscreen" : {
             "alwaysShowBeforeRender" : true,
             "waiting" : true,
