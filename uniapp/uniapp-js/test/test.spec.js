@@ -1,3 +1,0 @@
-descripe('test',()=>{
-  expect();
-});
