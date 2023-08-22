@@ -1,17 +1,13 @@
 {
+  "extends": "@vue/tsconfig/tsconfig.json",
   "compilerOptions": {
-    
-    "types": [
-
-    ],
+    "sourceMap": true,
+    "baseUrl": ".",
     "paths": {
-      
+      "@/*": ["./src/*"]
     },
-    "lib": [
-      
-    ]
+    "lib": ["esnext", "dom"],
+    "types": ["@dcloudio/types"]
   },
-  "exclude": [
-    "node_modules",
-  ]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
