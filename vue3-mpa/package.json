@@ -40,7 +40,7 @@
     "typescript": "~5.1.6",
     "vite": "^4.4.9",
     "vite-plugin-html-template-mpa": "^0.0.19",
-    "vite-plugin-mpa": "^1.2.0",
+    "vite-plugin-multi-pages": "^0.0.10",
     "vitest": "^0.34.2",
     "vue-tsc": "^1.8.8"
   }

@@ -3,7 +3,7 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import mpa from 'vite-plugin-mpa'
+import mpa from 'vite-plugin-multi-pages'
 import htmlTemplate from 'vite-plugin-html-template-mpa'
 
 const env = process.env.NODE_ENV || ''
@@ -13,16 +13,13 @@ export default defineConfig({
     vue(),
     vueJsx(),
     mpa({
-      open: '/home',
-      rewrites: [
-        // { from: /\/home/, to: '/src/pages/home/index.html' },
-        // { from: /\/list/, to: '/src/pages/list/index.html' }
-      ]
+      scanDir: 'src/pages'
     }),
     htmlTemplate({
-      // pagesDir: 'src/pages',
+      pagesDir: 'src/pages',
       pages: {
         home: {
+          filename: '${pageName}/index.html',
           injectOptions: {
             data: {
               env
