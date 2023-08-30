@@ -3,32 +3,26 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import mpa from 'vite-plugin-multi-pages'
-import htmlTemplate from 'vite-plugin-html-template-mpa'
+import { createMpaPlugin } from 'vite-plugin-virtual-mpa'
 
-const env = process.env.NODE_ENV || ''
+import pages from './build/page'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    mpa({
-      scanDir: 'src/pages'
-    }),
-    htmlTemplate({
-      pagesDir: 'src/pages',
-      pages: {
-        home: {
-          filename: '${pageName}/index.html',
-          injectOptions: {
-            data: {
-              env
-            }
-          }
-        }
+    createMpaPlugin({
+      pages,
+      scanOptions: {
+        scanDirs: 'src/pages',
+        entryFile: 'main.ts'
       }
     })
   ],
+  server: {
+    open: '/home'
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
