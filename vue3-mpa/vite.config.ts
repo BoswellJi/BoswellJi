@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { createMpaPlugin } from 'vite-plugin-virtual-mpa'
+import viteGenPlugin from './vitePlugin/viteGenPlugin/index'
 
 import pages from './build/page'
 
@@ -18,7 +19,8 @@ export default defineConfig({
         scanDirs: 'src/pages',
         entryFile: 'main.ts'
       }
-    })
+    }),
+    viteGenPlugin()
   ],
   server: {
     open: '/home'
