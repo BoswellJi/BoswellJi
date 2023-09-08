@@ -15,7 +15,13 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.0.10",
+    "axios": "^1.2.1",
+    "element-plus": "^2.2.30",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
     "pinia": "^2.1.6",
+    "qs": "^6.11.0",
     "vue": "^3.3.4"
   },
   "devDependencies": {
@@ -36,8 +42,11 @@
     "jsdom": "^22.1.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.0",
+    "sass": "^1.66.1",
     "start-server-and-test": "^2.0.0",
     "typescript": "~5.1.6",
+    "unplugin-auto-import": "^0.16.6",
+    "unplugin-vue-components": "^0.25.2",
     "vite": "^4.4.9",
     "vite-plugin-html-template-mpa": "^0.0.19",
     "vite-plugin-multi-pages": "^0.0.10",

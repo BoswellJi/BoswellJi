@@ -1,0 +1,186 @@
+.one-line {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.two-line {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.single-product {
+  background: rgba(245, 245, 245, 1);
+  margin-top: 0.1rem;
+}
+
+.single-product .title {
+  width: 1.2rem;
+  height: 0.38rem;
+  background: rgba(96, 90, 176, 1);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  line-height: 0.38rem;
+}
+
+.product-list {
+  padding: 0 0.6rem;
+  display: flex;
+  align-items: center;
+}
+
+.product-list .th {
+  padding-right: 0.2rem;
+}
+
+.product-title {
+  font-size: 14px;
+  color: rgba(112, 112, 112, 1);
+  border-bottom: 1px solid rgba(221, 221, 221, 1);
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
+}
+
+.product-list .type {
+  width: 0.6rem;
+  overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.product-list .type .tag,
+.car-product-detail .tag {
+  background: rgba(96, 90, 176, 1);
+  color: rgba(255, 255, 255, 1);
+  line-height: 1em;
+  padding: 2px;
+  font-size: 12px;
+}
+
+.product-list .name {
+  flex: 1;
+  overflow: hidden;
+}
+
+.product-list .date {
+  width: 2.5rem;
+}
+
+.product-list .date .el-date-editor {
+  width: 100%;
+}
+
+.product-list .num {
+  width: 3.5rem;
+}
+
+.product-list .total {
+  width: 1rem;
+}
+
+.product-list .detail {
+  width: 1rem;
+}
+
+.product-body {
+  color: rgba(0, 0, 0, 1);
+  padding-bottom: 0.2rem;
+}
+
+.product-body .sub-title {
+  color: rgba(112, 112, 112, 1);
+}
+
+.product-body .num-box {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.product-body .num-box > span {
+  padding: 0 0.1rem;
+}
+
+.product-body .num-box .el-input-number__decrease,
+.product-body .num-box .el-input-number__increase {
+  width: 20px;
+}
+
+.product-body .num-box .el-input-number .el-input__wrapper {
+  padding-left: 21px;
+  padding-right: 21px;
+}
+
+.product-body .date-main {
+}
+
+.product-body .date-tip {
+  color: rgba(112, 112, 112, 1);
+}
+
+.product-body .total .price,
+.product-body .total .tips {
+  color: rgba(255, 96, 5, 1);
+}
+
+.single-product-detail .info {
+  background: rgba(245, 245, 245, 1);
+  padding: 0.1rem;
+  margin-bottom: 0.1rem;
+}
+
+.single-product-detail .detail {
+  display: flex;
+  justify-content: space-between;
+}
+
+.single-product-detail .info .right {
+  color: rgba(255, 96, 5, 1);
+  white-space: nowrap;
+}
+
+.single-product-detail .info .main-title {
+  color: #000;
+  margin-bottom: 0.1rem;
+}
+
+.car-product-detail .detail {
+  background: rgba(245, 245, 245, 1);
+  margin-bottom: 0.1rem;
+  padding: 0.1rem;
+}
+
+.car-product-detail .el-form-item__content {
+  width: 100px;
+}
+
+.car-product-detail .info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.car-product-detail .main-title {
+  color: #000;
+}
+
+.car-product-detail .info .right {
+  color: rgba(255, 96, 5, 1);
+  white-space: nowrap;
+}
+
+.single-product .el-form-item {
+  margin-bottom: 0;
+}
+
+.airport-pickup .info {
+  margin-bottom: 0.1rem;
+}
+
+.single-product .tips {
+  color: rgba(255, 96, 5, 1);
+}

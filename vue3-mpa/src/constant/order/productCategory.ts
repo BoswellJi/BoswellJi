@@ -1,0 +1,16 @@
+export enum productCategory {
+  AroundToursim = 10, //[Description("周边游")]
+  AroundDiyTour = 11, //[Description("旅游酒店")]
+  DomesticTourism = 20, //[Description("国内游")]
+  DomesticSelfTourism = 21, //[Description("国内游动态")]
+  AbroadTourism = 30, //[Description("出境游")]
+  Cruise = 40, //[Description("邮轮")]
+  Hotel = 50, //[Description("酒店")]
+  Ticket = 60, //[Description("门票")]
+  Traffic = 70, //[Description("交通")]
+  Visa = 80, //[Description("签证")]
+  Insurance = 85, //[Description("保险")]
+  Local = 90, //[Description("当地玩乐")]
+  Vitamin = 100, //[Description("酒景玩乐")]
+  newHotel = 5001, //[Description("酒店")]
+}

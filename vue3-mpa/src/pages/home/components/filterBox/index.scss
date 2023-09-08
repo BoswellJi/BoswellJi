@@ -1,0 +1,195 @@
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.border {
+  border: 1px solid #ccc;
+  border-radius: 0.08rem;
+}
+
+.label {
+  font-weight: 400;
+  font-size: 0.2rem;
+  color: #707070;
+  line-height: 0.24rem;
+}
+
+.hotel {
+  &::before {
+    content: '';
+    background-image: url(https://file.40017.cn/elongclub/lc-unactive-hotel.png);
+    width: 0.26rem;
+    height: 0.26rem;
+    background-size: cover;
+    margin-right: 0.09rem;
+  }
+
+  &.active::before {
+    background-image: url(https://file.40017.cn/elongclub/lc-hotel.png);
+  }
+}
+
+.left,
+.right {
+  flex: 1;
+}
+
+.date-txt {
+  padding-top: 0.06rem;
+  box-sizing: border-box;
+}
+
+.date :deep(.el-date-editor.el-input) {
+  width: 100% !important;
+}
+
+.date :deep(.el-input__wrapper) {
+  box-shadow: none;
+  padding: 0;
+
+  .el-input__prefix {
+    display: none;
+  }
+
+  .el-input__inner {
+    color: #000000;
+    font-size: 0.24rem;
+
+    &::placeholder {
+      color: #cccccc;
+    }
+  }
+}
+
+.tabs {
+  height: 0.62rem;
+  background: #eee;
+  line-height: 0.62rem;
+  font-size: 0.24rem;
+
+  .tab {
+    width: 1.73rem;
+  }
+
+  .active {
+    background: #fff;
+  }
+}
+
+.filter {
+  padding: 0.2rem 0.29rem;
+  box-sizing: border-box;
+}
+
+.position {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 65px;
+
+  .destination {
+    width: 173px;
+    height: 100%;
+    padding: 0 0.18rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 0.14rem;
+  }
+
+  .other-pos {
+    flex: 1;
+    height: 100%;
+    padding: 0.14rem 0.18rem;
+  }
+}
+
+.date {
+  flex: 1;
+  height: 100%;
+  margin-top: 0.14rem;
+  padding: 0 18px;
+  box-sizing: border-box;
+
+  .day {
+    white-space: nowrap;
+    color: #000;
+    font-size: 0.24rem;
+  }
+
+  .center {
+    padding: 0 24px;
+    box-sizing: border-box;
+    @extend .day;
+    color: #707070;
+    font-size: 0.18rem;
+  }
+}
+
+// .search {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   margin-top: 0.2rem;
+
+//   .btn {
+//     width: 168px;
+//     height: 0.67rem;
+//     border-radius: 0.05rem;
+//     background: #ff8d1b;
+//     font-size: 0.24rem;
+//     color: #fff;
+//     cursor: pointer;
+//   }
+
+//   .history {
+//     display: flex;
+//     margin-right: 20px;
+//     font-size: 0.18rem;
+//     flex: 1;
+//   }
+
+//   .list {
+//     color: #707070;
+//     margin-left: 10px;
+//     display: flex;
+//     flex-wrap: wrap;
+//     flex: 1;
+//   }
+
+//   .item {
+//     margin-right: 10px;
+//     margin-bottom: 0.05rem;
+//     word-break: break-all;
+//     cursor: pointer;
+//   }
+// }
+
+:deep(.input-small) {
+  font-size: 0.24rem;
+  color: #000;
+  padding-bottom: 0;
+
+  &::placeholder {
+    color: #cccccc;
+  }
+}
+
+.date-box {
+  display: flex;
+  height: 65px;
+}
+
+.btn {
+  width: 168px;
+  height: 100%;
+  border-radius: 0.05rem;
+  background: #ff8d1b;
+  font-size: 0.24rem;
+  color: #fff;
+  cursor: pointer;
+  margin: 10px 0 0 10px;
+}

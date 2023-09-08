@@ -1,0 +1,9 @@
+@import './app.scss';
+
+// flex 弹性盒子工具类
+
+.cen-hor-ver {
+  @extend .flex;
+  @extend .dtg-align-center;
+  justify-content: center;
+}

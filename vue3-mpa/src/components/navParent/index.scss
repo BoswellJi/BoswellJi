@@ -1,0 +1,30 @@
+.nav-parent {
+  background: #32c814;
+}
+
+.nav-box {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav-box .nav-item {
+  font-size: 0.24rem;
+  cursor: pointer;
+  padding: 12px 0.25rem;
+  color: #fff;
+}
+
+.nav-box .nav-item:hover {
+  background: #fff;
+  padding: 12px 0.25rem;
+  color: #1bbd1b;
+}
+
+.nav-box .nav-item.selected {
+  color: #32c814;
+  background: #fff;
+  padding: 12px 0.25rem;
+}

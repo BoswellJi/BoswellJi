@@ -1,0 +1,313 @@
+.search-block {
+  display: flex;
+  padding: 30px 40px 27px 40px;
+  background: #fff;
+}
+
+.pop-city {
+  width: 100%;
+}
+
+.form-item {
+  margin-right: 20px;
+}
+
+.input-small {
+  height: 40px;
+  box-sizing: border-box;
+  padding: 0 6px 12px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  width: 100%;
+  display: block;
+}
+
+.date-picker {
+  position: relative;
+
+  .input-small {
+    width: 229px;
+    padding-left: 30px;
+  }
+
+  .input-icon {
+    position: absolute;
+    top: 13px;
+    left: 10px;
+    color: #c0c4cc;
+    font-size: 14px;
+    width: 25px;
+  }
+
+  .input-week {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    width: 50px;
+  }
+}
+
+.mgr0 {
+  margin-right: 0;
+}
+
+.search-btn {
+  height: 38px;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 18px;
+  line-height: 38px;
+  cursor: pointer;
+  background: #f88117 url(//img.dttrip.cn/pc/v2/tmc/flight-search-new.png) 40px no-repeat;
+  padding: 0 50px 0 63px;
+  -webkit-appearance: none;
+  border: none;
+}
+
+.city-wrapper {
+  position: absolute;
+  z-index: 1000;
+  -webkit-box-shadow: 0 0 16px 2px rgb(0 0 0 / 20%);
+  box-shadow: 0 0 16px 2px rgb(0 0 0 / 20%);
+  width: 400px;
+  background: #fff;
+  padding: 10px 20px;
+  color: #333;
+  font-size: 12px;
+}
+
+.city-title {
+  line-height: 40px;
+  color: #999;
+}
+
+.city-title span {
+  float: right;
+  height: 12px;
+  width: 12px;
+  background: url(//img.dttrip.cn/pc/v2/tmc/pic_close.png) no-repeat 0 0;
+  cursor: pointer;
+  margin-top: 14px;
+  background-position: 0 0;
+}
+
+.city-content {
+  background: #fff;
+}
+
+.tabs {
+  line-height: 24px;
+}
+
+.tabs .tab-navs {
+  border-bottom: 1px solid #ddd;
+}
+
+.dtg-align-center {
+  -webkit-box-align: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.dtg-justify-between {
+  -webkit-box-pack: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  -o-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.dtg-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.tabs .tab-navs li {
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.tabs .tab-navs li.active {
+  color: #50b400;
+  font-weight: 700;
+}
+
+.tabs .tab-con {
+  display: none;
+  overflow: auto;
+  padding: 10px;
+  line-height: 24px;
+  max-height: 332px;
+}
+
+.tabs .tab-con.active {
+  display: block;
+}
+
+.city-item-1 {
+  display: inline-block;
+  width: 20%;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.city-wrapper:after {
+  content: '';
+  position: absolute;
+  display: block;
+  height: 0;
+  width: 0;
+  font-size: 0;
+  line-height: 0;
+  border-color: transparent transparent #fff;
+  border-style: dashed dashed solid;
+  border-width: 8px;
+  background: 0;
+  top: -15px;
+  left: 15px;
+}
+
+.auto-wrapper {
+  position: absolute;
+  z-index: 1000;
+  width: 400px;
+  background: #fff;
+  -webkit-box-shadow: 0 0 16px 2px rgb(0 0 0 / 20%);
+  box-shadow: 0 0 16px 2px rgb(0 0 0 / 20%);
+  line-height: 32px;
+  font-size: 12px;
+}
+
+.auto-wrapper .title {
+  padding: 0 10px;
+  color: #999;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.auto-wrapper .title span {
+  float: right;
+  height: 12px;
+  width: 12px;
+  background: url(//img.dttrip.cn/pc/v2/tmc/pic_close.png) no-repeat 0 0;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.auto-list {
+  padding-bottom: 10px;
+}
+
+.auto-list li {
+  cursor: pointer;
+  color: #333;
+  overflow: hidden;
+  font-size: 13px;
+}
+
+.auto-list.hotel .line-br {
+  border-top: 1px dashed #e4e4e4;
+}
+
+.auto-list.hotel li:first-child {
+  border: none;
+}
+
+.auto-list li .auto-item,
+.auto-list li .no-airport {
+  padding: 4px 10px;
+}
+
+.auto-list li:hover .auto-item {
+  background: #e4e4e4;
+}
+
+.auto-list li .auto-item span,
+.auto-list li .no-airport span {
+  color: #999;
+  float: right;
+}
+
+.keyword-wrapper {
+  position: absolute;
+  z-index: 1000;
+  -webkit-box-shadow: 0 0 16px 2px rgb(0 0 0 / 20%);
+  box-shadow: 0 0 16px 2px rgb(0 0 0 / 20%);
+  width: 400px;
+  background: #fff;
+  padding: 10px 20px;
+  color: #333;
+  font-size: 12px;
+}
+
+.keyword-title {
+  line-height: 40px;
+  color: #999;
+}
+
+.keyword-title span {
+  float: right;
+  height: 12px;
+  width: 12px;
+  background: url(//img.dttrip.cn/pc/v2/tmc/pic_close.png) no-repeat 0 0;
+  cursor: pointer;
+  margin-top: 14px;
+  background-position: 0 0;
+}
+
+.keyword-content {
+  background: #fff;
+}
+
+.keyword-content {
+  max-height: 400px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.keyword-content dt {
+  height: 26px;
+  line-height: 26px;
+}
+
+.keyword-content dt {
+  font-weight: 600;
+}
+
+.keyword-content dl.label dt {
+  background: url(//img.dttrip.cn/pc/v2/tmc/hot-1.png) 0 no-repeat;
+  background-size: 18px;
+  padding-left: 22px;
+}
+
+.keyword-content dd {
+  margin-bottom: 10px;
+}
+
+.keyword-content dd span {
+  line-height: 22px;
+  display: inline-block;
+  margin-right: 14px;
+  padding: 1px 4px;
+  cursor: pointer;
+}
+
+.keyword-content dl.section dt {
+  background: url(//img.dttrip.cn/pc/v2/tmc/hot-2.png) 0 no-repeat;
+  background-size: 18px;
+  padding-left: 22px;
+}
+
+.keyword-content dl.business dt {
+  background: url(//img.dttrip.cn/pc/v2/tmc/hot-3.png) 0 no-repeat;
+  background-size: 18px;
+  padding-left: 22px;
+}

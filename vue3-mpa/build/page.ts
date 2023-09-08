@@ -10,6 +10,13 @@ const pages = createPages([
     data: { env }
   },
   {
+    name: 'homeMore',
+    entry: '/src/pages/homeMore/main.ts',
+    template: 'src/pages/homeMore/index.html',
+    filename: 'homeMore.html',
+    data: { env }
+  },
+  {
     name: 'list',
     entry: '/src/pages/list/main.ts',
     template: 'src/pages/list/index.html',
