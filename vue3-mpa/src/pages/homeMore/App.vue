@@ -61,6 +61,7 @@ import { addressSkip } from '@/utils/home/common'
 import { NavIndex } from '@/enum/home'
 
 const navIndex = 0
+
 const currentNavIndex = ref(navIndex)
 const loading = ref(false)
 const feilongProduct = reactive({
