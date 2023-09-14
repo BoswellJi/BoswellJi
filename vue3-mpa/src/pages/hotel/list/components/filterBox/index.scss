@@ -1,0 +1,240 @@
+.list-filter {
+  background: #fff;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  padding: 8px 25px 30px 25px;
+}
+
+.filter-item-area {
+  position: relative;
+}
+
+.filter-item {
+  margin-top: 20px;
+}
+
+.dtg-align-center {
+  align-items: center;
+}
+
+.dtg-flex {
+  display: flex;
+}
+
+.filter-item dt {
+  width: 58px;
+}
+
+.unlimit.active {
+  border-color: #f07d18;
+  color: #f07d18;
+  background: #ffd5af;
+}
+
+.filter-item dd {
+  cursor: pointer;
+}
+
+.unlimit {
+  width: 52px;
+  height: 22px;
+  line-height: 22px;
+  text-align: center;
+  border: 1px solid #ccc;
+  margin-right: 30px;
+}
+
+.area-item {
+  position: relative;
+  margin-right: 32px;
+}
+
+.area-item .iconfont {
+  margin-left: 10px;
+}
+
+.list-filter .icon-xiala {
+  font-size: 12px;
+  color: #2c9ee3;
+}
+
+.iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+}
+
+.price-input {
+  margin-left: 20px;
+  color: #606266;
+}
+
+.price-input label {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.price-input .el-input {
+  width: 60px;
+  vertical-align: middle;
+}
+
+.middle-line {
+  display: inline-block;
+  margin: 0 8px;
+  color: #dcdcdc;
+}
+
+.more-chain {
+  margin-left: auto;
+  position: relative;
+}
+
+.dtg-align-end {
+  -webkit-box-align: end;
+  align-items: flex-end;
+}
+
+.color-2 {
+  color: #2c9ee3;
+}
+
+.chain-pop {
+  position: absolute;
+  width: 530px;
+  border: 1px solid #2c9ee3;
+  background: #fff;
+  z-index: 99;
+  right: 8px;
+  top: 30px;
+}
+
+.chain-pop:before {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 30px;
+  top: -5px;
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid #2c9ee3;
+  border-top: 1px solid #2c9ee3;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  background: #fff;
+}
+
+.chain-pop .close-btn {
+  position: absolute;
+  right: 5px;
+  top: 8px;
+}
+
+.chain-pop .chain-tab {
+  padding: 10px 20px;
+}
+
+.chain-pop .chain-navs {
+  border-bottom: 1px solid #e4e4e4;
+  height: 36px;
+  line-height: 36px;
+}
+
+.chain-pop .chain-navs span.active {
+  color: #2c9ee3;
+  border-bottom: 1px solid #2c9ee3;
+}
+
+.chain-pop .chain-navs span {
+  display: inline-block;
+  cursor: pointer;
+  width: 66px;
+  text-align: center;
+}
+
+.chain-pop .chain-pop-btn {
+  border-top: 1px solid #e4e4e4;
+  text-align: center;
+}
+
+.chain-pop .chain-pop-btn button {
+  width: 90px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #eee;
+  display: inline-block;
+  text-align: center;
+  margin: 15px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.chain-pop .chain-pop-btn .confirm {
+  background: #f88117;
+  border-color: #f88117;
+  color: #fff;
+}
+
+.area-pop {
+  position: absolute;
+  width: 910px;
+  max-height: 170px;
+  background: #fff;
+  z-index: 2;
+  border: 1px solid #e4e4e4;
+  left: -140px;
+  top: 38px;
+  padding: 12px 24px;
+  -webkit-box-shadow: 0 0 16px 2px rgb(0 0 0 / 20%);
+  box-shadow: 0 0 16px 2px rgb(0 0 0 / 20%);
+}
+
+.area-pop .pop-con {
+  overflow-y: auto;
+  max-height: 140px;
+}
+
+.area-pop li {
+  overflow: hidden;
+  cursor: pointer;
+  white-space: nowrap;
+  width: 154px;
+  float: left;
+  line-height: 42px;
+  height: 42px;
+  text-overflow: ellipsis;
+  margin-right: 16px;
+}
+
+.area-pop:before {
+  content: '';
+  display: block;
+  width: 29px;
+  height: 14px;
+  background: url(//img.dttrip.cn/pc/v2/tmc/hotel-triangle.png) 50% no-repeat;
+  position: absolute;
+  top: -14px;
+  left: 148px;
+}
+
+.price-input .price-confirm {
+  display: inline-block;
+  background: #f88117;
+  color: #fff;
+  font-size: 12px;
+  width: 54px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  border-radius: 4px;
+  vertical-align: middle;
+  margin-left: 12px;
+}
+
+.custom-price {
+  width: 70px;
+
+  :deep(.el-input__inner) {
+    text-align: left;
+  }
+}

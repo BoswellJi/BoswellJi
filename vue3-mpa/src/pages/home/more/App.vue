@@ -1,53 +1,57 @@
 <template>
-  <lc-nav-more :current-project-id="currentNavIndex" @change="lcNavMoreChange" />
-  <div class="wrapper product-list" v-loading="loading">
-    <div
-      class="list-box"
-      v-for="item of productList"
-      :key="item.pid"
-      @click="addressSkip({ ...item, pid: item.pSupplierProductCode })"
-    >
-      <div class="left-box">
-        <img :src="item.pPicture" /><span class="tag" v-if="item.pProductCategoryName">{{
-          item.pProductCategoryName
-        }}</span>
-        <div class="gradient-box">
-          <p class="img-text">{{ item.pDeparturePort }}出发</p>
+  <el-config-provider :locale="locale">
+    <share-header :isShowNav="false" :isShowSearch="false"></share-header>
+    <lc-nav-more :current-project-id="currentNavIndex" @change="lcNavMoreChange" />
+    <div class="wrapper product-list" v-loading="loading">
+      <div
+        class="list-box"
+        v-for="item of productList"
+        :key="item.pid"
+        @click="addressSkip({ ...item, pid: item.pSupplierProductCode })"
+      >
+        <div class="left-box">
+          <img :src="item.pPicture" /><span class="tag" v-if="item.pProductCategoryName">{{
+            item.pProductCategoryName
+          }}</span>
+          <div class="gradient-box">
+            <p class="img-text">{{ item.pDeparturePort }}出发</p>
+          </div>
+        </div>
+        <div class="right-box">
+          <div class="info-box">
+            <a class="title">
+              <span class="main-title">{{ item.pTitle }}</span>
+            </a>
+            <div class="title" style="margin-top: 5px">{{ item.pSubtitle }}</div>
+          </div>
+          <div class="price-box">
+            <lc-price :price="item.pMarketPrice" />
+            <template v-if="item.pMarketPrice">
+              <p class="price-th">
+                <i>同行价</i><em>¥</em><span>{{ item.pDistributionPrice }}</span
+                ><i>起</i>
+              </p>
+              <p class="profit-box">
+                <span class="profit"
+                  >利润<em>¥</em><span>{{ item.pProfit }}</span></span
+                >
+              </p>
+            </template>
+            <p class="num">{{ item.pOrderSales }}人已购买</p>
+          </div>
         </div>
       </div>
-      <div class="right-box">
-        <div class="info-box">
-          <a class="title">
-            <span class="main-title">{{ item.pTitle }}</span>
-          </a>
-          <div class="title" style="margin-top: 5px">{{ item.pSubtitle }}</div>
-        </div>
-        <div class="price-box">
-          <lc-price :price="item.pMarketPrice" />
-          <template v-if="item.pMarketPrice">
-            <p class="price-th">
-              <i>同行价</i><em>¥</em><span>{{ item.pDistributionPrice }}</span
-              ><i>起</i>
-            </p>
-            <p class="profit-box">
-              <span class="profit"
-                >利润<em>¥</em><span>{{ item.pProfit }}</span></span
-              >
-            </p>
-          </template>
-          <p class="num">{{ item.pOrderSales }}人已购买</p>
-        </div>
+      <div class="pager">
+        <el-pagination
+          v-model:current-page="pageIndex"
+          background
+          layout="prev, pager, next"
+          :total="total"
+        />
       </div>
     </div>
-    <div class="pager">
-      <el-pagination
-        v-model:current-page="pageIndex"
-        background
-        layout="prev, pager, next"
-        :total="total"
-      />
-    </div>
-  </div>
+    <share-footer></share-footer>
+  </el-config-provider>
 </template>
 
 <script setup lang="ts">
@@ -55,13 +59,13 @@
 import lcNavMore from '@/components/lcNavMore/index.vue'
 
 import { computed, onBeforeMount, reactive, ref } from 'vue'
-
+import zhCn from 'element-plus/dist/locale/zh-cn.js'
 import request from '@/utils/request'
 import { addressSkip } from '@/utils/home/common'
 import { NavIndex } from '@/enum/home'
 
 const navIndex = 0
-
+const locale = ref(zhCn)
 const currentNavIndex = ref(navIndex)
 const loading = ref(false)
 const feilongProduct = reactive({

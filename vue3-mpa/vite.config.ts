@@ -8,7 +8,7 @@ import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
-import pages from './build/page'
+import { pages, rewrites } from './build/page'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,16 +17,11 @@ export default defineConfig({
     vueJsx(),
     createMpaPlugin({
       pages,
+      rewrites,
       scanOptions: {
         scanDirs: 'src/pages',
         entryFile: 'main.ts',
       },
-      rewrites: [
-        {
-          from: /\/homeMore/,
-          to: `/homeMore.html`,
-        }
-      ],
     }),
     AutoImport({
       resolvers: [ElementPlusResolver()],
@@ -36,7 +31,7 @@ export default defineConfig({
     }),
   ],
   server: {
-    open: '/home'
+    open: '/Home/Index'
   },
   resolve: {
     alias: {
@@ -44,7 +39,7 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: '../TC.Dis.Lvcang.Web/Scripts/Lvcang',
+    // outDir: '../TC.Dis.Lvcang.Web/Scripts/Lvcang',
     emptyOutDir: true
   }
 })

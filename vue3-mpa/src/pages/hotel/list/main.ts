@@ -9,6 +9,7 @@ import lcComponents from '@/components';
 import lcDirectives from '@/directives';
 
 import App from './App.vue'
+import 'dayjs/locale/zh-cn'
 
 const app = createApp(App);
 

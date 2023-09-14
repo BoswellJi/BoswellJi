@@ -1,0 +1,409 @@
+.wrapper {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 12px 0;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.block-left {
+  width: 830px;
+}
+
+.right {
+  width: 356px;
+  min-height: 500px;
+}
+
+.block {
+  background: #fff;
+  margin: 10px 0;
+  position: relative;
+  padding: 20px 30px 30px 30px;
+}
+
+.policy {
+  margin: 0;
+}
+
+.policy h3 span {
+  font-size: 14px;
+  color: #f60;
+  margin-left: 15px;
+}
+
+.block h3 {
+  font-size: 18px;
+  color: #333;
+  line-height: 38px;
+  font-weight: 400;
+  text-align: left;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.block .con {
+  padding: 12px 20px 0 20px;
+}
+
+.policy dt {
+  color: #f60;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.policy dd {
+  font-size: 12px;
+  color: #999;
+  line-height: 25px;
+}
+
+.policy dt span {
+  font-size: 14px;
+  color: #666;
+}
+
+.policy .el-select {
+  margin-bottom: 12px;
+}
+
+.nomar-mic {
+  margin: 0 0 10px 0;
+}
+
+.block h3 .tips {
+  font-size: 14px;
+  display: inline-block;
+  margin-left: 20px;
+  color: #f60;
+}
+
+.block .con {
+  padding: 12px 20px 0 20px;
+}
+
+.room-info .r-item {
+  padding: 10px 0;
+}
+
+.room-info .check-date span {
+  margin-right: 15px;
+}
+
+.input-count {
+  position: relative;
+  display: inline-block;
+  width: 137px;
+  height: 34px;
+  line-height: 34px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding-left: 20px;
+  cursor: pointer;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.count-options {
+  position: absolute;
+  left: 0;
+  top: 33px;
+  width: 136px;
+}
+
+.count-options li {
+  width: 35px;
+  height: 35px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-left: -1px;
+  margin-top: -1px;
+  cursor: pointer;
+}
+
+.count-tips {
+  margin-left: 20px;
+  color: #f63;
+}
+
+.room-info .r-item {
+  padding: 10px 0;
+}
+
+.cf63 {
+  color: #f63;
+}
+
+.room-info .room-total label,
+.room-info .room-total span,
+.room-info .room-total strong {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.room-info .room-total .price {
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.date-price {
+  margin-top: 20px;
+}
+
+.price-item {
+  width: 90px;
+  height: 100px;
+  text-align: center;
+  border: 1px solid #ddd;
+  font-size: 13px;
+  line-height: 20px;
+  margin-left: -1px;
+  margin-bottom: -1px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.price-item dt {
+  background: #f2f2f2;
+  line-height: 18px;
+  padding: 4px 0;
+  margin-bottom: 8px;
+}
+
+.price-item .breakfast {
+  color: #666;
+}
+
+.passenger {
+  padding-bottom: 15px;
+}
+
+.passenger li .txt {
+  width: 130px;
+}
+
+.dtg-input-1 {
+  position: relative;
+  display: inline-block;
+}
+
+.passenger .p-sel-item {
+  margin-right: 30px;
+  margin-bottom: 15px;
+}
+
+.passenger .p-sel-item {
+  display: inline-block;
+  position: relative;
+}
+
+.waring-bar {
+  font-size: 12px;
+  color: #f63;
+  line-height: 20px;
+}
+
+.preference h3 span {
+  font-size: 12px;
+  color: #666;
+  margin-left: 10px;
+}
+
+.preference dl {
+  margin-top: 10px;
+}
+
+.preference dd {
+  margin-top: 5px;
+  width: 500px;
+}
+
+.contact-list .con {
+  padding-top: 30px;
+}
+
+.contact-list li {
+  margin-bottom: 20px;
+}
+
+.intl-contact .dtg-input-1 {
+  margin-right: 20px;
+}
+
+.dtg-input-1 > .label {
+  font-size: 14px;
+  color: #999;
+  padding-left: 5px;
+  margin-bottom: 5px;
+}
+
+.icon-shibai:before {
+  content: '\e634';
+}
+
+.intl-contact .el-input {
+  position: relative;
+  font-size: 14px;
+  display: inline-block;
+  width: 200px;
+  margin-right: 0;
+}
+
+.contact-list li .del {
+  color: #ff8817;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.add-contacts {
+  height: 30px;
+  width: 110px;
+  color: #fff;
+  background: #0a8ff5;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-top: 30px;
+}
+
+.cancel dl {
+  line-height: 20px;
+}
+
+.cancel dt {
+  width: 85px;
+}
+
+.cancel dd {
+  width: 88%;
+}
+
+.cancel h3,
+.payment h3 {
+  border: none;
+}
+
+.book-tips .con {
+  padding-left: 0;
+}
+
+.book-tips .tips-tit {
+  width: 90px;
+  font-size: 16px;
+  color: #666;
+  padding-top: 1px;
+}
+
+.book-tips .tips-list {
+  width: 700px;
+}
+
+.book-tips dl {
+  line-height: 24px;
+}
+
+.book-tips dt {
+  position: relative;
+  padding-left: 10px;
+}
+
+.book-tips dd {
+  padding-left: 10px;
+}
+
+.book-tips dt:before {
+  content: '\2022';
+  position: absolute;
+  left: 0;
+}
+
+.payment .con {
+  padding-top: 20px;
+}
+
+.radio-div {
+  margin-bottom: 20px;
+}
+
+.el-radio {
+  color: #606266;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  outline: 0;
+  margin-right: 30px;
+}
+
+.payment .con span.name {
+  width: 60px;
+}
+
+.payment .con span.name-label {
+  color: #333;
+  margin-left: 30px;
+}
+
+.payment .con span em {
+  color: #f63;
+}
+
+.payment .con span.name-label {
+  color: #333;
+  margin-left: 30px;
+}
+
+.payment .con span em {
+  color: #f63;
+  font-style: normal;
+}
+
+.payment .con span.name-msg {
+  color: #333;
+}
+
+.waring-bar {
+  font-size: 12px;
+  color: #f63;
+  line-height: 20px;
+}
+
+.come-time h3 {
+  border: none;
+}
+
+.el-select {
+  display: inline-block;
+  position: relative;
+}
+
+.come-time span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.come-time .el-select {
+  margin-left: 35px;
+  width: 100px;
+}
+
+.come-time .con {
+  color: #999;
+  padding: 20px 0 0 0;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.come-time .con em {
+  color: #ff5039;
+  margin-right: 5px;
+}
