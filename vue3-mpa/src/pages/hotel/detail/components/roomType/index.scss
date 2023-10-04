@@ -1,0 +1,439 @@
+.middle-block {
+  background: #fff;
+  padding-bottom: 2px;
+}
+
+.hotel-center-menu {
+  width: 100%;
+  height: 32px;
+  line-height: 32px;
+  background: #7990a3;
+  color: #fff;
+}
+
+.hotel-center-menu span {
+  width: 90px;
+  display: inline-block;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  margin-left: 2px;
+  cursor: pointer;
+}
+
+.hotel-center-menu span.active {
+  background: #fff;
+  color: #7990a3 !important;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: -2px;
+}
+
+.date-bar {
+  padding: 18px 15px;
+  background-color: #fff;
+}
+
+.city-policy :deep(.text) {
+  font-size: 14px;
+  color: #2da0e5;
+  cursor: pointer;
+  background: url(//img.dttrip.cn/pc/v2/tmc/policy-title.png) 0 no-repeat;
+  padding-left: 30px;
+  line-height: 30px;
+  display: inline-block;
+}
+
+.date-bar .confirm {
+  width: 94px;
+  height: 30px;
+  background: #f88117;
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 4px;
+  margin-left: 30px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.city-policy :deep(.policy-con) {
+  line-height: 1.4;
+
+  .policy-content {
+    max-height: 282px;
+    overflow-y: auto;
+  }
+
+  .single-content {
+    border-bottom: 1px solid #dbdbd3;
+    padding: 10px 0 24px;
+  }
+
+  .single-content:last-child {
+    border-bottom: none;
+  }
+
+  .single-content .title {
+    font: 14px/38px bold;
+    color: #333;
+  }
+
+  .single-content .rule {
+    line-height: 18px;
+    font-size: 14px;
+  }
+
+  .single-content .standard {
+    line-height: 30px;
+  }
+
+  .single-content .single {
+    line-height: 25px;
+  }
+  .single-content .standard .violate {
+    width: 120px;
+    padding-left: 20px;
+  }
+}
+
+.room-filter {
+  padding: 10px 0 10px 15px;
+  border-bottom: 1px solid #e8e8e8;
+  border-top: 1px solid #e8e8e8;
+  background-color: #f8f8f8;
+}
+
+.room-filter span {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  background: #fff;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 22px;
+  border: 1px solid #ddd;
+  padding: 0 13px;
+  font-size: 12px;
+}
+
+.room-filter span.active {
+  color: #ff7800;
+  border: 1px solid #ff7800;
+}
+
+.room-filter span.active:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  right: 0;
+  border: none;
+  background: url(//img.dttrip.cn/pc/v2/tmc/icon-selected.png) no-repeat;
+  width: 18px;
+  height: 18px;
+}
+
+.room-list {
+  min-height: 300px;
+  background-color: #fff;
+  position: relative;
+  padding-bottom: 45px;
+}
+
+.room-item {
+  border-bottom: 1px solid #e8e8e8;
+  padding: 20px 20px 0 20px;
+}
+
+.img-main[data-v-42e538ec] {
+  position: relative;
+}
+
+.img-box img[data-v-42e538ec] {
+  cursor: pointer;
+  width: 125px;
+  height: 94px;
+  border-radius: 5px;
+}
+
+.room-item .info-box {
+  margin-left: 15px;
+}
+
+.info-box h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.info-box h3 span {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.info-box .info-other span {
+  position: relative;
+  display: inline-block;
+  font-size: 13px;
+  color: #666;
+  margin-right: 21px;
+}
+
+.info-box .info-other span:after {
+  position: absolute;
+  content: '';
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  background-color: #999;
+  right: -11px;
+  top: 4px;
+}
+
+.info-box .info-other .icon-geren {
+  font-size: 16px;
+  color: #999;
+}
+
+.icon-geren:before {
+  content: '\e671';
+}
+
+.room-item .price-box {
+  color: #666;
+  margin-left: auto;
+  font-size: 12px;
+  margin-right: 50px;
+}
+
+.room-item .price-box > span {
+  color: #f88117;
+  font-size: 22px;
+}
+
+.marketPrice,
+.priceCn {
+  font-size: 14px !important;
+  color: #999 !important;
+}
+
+.marketPrice {
+  margin-right: 5px;
+  text-decoration: line-through;
+}
+
+.marketPrice,
+.priceCn {
+  font-size: 14px !important;
+  color: #999 !important;
+}
+
+.room-item .price-box > span {
+  color: #f88117;
+  font-size: 22px;
+}
+
+.room-item .price-box > span > span {
+  font-size: 36px;
+}
+
+.policy-list {
+  margin-top: 20px;
+  font-size: 14px;
+  position: relative;
+  margin-bottom: -1px;
+}
+
+.policy-list .policy-title {
+  line-height: 36px;
+  overflow: hidden;
+  background: #eff3f7;
+  padding: 0 60px 0 90px;
+}
+
+.policy-list dd,
+.policy-list dt {
+  display: inline-block;
+  width: 110px;
+  color: #999;
+  text-align: center;
+  vertical-align: middle;
+  padding-right: 10px;
+}
+
+.policy-list dt {
+  width: 180px;
+  text-align: left;
+  padding-right: 10px;
+}
+
+.policy-list .bed-type {
+  text-align: left;
+  width: 80px;
+}
+
+.policy-list .td-cancel {
+  width: 150px;
+  text-align: left;
+  padding-left: 40px;
+}
+
+.policy-list dd.violate-policy {
+  width: 132px;
+}
+
+.policy-list dd.price {
+  width: 124px;
+}
+
+.policy-list .policy-con {
+  position: relative;
+}
+
+.policy-con .policy-item {
+  position: relative;
+  padding: 10px 0 10px 90px;
+  border-bottom: 1px dashed #f2f2f2;
+}
+
+.policy-list .policy-con dd,
+.policy-list .policy-con dt {
+  color: #333;
+}
+
+.policy-list .policy-con dd,
+.policy-list .policy-con dt {
+  color: #333;
+}
+
+.policy-list .policy-con dd,
+.policy-list .policy-con dt {
+  color: #333;
+}
+
+.policy-list dd.violate-policy {
+  width: 132px;
+}
+
+.avg-tag {
+  display: inline-block;
+  font-size: 12px;
+  margin-right: 3px;
+}
+
+.operate .book-btn {
+  display: inline-block;
+  border: 1px solid #f63;
+  width: 72px;
+  height: 39px;
+  line-height: 18px;
+  background: #f63;
+  border-radius: 4px;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.operate .book-btn > span {
+  width: 70px;
+  height: 18px;
+  display: inline-block;
+  background: #fff;
+  color: #f63;
+  text-align: center;
+  line-height: 17px;
+  font-size: 12px;
+  border-radius: 0 0 4px 4px;
+}
+
+.policy-con dd.price .money {
+  color: #f88117;
+}
+
+:deep(.violate-policy) {
+  .rule-color {
+    color: #666;
+  }
+
+  .icon-zhuyi {
+    color: #ff9776;
+    margin-right: 5px;
+  }
+}
+
+.policy-content {
+  max-height: 282px;
+  overflow-y: auto;
+}
+
+.policy-content dl {
+  font-size: 12px;
+  color: #666;
+}
+
+.policy-content dt {
+  font-size: 14px;
+  color: #333;
+  line-height: 34px;
+}
+
+.policy-content .tips {
+  border-top: 1px solid #eee;
+  margin-top: 9px;
+  line-height: 30px;
+  font-size: 12px;
+}
+
+.el-popover {
+  border-color: #8ad3ff;
+}
+
+:deep(.td-cancel) {
+  .cancel-pop-title {
+    border-bottom: 1px dashed #666;
+    cursor: pointer;
+  }
+}
+
+:deep(.confirm-box) {
+  .value {
+    border-bottom: 1px dashed #0a8ff4;
+    cursor: pointer;
+    color: #0a8ff4;
+    font-size: 14px;
+  }
+}
+
+.invoice-tag.general {
+  border-color: #09b597;
+  color: #09b597;
+}
+
+.invoice-tag {
+  display: inline-block;
+  padding: 1px 5px;
+  border: 1px solid #ff3d2e;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 3px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.cancel-con {
+  display: flex;
+
+  img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+
+  .cancel-con-content {
+    flex: 1;
+  }
+}

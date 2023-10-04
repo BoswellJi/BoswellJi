@@ -1,0 +1,31 @@
+.nav-parent {
+  background: #32c814;
+}
+
+.nav-box {
+  box-sizing: border-box;
+  display: flex;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.nav-box .nav-item {
+  height: 60px;
+  font-size: 20px;
+  line-height: 60px;
+  cursor: pointer;
+  padding: 0 25px;
+  color: #fff;
+}
+
+.nav-box .nav-item:hover {
+  background: #fff;
+  padding: 0 25px;
+  color: #32c814;
+}
+
+.nav-box .nav-item.selected {
+  color: #32c814;
+  background: #fff;
+  padding: 0 25px;
+}

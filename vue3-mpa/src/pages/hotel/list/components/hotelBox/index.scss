@@ -1,0 +1,295 @@
+.block {
+  background: #fff;
+  overflow: hidden;
+}
+
+.list-block .title-bar {
+  height: 45px;
+  background: #fff;
+  margin-top: 12px;
+  -webkit-box-shadow: 0 2px 8px 0 hsl(0deg 0% 82% / 22%);
+  box-shadow: 0 2px 8px 0 hsl(0deg 0% 82% / 22%);
+}
+
+.list-block .sort-item {
+  position: relative;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.list-block .sort-item.active {
+  color: #0a8ff5;
+}
+
+.list-block .sort-item:after {
+  content: '';
+  width: 1px;
+  height: 1em;
+  background: #b3b3b3;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: -1px;
+}
+
+.filter-options {
+  padding: 18px 20px;
+}
+
+.filter-options .hotel-num {
+  color: #666;
+  width: 140px;
+}
+
+.font-1 {
+  display: inline-block;
+  color: #f63;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 5px;
+}
+
+.where-wrap {
+  width: 1030px;
+  word-break: keep-all;
+}
+
+.where-wrap .filter-tag {
+  display: inline-block;
+  padding: 0 8px 0 10px;
+  border: 1px solid #2c9ee3;
+  border-radius: 3px;
+  background: #e9f5fc;
+  margin: 0 5px 5px 5px;
+  line-height: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.where-wrap .iconfont {
+  display: inline-block;
+  font-size: 14px;
+  color: #2c9ee3;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.cancel-all {
+  color: #2c9ee3;
+  margin-left: 5px;
+  cursor: pointer;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.list-main {
+  position: relative;
+  overflow: hidden;
+}
+
+.t {
+  min-height: 1200px;
+}
+
+.list-item {
+  border-top: 1px solid #ddd;
+  padding: 20px 22px;
+  cursor: pointer;
+}
+
+.list-item .img-box {
+  width: 180px;
+  height: 160px;
+}
+
+.list-item a {
+  cursor: pointer;
+}
+
+.list-item .img-box img {
+  width: 100%;
+  height: 160px;
+  vertical-align: middle;
+}
+
+.list-item .info-box {
+  width: 400px;
+  margin: 0 10px;
+}
+
+.list-item h2 {
+  font-size: 20px;
+}
+
+.list-item span.item-index {
+  width: 27px;
+  height: 36px;
+  background: url(//img.dttrip.cn/pc/v2/tmc/icon-new1.png) 50% no-repeat;
+  float: left;
+  text-align: center;
+  line-height: 31px;
+  color: #fff;
+  font-size: 16px;
+  margin: -2px 10px 0 0;
+}
+
+.list-item h2 a {
+  display: inline-block;
+  max-width: 280px;
+  vertical-align: middle;
+}
+
+.list-item a {
+  cursor: pointer;
+}
+
+.list-item .item-info {
+  padding-left: 37px;
+  color: #999;
+  font-size: 12px;
+  line-height: 40px;
+}
+
+.list-item .item-address {
+  line-height: 30px;
+}
+
+.list-item .item-address .addr-txt {
+  margin-top: 5px;
+  line-height: 20px;
+}
+
+.list-item .item-fac {
+  margin-top: 3px;
+}
+
+.hotel-fac-icon .iconfont {
+  font-size: 25px;
+  margin-right: 8px;
+  color: #6babe5;
+}
+
+.list-item .price-box {
+  text-align: center;
+  width: 140px;
+}
+
+.list-item .score-num {
+  margin-bottom: 35px;
+}
+
+.list-item .price-num {
+  color: #999;
+  font-size: 12px;
+}
+
+.list-item a {
+  cursor: pointer;
+}
+
+.list-item .detail-btn a {
+  width: 98px;
+  height: 36px;
+  display: inline-block;
+  background: #2c9ee3;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  line-height: 36px;
+  border-radius: 4px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.list-item .score-num span {
+  font-size: 16px;
+  color: #ff5d37;
+  margin-right: 15px;
+  font-weight: 700;
+}
+
+.list-item .score-num span i {
+  font-size: 13px;
+  color: #333;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.list-item .score-num strong {
+  font-size: 16px;
+  color: #555;
+  font-weight: 700;
+}
+
+.list-item .price-num {
+  color: #999;
+  font-size: 12px;
+}
+
+.list-item .price-num span,
+.list-item .price-num strong {
+  color: #f88117;
+}
+
+.list-item .price-num strong {
+  font-size: 26px;
+}
+
+.list-item {
+  border-top: 1px solid #ddd;
+  padding: 20px 22px;
+}
+
+.el-pagination {
+  margin: 30px 0;
+  justify-content: flex-end;
+}
+
+.list-item span.xy-icon {
+  background: -webkit-gradient(linear, right top, left top, from(#54b5fe), to(#5b7ef6));
+  background: linear-gradient(270deg, #54b5fe, #5b7ef6);
+  background: -webkit-linear-gradient(270deg, #54b5fe, #5b7ef6);
+}
+
+.list-item span.tag-span {
+  display: inline-block;
+  width: 58px;
+  height: 24px;
+  line-height: 24px;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  margin-left: 15px;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
+list-item .score-num strong {
+  font-size: 16px;
+  color: #555;
+  font-weight: 700;
+}
+
+.award-price {
+  font-size: 14px;
+  color: #f88117;
+  margin-top: 10px;
+}
+
+.total-score {
+  font-size: 13px !important;
+  color: #333 !important;
+  font-weight: normal !important;
+}
+.saleout{
+  width: 100px;
+}

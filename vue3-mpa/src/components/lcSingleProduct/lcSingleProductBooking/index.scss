@@ -1,0 +1,120 @@
+html {
+  font-size: 80px;
+}
+
+.single-product .one-line {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.single-product .product-list-box {
+  border: 1px solid rgba(221, 221, 221, 1);
+}
+
+.single-product .title {
+  width: 1.2rem;
+  height: 0.38rem;
+  background: rgba(96, 90, 176, 1);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  line-height: 0.38rem;
+}
+
+.single-product .product-title {
+  height: 40px;
+  padding-top: 0 !important;
+}
+
+.single-product .product-list {
+  display: flex;
+  align-items: center;
+  padding: 0 0.1rem;
+}
+
+.single-product .product-list .th {
+  padding-right: 0.2rem;
+  white-space: nowrap;
+}
+
+.single-product .product-title {
+  font-size: 14px;
+  color: rgba(112, 112, 112, 1);
+  border-bottom: 1px solid rgba(221, 221, 221, 1);
+  padding-top: 0.1rem;
+  margin-bottom: 10px;
+}
+
+.single-product .product-list .name {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+}
+
+.single-product .product-list .sub-title {
+  color: #409eff;
+}
+
+.single-product .product-list .date {
+  width: 2.5rem;
+}
+
+.single-product .product-list .num {
+  width: 3.5rem;
+}
+
+.single-product .product-list .total {
+  width: 1rem;
+  color: #ff5704;
+}
+
+.single-product .product-body {
+  padding-bottom: 10px;
+}
+
+.single-product .car-product-detail .detail {
+  background: rgba(245, 245, 245, 1);
+  margin-bottom: 0.1rem;
+  padding: 0.1rem;
+}
+
+.single-product .car-product-detail .info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.single-product .car-product-detail .main-title {
+  color: #000;
+}
+
+.single-product .car-product-detail .info .right {
+  color: rgba(255, 96, 5, 1);
+  white-space: nowrap;
+}
+
+.single-product .el-form-item {
+  margin-bottom: 0;
+}
+
+.single-product .single-product-detail .info {
+  background: rgba(245, 245, 245, 1);
+  padding: 0.1rem;
+  margin-bottom: 0.1rem;
+}
+
+.single-product .single-product-detail .detail {
+  display: flex;
+  justify-content: space-between;
+}
+
+.single-product .single-product-detail .info .right {
+  color: rgba(255, 96, 5, 1);
+  white-space: nowrap;
+}
+
+.single-product .single-product-detail .info .main-title {
+  color: #000;
+  margin-bottom: 0.1rem;
+}

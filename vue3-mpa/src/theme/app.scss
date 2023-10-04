@@ -1,0 +1,318 @@
+/* 初始化样式
+------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none !important;
+}
+
+html {
+  font-size: 72px;
+}
+
+body {
+  color: #333;
+  font-family: 'Microsoft yahei', '微软雅黑';
+  --el-color-primary: #32c814;
+  font-size: 14px;
+  background: #f6f6f7;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  border: 0px;
+}
+
+a,
+button,
+img,
+input,
+label,
+select {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  outline: medium none;
+  border: none;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+i,
+strong,
+th,
+var {
+  font-weight: 400;
+  font-style: normal;
+}
+
+a {
+  color: #000;
+}
+
+.word-wrap {
+  word-break: break-all;
+}
+
+.iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dtg-input-1 .error-tip {
+  color: #f56c6c;
+  font-size: 12px;
+  line-height: 1;
+  padding-top: 2px;
+  position: absolute;
+  top: 100%;
+  left: 2px;
+}
+
+.dtg-input-1 .iconfont {
+  font-size: 12px;
+  margin-right: 5px;
+}
+
+.hotel-fac-icon .icon-no-restaurant:before,
+.hotel-fac-icon .icon-restaurant:before {
+  content: '\E6F1';
+}
+
+.hotel-fac-icon .icon-free-park:before {
+  content: '\E6F6';
+}
+
+.hotel-fac-icon .icon-no-wifi:before,
+.hotel-fac-icon .icon-wifi:before {
+  content: '\E6EE';
+}
+
+.hotel-fac-icon .icon-no-restaurant:before,
+.hotel-fac-icon .icon-restaurant:before {
+  content: '\E6F1';
+}
+
+.hotel-fac-icon .icon-gym:before,
+.hotel-fac-icon .icon-no-gym:before {
+  content: '\E6F2';
+}
+
+.hotel-fac-icon .icon-no-pool:before,
+.hotel-fac-icon .icon-pool:before {
+  content: '\E6F3';
+}
+
+.hotel-fac-icon .icon-meeting-hall:before,
+.hotel-fac-icon .icon-no-meeting-hall:before {
+  content: '\E6F0';
+}
+
+.hotel-fac-icon .icon-airport-transfer:before,
+.hotel-fac-icon .icon-no-airport-transfer:before {
+  content: '\E6F4';
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: #e4e4e4;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c6c6d8;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 3px;
+  background-color: #e4e4e4;
+}
+
+/* flex 弹性布局 tips: 兼容酒店样式，其他地方不要用
+------------------------------- */
+.flex {
+  display: flex;
+}
+.flex-auto {
+  flex: 1;
+  overflow: hidden;
+}
+.flex-center {
+  @extend .flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+}
+.flex-margin {
+  margin: auto;
+}
+.flex-warp {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  margin: 0 -5px;
+
+  .flex-warp-item {
+    padding: 5px;
+
+    .flex-warp-item-box {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.dtg-align-center {
+  align-items: center;
+}
+
+.dtg-flex {
+  display: flex;
+}
+
+.dtg-justify-between {
+  justify-content: space-between;
+}
+
+.dtg-flex-grow1 {
+  flex: 1;
+}
+
+.txt-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.el-pagination {
+  white-space: nowrap;
+  padding: 2px 5px;
+  color: #303133;
+  font-weight: 700;
+}
+
+/* cursor 鼠标形状
+------------------------------- */
+// 默认
+.cursor-default {
+  cursor: default !important;
+}
+// 帮助
+.cursor-help {
+  cursor: help !important;
+}
+// 手指
+.cursor-pointer {
+  cursor: pointer !important;
+}
+// 移动
+.cursor-move {
+  cursor: move !important;
+}
+
+/* 宽高 100%
+------------------------------- */
+.w100 {
+  width: 100% !important;
+}
+.h100 {
+  height: 100% !important;
+}
+.vh100 {
+  height: 100vh !important;
+}
+.max100vh {
+  max-height: 100vh !important;
+}
+.min100vh {
+  min-height: 100vh !important;
+}
+
+/* 颜色值
+------------------------------- */
+.color-primary {
+  color: var(--el-color-primary);
+}
+.color-success {
+  color: var(--el-color-success);
+}
+.color-warning {
+  color: var(--el-color-warning);
+}
+.color-danger {
+  color: var(--el-color-danger);
+}
+.color-info {
+  color: var(--el-color-info);
+}
+
+/* 字体大小全局样式
+------------------------------- */
+@for $i from 10 through 32 {
+  .font#{$i} {
+    font-size: #{$i}px !important;
+  }
+}
+
+/* 外边距、内边距全局样式
+------------------------------- */
+@for $i from 1 through 35 {
+  .mt#{$i} {
+    margin-top: #{$i}px !important;
+  }
+  .mr#{$i} {
+    margin-right: #{$i}px !important;
+  }
+  .mb#{$i} {
+    margin-bottom: #{$i}px !important;
+  }
+  .ml#{$i} {
+    margin-left: #{$i}px !important;
+  }
+  .pt#{$i} {
+    padding-top: #{$i}px !important;
+  }
+  .pr#{$i} {
+    padding-right: #{$i}px !important;
+  }
+  .pb#{$i} {
+    padding-bottom: #{$i}px !important;
+  }
+  .pl#{$i} {
+    padding-left: #{$i}px !important;
+  }
+}
+
+@for $i from 1 through 4 {
+  .line#{$i} {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: #{$i};
+    -webkit-box-orient: vertical;
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "name": "json2tscopy",
+  "displayName": "json2tscopy",
+  "description": "Convert a JSON from clipboard to TypeScript interfaces. (Ctrl+Alt+V)",
+  "version": "0.0.1",
+  "publisher": "Boswell",
+  "author": {
+    "name": "Boswell"
+  },
+  "engines": {
+    "vscode": "^1.1.37"
+  },
+  "icon": "images/json2tsIcon.png",
+  "categories": [
+    "Languages",
+    "Snippets"
+  ],
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "light"
+  },
+  "activationEvents": [
+    "onCommand:convert.json2ts",
+    "onCommand:rest.json2ts"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "convert.json2ts",
+        "title": "Convert json clipboard to TypeScript interfaces"
+      },
+      {
+        "command": "rest.json2ts",
+        "title": "Convert a REST-URL with json result to TypeScript interfaces"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "convert.json2ts",
+        "key": "ctrl+alt+V"
+      },
+      {
+        "command": "rest.json2ts",
+        "key": "ctrl+alt+X"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+    "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "devDependencies": {
+    "@types/clipboardy": "^2.0.1",
+    "typescript": "^2.0.3",
+    "vscode": "^1.1.37"
+  },
+  "dependencies": {
+    "clipboardy": "^3.0.0",
+    "copy-paste": "^1.1.4",
+    "node-clipboardy": "^1.0.3",
+    "request": "^2.69.0",
+    "underscore": "^1.8.3"
+  }
+}

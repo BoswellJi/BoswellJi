@@ -1,0 +1,911 @@
+@font-face {
+  font-family: titleicon;
+  src: url(//file.40017.cn/hubble/iconfont/pc/icon_1666084453494.eot);
+  src: url(//file.40017.cn/hubble/iconfont/pc/icon_1666084453494.eot) format('eot'),
+    url(//file.40017.cn/hubble/iconfont/pc/icon_1666084453494.woff) format('woff'),
+    url(//file.40017.cn/hubble/iconfont/pc/icon_1666084453494.ttf) format('truetype'),
+    url(//file.40017.cn/hubble/iconfont/pc/icon_1666084453494.svg) format('svg');
+}
+
+.djicon:before {
+  font-family: titleicon;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  text-decoration: none;
+  text-transform: none;
+}
+
+.djicon-bus-s:before {
+  content: '\E00E';
+}
+
+.djicon-xj-train:before {
+  content: '\E0BD';
+}
+
+.djicon-aircraft-s:before {
+  content: '\E003';
+}
+
+.djicon-ship-s:before {
+  content: '\E05D';
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(221, 221, 221, 1);
+
+  .item {
+    padding: 0.16rem 0.48rem;
+    font-size: 0.24rem;
+    color: #000;
+  }
+
+  .active {
+    background: rgba(50, 200, 20, 1);
+    color: #fff;
+  }
+}
+
+.nav-box {
+  height: 47px;
+
+  .fixed {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    max-width: 1200px;
+    width: calc(100% - 240px);
+    z-index: 100;
+  }
+}
+
+.tips {
+  margin: 0.35rem 0.5rem;
+  .version {
+    color: rgba(255, 96, 5, 1);
+  }
+}
+
+.versions {
+  display: flex;
+  margin: 0 0.5rem;
+
+  .version {
+    width: 1.56rem;
+    height: 0.75rem;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 1);
+    border: 2px solid rgba(221, 221, 221, 1);
+    line-height: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 0.2rem;
+    margin-right: 0.2rem;
+    position: relative;
+  }
+
+  .active {
+    border: 2px solid rgba(50, 200, 20, 1);
+  }
+
+  .title {
+    font-size: 0.2rem;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .sub-title {
+    font-size: 0.18rem;
+    color: rgba(153, 153, 153, 1);
+    margin-top: 0.05rem;
+  }
+
+  $angleBorderWidth: 0.17rem;
+
+  .angle {
+    position: absolute;
+    height: 0;
+    width: 0;
+    right: 0;
+    bottom: 0;
+    border-top: $angleBorderWidth solid transparent;
+    border-left: $angleBorderWidth solid transparent;
+    border-right: $angleBorderWidth solid rgba(50, 200, 20, 1);
+    border-bottom: $angleBorderWidth solid rgba(50, 200, 20, 1);
+
+    .el-icon {
+      position: absolute;
+      right: -0.15rem;
+      bottom: -0.15rem;
+      color: #fff;
+      font-size: 12px;
+    }
+  }
+}
+
+.routegrey {
+  background: #f6f6f6;
+  padding: 20px 40px;
+  line-height: 30px;
+  margin: 10px 0.5rem 0;
+
+  .eui-row {
+    display: flex;
+  }
+
+  .filter-item {
+    width: 90px;
+    color: #999;
+  }
+
+  .filter-control {
+    width: 90%;
+    word-wrap: break-word;
+  }
+}
+
+.flightbox-wrap {
+  overflow: hidden;
+  background: #fff;
+  margin: 10px 0.5rem 0;
+}
+
+.flightbox-wrap .re-body {
+  margin: 20px 0 0 0px;
+  overflow: hidden;
+}
+
+.flightbox {
+  background: #fff;
+
+  table {
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+}
+
+.flightbox .flightbox-tab {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+
+.flightbox .flightbox-tab li {
+  position: relative;
+  box-sizing: border-box;
+  width: 100px;
+  height: 40px;
+  font-size: 14px;
+  line-height: 40px;
+  color: #999;
+  text-align: center;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.flightbox .flightbox-tab li.cur {
+  color: #ff6601;
+}
+
+.flightbox .flightbox-tab:after {
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  height: 1px;
+  content: '';
+  background: #eee;
+}
+
+.flightbox .flightbox-tab li.cur:after {
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  z-index: 2;
+  width: 80px;
+  height: 2px;
+  content: '';
+  background: #ff6601;
+  transform: translateX(-50%);
+}
+
+.flightbox .flightbox-content .traffic-table {
+  width: 100%;
+}
+
+.flightbox .flightbox-content .traffic-table tr {
+  position: relative;
+  font-size: 14px;
+  border-top: 1px solid #eee;
+}
+
+.flightbox .flightbox-content .traffic-table tr:first-child {
+  border-top: none;
+}
+
+.flightbox .flightbox-content .traffic-table tr td,
+.flightbox .flightbox-content .traffic-table tr th {
+  height: 113px;
+  text-align: left;
+  border: none;
+}
+
+.flightbox .flightbox-content .traffic-table tr .td-0 {
+  position: relative;
+  width: 50px;
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+}
+
+.flightbox .flightbox-content .traffic-table tr .td-0 .has-connection {
+  width: 50px;
+  line-height: 20px;
+  color: #a3aebc;
+  background-color: #f0f4fa;
+}
+
+.flightbox .flightbox-content .traffic-table tr .td-1 {
+  width: 90px;
+  padding-left: 24px;
+}
+
+.flightbox .flightbox-content .traffic-table tr td span,
+.flightbox .flightbox-content .traffic-table tr th span {
+  display: block;
+  margin-top: 4px;
+}
+
+.flightbox .flightbox-content .traffic-table tr .td-1 span {
+  margin: 0;
+  font-weight: 700;
+  color: #333;
+}
+
+.flightbox .flightbox-content .traffic-table tr .td-2 {
+  width: 120px;
+  font-size: 14px;
+}
+
+.flightbox .flightbox-content .traffic-table tr .td-3,
+.flightbox .flightbox-content .traffic-table tr .td-5 {
+  position: relative;
+  width: 90px !important;
+  padding-left: 20px;
+}
+
+.flightbox .flightbox-content .traffic-table tr .td-3 {
+  padding: 0 20px 0 0;
+  text-align: right;
+}
+
+.flightbox .flightbox-content .traffic-table tr .td-3 .text-bold,
+.flightbox .flightbox-content .traffic-table tr .td-5 .text-bold {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.text-gary-9 {
+  color: #999;
+}
+
+.flightbox .flightbox-content .traffic-table tr .td-4 {
+  position: relative;
+  display: table-cell;
+  width: 100px;
+  padding-right: 10px;
+  font-size: 12px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAAICAYAAADHlHLmAAAAAXNSR0IArs4c6QAAANxJREFUWAntl7EKwyAQhuPg5KA49jn7RkLGvkEeonmIjuri2vaEGEKI0sg10y+IuVy8gw8+jMOAAQIg8HcCIYRnjPGeUrpxNhOcxVALBEDgmID3/pMzQog3LRNNZ4x5UJzy+94BgXvJYR8InCBQBN5tSSRwlthpradF7t0n7RACt/kgCwIsBCoCb2u/KBhpOmvtvE20niFwiw5yIMBE4AeB1050Es/5VJZSjkqpLHZ1QOAqGiRAgI/AGYFL1+WXunlfFj2FSwOsIAAClxE4vC9D4Mv4oxEIsBFY78tfyY8927BFXQwAAAAASUVORK5CYII=)
+    center no-repeat;
+  background-size: 120px 4px;
+}
+
+.flightbox .flightbox-content .traffic-table tr .td-4 span {
+  height: 18px;
+  margin-top: 8px;
+  color: #999;
+  text-align: center;
+}
+
+.flightbox .flightbox-content .traffic-table tr .td-3,
+.flightbox .flightbox-content .traffic-table tr .td-5 {
+  position: relative;
+  width: 90px !important;
+  padding-left: 20px;
+}
+
+.flightbox .flightbox-content .traffic-table tr .td-3 span,
+.flightbox .flightbox-content .traffic-table tr .td-5 span {
+  margin-top: -2px;
+}
+
+.flightbox .flightbox-content .traffic-table tr .td-3 .text-bold,
+.flightbox .flightbox-content .traffic-table tr .td-5 .text-bold {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.flightbox .flightbox-content .traffic-table tr .td-3 span,
+.flightbox .flightbox-content .traffic-table tr .td-5 span {
+  margin-top: -2px;
+}
+
+.flightbox .flight-info {
+  position: relative;
+  width: 100%;
+  max-height: 44px;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 22px;
+  color: #999;
+}
+
+.nav-download {
+  margin-top: 0.3rem;
+  justify-content: space-between;
+  width: 100%;
+
+  .nav-left {
+    display: flex;
+  }
+
+  .item {
+    padding: 0.16rem 0;
+    border-bottom: 0.06rem solid #fff;
+    margin-right: 0.4rem;
+  }
+
+  .active {
+    background: none;
+    color: #000;
+
+    border-bottom: 0.06rem solid rgba(50, 200, 20, 1);
+  }
+
+  .download {
+    position: relative;
+    margin-right: 0;
+    width: 1.3rem;
+    height: 0.3rem;
+    border: 1px solid rgba(221, 221, 221, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(102, 102, 102, 1);
+    font-size: 0.18rem;
+  }
+
+  .type {
+    position: absolute;
+    top: 0.35rem;
+    right: 0;
+    z-index: 100;
+    width: 100%;
+    padding: 5px 0;
+    background-color: #fff;
+    border: 1px solid #e4e4e4;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 5%);
+    cursor: pointer;
+  }
+
+  .type-item {
+    font-size: 13px;
+    line-height: 32px;
+    color: #333;
+    text-align: center;
+  }
+}
+
+.content-detail {
+  display: flex;
+  justify-content: space-between;
+  white-space: pre-wrap;
+  word-break: break-all;
+
+  .left {
+    flex: 1;
+    margin-top: 0.47rem;
+
+    :deep(.el-image-viewer__img) {
+      width: auto;
+      height: auto;
+    }
+
+    .day-title {
+      font-size: 0.3rem;
+      color: rgba(0, 0, 0, 1);
+      margin: 0 0 0.34rem 1rem;
+      margin-top: 0.5rem;
+
+      .djicon {
+        margin: 0 5px;
+        color: #999;
+      }
+    }
+
+    .tips {
+      font-size: 0.18rem;
+      color: rgba(255, 96, 5, 1);
+      margin-left: 1rem;
+    }
+
+    .icon {
+      width: 5px;
+      margin: 0 0.15rem 0 0.1rem;
+      height: 5px;
+      background: red;
+      border-radius: 100%;
+    }
+
+    .item {
+      display: flex;
+    }
+
+    .img-box {
+      margin: 0.1rem 0;
+    }
+
+    .friendly-reminder {
+      background: #f2f5f9;
+      border-radius: 0.1rem;
+      padding: 0.2rem 0.3rem;
+      margin-top: 0.1rem;
+
+      .fr-tips {
+        color: #6581a3;
+        border-bottom: 1px solid #e6eaf0;
+        padding-bottom: 0.1rem;
+        margin-bottom: 0.1rem;
+      }
+
+      .fr-text {
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+    }
+
+    .label {
+      font-size: 0.18rem;
+      color: rgba(132, 200, 104, 1);
+      margin-right: 0.15rem;
+      text-align: right;
+      width: 1.3rem;
+      white-space: nowrap;
+    }
+
+    .info {
+      flex: 1;
+
+      .title {
+        display: flex;
+        align-items: center;
+        font-size: 0.24rem;
+        margin-bottom: 0.1rem;
+      }
+
+      .desc {
+        padding-left: 0.2rem;
+        border-left: 1px solid rgba(221, 221, 221, 1);
+        margin-left: 0.14rem;
+        color: rgba(112, 112, 112, 1);
+        padding-bottom: 0.5rem;
+      }
+
+      .img {
+        width: 3rem;
+        height: 1.65rem;
+        border-radius: 0.05rem;
+        margin-right: 0.1rem;
+        margin-bottom: 0.1rem;
+      }
+    }
+
+    .plant {
+      .tag {
+        display: inline-block;
+        padding: 5px 10px;
+        background: #f4f4f4;
+        border-radius: 0.05rem;
+      }
+    }
+
+    .hotel {
+      .imgs {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 0.2rem;
+        color: rgba(206, 181, 149, 1);
+        line-height: 1em;
+      }
+
+      .tag {
+        padding: 0.16rem 0.26rem;
+        border: 1px solid rgba(206, 181, 149, 1);
+        border-radius: 0.35rem;
+        margin-right: 0.1rem;
+        margin-bottom: 0.1rem;
+        line-height: 1.2em;
+      }
+
+      .label {
+        color: rgb(255, 102, 1);
+      }
+
+      .icon {
+        background: rgb(255, 102, 1);
+      }
+    }
+
+    .meals {
+      .desc {
+        border: none;
+      }
+
+      .title {
+        font-size: 0.2rem;
+        color: rgba(112, 112, 112, 1);
+      }
+
+      .label {
+        color: rgb(100, 120, 211);
+      }
+
+      .icon {
+        background: rgb(100, 120, 211);
+      }
+    }
+  }
+
+  .right-box {
+    width: 200px;
+  }
+
+  .right {
+    width: 200px;
+    margin-left: 0.5rem;
+    margin-top: 1.04rem;
+    max-height: 400px;
+    overflow-y: auto;
+
+    &.fixed {
+      position: fixed;
+      top: 0;
+      background: #fff;
+    }
+
+    .day-nav {
+      padding-bottom: 10px;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      .name {
+        font-size: 0.24rem;
+        color: rgba(0, 0, 0, 1);
+        margin-left: 0.1rem;
+      }
+    }
+
+    .list {
+      margin-left: 0.3rem;
+      margin-bottom: 0.2rem;
+
+      .item {
+        padding: 0.15rem 0;
+        display: flex;
+        align-items: center;
+        color: rgba(112, 112, 112, 1);
+        cursor: pointer;
+      }
+
+      .dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 1);
+        margin-right: 0.15rem;
+      }
+
+      .theme {
+        flex: 1;
+      }
+    }
+  }
+}
+
+.part {
+  margin-top: 0.5rem;
+
+  .title {
+    font-size: 0.24rem;
+    padding: 0 0 0.2rem 0;
+    border-bottom: 1px solid rgba(221, 221, 221, 1);
+  }
+}
+
+.fee {
+  .info {
+    padding: 0.5rem 1rem;
+    line-height: 2em;
+  }
+
+  :deep(li p) {
+    display: inline-block;
+  }
+}
+
+.special {
+  .featuresbox {
+    padding: 20px 88px 20px;
+
+    :deep(img) {
+      width: auto;
+      height: auto;
+      display: inline-block;
+    }
+  }
+}
+
+.book {
+  padding-bottom: 0.5rem;
+
+  .info {
+    padding: 0.5rem 1rem;
+    line-height: 2em;
+  }
+
+  .sub-title {
+    font-size: 0.24rem;
+    margin-bottom: 0.15rem;
+    margin-top: 0.5rem;
+    color: #000;
+  }
+
+  .text {
+    color: rgba(112, 112, 112, 1);
+    font-size: 0.2rem;
+    line-height: 1.5em;
+  }
+}
+
+/* 行程概要 start */
+.route-content {
+  margin: 1rem 100px;
+}
+
+.remind {
+  padding: 10px 0 0 0px;
+  font-size: 14px;
+  line-height: 24px;
+  color: #9e8052;
+  text-align: left;
+}
+.routegrey h4 {
+  padding-bottom: 15px;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+}
+.route-content h4 {
+  padding: 60px 0 30px;
+  font-size: 24px;
+  color: #000;
+  text-align: center;
+}
+
+.route-content thead {
+  font-size: 13px;
+  line-height: 45px;
+  color: #666;
+  text-align: center;
+  background-image: linear-gradient(179deg, #fafafa 0, #f4f4f4 100%);
+  border-radius: 3px 3px 0 0;
+}
+
+.route-content thead td {
+  width: 25%;
+  border: 1px solid #eee;
+}
+
+.route-content tbody tr > td {
+  padding: 30px 20px;
+  font-size: 13px;
+  line-height: 21px;
+  color: #666;
+  text-align: left;
+  border: 1px solid #eee;
+}
+
+.route-content tbody td {
+  font-size: 13px;
+  line-height: 45px;
+  color: #666;
+  text-align: center;
+  border-radius: 3px 3px 0 0;
+}
+
+.route-content tbody tr > td.first .day-name {
+  position: absolute;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 21px;
+  color: #000;
+  text-align: left;
+}
+
+.route-content tbody tr > td.first .day-title {
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: 50px;
+}
+
+.route-content tbody tr > td.first .day-title .title-place {
+  position: relative;
+  padding-right: 4px;
+  padding-left: 24px;
+}
+
+.route-content tbody tr > td.first .day-title .title-place:first-child {
+  padding-left: 0;
+}
+
+.route-content tbody tr > td.first .day-title .title-place .djicon {
+  position: absolute;
+  left: -3px;
+  font-size: 18px;
+  color: #999;
+}
+
+.route-content tbody tr > td > ul > li {
+  position: relative;
+  padding: 0 0 7px 10px;
+}
+
+.route-content tbody tr > td > ul > li .dot {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+}
+
+.route-content tbody tr > td > ul > li .dot:after {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  content: '';
+  background: #ff6601;
+  border-radius: 50%;
+}
+
+.route-content tbody tr > td.meal > ul > li .dot:after {
+  background: #6478d3;
+}
+
+.route-content tbody tr > td.hotel > ul > li .dot:after {
+  background: #ff6601;
+}
+
+.route-content tbody tr > td.hotel .no-hotel .dot {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+}
+
+.route-content tbody tr > td.hotel .no-hotel {
+  position: relative;
+  padding-left: 10px;
+}
+
+.route-content tbody tr > td.hotel .no-hotel .dot:after {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  content: '';
+  background: #ff6601;
+  border-radius: 50%;
+}
+
+/* 行程概要 end */
+
+.list-wrap {
+  border-top: 1px solid #eee;
+  margin-top: 100px;
+  width: calc(100% - 200px);
+
+  & > h5 {
+    padding: 60px 0;
+    margin-left: -25px;
+    font-size: 24px;
+    color: #000;
+    text-align: center;
+  }
+
+  li {
+    box-sizing: border-box;
+    width: 540px;
+    padding: 0 0 30px 33px;
+  }
+
+  h5 .des-icon {
+    position: absolute;
+    top: -2px;
+    left: -26px;
+    width: 5px;
+    height: 5px;
+    background-color: #fff;
+  }
+
+  .des-icon:before {
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    width: 5px;
+    height: 5px;
+    content: '';
+    background: #ccc;
+    border-radius: 50%;
+  }
+
+  li .item {
+    font-size: 14px;
+    line-height: 24px;
+    color: #333;
+    text-align: left;
+  }
+
+  li > h5 {
+    position: relative;
+    padding-bottom: 10px;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 24px;
+    color: #000;
+  }
+
+  .item:before {
+    content: attr(titlename);
+  }
+
+  .shopremark {
+    font-size: 14px;
+    line-height: 24px;
+    color: #9e8052;
+    text-align: justify;
+  }
+
+  li:nth-last-child(2) {
+    border-left: none;
+  }
+
+  li:last-child {
+    border-left: none;
+  }
+
+  .shoplist {
+    padding-left: 60px;
+  }
+}
