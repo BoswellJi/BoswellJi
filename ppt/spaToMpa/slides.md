@@ -107,3 +107,60 @@ mdc: true
 <div class="flex justify-center items-center h-[100%]">
   <h1>多页能力其实是vite的内置能力，通过修改vite的构建输入参数即可获得，从多页配置中获取到对应的输入关系</h1>
 </div>
+
+---
+layout: center
+---
+
+# 什么是TailwindCSS？
+
+一个实用性优先的 CSS 框架，用于快速构建定制的用户界面
+
+---
+
+# 特点
+
+
+<div class="flex flex-wrap justify-between  gap-y-[20px]">
+  <div class="w-[50%]">
+    <h3>1.原子化 CSS (Atomic CSS)</h3>
+    <div>CSS 原子化是指定义一组表示单一用途样式单元的类</div>
+  </div>
+
+   <div class="w-[50%]">
+    <h3>2.较好的语义化</h3>
+    <div class="">使用 TailwindCss 你不用花精力来定义类名，你可以使用内置具有良好语义化的类名，实现样式效果。</div>
+  </div>
+
+   <div class="w-[50%]">
+    <h3>3.约束性</h3>
+    <div>使用 TailwindCss 功能类，是从预定义的设计系统中选择样式，这使得构建统一的 UI 变得更加容易。</div>
+  </div>
+
+   <div class="w-[50%]">
+    <h3>4.响应式</h3>
+    <div>TailwindCss 中的每个功能类都可以有条件的应用于不同的断点（breakpoints），在不同分辨率设备上，可以轻松切换属性。内联样式中，无法使用媒体查询。</div>
+  </div>
+
+   <div class="w-[50%]">
+    <h3>5.Hover, focus, 以及其它状态</h3>
+    <div>与 TailwindCss 处理 响应式设计 类似，通过为功能类添加适当的状态变体前缀，可以对处于 hover 、focus 和其它状态的元素设置样式, 而内联样式无法设置 hover 或者 focus 这样的状态。</div>
+  </div>
+  
+</div>
+
+---
+
+# 语法预览
+
+<img src="https://file.40017.cn/elongclub/tail-boswell.png" />
+
+---
+layout: center
+---
+# 实践体验
+
+- 开发阶段极度流畅
+- 项目侵入性不强
+- 可渐进式使用
+- 上手时候有一定记忆成本

@@ -19,7 +19,7 @@ By 季明壮 {.text-intro}
 * 什么是WebGL? {.fadeIn.animated.delay-400}
 * WebGL的应用领域? {.fadeIn.animated.delay-800}
 
-<slide class="bg-black-blue aligncenter" >
+<slide class="bg-black-blue aligncenter">
 
 # 什么是3D（3-dimension）?
 
