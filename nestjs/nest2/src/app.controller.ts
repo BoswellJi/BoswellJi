@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { HttpService } from '@nestjs/axios';
-import { Controller, Get, Req, Request, Post, Headers } from '@nestjs/common';
+import { Controller, Get, Req, Request, Post } from '@nestjs/common';
 import { Body } from '@nestjs/common/decorators';
 import { firstValueFrom } from 'rxjs';
 
@@ -33,6 +33,7 @@ export class AppController {
   @Post('*')
   async findAllPost(@Req() request: Request, @Body() body: BodyInit) {
     const url = this.root + request.url;
+    
     console.log('*************************');
     console.log('url:' + url, 'body:' + JSON.stringify(body));
     console.log('*************************');
