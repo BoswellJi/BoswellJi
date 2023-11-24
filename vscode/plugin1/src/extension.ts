@@ -1,4 +1,4 @@
-"use strict";
+// @ts-nocheck
 
 import * as vscode from "vscode";
 import * as extension from "./Json2Ts";

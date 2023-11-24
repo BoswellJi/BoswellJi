@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as _ from "underscore";
 
 export class Json2Ts {
