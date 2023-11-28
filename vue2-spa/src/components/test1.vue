@@ -1,5 +1,5 @@
 <template>
-  <div @click="clickhandle">
+  <div @click="clickhandle" class="body">
     <test :data-name="dataName"></test>
   </div>
 </template>
@@ -31,3 +31,8 @@ export default {
   },
 };
 </script>
+<style scoped lang="scss">
+.body{
+  background: red;
+}
+</style>
