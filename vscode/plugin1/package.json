@@ -8,21 +8,19 @@
     "name": "Boswell"
   },
   "engines": {
-    "vscode": "^1.1.37"
+    "vscode": "^1.84.2"
   },
+  "activationEvents": [
+    
+  ],
   "icon": "images/json2tsIcon.png",
   "categories": [
-    "Languages",
-    "Snippets"
+    "Programming Languages"
   ],
   "galleryBanner": {
     "color": "#007ACC",
     "theme": "light"
   },
-  "activationEvents": [
-    "onCommand:convert.json2ts",
-    "onCommand:rest.json2ts"
-  ],
   "main": "./out/src/extension",
   "contributes": {
     "commands": [
@@ -47,20 +45,19 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
-    "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install"
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "tsc -p ./"
   },
   "devDependencies": {
-    "@types/clipboardy": "^2.0.1",
-    "typescript": "^2.0.3",
-    "vscode": "^1.1.37"
+    "@types/vscode": "^1.84.2",
+    "@types/clipboardy": "^2.0.1"
   },
   "dependencies": {
-    "clipboardy": "^3.0.0",
-    "copy-paste": "^1.1.4",
+    "clipboardy": "^4.0.0",
+    "copy-paste": "^1.5.3",
     "node-clipboardy": "^1.0.3",
-    "request": "^2.69.0",
-    "underscore": "^1.8.3"
+    "request": "^2.88.1",
+    "underscore": "^1.13.6",
+    "typescript": "^5.3.2"
   }
 }
