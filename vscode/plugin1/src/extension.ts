@@ -1,9 +1,7 @@
-// @ts-nocheck
-
 import * as vscode from "vscode";
 import * as extension from "./Json2Ts";
-let request = require("request");
-let ncp = require('node-clipboardy');
+import request from  "request";
+import {ncp} from 'node-clipboardy';
 let Json2Ts = extension.Json2Ts;
 
 export function activate(context: vscode.ExtensionContext) {
@@ -14,7 +12,7 @@ export function activate(context: vscode.ExtensionContext) {
       callRestService(content);
     } else {
       vscode.window.showInputBox({ prompt: "Insert your REST-Service URL." })
-        .then((userInput) => {
+        .then((userInput='') => {
           if (content && content.indexOf("http") > -1) {
             callRestService(userInput);
           } else {
@@ -53,9 +51,9 @@ function convert(content: string) {
   let json2ts = new Json2Ts();
   let result = json2ts.convert(content);
 
-  vscode.window.activeTextEditor.edit((editBuilder) => {
-    let startLine = vscode.window.activeTextEditor.selection.start.line;
-    let lastCharIndex = vscode.window.activeTextEditor.document.lineAt(startLine).text.length;
+  vscode.window.activeTextEditor?.edit((editBuilder) => {
+    let startLine = vscode.window.activeTextEditor?.selection.start.line || 0;
+    let lastCharIndex = vscode.window.activeTextEditor?.document.lineAt(startLine).text.length || 0;
     let position = new vscode.Position(startLine, lastCharIndex);
     editBuilder.insert(position, result);
 
