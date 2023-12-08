@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "packageManager": "pnpm@8.11.0",
+  "engines": {
+    "node": "18.18.0"
+  },
+  "scripts": {
+    
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
