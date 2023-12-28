@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['eslint:recommended'],
+  extends: [],
   overrides: [],
   rules: {}
 }
