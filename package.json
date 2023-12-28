@@ -7,12 +7,14 @@
   "engines": {
     "node": "18.18.0"
   },
-  "scripts": {},
+  "scripts": {
+    "postinstall": "simple-git-hooks"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged",
+    "pre-commit": "lint-staged",
     "commit-msg": "node scripts/verifyCommit.js"
   },
   "lint-staged": {
