@@ -19,7 +19,7 @@
     "commit-msg": "node scripts/verifyCommit.js"
   },
   "lint-staged": {
-    "*.{js,json}": [
+    "*.{js,json,css,less,scss}": [
       "prettier --write"
     ],
     "*.ts?(x)": [

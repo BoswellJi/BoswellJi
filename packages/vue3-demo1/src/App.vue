@@ -1,11 +1,27 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+
+const num = ref(1)
+const num1 = ref(1)
+const numComputed = computed(() => {
+  return num.value + 1
+})
 </script>
 
 <template>
+  <button @click="num++">点击</button>
+  <button @click="num1++">点击{{ num1 }}</button>
+  {{ num }} -- {{ numComputed }}
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <img
+      alt="Vue logo"
+      class="logo"
+      src="./assets/logo.svg"
+      width="125"
+      height="125"
+    />
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
