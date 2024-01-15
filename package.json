@@ -18,15 +18,7 @@
     "pre-commit": "pnpm lint-staged",
     "commit-msg": "node scripts/verifyCommit.js"
   },
-  "lint-staged": {
-    "*.{js,json,css,less,scss}": [
-      "prettier --write"
-    ],
-    "*.ts?(x)": [
-      "eslint",
-      "prettier --parser=typescript --write"
-    ]
-  },
+  "lint-staged": {},
   "devDependencies": {
     "conventional-changelog-cli": "^4.1.0",
     "eslint": "^8.56.0",
