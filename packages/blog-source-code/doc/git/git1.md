@@ -2,7 +2,7 @@
 
 - 未使用 `git add` 暂存代码时：`git checkout -- filename`;
 - 已经使用了 `git add` 缓存了代码：`git reset HEAD filepathname`;
-- 已经用 `git commit` 提交了代码：`git reset --hard commitid`;
+- 已经用 `git commit` 提交了代码：`git reset --hard commitid`**(如果希望完全删除特定的 commit，包括其对应的提交记录，则可以使用 git reset --hard HEAD~<n> 命令（其中 <n> 表示要移动的 commit 数量）。该命令会重置当前分支的头部指针，并丢弃最近的 n 次 commit。)**;
 
 ## 对比远程与本地分支：
 
