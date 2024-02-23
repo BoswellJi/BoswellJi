@@ -31,3 +31,9 @@
 - [git rebase](https://blog.csdn.net/weixin_42310154/article/details/119004977): 当执行 rebase 操作时，git 会从两个分支的共同祖先开始提取待变基分支上的修改，然后将待变基分支指向基分支的最新提交，最后将刚才提取的修改应用到基分支的最新提交的后面。
 
 - [git cherry-pick](https://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html): 这时分两种情况。一种情况是，你需要另一个分支的所有代码变动，那么就采用合并（git merge）。另一种情况是，你只需要部分代码变动（某几个提交），这时可以采用 Cherry pick。
+
+## 问题
+
+1. `a/b/c.txt already exists in the index`问题？
+
+原因是之前手动建过`a/b/c.txt`，删除之后，本地缓存也还是存在，所以需要移除掉本地缓存的数据,执行`git rm -r --cached a/b/c.txt`;
