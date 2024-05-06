@@ -1,7 +1,14 @@
-const fs = require('fs');
+const http = require('http')
+const fs = require('fs')
+const path = require('path')
 
-const r = fs.readFileSync('E:/BoswellJi/nodejs/file/1.png', {
-  encoding: 'utf-8'
-});
+const server = http.createServer((req, res) => {
+  const filePath = path.join(__dirname, 'tiexin-x64-4.36.0.exe')
+  const r = fs.readFileSync(filePath)
+  res.end(r)
+})
 
-console.log(r);
+const PORT = 3000
+server.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`)
+})
