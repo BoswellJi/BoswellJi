@@ -1,0 +1,62 @@
+{
+  "name": "json2tscopy",
+  "displayName": "json2tscopy",
+  "description": "Convert a JSON from clipboard to TypeScript interfaces. (Ctrl+Alt+V)",
+  "version": "0.0.1",
+  "publisher": "Boswell",
+  "author": {
+    "name": "Boswell"
+  },
+  "engines": {
+    "vscode": "^1.84.2"
+  },
+  "activationEvents": [],
+  "icon": "images/json2tsIcon.png",
+  "categories": [
+    "Programming Languages"
+  ],
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "light"
+  },
+  "main": "./out/src/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "convert.json2ts",
+        "title": "Convert json clipboard to TypeScript interfaces"
+      },
+      {
+        "command": "rest.json2ts",
+        "title": "Convert a REST-URL with json result to TypeScript interfaces"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "convert.json2ts",
+        "key": "ctrl+alt+V"
+      },
+      {
+        "command": "rest.json2ts",
+        "key": "ctrl+alt+X"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "tsc -p ./"
+  },
+  "devDependencies": {
+    "@types/clipboardy": "^2.0.1",
+    "@types/request": "^2.48.12",
+    "@types/underscore": "^1.11.15",
+    "@types/vscode": "^1.84.2"
+  },
+  "dependencies": {
+    "clipboardy": "^4.0.0",
+    "node-clipboardy": "^1.0.3",
+    "request": "^2.88.1",
+    "typescript": "^5.3.2",
+    "underscore": "^1.13.6"
+  }
+}
