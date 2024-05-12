@@ -73,7 +73,7 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
   // 包含被编译目录
-  "include": ["src/**/*", "types/**/*"],
+  "include": ["src/**/*.ts", "types/**/*.d.ts"],
   // 不编译的目录
   "exclude": ["node_modules", "dist"],
   // 包含被编译的文件

@@ -1,10 +1,23 @@
-import { age } from '@/ts/test2';
+type Str = 'a' & string;const str: Str = 'a';
 
-const personName: string = 'Boswell';
-const sayFn: () => void = () => { };
+type Obj = { name: string } | { age: number };
+type Name = { name: string; sex: number; age: number };
+type Age = { age: number; sex: number };
+type Person = { age: number; sex: number; name: string };
 
-age;
+type p1 = Name extends Person ? 1 : 0;
 
-const p = new Promise((reslove, reject) => { });
+const obj: Name | Age = { name: 'ok', age: 21, sex: 1 };
+const obj1: Obj = { name: 'ok' };
+const obj2: Obj = { age: 21 };
+const person1: Person = { name: 'ok', age: 21, sex: 1 };
 
-tsObj;
+const addPerson = (person: Age) => {
+ return person;
+};
+
+addPerson(person1);
+
+type Obj1 = { name: string; sex: number } & { age: number; sex: number };
+
+const obj3: Obj1 = { name: 'ok', age: 21, sex: 1 };
