@@ -2,9 +2,7 @@
 
 ## [Personal Profile](./personal-profile/boswell.md)
 
-```html
 <a href="/MyBlog/image/boswell.pdf" download="boswell.pdf">下载</a>
-```
 
 ## Javascript
 

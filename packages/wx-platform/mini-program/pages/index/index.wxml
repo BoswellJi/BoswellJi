@@ -1,2 +1,0 @@
-<view >{{text}}</view>
-<button bindtap="clickhandle">点击</button>

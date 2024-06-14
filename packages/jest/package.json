@@ -1,5 +1,5 @@
 {
-  "name": "jest-test",
+  "name": "@boswell/jest",
   "version": "1.0.0",
   "description": "- 专注于简单的 js 测试框架",
   "main": "index.test.js",

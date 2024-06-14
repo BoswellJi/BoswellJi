@@ -1,5 +1,5 @@
 {
-  "name": "json2tscopy",
+  "name": "@boswell/json2tscopy",
   "displayName": "json2tscopy",
   "description": "Convert a JSON from clipboard to TypeScript interfaces. (Ctrl+Alt+V)",
   "version": "0.0.1",

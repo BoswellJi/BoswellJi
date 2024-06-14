@@ -1,4 +1,4 @@
-module.exports = cfg => {
+module.exports = function (cfg) {
   return {
     plugins: [
       /***
@@ -14,12 +14,12 @@ module.exports = cfg => {
       /***
        * 允许直接在css文件中使用postcss plugin,作用域在当前的css文件
        */
-      require('postcss-use'),
+      require('postcss-use')
 
       /***
        * 压缩css
        */
       // require('cssnano'),
     ]
-  };
-};
+  }
+}

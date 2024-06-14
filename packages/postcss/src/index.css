@@ -9,14 +9,14 @@ body {
   break-after: always;
 
   background: url(http://1.jpg) no-repeat 0 0 / 100px 100px,
-  url(http://2.jpg) no-repeat;
-}
-/*! test */
-h1 {
-    color: red
+    url(http://2.jpg) no-repeat;
 }
 
-@custom-media --viewport-medium (width <= 50rem);
+h1 {
+  color: red
+}
+
+@custom-media --viewport-medium (width <=50rem);
 @custom-selector :--heading h1, h2, h3, h4, h5, h6;
 
 :root {
