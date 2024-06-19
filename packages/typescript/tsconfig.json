@@ -75,7 +75,7 @@
   // 包含被编译目录
   "include": ["src/**/*", "types/**/*"],
   // 不编译的目录
-  "exclude": ["node_modules", "dist"],
+  "exclude": ["node_modules", "dist"]
   // 包含被编译的文件
-  "files": ["./types/global.d.ts"]
+  // "files": ["./types/global.d.ts"]
 }
