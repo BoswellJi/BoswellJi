@@ -1,0 +1,3 @@
+import comp from "E:/code1/BoswellJi/packages/blog-source-code/doc/.vuepress/.temp/pages/nodejs/package-manager.html.vue"
+const data = JSON.parse("{\"path\":\"/nodejs/package-manager.html\",\"title\":\"包管理器\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"pnpm 的问题\",\"slug\":\"pnpm-的问题\",\"link\":\"#pnpm-的问题\",\"children\":[]},{\"level\":2,\"title\":\"npm 的问题\",\"slug\":\"npm-的问题\",\"link\":\"#npm-的问题\",\"children\":[]}],\"git\":{\"updatedTime\":1710496815000,\"contributors\":[{\"name\":\"mingzhuang.ji\",\"email\":\"mingzhuang.ji@ly.com\",\"commits\":2}]},\"filePathRelative\":\"nodejs/package-manager.md\"}")
+export { comp, data }

@@ -1,0 +1,3 @@
+import comp from "E:/code1/BoswellJi/packages/blog-source-code/doc/.vuepress/.temp/pages/ts/类型系统.html.vue"
+const data = JSON.parse("{\"path\":\"/ts/%E7%B1%BB%E5%9E%8B%E7%B3%BB%E7%BB%9F.html\",\"title\":\"\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"类型操作\",\"slug\":\"类型操作\",\"link\":\"#类型操作\",\"children\":[]},{\"level\":2,\"title\":\"工具类型\",\"slug\":\"工具类型\",\"link\":\"#工具类型\",\"children\":[]}],\"git\":{\"updatedTime\":1718343613000,\"contributors\":[{\"name\":\"mingzhuang.ji\",\"email\":\"mingzhuang.ji@ly.com\",\"commits\":2}]},\"filePathRelative\":\"ts/类型系统.md\"}")
+export { comp, data }

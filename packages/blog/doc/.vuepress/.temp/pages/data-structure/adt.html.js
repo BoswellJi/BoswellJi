@@ -1,0 +1,3 @@
+import comp from "E:/code1/BoswellJi/packages/blog-source-code/doc/.vuepress/.temp/pages/data-structure/adt.html.vue"
+const data = JSON.parse("{\"path\":\"/data-structure/adt.html\",\"title\":\"\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"抽象数据类型\",\"slug\":\"抽象数据类型\",\"link\":\"#抽象数据类型\",\"children\":[{\"level\":3,\"title\":\"抽象数据类型的结构\",\"slug\":\"抽象数据类型的结构\",\"link\":\"#抽象数据类型的结构\",\"children\":[]},{\"level\":3,\"title\":\"抽象数据类型结构的属性\",\"slug\":\"抽象数据类型结构的属性\",\"link\":\"#抽象数据类型结构的属性\",\"children\":[]}]}],\"git\":{\"updatedTime\":1702001688000,\"contributors\":[{\"name\":\"mingzhuang.ji\",\"email\":\"mingzhuang.ji@ly.com\",\"commits\":1}]},\"filePathRelative\":\"data-structure/adt.md\"}")
+export { comp, data }

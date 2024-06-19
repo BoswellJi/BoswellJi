@@ -1,0 +1,3 @@
+import comp from "E:/code1/BoswellJi/packages/blog-source-code/doc/.vuepress/.temp/pages/microfrontend/core.html.vue"
+const data = JSON.parse("{\"path\":\"/microfrontend/core.html\",\"title\":\"\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"微前端\",\"slug\":\"微前端\",\"link\":\"#微前端\",\"children\":[{\"level\":3,\"title\":\"微应用\",\"slug\":\"微应用\",\"link\":\"#微应用\",\"children\":[]}]}],\"git\":{\"updatedTime\":1702001688000,\"contributors\":[{\"name\":\"mingzhuang.ji\",\"email\":\"mingzhuang.ji@ly.com\",\"commits\":1}]},\"filePathRelative\":\"microfrontend/core.md\"}")
+export { comp, data }

@@ -15,6 +15,7 @@
     "postinstall": "simple-git-hooks",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "blog:dev": "pnpm run --filter @boswell/blog dev",
+    "blog:deploy": "pnpm run --filter @boswell/blog deploy",
     "postcss:build": "pnpm run --filter @boswell/postcss build",
     "nodejs": "pnpm run --filter @boswell/nodejs nodejs",
     "typescript:tsc": "pnpm run --filter @boswell/typescript",

@@ -1,0 +1,3 @@
+import comp from "E:/code1/BoswellJi/packages/blog-source-code/doc/.vuepress/.temp/pages/english/特殊句式/短语.html.vue"
+const data = JSON.parse("{\"path\":\"/english/%E7%89%B9%E6%AE%8A%E5%8F%A5%E5%BC%8F/%E7%9F%AD%E8%AF%AD.html\",\"title\":\"\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"名词短语\",\"slug\":\"名词短语\",\"link\":\"#名词短语\",\"children\":[]},{\"level\":2,\"title\":\"介词短语\",\"slug\":\"介词短语\",\"link\":\"#介词短语\",\"children\":[]},{\"level\":2,\"title\":\"动词短语\",\"slug\":\"动词短语\",\"link\":\"#动词短语\",\"children\":[]}],\"git\":{\"updatedTime\":1702001688000,\"contributors\":[{\"name\":\"mingzhuang.ji\",\"email\":\"mingzhuang.ji@ly.com\",\"commits\":1}]},\"filePathRelative\":\"english/特殊句式/短语.md\"}")
+export { comp, data }

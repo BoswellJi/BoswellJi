@@ -1,0 +1,3 @@
+import comp from "E:/code1/BoswellJi/packages/blog-source-code/doc/.vuepress/.temp/pages/suzhou/202308.html.vue"
+const data = JSON.parse("{\"path\":\"/suzhou/202308.html\",\"title\":\"\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"第零天：\",\"slug\":\"第零天\",\"link\":\"#第零天\",\"children\":[]},{\"level\":2,\"title\":\"第一天：\",\"slug\":\"第一天\",\"link\":\"#第一天\",\"children\":[]},{\"level\":2,\"title\":\"第二天：\",\"slug\":\"第二天\",\"link\":\"#第二天\",\"children\":[]},{\"level\":2,\"title\":\"第三天：\",\"slug\":\"第三天\",\"link\":\"#第三天\",\"children\":[]}],\"git\":{\"updatedTime\":1702001688000,\"contributors\":[{\"name\":\"mingzhuang.ji\",\"email\":\"mingzhuang.ji@ly.com\",\"commits\":1}]},\"filePathRelative\":\"suzhou/202308.md\"}")
+export { comp, data }

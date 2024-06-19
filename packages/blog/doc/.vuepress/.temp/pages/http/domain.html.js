@@ -1,0 +1,3 @@
+import comp from "E:/code1/BoswellJi/packages/blog-source-code/doc/.vuepress/.temp/pages/http/domain.html.vue"
+const data = JSON.parse("{\"path\":\"/http/domain.html\",\"title\":\"\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"域名\",\"slug\":\"域名\",\"link\":\"#域名\",\"children\":[{\"level\":3,\"title\":\"分类\",\"slug\":\"分类\",\"link\":\"#分类\",\"children\":[]},{\"level\":3,\"title\":\"示例\",\"slug\":\"示例\",\"link\":\"#示例\",\"children\":[]}]}],\"git\":{\"updatedTime\":1702001688000,\"contributors\":[{\"name\":\"mingzhuang.ji\",\"email\":\"mingzhuang.ji@ly.com\",\"commits\":1}]},\"filePathRelative\":\"http/domain.md\"}")
+export { comp, data }

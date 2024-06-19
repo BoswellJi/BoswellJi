@@ -1,0 +1,7 @@
+<template><div><h2 id="概述" tabindex="-1"><a class="header-anchor" href="#概述"><span>概述</span></a></h2>
+<p>用来解释说明主语的性质，状态，特性；</p>
+<h2 id="做表语的词或者短语" tabindex="-1"><a class="header-anchor" href="#做表语的词或者短语"><span>做表语的词或者短语</span></a></h2>
+<p>主语，形容词，数词，副词，介词短语，不定式, 现在分词， 句子</p>
+</div></template>
+
+
