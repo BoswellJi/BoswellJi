@@ -1,3 +1,0 @@
-import comp from "E:/code1/BoswellJi/packages/blog/doc/.vuepress/.temp/pages/interview/html/index.html.vue"
-const data = JSON.parse("{\"path\":\"/interview/html/\",\"title\":\"html\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"html5 中的特性\",\"slug\":\"html5-中的特性\",\"link\":\"#html5-中的特性\",\"children\":[]},{\"level\":2,\"title\":\"src 和 href 属性的区别\",\"slug\":\"src-和-href-属性的区别\",\"link\":\"#src-和-href-属性的区别\",\"children\":[]},{\"level\":2,\"title\":\"dom 操作性能差\",\"slug\":\"dom-操作性能差\",\"link\":\"#dom-操作性能差\",\"children\":[]}],\"git\":{\"updatedTime\":null,\"contributors\":[]},\"filePathRelative\":\"interview/html/readme.md\"}")
-export { comp, data }

@@ -1,3 +1,0 @@
-import comp from "E:/code1/BoswellJi/packages/blog/doc/.vuepress/.temp/pages/engineering/formatter.html.vue"
-const data = JSON.parse("{\"path\":\"/engineering/formatter.html\",\"title\":\"\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"格式化\",\"slug\":\"格式化\",\"link\":\"#格式化\",\"children\":[{\"level\":3,\"title\":\"格式化统一涉及的工具\",\"slug\":\"格式化统一涉及的工具\",\"link\":\"#格式化统一涉及的工具\",\"children\":[]}]}],\"git\":{\"updatedTime\":1718759308000,\"contributors\":[{\"name\":\"mingzhuang.ji\",\"email\":\"mingzhuang.ji@ly.com\",\"commits\":1}]},\"filePathRelative\":\"engineering/formatter.md\"}")
-export { comp, data }

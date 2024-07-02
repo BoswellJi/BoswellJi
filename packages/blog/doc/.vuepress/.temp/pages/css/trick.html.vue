@@ -1,7 +1,0 @@
-<template><div><h2 id="布局缩放适配问题" tabindex="-1"><a class="header-anchor" href="#布局缩放适配问题"><span>布局缩放适配问题</span></a></h2>
-<ul>
-<li>通过将元素单位设置为百分比来缩放元素,让文本多的布局不会换行,例如padding,margin,width,font-size等;</li>
-</ul>
-</div></template>
-
-

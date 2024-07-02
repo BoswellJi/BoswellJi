@@ -1,3 +1,0 @@
-import comp from "E:/code1/BoswellJi/packages/blog/doc/.vuepress/.temp/pages/english/特殊句式/独立主格.html.vue"
-const data = JSON.parse("{\"path\":\"/english/%E7%89%B9%E6%AE%8A%E5%8F%A5%E5%BC%8F/%E7%8B%AC%E7%AB%8B%E4%B8%BB%E6%A0%BC.html\",\"title\":\"\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"概述\",\"slug\":\"概述\",\"link\":\"#概述\",\"children\":[]},{\"level\":2,\"title\":\"定义\",\"slug\":\"定义\",\"link\":\"#定义\",\"children\":[]},{\"level\":2,\"title\":\"功能\",\"slug\":\"功能\",\"link\":\"#功能\",\"children\":[]}],\"git\":{\"updatedTime\":1718759308000,\"contributors\":[{\"name\":\"mingzhuang.ji\",\"email\":\"mingzhuang.ji@ly.com\",\"commits\":1}]},\"filePathRelative\":\"english/特殊句式/独立主格.md\"}")
-export { comp, data }

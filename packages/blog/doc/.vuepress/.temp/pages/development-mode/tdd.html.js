@@ -1,3 +1,0 @@
-import comp from "E:/code1/BoswellJi/packages/blog/doc/.vuepress/.temp/pages/development-mode/tdd.html.vue"
-const data = JSON.parse("{\"path\":\"/development-mode/tdd.html\",\"title\":\"\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"测试驱动开发（Test Driven Development）\",\"slug\":\"测试驱动开发-test-driven-development\",\"link\":\"#测试驱动开发-test-driven-development\",\"children\":[]}],\"git\":{\"updatedTime\":1718759308000,\"contributors\":[{\"name\":\"mingzhuang.ji\",\"email\":\"mingzhuang.ji@ly.com\",\"commits\":1}]},\"filePathRelative\":\"development-mode/tdd.md\"}")
-export { comp, data }

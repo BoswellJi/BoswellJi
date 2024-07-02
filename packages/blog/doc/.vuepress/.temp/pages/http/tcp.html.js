@@ -1,3 +1,0 @@
-import comp from "E:/code1/BoswellJi/packages/blog/doc/.vuepress/.temp/pages/http/tcp.html.vue"
-const data = JSON.parse("{\"path\":\"/http/tcp.html\",\"title\":\"\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"传输控制协议(Transmission Control Protocol)\",\"slug\":\"传输控制协议-transmission-control-protocol\",\"link\":\"#传输控制协议-transmission-control-protocol\",\"children\":[{\"level\":3,\"title\":\"介绍\",\"slug\":\"介绍\",\"link\":\"#介绍\",\"children\":[]},{\"level\":3,\"title\":\"缺点\",\"slug\":\"缺点\",\"link\":\"#缺点\",\"children\":[]}]}],\"git\":{\"updatedTime\":1718759308000,\"contributors\":[{\"name\":\"mingzhuang.ji\",\"email\":\"mingzhuang.ji@ly.com\",\"commits\":1}]},\"filePathRelative\":\"http/tcp.md\"}")
-export { comp, data }

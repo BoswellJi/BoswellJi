@@ -1,3 +1,0 @@
-import comp from "E:/code1/BoswellJi/packages/blog/doc/.vuepress/.temp/pages/interview/http/面试题.html.vue"
-const data = JSON.parse("{\"path\":\"/interview/http/%E9%9D%A2%E8%AF%95%E9%A2%98.html\",\"title\":\"http\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"状态码分类\",\"slug\":\"状态码分类\",\"link\":\"#状态码分类\",\"children\":[]},{\"level\":2,\"title\":\"下载文件流中，响应的 content-type 是什么\",\"slug\":\"下载文件流中-响应的-content-type-是什么\",\"link\":\"#下载文件流中-响应的-content-type-是什么\",\"children\":[]}],\"git\":{\"updatedTime\":null,\"contributors\":[]},\"filePathRelative\":\"interview/http/面试题.md\"}")
-export { comp, data }

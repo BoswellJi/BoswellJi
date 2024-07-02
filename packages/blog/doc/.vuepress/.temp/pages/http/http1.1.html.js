@@ -1,3 +1,0 @@
-import comp from "E:/code1/BoswellJi/packages/blog/doc/.vuepress/.temp/pages/http/http1.1.html.vue"
-const data = JSON.parse("{\"path\":\"/http/http1.1.html\",\"title\":\"\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"http 头部\",\"slug\":\"http-头部\",\"link\":\"#http-头部\",\"children\":[{\"level\":3,\"title\":\"文件缓存相关\",\"slug\":\"文件缓存相关\",\"link\":\"#文件缓存相关\",\"children\":[]}]}],\"git\":{\"updatedTime\":1718759308000,\"contributors\":[{\"name\":\"mingzhuang.ji\",\"email\":\"mingzhuang.ji@ly.com\",\"commits\":1}]},\"filePathRelative\":\"http/http1.1.md\"}")
-export { comp, data }

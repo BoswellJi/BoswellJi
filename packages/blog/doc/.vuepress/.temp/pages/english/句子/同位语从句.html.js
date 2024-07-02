@@ -1,3 +1,0 @@
-import comp from "E:/code1/BoswellJi/packages/blog/doc/.vuepress/.temp/pages/english/句子/同位语从句.html.vue"
-const data = JSON.parse("{\"path\":\"/english/%E5%8F%A5%E5%AD%90/%E5%90%8C%E4%BD%8D%E8%AF%AD%E4%BB%8E%E5%8F%A5.html\",\"title\":\"\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"概述\",\"slug\":\"概述\",\"link\":\"#概述\",\"children\":[]},{\"level\":2,\"title\":\"名词/名词词组做同位语\",\"slug\":\"名词-名词词组做同位语\",\"link\":\"#名词-名词词组做同位语\",\"children\":[]}],\"git\":{\"updatedTime\":1718759308000,\"contributors\":[{\"name\":\"mingzhuang.ji\",\"email\":\"mingzhuang.ji@ly.com\",\"commits\":1}]},\"filePathRelative\":\"english/句子/同位语从句.md\"}")
-export { comp, data }
