@@ -210,6 +210,11 @@
 
 - [操作系统术语](./operating-system/term.md)
 
+## PPT
+
+- [旅仓PC前端项目复盘](./ppt/旅仓PC前端项目复盘.md)
+- [微前端简介](./ppt//micro-frontend.md)
+
 ## Books
 
 ### JavaScript
