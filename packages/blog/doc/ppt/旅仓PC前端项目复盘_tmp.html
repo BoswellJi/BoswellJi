@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>旅仓PC前端项目复盘.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E6%97%85%E4%BB%93-pc-%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0">旅仓 PC 前端架构设计与实现</h1>
+<h2 id="%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D">自我介绍</h2>
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th>季明壮</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基准岗位</td>
+<td>前端开发</td>
+</tr>
+<tr>
+<td>职级</td>
+<td>T5</td>
+</tr>
+<tr>
+<td>核心工作</td>
+<td>旅仓分销平台前端相关系统的架构设计与实现，以及日常开发与维护。其中包括旅仓 PC 站，旅仓 M 站，旅仓小程序，旅仓 CRM 管理系统等</td>
+</tr>
+</tbody>
+</table>
+<h2 id="%E6%97%85%E4%BB%93-pc-%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E5%A4%8D%E7%9B%98">旅仓 PC 前端架构设计与实现复盘</h2>
+<h3 id="%E8%83%8C%E6%99%AF">背景</h3>
+<p><strong>旅仓</strong>是同程旅游授权的全品类的分销网站，包括：旅游线路，酒店，机票，等等产品和服务。</p>
+<p>但是旅仓技术方案目前面临几个问题对我们的开发与迭代造成了巨大的负担：</p>
+<ol>
+<li>采用的是<code>aps.net mvc</code>的技术架构，前端只是<code>mvc</code>中的<code>v</code>，前后端耦合严重。</li>
+<li>当前的前端技术栈老旧，技术栈采用的是基于<code>jQuery+plugins</code>的方案，写复杂逻辑很痛苦。</li>
+<li>逻辑复杂且混乱，代码组织结构不清晰，导致维护成本较高，再发展下去肯定会慢慢变的不可维护了。</li>
+</ol>
+<p>所以进行技术架构，技术栈升级。而且为了不影响业务日常工作开展，我们进行了渐进式的项目演进。</p>
+<h3 id="%E7%9B%AE%E6%A0%87">目标</h3>
+<ol>
+<li>架构升级，提高开发人员的开发效率与开发体验。</li>
+<li>老项目重构，提高项目的可维护性和可拓展性等。</li>
+<li>不影响业务日常工作开展的前提下给业务交付开发结果。</li>
+</ol>
+<h3 id="%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88">技术方案</h3>
+<h4 id="%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5">第一阶段</h4>
+<ol>
+<li>
+<p>开发时进行前后端分离</p>
+<ul>
+<li>
+<p>前后端分离</p>
+<ul>
+<li>
+<p>首先进行前后端分离，让前端拥有前端项目的主动权，独立设计，独立开发，独立部署（面向<code>业务</code>与<code>HTTP API</code>）。</p>
+<p><img src="file:///e:/code1/BoswellJi/packages/blog/doc/static/lvcang/lvcang3.jpg" alt="图片"></p>
+<div style="text-align:center;color:#999">(&#x524D;&#x540E;&#x7AEF;&#x5206;&#x79BB;&#x4E4B;&#x524D;)</div>
+<p><img src="file:///e:/code1/BoswellJi/packages/blog/doc/static/lvcang/lvcang4.jpg" alt="图片"></p>
+<div style="text-align:center;color:#999">(&#x524D;&#x540E;&#x7AEF;&#x5206;&#x79BB;&#x4E4B;&#x540E;)</div>
+</li>
+</ul>
+</li>
+<li>
+<p>前端项目架构设计</p>
+<ul>
+<li>
+<p>需要考虑的事情</p>
+<ul>
+<li>
+<p>应用形态定位：PC 旅仓系统是传统的 Web 网站应用，非工具类型的重型应用，非静态的静态网站。</p>
+</li>
+<li>
+<p>应用交互方式：这类应用一般交互方式为页面之间通过超链接的方式进行互相连接，且为了用户查看方便，跳转之间不会覆盖上一个页面，而是在新的页面打开。</p>
+</li>
+<li>
+<p>网站营销需求：需要搜索引擎优化(seo)</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>总结：基于以上种种，我们决定采用多页开发架构(MPA)</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>技术选型：</p>
+<ul>
+<li>
+<p>Vite：项目构建工具</p>
+</li>
+<li>
+<p>Vue3：UI开发</p>
+</li>
+<li>
+<p>Vue Router<code>(可选)</code>：主要是为了复杂页面准备，可能有主页中存在子页面的情况</p>
+</li>
+<li>
+<p>Pinia：复杂数据流管理</p>
+</li>
+<li>
+<p>其他：三方工具库，组件库等</p>
+</li>
+</ul>
+</li>
+<li>
+<p>架构图</p>
+<p><img src="file:///e:/code1/BoswellJi/packages/blog/doc/static/lvcang/lvcang5.jpg" alt="图片"></p>
+ <div style="text-align:center;color:#999">(&#x524D;&#x7AEF;&#x67B6;&#x6784;&#x56FE;)</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>构建时产物进老项目</p>
+<ul>
+<li>
+<p>从三个方面考虑：</p>
+<ul>
+<li>
+<p>兼容老项目：这样可以让我们把代码部署在一个站点上，新老项目只需要根据<code>url</code>跳转即可。</p>
+</li>
+<li>
+<p>避免技术债务和较大的工作量：原本是想基于微前端方案，重新独立部署前端，通过微前端将老项目兼容进来，但是时间紧，任务重，因为之前技术栈老旧，且是多页架构的，每个页面都要当作一个子应用数量庞大。</p>
+</li>
+<li>
+<p>开发效率，尽快满足业务需求：人少，活多，想尽快上线。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>我们是怎么做的：</p>
+<ul>
+<li>通过编写<code>vite</code>插件，在构建的生命周期钩子中，将对应产物<code>.html</code>写入到对应的<code>C#</code>模板中，同样静态资源<code>css,js,图片</code>都放到<code>asp.net</code>存放的静态文件的文件夹下。</li>
+</ul>
+<p><img src="file:///e:/code1/BoswellJi/packages/blog/doc/static/lvcang/lvcang1.png" alt="图片">
+<img src="file:///e:/code1/BoswellJi/packages/blog/doc/static/lvcang/lvcang2.png" alt="图片"></p>
+</li>
+</ul>
+</li>
+<li>
+<p>运行时跑在老服务器上</p>
+<ul>
+<li>到这里就结束了</li>
+</ul>
+</li>
+</ol>
+<h4 id="%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5-%E6%9C%AA%E6%9D%A5%E8%AE%A1%E5%88%92">第二阶段 <em>（未来计划）</em></h4>
+<p>项目完全不再依赖后端服务器<code>特指的是传统后端服务器，asp.net,java</code>，可独立部署，这个阶段会结合<code>微前端</code>、<code>ssr</code>、<code>monorepore</code>做进一步架构探索。</p>
+<h3 id="%E6%80%BB%E7%BB%93">总结</h3>
+<h4 id="%E4%BC%98%E7%82%B9">优点</h4>
+<ol>
+<li>架构升级，提高开发人员的开发效率与开发体验，更好的做到业务开发的交付。</li>
+<li>从技术角度来看，我们在尽量对齐业界最新技术实践，保持开发人员的核心竞争力。</li>
+<li>从项目角度来看，我们在尽量保持的项目可持续发展（可维护性，可拓展性，可复用性，健壮性等等），与时俱进。</li>
+</ol>
+<h4 id="%E7%BC%BA%E7%82%B9%E5%B1%95%E6%9C%9B">缺点/展望</h4>
+<ol>
+<li>项目的监控（埋点，异常，性能）缺失，促使我们对问题后知后觉，后续进一步补齐这一块的短板，接入公司的监控平台中去。</li>
+<li>旅仓<code>web</code>网站的应用形态，最终技术方案应该时<code>ssr</code>，这样可以给我们后续的优化，新的技术方案的采用等等带来便利。</li>
+<li>要做精细化拆包，因为多页架构，希望能够将每个页面的依赖控制到最低，以及公共包的缓存。</li>
+</ol>
+
+</body>
+</html>
