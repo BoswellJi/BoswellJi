@@ -210,11 +210,6 @@
 
 - [操作系统术语](./operating-system/term.md)
 
-## PPT
-
-- [旅仓PC前端项目复盘](./ppt/旅仓PC前端项目复盘.md)
-- [微前端简介](./ppt//micro-frontend.md)
-
 ## Books
 
 ### JavaScript
@@ -251,10 +246,6 @@
 - [现代化 js 实战](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/现代化js实战)
 - [给不耐烦的程序员的 javascript](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/给不耐烦的程序员的javascript)
 - [话说 javascript](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/话说javascript)
-
-## Sharing
-
-- [微前端](./ppt/micro-frontend.md)
 
 ## English
 
@@ -315,10 +306,15 @@
 
 - [翻译技巧](./english/翻译/readme.md)
 
+## Share
+
+- [旅仓PC前端项目复盘](./ppt/旅仓PC前端项目复盘.md)
+- [微前端基本原理概述](./ppt/微前端基本原理概述.md)
+
 ## Thought
 
 - [对编程语言的思考](./thought/readme.md)
 
-## 苏州
+## SuZhou
 
 - [攻略](./suzhou/202308.md)
