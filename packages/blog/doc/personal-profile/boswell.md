@@ -13,23 +13,78 @@
 ## 职业技能
 
 0. 精通 `javascript`,`vue2.x/3.x`；
-1. 熟练 `typescript`,`html`,`css`,`vue-router`,`pinia`,`vuex`,`elementUI`,`git`,`原生微信小程序开发`等；
+1. 熟练 `typescript`,`html`,`css`,`vue-router`,`pinia`,`vuex`,`elementUI/elementPlus`,`git`,`原生微信小程序开发`等；
 2. 掌握 `uniapp`,`vite`,`webpack`,`http`,`less`,`sass`,`tailwindcss`等；
 3. 熟悉 `frontend engineering`,`nodejs`,`design pattern`,`algorithm`,`data structure`等；
 4. 了解 `react`,`angular`,`canvas`,`webgl`,`threejs(3D)`,`spritejs(2D)`等；
 
-## 2021-8~至今：研途教育科技
+## 2022-6~至今：同程旅行
 
-### 学生专属择校报告
+### 旅仓PC
+
+> 描述：公司全品类产品，包括旅游，出行，住宿等对外分销业务平台。
+
+- 职责
+
+整个网站的前端架构设计与实现，也是对老网站的一次重构，老网站基于Asp.Net：
+
+- 实现了基于Typescript,Vue3,TailWindCss,Vite的多页架构。
+- 实现了多页的页面地址重写，开发环境页面符合老项目规则。
+- 实现了前后端联调通讯的Http代理服务，解决老项目迁移中的接口代理问题。
+- 实现了产物构建到老项目的自动化流程。
+- 核心业务详情页到下单支付的所有开发。
+
+### 旅仓H5
+
+> 描述：公司全品类产品，包括旅游，出行，住宿等对外分销业务平台。
+
+- 职责
+
+整个网站的前端架构设计与实现，页面UI复用的其项目代码：
+
+- 实现了基于Typescript,Vue2.7,Less,Vite的多页架构。
+- 实现了项目中兼容Commonjs与ESM模块之间的交互。
+- 实现了项目对于不支持原生ESM，原生ESM动态导入和 import.meta的浏览器的兼容。
+- 核心业务详情页到下单支付的所有重构开发。
+- 通过封装入口来所有页面初始化流程。包括处理url中的参数，用户信息获取，等公共逻辑抽象。
+- 定义第三方接入方传入的字段规则。
+
+### 旅仓小程序
+
+> 描述：公司全品类产品，包括旅游，出行，住宿等对外分销业务平台。
+
+- 职责
+
+整个应用的开发与维护：
+
+- 通过缓存编译产物，优化了基于gulp的构建系统开发时的编译性能优化。
+- 通过接入旅仓H5来复用整个项目的详情到下单支付流程能力。
+- 定义小程序与H5交互的字段规则。
+- 维护海报分享模块。
+
+### 旅仓CRM
+
+> 描述：公司全品类产品，包括旅游，出行，住宿等对外分销业务平台的后台管理系统。
+
+- 职责
+
+整个应用的前端架构设计与实现：
+
+- 实现了基于Typescript,Vue3.x,element-plus,Vue-Router,Pinia,Sass,Vite的单页架构。
+- 实现了基于RBAC的权限控制。
+- 实现了Layout的可定制。
+- 实现了基于css变量的主题切换。
+- 封装公共组件，公共工具，Hooks等。
+
+## 2021-8~2022-6：研途教育科技
+
+### 学生专属择校报告生成工具
 
 > 描述：预定义多个配置组件，通过拖拽的方式放置到报告页面中进行配置，然后生成pdf报告，项目主要采用：
 
-- 框架
+- 技术栈
 
   - vue2.x
-
-- 库
-
   - vuex
   - vue-router
   - element-ui
@@ -49,18 +104,15 @@
   - 实现了后端生成pdf的模板html,通过`css`的`@page`特性给打印的文档配置样式；
 
 - 地址
-  - [项目](https://github.com/BoswellJi/BoswellJi/blob/master/blog-source-code/doc/project/student-report.md)
+  - [项目](../project/student-report.md)
 
 ### 模拟考试
 
 > 描述：这是一个hybrid app,提供给学生用来模拟考试,有多门课程的试卷，项目主要采用：
 
-- 框架
+- 技术栈
 
   - vue2.x
-
-- 库
-
   - vuex
   - vue-router
   - vant
@@ -84,18 +136,15 @@
   - 实现了分享海报；
 
 - 地址
-  - [项目](https://github.com/BoswellJi/BoswellJi/blob/master/blog-source-code/doc/project/mock-exam.md)
+  - [项目](../project/mock-exam.md)
 
 ### 订单退费审核流程
 
 > 描述：多级退款审批流程，项目主要采用：
 
-- 框架
+- 技术栈
 
   - vue2.x
-
-- 库
-
   - vuex
   - vue-router
   - vant
@@ -133,12 +182,9 @@
 
 ### 咪店优选小程序
 
-- 框架
+- 技术栈
 
   - uniapp
-
-- 库
-
   - vuex
   - uniapp ui
   - vue
@@ -156,12 +202,9 @@
 
 ### 神奇会员小程序
 
-- 框架
+- 技术栈
 
   - uniapp
-
-- 库
-
   - vuex
   - uniapp ui
   - vue
@@ -182,18 +225,14 @@
 
 ### 喵客云管理后台
 
-- 框架
+- 技术栈
 
   - vue
-
-- 库
-
   - vuex
   - vue-roter
   - element UI
   - axios
   - moment
-  - 等
 
 - 职责
 
@@ -205,18 +244,14 @@
 
 ### 供货商管理后台
 
-- 框架
+- 技术栈
 
   - vue
-
-- 库
-
   - vuex
   - vue-roter
   - element UI
   - axios
   - moment
-  - 等
 
 - 职责
 
@@ -232,13 +267,10 @@
 
 > 描述：游戏平台官网，项目主要采用：
 
-- 库
+- 技术栈
 
   - jquery
   - jquery.s2t
-
-- 组件
-
   - jquery.dataTables
   - jquery.page
   - plupload.full
@@ -255,17 +287,14 @@
 
 > 描述：iphone 平台上的积分墙应用，是一个混合的 app，项目主要采用：
 
-- 框架
+- 技术栈
+
   - angular
-- 构建工具
   - angular-cli
-- 库
   - rxjs
   - clipboard.js
   - lodash
   - momnet
-- 组件
-
   - mescroll.js
 
 - 职责
@@ -284,18 +313,12 @@
 
 > 描述：财喵的后台管理系统，项目主要采用：
 
-- 框架
+- 技术栈
+
   - angular
-- 构建工具
   - angular-cli
-- 组件
   - ng-zorro-antd
-- 后台 UI 模板框架
-
   - Ng Alain
-
-- 库
-
   - lodash
   - rxjs
   - momnet
@@ -316,19 +339,13 @@
 
 > 描述：提供给公司客服部门对用户进行业务反馈，项目主要采用：
 
-- 库
+- 技术栈
 
   - vue
   - axios
-
-- 组件
-
   - pinchzoom （图片预览
   - mescroll.js （滚动加载
   - qqFace.js （表情包
-
-- html5
-
   - webscoket
 
 - 职责
@@ -345,18 +362,12 @@
 
 > 描述：客服系统后台，客服管理系统，项目主要采用：
 
-- 库
+- 技术栈
 
   - jquery
   - dot.js
-
-- 组件
-
   - qqFace.js （表情包
   - layer.js （弹框
-
-- html5
-
   - webscoket
 
 - 职责
@@ -373,7 +384,7 @@
 
 > 描述：pc+ moblie，项目主要采用：
 
-- 库
+- 库技术栈
 
   - jquery
   - zepto
@@ -381,14 +392,8 @@
   - requirejs
   - vue
   - animate.css
-
-- 组件
-
   - layerjs
   - 各种组件，插件（例如：轮播，转盘抽奖，九宫格,分页 等等
-
-- 构建工具
-
   - webpack
 
 - 职责
@@ -421,24 +426,12 @@
 
 > 描述：固定资产管理后台，项目主要采用：
 
-- 框架
+- 技术栈
 
   - angular
-
-- 构建工具
-
   - angular-cli
-
-- 组件库
-
   - ng-zorro-antd
-
-- 后台 UI 模板框架
-
   - Ng Alain
-
-- 库
-
   - lodash
   - rxjs
   - momnet
@@ -457,10 +450,9 @@
 
 > 描述：客户端，钉钉微应用，项目主要采用：
 
-- 框架
-  - ionic
-- 库
+- 技术栈
 
+  - ionic
   - loadsh
   - momnet
   - dd api
@@ -472,22 +464,16 @@
   - 公共模块封装数据表格组件，日历组件（二次封装，服务，通道等等
   - 数据接口定义
 
-- 地址
-  - 无
-
 ### 企业员工与学生管理系统
 
 > 描述：后台管理系统，项目主要采用：
 
-- 框架
+- 技术栈
+
   - angular
-- 构建工具
   - angular-cli
-- 组件
   - datatables
   - ngx-bootstrap
-- 库
-
   - loadsh
   - momnet
 
@@ -497,31 +483,19 @@
   - 公共模块封装数据表格组件，日历组件（二次封装，服务，通道等等
   - 数据接口定义
 
-- 地址
-  - 无
-
 ### 看图 app
 
 > 描述：查看图片的 app，项目主要采用：
 
-- 框架
+- 技术栈
 
   - angular
-
-- 构建工具
-
   - angular-cli
-
-- 组件
-
   - mescroll.js
   - ng-lazyload-image
   - ngx-infinite-scroll
   - ngx-swiper-wrapper
   - ngx-tabset
-
-- 库
-
   - rxjs
 
 - 职责
@@ -537,24 +511,12 @@
 
 > 描述：游戏的后台管理系统，项目主要采用：
 
-- 框架
+- 技术栈
 
   - angular
-
-- 构建工具
-
   - angular-cli
-
-- 组件库
-
   - ng-zorro-antd
-
-- 后台 UI 模板框架
-
   - Ng Alain
-
-- 库
-
   - rxjs
   - ngrx
 
