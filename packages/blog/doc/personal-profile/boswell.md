@@ -1,46 +1,51 @@
 ## 自我介绍
 
-| 姓名     | 季明壮                             |
-| -------- | ---------------------------------- |
-| 网名     | Boswell                            |
-| 岗位     | 前端工程师                         |
-| 联系电话 | 13812872860                        |
-| 邮箱     | aiyoudqrjmz@163.com                |
-| 毕业学校 | 沙洲职业工学院（2013-9~2016-6      |
-| 专业     | 网站开发与网络营销                 |
-| 网站     | https://boswellji.github.io/MyBlog |
+| 姓名 | 季明壮                                                           |
+| ---- | ---------------------------------------------------------------- |
+| 网名 | Boswell                                                          |
+| 岗位 | 前端工程师                                                       |
+| 电话 | 13812872860                                                      |
+| 邮箱 | aiyoudqrjmz@163.com                                              |
+| 学校 | 沙洲职业工学院（2013-9~2016-6                                    |
+| 专业 | 网站开发与网络营销                                               |
+| 网站 | https://boswellji.github.io/MyBlog/personal-profile/boswell.html |
 
 ## 职业技能
 
 0. 精通 `javascript`,`vue2.x/3.x`；
-1. 熟练 `typescript`,`html`,`css`,`vue-router`,`pinia`,`vuex`,`elementUI/elementPlus`,`git`,`原生微信小程序开发`等；
-2. 掌握 `uniapp`,`vite`,`webpack`,`http`,`less`,`sass`,`tailwindcss`等；
+1. 熟练 `typescript`,`html`,`css`,`vue-router`,`pinia`,`vuex`,`elementui/elementplus`,`wx mini program`,`uniapp`,`less`,`tailwindcss`,`git`等；
+2. 掌握 `vite`,`webpack`,`http`等；
 3. 熟悉 `frontend engineering`,`nodejs`,`design pattern`,`algorithm`,`data structure`等；
-4. 了解 `react`,`angular`,`canvas`,`webgl`,`threejs(3D)`,`spritejs(2D)`等；
+4. 了解 `react`,`angular`,`canvas`,`webgl`等；
 
 ## 2022-6~至今：同程旅行
 
 ### 旅仓PC
 
-> 描述：公司全品类产品，包括旅游，出行，住宿等对外分销业务平台。
+> 描述：公司全品类产品，包括旅游，出行，住宿等对外分销业务平台PC端。
 
 - 职责
 
-整个网站的前端架构设计与实现，也是对老网站的一次重构，老网站基于Asp.Net：
+整个网站的前端架构设计与实现，也是对老网站的一次重构，老网站基于Asp.Net的服务器端渲染的多页架构应用：
 
 - 实现了基于Typescript,Vue3,TailWindCss,Vite的多页架构。
-- 实现了多页的页面地址重写，开发环境页面符合老项目规则。
+- 实现了多页的页面地址重写能力用于在开发环境页面符合老项目的跳转规则。
 - 实现了前后端联调通讯的Http代理服务，解决老项目迁移中的接口代理问题。
 - 实现了产物构建到老项目的自动化流程。
+- 实现了预发分支合并到开发分支的危险行为检测并回退。
 - 核心业务详情页到下单支付的所有开发。
+
+- 总结
+
+- [旅仓PC前端项目复盘](../ppt/微前端基本原理概述.md)
 
 ### 旅仓H5
 
-> 描述：公司全品类产品，包括旅游，出行，住宿等对外分销业务平台。
+> 描述：公司全品类产品，包括旅游，出行，住宿等对外分销业务平台移动端，支持嵌入第三方webview中。
 
 - 职责
 
-整个网站的前端架构设计与实现，页面UI复用的其项目代码：
+整个网站的前端架构设计与实现，页面UI复用的其项目代码，原项目为基于传统script引入的，服务器端渲染的，多页架构应用。所以为了能够极大的复用原项目的代码能力，做了此次设计与开发：
 
 - 实现了基于Typescript,Vue2.7,Less,Vite的多页架构。
 - 实现了项目中兼容Commonjs与ESM模块之间的交互。
@@ -51,7 +56,7 @@
 
 ### 旅仓小程序
 
-> 描述：公司全品类产品，包括旅游，出行，住宿等对外分销业务平台。
+> 描述：公司全品类产品，包括旅游，出行，住宿等对外分销业务平台小程序端，整个小程序的所有业务线都通过H5端来提供业务支持。
 
 - 职责
 
@@ -71,10 +76,11 @@
 整个应用的前端架构设计与实现：
 
 - 实现了基于Typescript,Vue3.x,element-plus,Vue-Router,Pinia,Sass,Vite的单页架构。
-- 实现了基于RBAC的权限控制。
-- 实现了Layout的可定制。
+- 实现了基于RBAC的权限控制，路由，按钮级别控制。
+- 实现了Layout的可扩展性。
 - 实现了基于css变量的主题切换。
 - 封装公共组件，公共工具，Hooks等。
+- 核心的订单详情页的开发。
 
 ## 2021-8~2022-6：研途教育科技
 
