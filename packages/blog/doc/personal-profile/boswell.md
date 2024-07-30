@@ -13,7 +13,7 @@
 ## 职业技能
 
 0. 精通 `javascript`,`vue2.x/3.x`；
-1. 熟练 `typescript`,`html`,`css`,`vue-router`,`pinia`,`vuex`,`elementui/elementplus`,`wx mini program`,`uniapp`,`less`,`tailwindcss`,`git`等；
+1. 熟练 `typescript`,`html`,`css`,`vue router`,`pinia`,`vuex`,`elementui/elementplus`,`wx mini program`,`uniapp`,`less`,`tailwindcss`,`git`等；
 2. 掌握 `vite`,`webpack`,`http`等；
 3. 熟悉 `frontend engineering`,`nodejs`,`design pattern`,`algorithm`,`data structure`等；
 4. 了解 `react`,`angular`,`canvas`,`webgl`等；
@@ -26,18 +26,16 @@
 
 - 职责
 
-整个网站的前端架构设计与实现，也是对老网站的一次重构，老网站基于Asp.Net的服务器端渲染的多页架构应用：
+整个网站的前端架构设计与实现，也是对老网站的一次重构，老网站基于Asp.Net的服务器端渲染的多页架构网站：
 
 - 实现了基于Typescript,Vue3,TailWindCss,Vite的多页架构。
 - 实现了多页的页面地址重写能力用于在开发环境页面符合老项目的跳转规则。
 - 实现了前后端联调通讯的Http代理服务，解决老项目迁移中的接口代理问题。
-- 实现了产物构建到老项目的自动化流程。
+- 实现了编写vite插件将产物构建到老项目的自动化流程。
 - 实现了预发分支合并到开发分支的危险行为检测并回退。
 - 核心业务详情页到下单支付的所有开发。
 
-- 总结
-
-- [旅仓PC前端项目复盘](../ppt/微前端基本原理概述.md)
+- 总结：[旅仓PC前端项目复盘](https://boswellji.github.io/MyBlog/ppt/旅仓PC前端架构设计与实现.html)
 
 ### 旅仓H5
 
@@ -45,7 +43,7 @@
 
 - 职责
 
-整个网站的前端架构设计与实现，页面UI复用的其项目代码，原项目为基于传统script引入的，服务器端渲染的，多页架构应用。所以为了能够极大的复用原项目的代码能力，做了此次设计与开发：
+整个网站的前端架构设计与实现，页面UI复用的其他项目代码，原项目为基于传统script引入的，服务器端渲染的，多页架构网站。所以为了能够极大的复用原项目的代码能力，做了此次设计与开发：
 
 - 实现了基于Typescript,Vue2.7,Less,Vite的多页架构。
 - 实现了项目中兼容Commonjs与ESM模块之间的交互。
@@ -82,6 +80,10 @@
 - 封装公共组件，公共工具，Hooks等。
 - 核心的订单详情页的开发。
 
+### 其他
+
+> 做过面试官，包括社招以及校招；带过几个实习生，带领实习生了解整个研发的工作流，以及基本的任务模块拆分讲解，审核他们的代码等，带领他们做任务。
+
 ## 2021-8~2022-6：研途教育科技
 
 ### 学生专属择校报告生成工具
@@ -110,7 +112,7 @@
   - 实现了后端生成pdf的模板html,通过`css`的`@page`特性给打印的文档配置样式；
 
 - 地址
-  - [项目](../project/student-report.md)
+  - [项目](https://boswellji.github.io/MyBlog/project/student-report.html)
 
 ### 模拟考试
 
@@ -142,7 +144,7 @@
   - 实现了分享海报；
 
 - 地址
-  - [项目](../project/mock-exam.md)
+  - [项目](https://boswellji.github.io/MyBlog/project/mock-exam.html)
 
 ### 订单退费审核流程
 
@@ -165,24 +167,8 @@
   - 实现了数据驱动的动态表单，增加了程序的扩展性；
 
 - 地址
-  - [项目](https://github.com/BoswellJi/BoswellJi/blob/master/blog-source-code/doc/project/order-refund.md)
+  - [项目](https://boswellji.github.io/MyBlog/project/order-refund.html)
 
-### 专题
-
-> 描述：营销h5活动，抽奖等，项目主要采用：
-
-- 职责
-
-  - 实现了使用原生javascript编写营销h5页面；
-  - 实现了使用vue3编写营销h5页面；
-  - 实现了使用原生javascript编写转盘抽奖，以及转盘的减速运动；
-  - 实现了使用原生javascript编写无缝滚动效果；
-
-- 地址
-  - [项目1](https://h5.kaoyanvip.cn/zt/eykxj/)
-  - [项目2](https://h5.kaoyanvip.cn/zt/kxj/)
-  - [项目3](https://h5.kaoyanvip.cn/zt/minizzy?d=ytXsyPimnJukZj6M6f)
-  - [项目4](https://h5.kaoyanvip.cn/zt/23mbc)
 
 ## 2019-3~2021-8：智能晴雨
 
