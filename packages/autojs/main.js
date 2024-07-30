@@ -1,23 +1,21 @@
 // launchApp("浏览器");
-
 // app.openUrl('https://www.baidu.com');
-
 // events.observeKey();
-// //监听音量下键弹起
+
+// 监听音量下键弹起
 // events.onKeyDown("volume_down", function(event){
 //     toast("音量上键弹起");
 // });
-// //监听Home键弹起
+
+// 监听Home键弹起
 // events.onKeyDown("home", function(event){
 //     toast("Home键弹起");
 //     exit();
 // });
 
 // setScreenMetrics(1080, 1920);
-
 // Tap(300, 100);
 // sleep(500);
-
 // auto();
 // auto.setMode('fast')
 

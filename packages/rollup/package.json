@@ -1,5 +1,5 @@
 {
-  "name": "rollup-test",
+  "name": "@boswell/rollup-test",
   "version": "1.0.0",
   "description": "* 原生只支持es module，在不支持es module的环境中会智能降级；（想要导入其他模块类型的模块代码需要使用插件）\r * 根据es module的静态分析，可以对代码进行树摇，将废弃代码处理掉；\r *",
   "main": "index.js",

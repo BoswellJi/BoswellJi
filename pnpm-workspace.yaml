@@ -1,3 +1,4 @@
 packages:
   - 'packages/*'
-  - 'packages/ppt/*'
+  - 'packages/vscode/*'
+  - 'packages/slidev/*'
