@@ -24,16 +24,16 @@
 
 > 描述：公司全品类产品，包括旅游，出行，住宿等对外分销业务平台PC端。
 
-- 职责
+- 技术栈：Typescript Vue3 TailWindCss Vite
+- 职责：整个网站的前端架构设计与实现，也是对老网站的一次重构，老网站基于Asp.Net的服务器端渲染的多页架构网站。
 
-整个网站的前端架构设计与实现，也是对老网站的一次重构，老网站基于Asp.Net的服务器端渲染的多页架构网站：
-
-- 实现了基于Typescript,Vue3,TailWindCss,Vite的多页架构。
-- 实现了多页的页面地址重写能力用于在开发环境页面符合老项目的跳转规则。
-- 实现了前后端联调通讯的Http代理服务，解决老项目迁移中的接口代理问题。
-- 实现了编写vite插件将产物构建到老项目的自动化流程。
-- 实现了预发分支合并到开发分支的危险行为检测并回退。
-- 核心业务周边游，国内游，出境游等详情页到下单支付的全流程开发。
+  - 实现了基于Typescript,Vue3,TailWindCss,Vite的多页架构。
+  - 通过.vscode文件夹，配置统一的vscode插件推荐，统一格式化配置，规范开发环境统一，包括，eslint,prettier等。
+  - 实现了多页的页面地址重写能力用于在开发环境页面符合老项目的跳转规则。
+  - 实现了前后端联调通讯的Http代理服务，解决老项目迁移中的接口代理问题。
+  - 实现了编写vite插件将产物构建到老项目的自动化流程。
+  - 实现了预发分支合并到开发分支的危险行为检测并回退。
+  - 核心业务周边游，国内游，出境游等详情页到下单支付的全流程开发。
 
 - 总结：[旅仓PC前端项目复盘](https://boswellji.github.io/MyBlog/ppt/旅仓PC前端架构设计与实现.html)
 
@@ -41,30 +41,30 @@
 
 > 描述：公司全品类产品，包括旅游，出行，住宿等对外分销业务平台移动端，支持嵌入第三方webview中。
 
-- 职责
+- 技术栈：Typescript Vue2.7 Less Vite vant
+- 职责：整个网站的前端架构设计与实现，页面UI复用的其他项目代码，原项目为基于传统script引入的，服务器端渲染的，多页架构网站。所以为了能够极大的复用原项目的代码能力，做了此次设计与开发。
 
-整个网站的前端架构设计与实现，页面UI复用的其他项目代码，原项目为基于传统script引入的，服务器端渲染的，多页架构网站。所以为了能够极大的复用原项目的代码能力，做了此次设计与开发：
-
-- 实现了基于Typescript,Vue2.7,Less,Vite的多页架构。
-- 实现了项目中兼容Commonjs与ESM模块之间的交互。
-- 实现了项目对于不支持原生ESM，原生ESM动态导入和 import.meta的浏览器的兼容。
-- 核心业务详情页到下单支付的所有重构开发。
-- 通过封装入口来所有页面初始化流程。包括处理url中的参数，用户信息获取，等公共逻辑抽象。
-- 定义第三方接入方传入的字段规则。
+  - 实现了基于Typescript,Vue2.7,Less,Vite的多页架构。
+  - 实现了项目中兼容Commonjs与ESM模块之间的交互。
+  - 实现了项目对于不支持原生ESM，原生ESM动态导入和 import.meta的浏览器的兼容。
+  - 核心业务详情页到下单支付的所有重构开发。
+  - 通过封装入口来所有页面初始化流程。包括处理url中的参数，用户信息获取，等公共逻辑抽象。
+  - 定义第三方接入方传入的字段规则。
+  - 通过阅读vant源码，实现了下拉刷新组件的自动执行
 
 ### 旅仓小程序
 
 > 描述：公司全品类产品，包括旅游，出行，住宿等对外分销业务平台小程序端，整个小程序的所有业务线都通过H5端来提供业务支持。
 
-- 职责
+- 技术栈：javascript less glup eslint prettier
+- 职责：整个应用的开发与维护，以及将H5能力融合进小程序。
 
-整个应用的开发与维护：
-
-- 通过缓存编译产物，优化了基于gulp的构建系统开发时的编译性能优化。
-- 通过接入旅仓H5来复用整个项目的详情到下单支付流程能力。
-- 定义小程序与H5交互的字段规则，维护之间的基本互操作性。
-- 维护海报分享模块，解决原生canvas的字体宽度测量兼容性。
-- 日常任务开发与问题解决。
+  - 通过缓存编译产物，优化了基于gulp的构建系统开发时的编译性能优化。
+  - 通过修改glup产物，替换常量定义区分开发环境与生产环境。
+  - 通过接入旅仓H5来复用整个项目的详情到下单支付流程能力。
+  - 定义小程序与H5交互的字段规则，维护之间的基本互操作性。
+  - 维护海报分享模块，解决原生canvas的字体宽度测量兼容性。
+  - 日常任务开发与问题解决。
 
 ### 旅仓CRM
 
@@ -72,16 +72,14 @@
 
 - 技术栈：Typescript Vue3.x element-plus Vue-Router Pinia Sass Vite
 
-- 职责
+- 职责：整个应用的前端架构设计与实现，以及核心业务逻辑的开发。
 
-整个应用的前端架构设计与实现：
-
-- 实现了基于Typescript,Vue3.x,element-plus,Vue-Router,Pinia,Sass,Vite的单页架构。
-- 实现了基于RBAC的权限控制，路由，按钮级别控制。
-- 实现了Layout的可扩展性。
-- 实现了基于css变量的主题切换。
-- 封装公共组件，公共工具，Hooks等。
-- 核心的订单详情页的开发。
+  - 实现了基于Typescript,Vue3.x,element-plus,Vue-Router,Pinia,Sass,Vite的单页架构。
+  - 实现了基于RBAC的权限控制，路由，按钮级别控制。
+  - 实现了Layout的可扩展性。
+  - 实现了基于css变量的主题切换。
+  - 封装公共组件(如：弹性文字提示弹框组件，多个element-plus二次封装组件等)，公共工具(axios请求封装，文件下载，小数计算等)，Hooks等。
+  - 核心的订单详情页的开发。
 
 ### 其他
 
@@ -93,7 +91,7 @@
 
 > 描述：预定义多个配置组件，通过拖拽的方式放置到报告页面中进行配置，然后生成pdf报告，项目主要采用：
 
-- 技术栈：vue2.x  vuex vue-router  element-ui axios  lodash  vuedraggable  echarts less
+- 技术栈：vue2.x vuex vue-router element-ui axios lodash vuedraggable echarts less
 
 - 职责：整体设计与开发
 
@@ -106,7 +104,7 @@
   - 解决canvas绘制中图片跨域问题；
 
 - 地址
-  - [项目](https://boswellji.github.io/MyBlog/project/student-report.html)
+  - [项目图片](https://boswellji.github.io/MyBlog/project/student-report.html)
 
 ### 模拟考试
 
@@ -127,43 +125,28 @@
   - 实现了分享海报；
 
 - 地址
-  - [项目](https://boswellji.github.io/MyBlog/project/mock-exam.html)
+  - [项目图片](https://boswellji.github.io/MyBlog/project/mock-exam.html)
 
 ### 订单退费审核流程
 
 > 描述：多级退款审批流程，项目主要采用：
 
-- 技术栈
+- 技术栈 vue2.x vuex vue-router vant axios lodash moment
 
-  - vue2.x
-  - vuex
-  - vue-router
-  - vant
-  - axios
-  - lodash
-  - moment
-
-- 职责
+- 职责：整体设计与开发
 
   - 实现了多级审批人配置以及最大审批人限制；
   - 实现了对数据格式整理，符合树组件传值方式，以及初始化时针对选中元素在渲染vnode时对样式改写；
-  - 实现了数据驱动的动态表单，增加了程序的扩展性；
+  - 实现了递归组件；
 
 - 地址
-  - [项目](https://boswellji.github.io/MyBlog/project/order-refund.html)
-
+  - [项目图片](https://boswellji.github.io/MyBlog/project/order-refund.html)
 
 ## 2019-3~2021-8：智能晴雨
 
 ### 咪店优选小程序
 
-- 技术栈
-
-  - uniapp
-  - vuex
-  - uniapp ui
-  - vue
-  - vue-router
+- 技术栈：uniapp vuex uniapp ui vue vue-router
 
 - 职责
 
@@ -173,17 +156,11 @@
   - 实现了canvas 2d海报工具函数开发；
 
 - 地址
-  - [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/mishop.md)
+  - [项目图片](https://boswellji.github.io/MyBlog/project/mishop.html)
 
 ### 神奇会员小程序
 
-- 技术栈
-
-  - uniapp
-  - vuex
-  - uniapp ui
-  - vue
-  - vue-router
+- 技术栈：uniapp vuex uniapp ui vue vue-router
 
 - 职责
 
@@ -196,18 +173,11 @@
   - 实现了根据日期分页导致列表一屏不够递归继续加载到满足条件的功能；
 
 - 地址
-  - [项目](https://github.com/BoswellJi/BoswellJi/blob/master/blog-source-code/doc/project/discount.md)
+  - [项目图片](https://boswellji.github.io/MyBlog/project/discount.html)
 
 ### 喵客云管理后台
 
-- 技术栈
-
-  - vue
-  - vuex
-  - vue-roter
-  - element UI
-  - axios
-  - moment
+- 技术栈：vue vuex vue-roter element-UI axios moment
 
 - 职责
 
@@ -215,18 +185,11 @@
   - 项目各个模块日常维护与迭代；
 
 - 地址
-  - [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/cloud.md)
+  - [项目图片](https://boswellji.github.io/MyBlog/project/cloud.html)
 
 ### 供货商管理后台
 
-- 技术栈
-
-  - vue
-  - vuex
-  - vue-roter
-  - element UI
-  - axios
-  - moment
+- 技术栈：vue vuex vue-roter element-UI axios moment
 
 - 职责
 
@@ -234,7 +197,7 @@
   - 项目各个模块日常维护与迭代；
 
 - 地址
-  - [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/pop.md)
+  - [项目图片](https://boswellji.github.io/MyBlog/project/pop.html)
 
 ## 2017-3~2019-3：苏州爱洛克信息技术有限公司
 
@@ -242,35 +205,18 @@
 
 > 描述：游戏平台官网，项目主要采用：
 
-- 技术栈
+- 技术栈：jquery jquery.s2t jquery.dataTables jquery.page plupload.full swiper-3.4.2.jquery
 
-  - jquery
-  - jquery.s2t
-  - jquery.dataTables
-  - jquery.page
-  - plupload.full
-  - swiper-3.4.2.jquery
-
-- 职责
-
-  - 整体开发
+- 职责：整体开发
 
 - 地址
-  - [图片](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/iclock.md)
+  - [项目图片](https://boswellji.github.io/MyBlog/project/iclock.html)
 
 ### 财喵
 
 > 描述：iphone 平台上的积分墙应用，是一个混合的 app，项目主要采用：
 
-- 技术栈
-
-  - angular
-  - angular-cli
-  - rxjs
-  - clipboard.js
-  - lodash
-  - momnet
-  - mescroll.js
+- 技术栈：angular angular-cli rxjs clipboard.js lodash momnet mescroll.js
 
 - 职责
 
@@ -282,21 +228,13 @@
     - 组件：弹窗，加载,公共导航等
 
 - 地址
-  - [图片](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/lucky-cat.md)
+  - [项目图片](https://boswellji.github.io/MyBlog/project/lucky-cat.html)
 
 ### 财喵后台管理系统
 
 > 描述：财喵的后台管理系统，项目主要采用：
 
-- 技术栈
-
-  - angular
-  - angular-cli
-  - ng-zorro-antd
-  - Ng Alain
-  - lodash
-  - rxjs
-  - momnet
+- 技术栈：angular angular-cli ng-zorro-antd Ng Alain lodash rxjs momnet
 
 - 职责
 
@@ -308,20 +246,13 @@
   - 根据环境不同，在打包时对项目的不同配置文件区分
 
 - 地址
-  - [图片](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/lucky-cat-admin.md)
+  - [项目图片](https://boswellji.github.io/MyBlog/project/lucky-cat-admin.html)
 
 ### 客服聊天系统
 
 > 描述：提供给公司客服部门对用户进行业务反馈，项目主要采用：
 
-- 技术栈
-
-  - vue
-  - axios
-  - pinchzoom （图片预览
-  - mescroll.js （滚动加载
-  - qqFace.js （表情包
-  - webscoket
+- 技术栈：vue axios pinchzoom mescroll.js qqFace.js webscoket
 
 - 职责
 
@@ -331,19 +262,13 @@
   - 整体开发
 
 - 地址
-  - [图片](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/customer.md)
+  - [项目图片](https://boswellji.github.io/MyBlog/project/customer.html)
 
 ### 客服聊天系统
 
 > 描述：客服系统后台，客服管理系统，项目主要采用：
 
-- 技术栈
-
-  - jquery
-  - dot.js
-  - qqFace.js （表情包
-  - layer.js （弹框
-  - webscoket
+- 技术栈：jquery dot.js qqFace.js layer.js webscoket
 
 - 职责
 
@@ -353,23 +278,13 @@
   - 整体开发
 
 - 地址
-  - [图片](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/customer-admin.md)
+  - [项目图片](https://boswellji.github.io/MyBlog/project/customer-admin.html)
 
 ### 各种营销页面
 
 > 描述：pc+ moblie，项目主要采用：
 
-- 库技术栈
-
-  - jquery
-  - zepto
-  - seajs
-  - requirejs
-  - vue
-  - animate.css
-  - layerjs
-  - 各种组件，插件（例如：轮播，转盘抽奖，九宫格,分页 等等
-  - webpack
+- 技术栈：jquery zepto seajs requirejs vue animate.css layerjs webpack
 
 - 职责
 
@@ -377,14 +292,13 @@
   - 整个专题从切图到开发，测试，上线，维护
 
 - 地址
-  - [图片](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/zhuanti.md)
+  - [项目图片](https://boswellji.github.io/MyBlog/project/zhuanti.html)
 
 ### 固定资产管理
 
 > 描述：企业内部固定资产管理系统,钉钉 e 应用，项目主要采用：
 
-- e 应用本身的技术框架，与组件库
-- api
+- 技术栈： e 应用本身的技术框架，与组件库，api
 
 - 职责
 
@@ -395,21 +309,13 @@
   - 项目开发，测试，上线
 
 - 地址
-  - [图片](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/assets.md)
+  - [项目图片](https://boswellji.github.io/MyBlog/project/assets.html)
 
 ### 描述：固定资产管理
 
 > 描述：固定资产管理后台，项目主要采用：
 
-- 技术栈
-
-  - angular
-  - angular-cli
-  - ng-zorro-antd
-  - Ng Alain
-  - lodash
-  - rxjs
-  - momnet
+- 技术栈：angular angular-cli ng-zorro-antd Ng Alain lodash rxjs momnet
 
 - 职责
 
@@ -419,19 +325,13 @@
   - 项目开发，测试，上线
 
 - 地址
-  - [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/assets-admin.md)
+  - [项目图片](https://boswellji.github.io/MyBlog/project/assets-admin.html)
 
 ### 企业员工与学生管理系统
 
 > 描述：客户端，钉钉微应用，项目主要采用：
 
-- 技术栈
-
-  - ionic
-  - loadsh
-  - momnet
-  - dd api
-  - animate.css
+- 技术栈：ionic loadsh momnet dd api animate.css
 
 - 职责
 
@@ -443,14 +343,7 @@
 
 > 描述：后台管理系统，项目主要采用：
 
-- 技术栈
-
-  - angular
-  - angular-cli
-  - datatables
-  - ngx-bootstrap
-  - loadsh
-  - momnet
+- 技术栈：angular angular-cli datatables ngx-bootstrap loadsh momnet
 
 - 职责
 
@@ -462,16 +355,7 @@
 
 > 描述：查看图片的 app，项目主要采用：
 
-- 技术栈
-
-  - angular
-  - angular-cli
-  - mescroll.js
-  - ng-lazyload-image
-  - ngx-infinite-scroll
-  - ngx-swiper-wrapper
-  - ngx-tabset
-  - rxjs
+- 技术栈：angular angular-cli mescroll.js ng-lazyload-image ngx-infinite-scroll ngx-swiper-wrapper ngx-tabset rxjs
 
 - 职责
 
@@ -480,20 +364,13 @@
   - 整体开发
 
 - 地址
-  - [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/meitu.md)
+  - [项目图片](https://boswellji.github.io/MyBlog/project/meitu.html)
 
 ### 游戏管理后台
 
 > 描述：游戏的后台管理系统，项目主要采用：
 
-- 技术栈
-
-  - angular
-  - angular-cli
-  - ng-zorro-antd
-  - Ng Alain
-  - rxjs
-  - ngrx
+- 技术栈：angular angular-cli ng-zorro-antd Ng Alain rxjs ngrx
 
 - 职责
 
@@ -502,7 +379,7 @@
   - 整体开发
 
 - 地址
-  - [项目](https://github.com/BoswellJi/BoswellJi/tree/master/blog-source-code/doc/project/game-admin.md)
+  - [项目图片](https://boswellji.github.io/MyBlog/project/game-admin.html)
 
 ## 2016-1~2017-3：同程旅行
 
