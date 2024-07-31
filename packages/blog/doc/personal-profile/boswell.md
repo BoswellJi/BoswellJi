@@ -24,7 +24,7 @@
 
 > 描述：公司全品类产品，包括旅游，出行，住宿等对外分销业务平台PC端。
 
-- 技术栈：Typescript Vue3 TailWindCss Vite
+- 技术栈：Typescript Vue3 vue-router pinia TailWindCss Vite
 - 职责：整个网站的前端架构设计与实现，也是对老网站的一次重构，老网站基于Asp.Net的服务器端渲染的多页架构网站。
 
   - 实现了基于Typescript,Vue3,TailWindCss,Vite的多页架构。
@@ -32,7 +32,7 @@
   - 实现了多页的页面地址重写能力用于在开发环境页面符合老项目的跳转规则。
   - 实现了前后端联调通讯的Http代理服务，解决老项目迁移中的接口代理问题。
   - 实现了编写vite插件将产物构建到老项目的自动化流程。
-  - 实现了预发分支合并到开发分支的危险行为检测并回退。
+  - 通过husky执行shell脚本，实现了预发分支合并到开发分支的危险行为检测并回退。
   - 核心业务周边游，国内游，出境游等详情页到下单支付的全流程开发。
 
 - 总结：[旅仓PC前端项目复盘](https://boswellji.github.io/MyBlog/ppt/旅仓PC前端架构设计与实现.html)
@@ -41,7 +41,7 @@
 
 > 描述：公司全品类产品，包括旅游，出行，住宿等对外分销业务平台移动端，支持嵌入第三方webview中。
 
-- 技术栈：Typescript Vue2.7 Less Vite vant
+- 技术栈：Typescript Vue2.7 vue-router vuex Less Vite vant
 - 职责：整个网站的前端架构设计与实现，页面UI复用的其他项目代码，原项目为基于传统script引入的，服务器端渲染的，多页架构网站。所以为了能够极大的复用原项目的代码能力，做了此次设计与开发。
 
   - 实现了基于Typescript,Vue2.7,Less,Vite的多页架构。
