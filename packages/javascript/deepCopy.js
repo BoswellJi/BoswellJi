@@ -34,7 +34,67 @@ function deepClone(obj, map = new WeakMap()) {
   return clone
 }
 
-// 使用示例
-const original = { a: 1, b: { c: 2 }, d: [3, 4], e: new Date(), f: /abc/ }
-const copy = deepClone(original)
-console.log(copy)
+function deepCopy(obj, hash = new WeakMap()) {
+  if (obj === null || typeof obj !== 'object') {
+    return obj
+  }
+
+  if (typeof obj === 'function') {
+    return obj
+  }
+
+  if (hash.has(obj)) {
+    return hash.get(obj)
+  }
+
+  if (obj instanceof Date) {
+    return new Date(obj)
+  }
+
+  if (obj instanceof RegExp) {
+    return new RegExp(obj)
+  }
+
+  if (obj instanceof Set) {
+    const newSet = new Set()
+    obj.forEach(value => {
+      newSet.add(deepCopy(value, hash))
+    })
+    return newSet
+  }
+
+  if (obj instanceof Map) {
+    const newMap = new Map()
+    obj.forEach((value, key) => {
+      newMap.set(key, deepCopy(value, hash))
+    })
+    return newMap
+  }
+
+  const result = Array.isArray(obj)
+    ? []
+    : Object.create(Object.getPrototypeOf(obj))
+  hash.set(obj, result) // 保留目标对象原型链
+
+  Reflect.ownKeys(obj).forEach(key => {
+    result[key] = deepCopy(obj[key], hash)
+  })
+
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      result[key] = deepCopy(obj[key], hash)
+    }
+  }
+
+  return result
+}
+
+const original = {
+  date: new Date(),
+  regex: /test/i,
+  set: new Set([1, 2, 3]),
+  map: new Map([['key', 'value']])
+}
+
+const copied = deepCopy(original)
+console.log(copied)

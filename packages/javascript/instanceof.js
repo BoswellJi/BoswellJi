@@ -1,16 +1,15 @@
 const instanceofSelf = (instance, constructor) => {
-  const proto1 = Object.getPrototypeOf(instance) // instance.__proto__;
-  let proto2 = constructor.prototype;
+  const proto1 = Object.getPrototypeOf(instance)
 
-  while(proto2){
-    if(proto1===proto2){
-      return true;
-    }else{
-      proto2= Object.getPrototypeOf(proto2)
+  while (proto1) {
+    if (proto1 === constructor.prototype) {
+      return true
+    } else {
+      proto1 = Object.getPrototypeOf(proto1)
     }
   }
-  return false;
+  return false
 }
 
-console.log(instanceofSelf([1, 2, 3], Array)); // true
-console.log(instanceofSelf({}, Object)); // tru
+console.log(instanceofSelf([1, 2, 3], Array)) // true
+console.log(instanceofSelf({}, Object)) // tru

@@ -33,3 +33,18 @@ class PromiseQueue {
       })
   }
 }
+
+// 示例使用
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+
+const queue = new PromiseQueue(2) // 设置并发数为2
+
+const task1 = () => sleep(1000).then(() => console.log('Task 1 done'))
+const task2 = () => sleep(5000).then(() => console.log('Task 2 done'))
+const task3 = () => sleep(3000).then(() => console.log('Task 3 done'))
+const task4 = () => sleep(4000).then(() => console.log('Task 4 done'))
+
+queue.enqueue(task1)
+queue.enqueue(task2)
+queue.enqueue(task3)
+queue.enqueue(task4)

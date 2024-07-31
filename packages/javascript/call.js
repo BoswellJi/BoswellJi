@@ -1,16 +1,16 @@
 Function.prototype.callSelf = function (ctx, ...args) {
-  const fn = this
+  const symbol = Symbol()
 
   Object.assign(ctx, {
-    fn
+    [symbol]: this
   })
 
-  return ctx.fn(...args)
+  return ctx[symbol](...args)
 }
 
 const obj = { a: 1 }
 function fn(a, b, c) {
-  console.log(this, a, b, c)
+  console.log(a, b, c)
 }
 
 fn.callSelf(obj, 1, 1, 3)
