@@ -33,7 +33,7 @@
 - 实现了前后端联调通讯的Http代理服务，解决老项目迁移中的接口代理问题。
 - 实现了编写vite插件将产物构建到老项目的自动化流程。
 - 实现了预发分支合并到开发分支的危险行为检测并回退。
-- 核心业务详情页到下单支付的所有开发。
+- 核心业务周边游，国内游，出境游等详情页到下单支付的全流程开发。
 
 - 总结：[旅仓PC前端项目复盘](https://boswellji.github.io/MyBlog/ppt/旅仓PC前端架构设计与实现.html)
 
@@ -62,12 +62,15 @@
 
 - 通过缓存编译产物，优化了基于gulp的构建系统开发时的编译性能优化。
 - 通过接入旅仓H5来复用整个项目的详情到下单支付流程能力。
-- 定义小程序与H5交互的字段规则。
-- 维护海报分享模块。
+- 定义小程序与H5交互的字段规则，维护之间的基本互操作性。
+- 维护海报分享模块，解决原生canvas的字体宽度测量兼容性。
+- 日常任务开发与问题解决。
 
 ### 旅仓CRM
 
 > 描述：公司全品类产品，包括旅游，出行，住宿等对外分销业务平台的后台管理系统。
+
+- 技术栈：Typescript Vue3.x element-plus Vue-Router Pinia Sass Vite
 
 - 职责
 
@@ -90,19 +93,9 @@
 
 > 描述：预定义多个配置组件，通过拖拽的方式放置到报告页面中进行配置，然后生成pdf报告，项目主要采用：
 
-- 技术栈
+- 技术栈：vue2.x  vuex vue-router  element-ui axios  lodash  vuedraggable  echarts less
 
-  - vue2.x
-  - vuex
-  - vue-router
-  - element-ui
-  - axios
-  - lodash
-  - vuedraggable
-  - echarts
-  - less
-
-- 职责
+- 职责：整体设计与开发
 
   - 实现了`pdf`生成需要用到的全部配置组件；
   - 实现了基于`vuedraggable`组件的拖拽系统；
@@ -110,6 +103,7 @@
   - 实现了编辑完成后的实时草稿存储；
   - 实现了将canva转文件进行上传获取图片url后上传报告；
   - 实现了后端生成pdf的模板html,通过`css`的`@page`特性给打印的文档配置样式；
+  - 解决canvas绘制中图片跨域问题；
 
 - 地址
   - [项目](https://boswellji.github.io/MyBlog/project/student-report.html)
@@ -118,20 +112,9 @@
 
 > 描述：这是一个hybrid app,提供给学生用来模拟考试,有多门课程的试卷，项目主要采用：
 
-- 技术栈
+- 技术栈：vue2.x vuex vue-router vant axios lodash moment compressorjs qs less
 
-  - vue2.x
-  - vuex
-  - vue-router
-  - vant
-  - axios
-  - lodash
-  - moment
-  - compressorjs
-  - qs
-  - less
-
-- 职责
+- 职责：整体设计与开发
 
   - 实现了通过与app交互，获取token进行考试登录，未登录情况下，唤起app登录；
   - 实现了首期的考试营销报名页面；
