@@ -1,71 +1,123 @@
-var LAST_ERROR = null
-var IS_ERROR = {}
+class MyPromise {
+  constructor(executor) {
+    this.state = 'pending'
+    this.value = undefined
+    this.reason = undefined
+    this.onFulfilledCallbacks = []
+    this.onRejectedCallbacks = []
 
-class Promise {
-  constructor(fn) {
-    this._deferredState = 0
-    this._state = 0
-    this._value = null
-    this._deferreds = null
-
-    this.doResolve(fn, this)
-  }
-
-  doResolve(fn, promise) {
-    let done = false
-    let res = this.tryCallTwo(
-      fn,
-      value => {
-        if (done) return
-        done = true
-        this.resolve(promise, value)
-      },
-      reason => {
-        if (done) return
-        done = true
-        this.reject(promise, reason)
+    const resolve = value => {
+      if (this.state === 'pending') {
+        this.state = 'fulfilled'
+        this.value = value
+        this.onFulfilledCallbacks.forEach(fn => fn())
       }
-    )
-
-    if (!done && res === IS_ERROR) {
-      done = true
-      this.reject(promise, LAST_ERROR)
-    }
-  }
-
-  reslove(self, newValue) {
-    if (newValue === self) {
-      return reject(
-        self,
-        new TypeError('A promise cannot be resolved with itself.')
-      )
     }
 
-    self._state = 1 // 改变状态
-    self._value = newValue // reslove传递的值
-    this.finale(self)
-  }
+    const reject = reason => {
+      if (this.state === 'pending') {
+        this.state = 'rejected'
+        this.reason = reason
+        this.onRejectedCallbacks.forEach(fn => fn())
+      }
+    }
 
-  finale(self) {}
-
-  tryCallTwo(fn, a, b) {
     try {
-      fn(a, b)
-    } catch (ex) {
-      LAST_ERROR = ex
-      return IS_ERROR
+      executor(resolve, reject)
+    } catch (err) {
+      reject(err)
     }
   }
 
-  // then函数是同步的
-  then(callback) {
-    this.callbacks.push(callback)
-    return this
+  then(onFulfilled, onRejected) {
+    if (this.state === 'fulfilled') {
+      onFulfilled(this.value)
+    } else if (this.state === 'rejected') {
+      onRejected(this.reason)
+    } else if (this.state === 'pending') {
+      this.onFulfilledCallbacks.push(() => onFulfilled(this.value))
+      this.onRejectedCallbacks.push(() => onRejected(this.reason))
+    }
   }
 }
 
-const p = new Promise((reslove, reject) => {
-  setTimeout(() => {
-    reslove(1)
-  }, 0)
-})
+MyPromise.all = function (promises) {
+  return new MyPromise((resolve, reject) => {
+    let count = 0
+    let results = []
+
+    promises.forEach((promise, index) => {
+      MyPromise.resolve(promise).then(
+        value => {
+          count++
+          results[index] = value
+          if (count === promises.length) {
+            resolve(results)
+          }
+        },
+        reason => {
+          reject(reason)
+        }
+      )
+    })
+  })
+}
+
+MyPromise.race = function (promises) {
+  return new MyPromise((resolve, reject) => {
+    promises.forEach(promise => {
+      MyPromise.resolve(promise).then(resolve, reject)
+    })
+  })
+}
+
+MyPromise.allSettled = function (promises) {
+  return new MyPromise(resolve => {
+    let count = 0
+    let results = []
+
+    promises.forEach((promise, index) => {
+      MyPromise.resolve(promise).then(
+        value => {
+          results[index] = { status: 'fulfilled', value }
+          count++
+          if (count === promises.length) {
+            resolve(results)
+          }
+        },
+        reason => {
+          results[index] = { status: 'rejected', reason }
+          count++
+          if (count === promises.length) {
+            resolve(results)
+          }
+        }
+      )
+    })
+  })
+}
+
+MyPromise.any = function (promises) {
+  return new MyPromise((resolve, reject) => {
+    let count = 0
+    let errors = []
+
+    promises.forEach((promise, index) => {
+      MyPromise.resolve(promise).then(resolve, reason => {
+        count++
+        errors[index] = reason
+        if (count === promises.length) {
+          reject(new AggregateError(errors, 'All promises were rejected'))
+        }
+      })
+    })
+  })
+}
+
+MyPromise.resolve = function (value) {
+  return new MyPromise(resolve => resolve(value))
+}
+
+MyPromise.reject = function (reason) {
+  return new MyPromise((_, reject) => reject(reason))
+}

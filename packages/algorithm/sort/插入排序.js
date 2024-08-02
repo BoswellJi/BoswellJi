@@ -3,40 +3,31 @@
  * 思路: 将未进行排序的元素与排序过的数据进行比较（从后往前
  */
 
-function insertSort(arr) {
-  let temp = 0
-  let inner = 0
-
-  for (let i = 1, len = arr.length; i < len; i++) {
-    // 当前对比数
-    temp = arr[i]
-    inner = i
-    // 从排好的里面与新的进行对比，前面的大于后面的就把大的换过去, 两两对比
-    while (i > 0 && arr[inner - 1] > temp) {
-      arr[inner] = arr[inner - 1]
-      --inner
-    }
-    arr[inner] = temp
-  }
-  return arr
-}
-
-console.log(insertSort([1, 2, 4, 2, 9, 2]))
-
-function insertSort(arr) {
+function insertionSort(arr) {
+  // 从第二个元素开始，因为第一个元素可以认为已排序
   for (let i = 1; i < arr.length; i++) {
-    const current = arr[i]
+    // 保存当前元素的值
+    let current = arr[i]
+
+    // 设置已排序部分的最后一个元素的索引
     let j = i - 1
 
+    // 从后向前扫描已排序的部分
     while (j >= 0 && arr[j] > current) {
+      // 如果已排序的元素大于当前元素，将该元素移到下一个位置
       arr[j + 1] = arr[j]
       j--
     }
 
+    // 将当前元素插入到合适的位置
     arr[j + 1] = current
   }
 
   return arr
 }
 
-console.log(insertSort([1, 9, 3, 4, 5]))
+// 示例
+const array = [5, 2, 9, 1, 5, 6]
+console.log('排序前:', array)
+const sortedArray = insertionSort(array)
+console.log('排序后:', sortedArray)
