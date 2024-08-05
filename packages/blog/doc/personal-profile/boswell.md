@@ -27,15 +27,14 @@
 - 技术栈：Typescript Vue3 vue-router pinia TailWindCss Vite
 - 职责：整个网站的前端架构设计与实现，也是对老网站的一次重构，老网站基于Asp.Net的服务器端渲染的多页架构网站。
 
-  - 实现了基于Typescript,Vue3,TailWindCss,Vite的多页架构。
+  - 实现了基于Typescript,Vue3,Vite的多页架构，支持路径重写，html支持ejs模板引擎等。
   - 通过.vscode文件夹，配置统一的vscode插件推荐，统一格式化配置，规范开发环境统一，包括，eslint,prettier等。
+  - 维护Typescript编写的公共的类型，扩展现有类型以及基本的类型工具等。
   - 实现了多页的页面地址重写能力用于在开发环境页面符合老项目的跳转规则。
   - 实现了前后端联调通讯的Http代理服务，解决老项目迁移中的接口代理问题。
   - 实现了编写vite插件将产物构建到老项目的自动化流程。
   - 通过husky执行shell脚本，实现了预发分支合并到开发分支的危险行为检测并回退。
   - 核心业务周边游，国内游，出境游等详情页到下单支付的全流程开发。
-
-- 总结：[旅仓PC前端项目复盘](https://boswellji.github.io/MyBlog/ppt/旅仓PC前端架构设计与实现.html)
 
 ### 旅仓H5
 
