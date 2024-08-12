@@ -12,6 +12,7 @@
   "dependencies": {
     "jimp": "^0.16.1",
     "jsqr": "^1.4.0",
+    "miniprogram-ci": "^2.0.8",
     "mysql": "^2.18.1",
     "pdf2json": "^2.0.0",
     "pdfkit": "^0.12.3",
