@@ -1,13 +1,10 @@
 ## 自我介绍
 
-| 姓名 | 季明壮                        |
-| ---- | ----------------------------- |
-| 网名 | Boswell                       |
-| 岗位 | 前端工程师                    |
-| 电话 | 13812872860                   |
-| 邮箱 | aiyoudqrjmz@163.com           |
-| 学校 | 沙洲职业工学院（2013-9~2016-6 |
-| 专业 | 网站开发与网络营销            |
+| 姓名 | 季明壮              |
+| ---- | ------------------- |
+| 岗位 | 前端工程师          |
+| 电话 | 13812872860         |
+| 邮箱 | aiyoudqrjmz@163.com |
 
 ## 职业技能
 
@@ -134,9 +131,6 @@
   - 实现了后端生成pdf的模板html,通过`css`的`@page`特性给打印的文档配置样式；
   - 解决canvas绘制中图片跨域问题；
 
-- 地址
-  - [项目图片](https://boswellji.github.io/MyBlog/project/student-report.html)
-
 ### 模拟考试
 
 > 描述：这是一个hybrid app,提供给学生用来模拟考试,有多门课程的试卷，项目主要采用：
@@ -155,9 +149,6 @@
   - 实现了图片上传时，对图片进行压缩后上传；
   - 实现了分享海报；
 
-- 地址
-  - [项目图片](https://boswellji.github.io/MyBlog/project/mock-exam.html)
-
 ### 订单退费审核流程
 
 > 描述：多级退款审批流程，项目主要采用：
@@ -169,9 +160,6 @@
   - 实现了多级审批人配置以及最大审批人限制；
   - 实现了对数据格式整理，符合树组件传值方式，以及初始化时针对选中元素在渲染vnode时对样式改写；
   - 实现了递归组件；
-
-- 地址
-  - [项目图片](https://boswellji.github.io/MyBlog/project/order-refund.html)
 
 ## 2019-3~2021-8：智能晴雨
 
@@ -185,9 +173,6 @@
   - 实现了各种会场专题等业务；
   - 实现了图片下载，地理位置获取，微信支付等核心mixins；
   - 实现了canvas 2d海报工具函数开发；
-
-- 地址
-  - [项目图片](https://boswellji.github.io/MyBlog/project/mishop.html)
 
 ### 神奇会员小程序
 
@@ -203,9 +188,6 @@
   - 实现了canvas 2d海报工具函数开发；
   - 实现了根据日期分页导致列表一屏不够递归继续加载到满足条件的功能；
 
-- 地址
-  - [项目图片](https://boswellji.github.io/MyBlog/project/discount.html)
-
 ### 喵客云管理后台
 
 - 技术栈：vue vuex vue-roter element-UI axios moment
@@ -214,9 +196,6 @@
 
   - 多类型素材分享管理，定制模板，支付码与推广码等功能模块的开发；
   - 项目各个模块日常维护与迭代；
-
-- 地址
-  - [项目图片](https://boswellji.github.io/MyBlog/project/cloud.html)
 
 ### 供货商管理后台
 
@@ -227,9 +206,6 @@
   - 供应商入驻流程，商品管理，维护商品上架，上下架卡券商品，等功能模块开发；
   - 项目各个模块日常维护与迭代；
 
-- 地址
-  - [项目图片](https://boswellji.github.io/MyBlog/project/pop.html)
-
 ## 2017-3~2019-3：苏州爱洛克信息技术有限公司
 
 ### 官网
@@ -239,9 +215,6 @@
 - 技术栈：jquery jquery.s2t jquery.dataTables jquery.page plupload.full swiper-3.4.2.jquery
 
 - 职责：整体开发
-
-- 地址
-  - [项目图片](https://boswellji.github.io/MyBlog/project/iclock.html)
 
 ### 财喵
 
@@ -258,9 +231,6 @@
     - 服务：http 请求，请求拦截，路由守护，等等，以及业务需求服务
     - 组件：弹窗，加载,公共导航等
 
-- 地址
-  - [项目图片](https://boswellji.github.io/MyBlog/project/lucky-cat.html)
-
 ### 财喵后台管理系统
 
 > 描述：财喵的后台管理系统，项目主要采用：
@@ -276,9 +246,6 @@
     - 组件: 基于 ng-zorro-antd 组件的二次封装等，面包屑导航，弹框等等
   - 根据环境不同，在打包时对项目的不同配置文件区分
 
-- 地址
-  - [项目图片](https://boswellji.github.io/MyBlog/project/lucky-cat-admin.html)
-
 ### 客服聊天系统
 
 > 描述：提供给公司客服部门对用户进行业务反馈，项目主要采用：
@@ -291,9 +258,6 @@
   - websocket 实时交互接口数据定义
   - 公共函数封装
   - 整体开发
-
-- 地址
-  - [项目图片](https://boswellji.github.io/MyBlog/project/customer.html)
 
 ### 客服聊天系统
 
@@ -308,9 +272,6 @@
   - 公共函数封装
   - 整体开发
 
-- 地址
-  - [项目图片](https://boswellji.github.io/MyBlog/project/customer-admin.html)
-
 ### 各种营销页面
 
 > 描述：pc+ moblie，项目主要采用：
@@ -321,9 +282,6 @@
 
   - 接口定义
   - 整个专题从切图到开发，测试，上线，维护
-
-- 地址
-  - [项目图片](https://boswellji.github.io/MyBlog/project/zhuanti.html)
 
 ### 固定资产管理
 
@@ -339,10 +297,7 @@
   - 公共方法，组件的封装
   - 项目开发，测试，上线
 
-- 地址
-  - [项目图片](https://boswellji.github.io/MyBlog/project/assets.html)
-
-### 描述：固定资产管理
+### 固定资产管理后台系统
 
 > 描述：固定资产管理后台，项目主要采用：
 
@@ -354,9 +309,6 @@
   - 接口数据的定义
   - 公共模块，方法，组件，服务，通道的封装等
   - 项目开发，测试，上线
-
-- 地址
-  - [项目图片](https://boswellji.github.io/MyBlog/project/assets-admin.html)
 
 ### 企业员工与学生管理系统
 
@@ -394,9 +346,6 @@
   - 数据接口定义
   - 整体开发
 
-- 地址
-  - [项目图片](https://boswellji.github.io/MyBlog/project/meitu.html)
-
 ### 游戏管理后台
 
 > 描述：游戏的后台管理系统，项目主要采用：
@@ -409,5 +358,6 @@
   - 数据接口定义
   - 整体开发
 
-- 地址
-  - [项目图片](https://boswellji.github.io/MyBlog/project/game-admin.html)
+## 教育背景
+
+- 中国地质大学，软件工程（2013~2017

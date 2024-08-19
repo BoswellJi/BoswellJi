@@ -30,8 +30,7 @@ const upload = async () => {
   const project = new ci.Project({
     appid: 'wx8492a9091978e77d',
     type: 'miniProgram',
-    projectPath:
-      'D:\\MyConfiguration\\mingzhuang.ji\\Downloads\\build_WX_LVCANG_10_20240812060615\\project',
+    projectPath: `D:\\MyConfiguration\\mingzhuang.ji\\Downloads\\build_WX_LVCANG_10_20240812060615\\project`,
     privateKeyPath:
       'D:\\MyConfiguration\\mingzhuang.ji\\Desktop\\private.wx8492a9091978e77d.key',
     ignores: ['node_modules/**/*']
@@ -39,12 +38,18 @@ const upload = async () => {
   const uploadResult = await ci.upload({
     project,
     version: '1.3.14',
-    desc: 'hello',
+    desc: '分支：stage 环境：stage 备注: 分享优化',
     setting: {
-      es6: true
+      es6: true,
+      es7: true,
+      minify: true,
+      minifyJS: true,
+      minifyWXML: true,
+      minifyWXSS: true
     },
     onProgressUpdate: console.log
   })
+  console.log('上传成功')
   console.log(uploadResult)
 }
 
