@@ -1,19 +1,15 @@
 async function p(arrPromise) {
-  const data = []
-  await new Promise(resolve => {
+  const data = [];
     arrPromise.reduce((p, p1) => {
-      return p.then(d => {
-        data.push(d)
-        if (arrPromise.length <= data.length) {
-          resolve(data)
-          return
-        }
-        return p1
+      return p.then((d)=>{
+        return p1.then(d1=>{
+          data.push(d1)
+        })
       })
+    },Promise.resolve())
+    .then((d)=>{
+      console.log(data)
     })
-  })
-
-  console.log(data)
-}
+  }
 
 p([Promise.resolve(1), Promise.resolve(2), Promise.resolve(7)])
