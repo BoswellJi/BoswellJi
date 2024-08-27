@@ -165,7 +165,7 @@
 
 ### 咪店优选小程序
 
-- 技术栈：uniapp vuex uniapp ui vue vue-router
+- 技术栈：uniapp vuex uniapp-ui vue vue-router
 
 - 职责
 
@@ -176,7 +176,7 @@
 
 ### 神奇会员小程序
 
-- 技术栈：uniapp vuex uniapp ui vue vue-router
+- 技术栈：uniapp vuex uniapp-ui vue vue-router
 
 - 职责
 
@@ -246,7 +246,7 @@
     - 组件: 基于 ng-zorro-antd 组件的二次封装等，面包屑导航，弹框等等
   - 根据环境不同，在打包时对项目的不同配置文件区分
 
-### 客服聊天系统
+### 客服聊天系统客户端
 
 > 描述：提供给公司客服部门对用户进行业务反馈，项目主要采用：
 
@@ -259,7 +259,7 @@
   - 公共函数封装
   - 整体开发
 
-### 客服聊天系统
+### 客服聊天系统后台
 
 > 描述：客服系统后台，客服管理系统，项目主要采用：
 

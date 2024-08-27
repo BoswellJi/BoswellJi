@@ -11,4 +11,4 @@ const decimalTo36 = (num, base = 36) => {
   return result
 }
 
-console.log(decimalTo36(7, 6))
+console.log(decimalTo36(38, 36))

@@ -23,6 +23,4 @@ const two = new Node(2, null)
 const one = new Node(1, two)
 const head = new Node(0, one)
 
-console.log(head)
-
 console.log(reverseLinkedList(head))

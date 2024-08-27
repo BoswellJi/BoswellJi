@@ -27,6 +27,7 @@ function listToTree(list) {
 }
 const list = [
   { pid: null, id: 1, data: '1' },
+  { pid: null, id: 5, data: '5' },
   { pid: 1, id: 2, data: '2-1' },
   { pid: 1, id: 3, data: '2-2' },
   { pid: 2, id: 4, data: '3-1' },

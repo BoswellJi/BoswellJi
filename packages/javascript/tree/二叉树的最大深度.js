@@ -6,29 +6,35 @@ class TreeNode {
   }
 }
 
-function maxDepthIterative(root) {
-  if (root === null) {
+function depth(root) {
+  if (root == null) {
     return 0
   }
 
-  let maxDepth = 0
-  const queue = [{ node: root, depth: 1 }]
+  let max = 0
+  let arr = [{ node: root, depth: 1 }]
 
-  while (queue.length > 0) {
-    const { node, depth } = queue.shift()
-    maxDepth = Math.max(maxDepth, depth)
+  while (arr.length > 0) {
+    const { node, depth } = arr.shift()
+    max = Math.max(depth, max)
 
     if (node.left !== null) {
-      queue.push({ node: node.left, depth: depth + 1 })
+      arr.push({ node: node.left, depth: depth + 1 })
     }
+
     if (node.right !== null) {
-      queue.push({ node: node.right, depth: depth + 1 })
+      arr.push({ node: node.right, depth: depth + 1 })
     }
   }
 
-  return maxDepth
+  return max
 }
 
+/**
+ * 解法一
+ * @param {*} root
+ * @returns
+ */
 function maxDepth(root) {
   if (root === null) {
     return 0
