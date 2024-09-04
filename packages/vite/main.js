@@ -1,3 +1,3 @@
-import { isBoolean } from 'lodash-es'
+import { a } from 'lodash-es'
 
-console.log(isBoolean(1))
+console.log(a, 'test')

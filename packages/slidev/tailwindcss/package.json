@@ -1,5 +1,5 @@
 {
-  "name": "@boswell/tailwindcss",
+  "name": "@slidev/tailwindcss",
   "type": "module",
   "private": true,
   "scripts": {

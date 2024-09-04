@@ -14,16 +14,7 @@
     "preinstall": "npx only-allow pnpm",
     "postinstall": "simple-git-hooks",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "blog:dev": "pnpm run --filter @boswell/blog dev",
-    "blog:deploy": "pnpm run --filter @boswell/blog deploy",
-    "postcss:build": "pnpm run --filter @boswell/postcss build",
-    "nodejs": "pnpm run --filter @boswell/nodejs nodejs",
-    "typescript:tsc": "pnpm run --filter @boswell/typescript",
-    "astro:dev": "pnpm run --filter @boswell/astro dev",
-    "malagu:dev": "pnpm run --filter @boswell/malagu start",
-    "midwayjs:dev": "pnpm run --filter @boswell/midwayjs start",
-    "nestjs:dev": "pnpm run --filter @boswell/nestjs start",
-    "nuxtjs:dev": "pnpm run --filter @boswell/nuxtjs dev"
+    "vite:build": "pnpm -F vite run build"
   },
   "simple-git-hooks": {
     "commit-msg": "node scripts/verifyCommit.js"
