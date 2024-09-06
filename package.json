@@ -8,18 +8,16 @@
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": ">=18.18.0"
+    "node": "22.2.0"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "postinstall": "simple-git-hooks",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "vite:build": "pnpm -F vite run build"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "simple-git-hooks": {
     "commit-msg": "node scripts/verifyCommit.js"
   },
-  "lint-staged": {},
   "devDependencies": {
     "conventional-changelog-cli": "^4.1.0",
     "eslint": "^8.56.0",
