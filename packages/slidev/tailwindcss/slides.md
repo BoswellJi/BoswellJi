@@ -20,19 +20,69 @@ mdc: true
 
 ---
 layout: center
+class: text-center
 ---
 
-# TailwindCss是什么
+# 是什么
 
-一个utility-first(实用程序优先/工具优先)的CSS框架，包含flex，pt-4，text-center和rotate-90等类，可以直接在标记中组合以构建任何设计。
+一个通过样式Atomic CSS/Functional CSS的手段来实现utility-first(实用程序优先/工具优先)的CSS框架，包含flex，pt-4，text-center和rotate-90等类，其实就是预设`工具类库`，可以直接在标记中组合以构建任何设计。
+
+关键词：`utility-first(工具优先：以预设的样式工具为核心进行开发)` `Atomic CSS/Functional CSS(原子化：将样式抽象到不可再分)` 
+
+<div v-click="1" class="text-[30px] text-[#ff3333]">
+  先简单看看它会长什么样子
+</div>
 
 ---
-layout: center
+layout: default
+---
+普通类，响应式类，伪类，为元素，交互类。满足各种情况。
+
+```html
+<section>
+  <ul class="bg-slate-50 p-4 sm:px-8 sm:pt-6 sm:pb-8 lg:p-4 xl:px-8 xl:pt-6 xl:pb-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 text-sm leading-6">
+    <li x-for="project in projects">
+      <a :href="project.url" class="hover:bg-blue-500 hover:ring-blue-500 hover:shadow-md group rounded-md p-3 bg-white ring-1 ring-slate-200 shadow-sm">
+        <dl class="grid sm:block lg:grid xl:block grid-cols-2 grid-rows-2 items-center">
+          <div>
+            <dt class="sr-only">Title</dt>
+            <dd class="group-hover:text-white font-semibold text-slate-900">
+            </dd>
+          </div>
+          <div>
+            <dt class="sr-only">Category</dt>
+            <dd class="group-hover:text-blue-200">{project.category}</dd>
+          </div>
+          <div class="col-start-2 row-start-1 row-end-3 sm:mt-4 lg:mt-0 xl:mt-4">
+            <dt class="sr-only">Users</dt>
+            <dd x-for="user in project.users" class="flex justify-end sm:justify-start lg:justify-end xl:justify-start -space-x-1.5">
+              <img :src="user.avatar" :alt="user.name" class="w-6 h-6 rounded-full bg-slate-100 ring-2 ring-white" loading="lazy">
+            </dd>
+          </div>
+        </dl>
+      </a>
+    </li>
+  </ul>
+</section>
+
+```
+
+---
+layout: default
 ---
 
-# TailwindCss解决了什么问题
+# bootstrap
 
-快速构建现代网站，而无需离开HTML。
+以前的css工具类库。是非原子化的。bootstrap。
+
+缺点：
+
+1. 工具类的粒度粗/样式描述的越具体，导致样式复用程度降低
+2. 不可按需使用
+3. 定制能力弱
+4. 无法在样式完全需要定制的场景下使用
+
+总结：不够灵活，开发体验有待提升
 
 ---
 layout: center
@@ -174,6 +224,12 @@ layout: default
 
 </div>
 
+<div v-click="4">
+
+4. 没有代码导航问题
+
+</div>
+
 
 ---
 layout: default
@@ -188,24 +244,28 @@ layout: default
 <div v-click.hide="3">
   <div v-click="1" class="flex items-center mt-[50px]">
     内联样式&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    ```html{2}
-    <div 
-      style="color:red; font-size:12px; font-weight:blod;"
-    >
-      tailwindcss
-    </div>
-    ```
+
+```html{2}
+<div 
+  style="color:red; font-size:12px; font-weight:blod;"
+>
+  tailwindcss
+</div>
+```
+
   </div>
 
   <div v-click="2" class="flex items-center mt-[50px]">
     tailwindcss写法&nbsp;&nbsp;
-    ```html{2}
-    <div 
-      class="text-red text-[12px] font-bold"
-    >
-      tailwindcss
-    </div>
-    ```
+
+```html{2}
+<div 
+  class="text-red text-[12px] font-bold"
+>
+  tailwindcss
+</div>
+```
+
   </div>
 </div>
 
@@ -313,3 +373,75 @@ layout: default
 使用 @apply 提取类：Tailwind 的 @apply 指令在模板部分感觉笨重时将重复的工具模式提取到自定义 CSS 类。
 
 <img src="./images/image7.png" class="h-[90%] mx-auto my-0" />
+
+
+---
+layout: default
+---
+
+# 项目中的实践-优点
+
+<div class="flex flex-wrap justify-between  gap-y-[20px]">
+  <div class="w-[50%]">
+    <h3 class="text-red">不用担心全局样式冲突</h3>
+    <div class="">每个类名都是唯一的</div>
+  </div>
+
+  <div class="w-[50%]">
+    <h3 class="text-red">项目的侵入性可控</h3>
+    <div class="">给所有类名添加前缀：<span class="text-red">tw-bg-[#fff]</span></div>
+  </div>
+
+   <div class="w-[50%]">
+    <h3 class="text-red">较好的语义化</h3>
+    <div class="">使用 TailwindCss 你不用花精力来定义类名，你可以使用内置具有良好语义化的类名，实现样式效果。</div>
+  </div>
+
+  <div class="w-[50%]">
+    <h3 class="text-red">开发阶段极度流畅</h3>
+    <div class="">搭配补全插件，极速开发</div>
+  </div>
+
+  <div class="w-[50%]">
+    <h3 class="text-red">代码片段复用能力增强</h3>
+    <div class="">一段html，随处可复制粘贴（也是一种复用）。</div>
+  </div>
+
+  <div class="w-[50%]">
+    <h3 class="text-red">可渐进式使用</h3>
+    <div class="">和老项目一起使用，less,sass,css</div>
+  </div>
+</div>
+
+
+---
+layout: default
+---
+
+# 项目中的实践-缺点
+
+<div class="flex flex-wrap justify-between  gap-y-[20px]">
+  <div class="w-[45%]">
+    <h3 class="text-red">冗余代码</h3>
+    <div>传统的css类的编写一个类可以有多个样式规则，这里都要体现在css的类里面</div>
+    <div class="italic text-red">解决方案：利用css的继承特性，html标签的层级嵌套组织（抽象）</div>
+  </div>
+
+  <div class="w-[45%]">
+    <h3 class="text-red">外部项目组件共享</h3>
+    <div>不支持tailwind css的项目，没法使用</div>
+    <div class="italic text-red">解决方案：将组件构建出来</div>
+  </div>
+
+  <div class="w-[45%]">
+    <h3 class="text-red">记忆成本</h3>
+    <div>规则很多</div>
+    <div class="italic text-red">解决方案：搭配补全插件</div>
+  </div>
+</div>
+
+---
+layout: center
+---
+
+[Presentation Slides for Developers](https://sli.dev)
