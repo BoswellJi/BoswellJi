@@ -27,7 +27,7 @@ class: text-center
 
 一个通过样式Atomic CSS/Functional CSS的手段来实现utility-first(实用程序优先/工具优先)的CSS框架，包含flex，pt-4，text-center和rotate-90等类，其实就是预设`工具类库`，可以直接在标记中组合以构建任何设计。
 
-关键词：`utility-first(工具优先：以预设的样式工具为核心进行开发)` `Atomic CSS/Functional CSS(原子化：将样式抽象到不可再分)` 
+其中包含普通类，响应式类，伪类，为元素，交互类。满足各种使用场景。
 
 <div v-click="1" class="text-[30px] text-[#ff3333]">
   先简单看看它会长什么样子
@@ -36,7 +36,6 @@ class: text-center
 ---
 layout: default
 ---
-普通类，响应式类，伪类，为元素，交互类。满足各种情况。
 
 ```html
 <section>
@@ -45,7 +44,7 @@ layout: default
       <a :href="project.url" class="hover:bg-blue-500 hover:ring-blue-500 hover:shadow-md group rounded-md p-3 bg-white ring-1 ring-slate-200 shadow-sm">
         <dl class="grid sm:block lg:grid xl:block grid-cols-2 grid-rows-2 items-center">
           <div>
-            <dt class="sr-only">Title</dt>
+            <dt class="sr-only"></dt>
             <dd class="group-hover:text-white font-semibold text-slate-900">
             </dd>
           </div>
@@ -68,29 +67,42 @@ layout: default
 ```
 
 ---
+layout: center
+class: text-center
+---
+
+# TailwindCss核心理念
+
+Tailwind CSS 的核心设计理念是“工具类优先”（Utility-First），一种通过Atomic CSS的工具类而非自定义CSS来实现快速样式设计，它开箱即提供颜色、填充、边距、显示等数百种CSS属性的工具，这种方法的好处是可以快速地创建原型，并且可以更直观地理解每个元素的样式，由于所有的样式都直接写在了元素上，实现了真正的所见即所得，不用离开HTML即可快速写出各种样式。
+
+关键词：`utility-first(工具优先：以预设的样式工具为核心进行开发)` `Atomic CSS/Functional CSS(原子化：原子化 CSS 是一种 CSS 的架构方式，它倾向于小巧且用途单一的 class，并且会以视觉效果进行命名。)` 
+
+<div v-click="1" class="text-[30px] text-[#ff3333]">
+  为什么要使用它
+</div>
+
+---
 layout: default
 ---
 
 # bootstrap
 
-以前的css工具类库。是非原子化的。bootstrap。
+以前的css工具类库。是非原子化的。bootstrap。(角度不同，粒度不同，概念原子化、物理原子化)
 
+<div v-click="1">
 缺点：
 
 1. 工具类的粒度粗/样式描述的越具体，导致样式复用程度降低
 2. 不可按需使用
-3. 定制能力弱
+3. 定制能力弱，没办法通过工程化手段定制，只能手动样式覆盖
 4. 无法在样式完全需要定制的场景下使用
+5. 使用体验差，工具类名每次都要照着文档抄
 
-总结：不够灵活，开发体验有待提升
+</div>
 
----
-layout: center
----
-
-# TailwindCss核心理念
-
-Tailwind CSS 的核心设计理念是“工具类优先”（Utility-First），一种通过工具类而非自定义CSS来实现快速样式设计，它开箱即提供颜色、填充、边距、显示等数百种CSS属性的工具，这种方法的好处是可以快速地创建原型，并且可以更直观地理解每个元素的样式，由于所有的样式都直接写在了元素上，实现了真正的所见即所得，不用离开HTML即可快速写出各种样式。
+<div v-click="2" class="text-[30px] text-[#ff3333]">
+总结：使用场景不够灵活，开发体验不够好
+</div>
 
 ---
 layout: image
@@ -157,9 +169,7 @@ layout: two-cols
 ```
 
 ---
-layout: image-left
-image: ./images/image1.png
-backgroundSize: contain
+layout: default
 ---
 
 # TailwindCss写法
@@ -198,7 +208,7 @@ backgroundSize: contain
 </v-switch>
 
 <div v-click="3" class="mt-1">
-其中的每一个类都是tailwindcss工具类。这种方法允许我们实现完全自定义的组件设计，而无需编写一行自定义 CSS。
+其中的每一个类都是tailwindcss工具类。这种方法也允许我们实现完全自定义的组件设计，而无需编写一行自定义 CSS。
 </div>
 
 ---
@@ -226,7 +236,25 @@ layout: default
 
 <div v-click="4">
 
-4. 没有代码导航问题
+4. 没有代码导航问题（所见所得
+
+</div>
+
+<div v-click="5">
+
+5. 加载更快
+
+</div>
+
+<div v-click="6">
+
+6. 代码风格更加统一，不再四不像（错别字，不统一的命名方式等
+
+</div>
+
+<div v-click="7">
+
+7. 不再有代码冗余问题
 
 </div>
 
@@ -237,7 +265,7 @@ layout: default
 
 # 是不是和内联样式有些相似
 
-<div v-click="3" class=" text-[30px] text-red">
+<div v-click="3" class="text-[30px] text-red">
   有哪些好处?
 </div>
 
@@ -308,16 +336,24 @@ backgroundSize: 100% auto
 
 ---
 layout: center
+class: text-center
 ---
 
-# 以上体现出来的问题是什么
-<div class="text-center text-[red]" v-click>
-重复的工具类组合的可维护性问题。
+<div>
+
+# 以上我们看出了什么问题
+
+</div>
+
+<div class="text-center text-[red] text-[40px]"  v-click="1">
+  重复的工具类组合的可维护性问题。
 </div>
 
 ---
 layout: center
 ---
+
+<div class="text-[30px]">
 
 ```html{1-2|all}
 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
@@ -330,7 +366,9 @@ layout: center
 </button>
 ```
 
-<div v-click="3" class="text-center text-red">
+</div>
+
+<div v-click="3" class="text-center text-red text-[30px] rotate-45 translate-y-[-100px]">
 如何解决？
 </div>
 
@@ -352,7 +390,7 @@ layout: default
 
 # 方案二
 
-模板引擎能力: for循环语句
+模板引擎能力: for循环语句(模板的编程能力，抽象提取等)
 
 ---
 layout: default
@@ -370,9 +408,9 @@ layout: default
 
 # 方案四
 
-使用 @apply 提取类：Tailwind 的 @apply 指令在模板部分感觉笨重时将重复的工具模式提取到自定义 CSS 类。
+使用 @apply 提取类：Tailwind 的 @apply 指令在模板部分感觉笨重时将重复的工具模式提取到自定义 CSS 类。（从这里可以看到我们可以通过tailwindcss创建自己的bootstrap）
 
-<img src="./images/image7.png" class="h-[90%] mx-auto my-0" />
+<img src="./images/image7.png" class="h-[70%] mx-auto my-0" />
 
 
 ---
@@ -384,32 +422,44 @@ layout: default
 <div class="flex flex-wrap justify-between  gap-y-[20px]">
   <div class="w-[50%]">
     <h3 class="text-red">不用担心全局样式冲突</h3>
-    <div class="">每个类名都是唯一的</div>
+    <div class="">1.每个类名都是唯一的</div>
   </div>
 
-  <div class="w-[50%]">
+   <div class="w-[50%]">
     <h3 class="text-red">项目的侵入性可控</h3>
-    <div class="">给所有类名添加前缀：<span class="text-red">tw-bg-[#fff]</span></div>
+    <div class="">1. 给所有类名添加前缀：<span class="text-red">tw-bg-[#fff]</span></div>
+    <div class="">2. 样式重置开关</div>
   </div>
 
    <div class="w-[50%]">
     <h3 class="text-red">较好的语义化</h3>
-    <div class="">使用 TailwindCss 你不用花精力来定义类名，你可以使用内置具有良好语义化的类名，实现样式效果。</div>
+    <div class="">1.使用 TailwindCss 你不用花精力来定义类名，你可以使用内置具有良好语义化的类名，实现样式效果。</div>
   </div>
 
   <div class="w-[50%]">
     <h3 class="text-red">开发阶段极度流畅</h3>
-    <div class="">搭配补全插件，极速开发</div>
+    <div class="">1.搭配补全插件，极速开发</div>
+  </div>
+
+  <div class="w-[50%]">
+    <h3 class="text-red">项目越大资源越小</h3>
+    <div class="">1.每个原子类只生成一个</div>
   </div>
 
   <div class="w-[50%]">
     <h3 class="text-red">代码片段复用能力增强</h3>
-    <div class="">一段html，随处可复制粘贴（也是一种复用）。</div>
+    <div class="">1.一段html，随处可复制粘贴（也是一种复用）。</div>
   </div>
 
   <div class="w-[50%]">
     <h3 class="text-red">可渐进式使用</h3>
-    <div class="">和老项目一起使用，less,sass,css</div>
+    <div class="">1.和老项目一起使用，less,sass,css</div>
+  </div>
+
+  <div class="w-[50%]">
+    <h3 class="text-red">统一代码规范</h3>
+    <div class="">1.告别四不像代码</div>
+    <div>2.输入错别字</div>
   </div>
 </div>
 
@@ -437,6 +487,12 @@ layout: default
     <h3 class="text-red">记忆成本</h3>
     <div>规则很多</div>
     <div class="italic text-red">解决方案：搭配补全插件</div>
+  </div>
+
+  <div class="w-[45%]">
+    <h3 class="text-red">构建开销</h3>
+    <div>扫描文件中的标签来生成样式</div>
+    <div class="italic text-red">目前暂无察觉，遇到瓶颈再谈不迟</div>
   </div>
 </div>
 
