@@ -27,7 +27,25 @@ class: text-center
 
 一个通过样式Atomic CSS/Functional CSS的手段来实现utility-first(实用程序优先/工具优先)的CSS框架，包含flex，pt-4，text-center和rotate-90等类，其实就是预设`工具类库`，可以直接在标记中组合以构建任何设计。
 
-其中包含普通类，响应式类，伪类，为元素，交互类。满足各种使用场景。
+---
+layout: default
+---
+
+@tailwind base;
+
+这将注入Tailwind的基本样式和任何插件注册的基本样式。(重置样式，全局样式)
+
+@tailwind components;
+
+这会注入Tailwind的组件类和插件注册的任何组件类。（可能是按钮、表单、卡片、导航栏等常见的 UI 元素）
+
+@tailwind utilities;
+
+这将注入Tailwind的实用程序类和插件注册的任何实用程序类。（核心工具类，布局，边距，字体等）
+
+@tailwind variants; 
+
+使用这个指令来控制顺风注入悬停，聚焦，响应式，黑暗模式，以及每个类别的其他变体。如果省略，Tailwind将把这些类附加到默认的样式表。（特定状态或条件下应用的样式。悬停时的样式、焦点状态下的样式、响应式设计中不同屏幕尺寸下的样式）
 
 <div v-click="1" class="text-[30px] text-[#ff3333]">
   先简单看看它会长什么样子
