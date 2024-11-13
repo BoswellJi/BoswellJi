@@ -18,6 +18,8 @@ mdc: true
 
 # TailwindCss
 
+功能强大，高度可定制，高效开发体验
+
 ---
 layout: center
 class: text-center
@@ -54,7 +56,6 @@ layout: default
 ---
 layout: default
 ---
-
 ```html
 <section>
   <ul class="bg-slate-50 p-4 sm:px-8 sm:pt-6 sm:pb-8 lg:p-4 xl:px-8 xl:pt-6 xl:pb-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 text-sm leading-6">
