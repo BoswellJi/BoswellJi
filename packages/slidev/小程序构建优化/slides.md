@@ -5,7 +5,7 @@ theme: seriph
 # like them? see https://unsplash.com/collections/94734566/slidev
 # background: https://cover.sli.dev
 # some information about your slides (markdown enabled)
-title: 旅仓小程序构建优化
+title: 小程序构建优化工作报告
 class: text-center
 # https://sli.dev/features/drawing
 drawings:
@@ -16,7 +16,7 @@ transition: slide-left
 mdc: true
 ---
 
-# 旅仓小程序构建优化
+# 小程序构建优化工作报告
 
 高效开发体验，解放创造力。
 
@@ -83,10 +83,16 @@ layout: center
 layout: center
 ---
 
-<h1 class="text-center">开发过程中的构建系统发生了什么？</h1>
+<h1 class="text-center">构建流程</h1>
 
-<h3 v-click="1">1. 开发过程中的构建系统优化</h3>
-<h3 v-click="2">2. 启动过程中的构建系统优化</h3>
+<img src="./images/旅仓构建流程图.png" />
+---
+layout: center
+---
+
+<h1 class="text-center">gulp构建流程</h1>
+
+<img src="./images/gulp构建流程图.png" class="w-[50%] m-auto" />
 
 ---
 layout: center
