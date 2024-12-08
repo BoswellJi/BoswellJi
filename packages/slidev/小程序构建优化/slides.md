@@ -18,8 +18,6 @@ mdc: true
 
 # 小程序构建优化工作报告
 
-高效开发体验，解放创造力。
-
 ---
 layout: center
 ---
@@ -27,30 +25,7 @@ layout: center
 <h1 class="text-center"> 背景 </h1>
 
 
-基于`gulp`构建工具的旅仓小程序，每次启动项目耗时严重，且开发过程中项目变更也同样如此，使得开发过程痛苦不堪。
-
----
-layout: center
----
-
-<h1 class="text-center">启动项目耗时</h1>
-
-<img src="/images/2.png" class="block m-auto  w-[70%]"  />
-
----
-layout: center
----
-
-<h1 class="text-center">更新项目耗时</h1>
-
-
-<h4 class="m-auto  w-[70%] my-[10px]">样式更新</h4>
-
-<img src="/images/3.png" class="block m-auto  w-[70%]"  />
-
-<h4  class="m-auto  w-[70%] my-[10px]">逻辑更新</h4>
-
-<img src="/images/4.png" class="block m-auto  w-[70%]"  />
+基于`gulp`构建的旅仓小程序，每次启动项目耗时严重，且开发过程中项目变更也同样如此，使得开发过程痛苦不堪。
 
 ---
 layout: center
@@ -69,15 +44,6 @@ layout: center
 
 <img src="/images/1.png" class="block m-auto  w-[70%]"  />
 
----
-layout: center
----
-
-<h1 v-click="0" class="text-center">我们要解决的问题？</h1>
-
-<h3 v-click="1">1. 启动过程中的构建系统优化</h3>
-<h3 v-click="2">2. 开发过程中的构建系统优化</h3>
-
 
 ---
 layout: center
@@ -93,6 +59,46 @@ layout: center
 <h1 class="text-center">gulp构建流程</h1>
 
 <img src="./images/gulp构建流程图.png" class="w-[50%] m-auto" />
+
+
+---
+layout: center
+---
+
+<h1 class="text-center">启动项目耗时</h1>
+
+<img src="/images/2.png" class="block m-auto  w-[70%]"  />
+
+---
+layout: center
+---
+
+<h1 class="text-center">更新项目耗时</h1>
+
+
+<h4 class="m-auto  w-[70%] my-[10px]">js更新</h4>
+
+<img src="/images/3.png" class="block m-auto  w-[70%]"  />
+
+<h4  class="m-auto  w-[70%] my-[10px]">css更新</h4>
+
+<img src="/images/4.png" class="block m-auto  w-[70%]"  />
+
+---
+layout: center
+---
+
+<h1 v-click="0" class="text-center">我们要解决的问题？</h1>
+
+<h3 v-click="1">1. 启动过程中的构建系统优化</h3>
+<h3 v-click="2">2. 开发过程中的构建系统优化</h3>
+
+
+---
+
+# 开发过程中的构建优化
+
+
 
 ---
 layout: center
