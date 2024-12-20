@@ -16,7 +16,7 @@ transition: slide-left
 mdc: true
 ---
 
-# 小程序构建优化工作报告
+# 旅仓小程序构建优化工作报告
 
 ---
 layout: center
@@ -25,7 +25,9 @@ layout: center
 <h1 class="text-center"> 背景 </h1>
 
 
-基于`gulp`构建的旅仓小程序，每次启动项目耗时严重，且开发过程中项目变更也同样如此，使得开发过程痛苦不堪。
+<div class="text-[30px]">
+  基于gulp构建的旅仓小程序，每次启动项目耗时严重，且开发过程中变更也同样如此，使得开发过程痛苦不堪，开发体验极差。
+</div>
 
 ---
 layout: center
@@ -33,8 +35,9 @@ layout: center
  
 <h1 class="text-center">什么是gulp?</h1>
 
+<div class="text-[30px]">
 Gulp 是一个基于 Node.js 的流式构建工具，主要用于前端开发中的自动化任务管理。它允许开发者定义一系列的任务来自动化常见的工作流程，如代码压缩、文件合并、CSS 预处理、浏览器自动刷新等。Gulp 通过编写简单且可读的任务代码，显著提高了开发效率。
- 
+</div>
 
 ---
 layout: center
@@ -92,20 +95,28 @@ layout: center
 
 <h3 v-click="1">gulp中的每个任务执行的耗时优化</h3>
 
-
+---
+layout: center
 ---
 
-# 开发过程中的构建优化
+# 开发环境的构建优化
 
 1. 每个task没有进行增量构建，全部是task都是全量构建，导致每次文件改动task从头执行。
 
 ---
+layout: center
+---
 
-# 开发过程中的构建优化
+# 开发环境中的构建优化
 
+```js
 1. gulp.src('./', { since: xxxx-xx-xx })
-2. lastRun()
+2. lastRun(task)
+3. gulp.src('./', { since: lastRun(task) })
+```
 
+---
+layout: center
 ---
 
 # 应用的启动慢的缺点
@@ -120,10 +131,19 @@ layout: center
 
 从gulp的任务中分析得出做的几件事情
 
-1. 基本的文件拷贝
-2. less处理
-3. js处理
+<div class="flex justify-between mt-[50px]">
 
+<div class="flex-1 mr-[50px]">
+<img src="./images/gulp构建流程图.png" class="w-[100%]" />
+</div>
+
+<div class="flex-1 flex justify-center items-center">
+1. 基本的文件拷贝<br />
+2. less处理<br />
+3. js处理<br />
+</div>
+
+</div>
 ---
 
 # 基本的文件拷贝
@@ -203,7 +223,17 @@ layout: center
 
 <h1 class="text-center">总结</h1>
 
+**前提：开发者工具为>=1.05.2109101**
+
 从构建版到无构建版改造完成，让原生构建工具兼容掉自定义构建工作流之后，项目变成从了纯原生项目。
+
+优点：
+
+1. 应用启动时间最优
+2. 部署应用时间最优
+3. 切换不同分支无需等待重新构建
+4. 没有维护构建工具的负担，专注开发
+5. 原生应用，没有冗余代码
 
 ---
 layout: center
