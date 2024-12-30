@@ -14,7 +14,7 @@
 - 掌握glup,vite,webpack等构建工具使用，能够基于构建工具自主搭建现代前端应用工程，开发规范，以及构建流程的性能优化。
 - 熟悉Node.js及其服务器端框架nest.js，能够基于nest.js开发http服务器。
 - 熟练使用微信小程序原生框架，uniapp跨端框架开发微信小程序应用，并理解微信小程序运行原理。
-- 对canvas2d,webgl感兴趣，自学过webgl shader，对图形绘制有一定基础。
+- 对canvas2d,webgl感兴趣，了解shader，对图形绘制有一定基础。
 - 了解跨端框架，uniapp, flutter, react native。
 
 ## 工作经历

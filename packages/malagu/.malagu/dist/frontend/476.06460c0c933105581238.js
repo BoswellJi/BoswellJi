@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmalagu1=self.webpackChunkmalagu1||[]).push([[476],{9476:(e,t,a)=>{Object.defineProperty(t,"__esModule",{value:!0});const n=a(5218),o=a(325);a(5523),t.default=(0,n.autoBind)((e=>{e(o.RestOperations).toDynamicValue((e=>e.container.get(o.RestOperationsFactory).create())).inSingletonScope()}))}}]);

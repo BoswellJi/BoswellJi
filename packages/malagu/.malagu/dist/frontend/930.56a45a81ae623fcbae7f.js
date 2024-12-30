@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmalagu1=self.webpackChunkmalagu1||[]).push([[930],{8930:(e,u,a)=>{Object.defineProperty(u,"__esModule",{value:!0});const l=a(5218);u.default=(0,l.autoBind)()}}]);

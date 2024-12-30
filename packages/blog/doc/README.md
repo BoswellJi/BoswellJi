@@ -218,6 +218,13 @@
 - [JavaScript 编程精粹](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/javascript编程精粹)
 - [JavaScript 语言精髓与编程语言实践](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/javascript语言精髓与编程语言实践)
 - [数据结构与算法 javascript 描述](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/数据结构与算法javascript描述)
+- [JavaScript 规范](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/ecmascript规格)
+- [JavaScript 设计模式](./books/javascript/javascript设计模式/readme.md)
+- [探索 ES6](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/探索ES6)
+- [深层 javascript：理论和技巧](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/深层javascript：理论和技巧)
+- [现代化 js 实战](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/现代化js实战)
+- [给不耐烦的程序员的 javascript](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/给不耐烦的程序员的javascript)
+- [话说 javascript](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/话说javascript)
 
 ### Algorithm
 
@@ -234,18 +241,6 @@
 
 - [English-grammar-guide](https://github.com/BoswellJi/BoswellJi/tree/master/books/english/English-grammar-guide)
 - [english-grammar-in-use](https://github.com/BoswellJi/BoswellJi/tree/master/books/english/english-grammar-in-use)
-
-## Translation
-
-### JavaScript
-
-- [JavaScript 规范](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/ecmascript规格)
-- [JavaScript 设计模式](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/javascript设计模式)
-- [探索 ES6](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/探索ES6)
-- [深层 javascript：理论和技巧](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/深层javascript：理论和技巧)
-- [现代化 js 实战](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/现代化js实战)
-- [给不耐烦的程序员的 javascript](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/给不耐烦的程序员的javascript)
-- [话说 javascript](https://github.com/BoswellJi/BoswellJi/tree/master/books/javascript/话说javascript)
 
 ## English
 
