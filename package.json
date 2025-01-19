@@ -8,13 +8,12 @@
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": "22.2.0"
+    "node": ">=20.10.0"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "postinstall": "simple-git-hooks",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "start": "bash ./auto.sh"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "simple-git-hooks": {
     "commit-msg": "node scripts/verifyCommit.js"
