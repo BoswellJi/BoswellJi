@@ -18,7 +18,7 @@ mvvm最初是由微软定义用在wpf和silverlight中使用的。2005年由jhon
 
 ## 模型
 
-与mv*家庭的其他成员一样，mvvm中的模型代表我们应用程序将一起工作的特定领域数据或者信息。一个典型的特定领域数据可能是一个用户账户（例如，名称，头像，电子邮件），或者一个音乐轨迹（例如，标题，年，相册）。
+与mv\*家庭的其他成员一样，mvvm中的模型代表我们应用程序将一起工作的特定领域数据或者信息。一个典型的特定领域数据可能是一个用户账户（例如，名称，头像，电子邮件），或者一个音乐轨迹（例如，标题，年，相册）。
 
 模型持有信息，但是典型地不能处理行为。它们不能格式化信息或者影响数据如何在浏览器中出现，因为这不是它们的责任。反而，数据的格式化由视图来处理，尽管行为被认为是应该被封装在与模型交互的另一个层的业务逻辑（viewmodel）。
 
@@ -29,11 +29,11 @@ mvvm最初是由微软定义用在wpf和silverlight中使用的。2005年由jhon
 如果我们构建一个简单的todo应用程序，代表单个todo事项的KnockoutJS模型看着像下面这样：
 
 ```js
-var Todo = function ( content, done ) {
-    this.content = ko.observable(content);
-    this.done = ko.observable(done);
-    this.editing = ko.observable(false);
-};
+var Todo = function (content, done) {
+  this.content = ko.observable(content)
+  this.done = ko.observable(done)
+  this.editing = ko.observable(false)
+}
 ```
 
 注意：你可能会注意到上面的代码片段，我们正调用了一个KnockoutJS 命名空间ko上的方法observable()。在KnockoutJS中，可观察者是特定的js对象，它能够通知订阅者关于变更和自动化侦测依赖。这个允许我们在模型属性的值被修改的时候，同步模型和viewmodel。
@@ -56,56 +56,60 @@ viewmodel
 
 ```js
 var aViewModel = {
-    contactName: ko.observable("John")
-};
-ko.applyBindings(aViewModel);
+  contactName: ko.observable('John')
+}
+ko.applyBindings(aViewModel)
 ```
 
 view
 
 ```html
-<p><input id="source" data-bind="value: contactName, valueUpdate: 'keyup'" /></p>
+<p>
+  <input id="source" data-bind="value: contactName, valueUpdate: 'keyup'" />
+</p>
 <div data-bind="visible: contactName().length > 10">
-    You have a really long name!
+  You have a really long name!
 </div>
 <p>Contact name: <strong data-bind="text: contactName"></strong></p>
-
 ```
 
 我们的输入文本框从contactName获取它的初始值，无论contactName什么时候改变都会自动更新这个值。因为数据绑定是双向的，键入文本框会更新contactName响应的所以值总是同步。
 
-尽管实现特定于KnockoutJS，<div>包含文本’you have a really long name‘,还包含简单的验证。如果输入超过了10个字符，它才会展示，否则它一直隐藏。
+尽管实现特定于KnockoutJS，div包含文本’you have a really long name‘,还包含简单的验证。如果输入超过了10个字符，它才会展示，否则它一直隐藏。
 
 下面有一个更高级的案例。我们回到我们的代办应用程序。这是一个修剪的KnockoutJS视图，包括所有必要的数据绑定，或许看起来像下面这样。
 
 ```html
 <div id="todoapp">
-    <header>
-        <h1>Todos</h1>
-        <input id="new-todo" type="text" data-bind="value: current, valueUpdate: 'afterkeydown', enterKey: add"
-               placeholder="What needs to be done?"/>
-    </header>
-    <section id="main" data-bind="block: todos().length">
- 
-        <input id="toggle-all" type="checkbox" data-bind="checked: allCompleted">
-        <label for="toggle-all">Mark all as complete</label>
- 
-        <ul id="todo-list" data-bind="foreach: todos">
- 
-           <!-- item -->
-            <li data-bind="css: { done: done, editing: editing }">
-                <div class="view" data-bind="event: { dblclick: $root.editItem }">
-                    <input class="toggle" type="checkbox" data-bind="checked: done">
-                    <label data-bind="text: content"></label>
-                    <a class="destroy" href="#" data-bind="click: $root.remove"></a>
-                </div>
-                <input class="edit" type="text"
-                       data-bind="value: content, valueUpdate: 'afterkeydown', enterKey: $root.stopEditing, selectAndFocus: editing, event: { blur: $root.stopEditing }"/>
-            </li>
- 
-        </ul>
- 
-    </section>
+  <header>
+    <h1>Todos</h1>
+    <input
+      id="new-todo"
+      type="text"
+      data-bind="value: current, valueUpdate: 'afterkeydown', enterKey: add"
+      placeholder="What needs to be done?"
+    />
+  </header>
+  <section id="main" data-bind="block: todos().length">
+    <input id="toggle-all" type="checkbox" data-bind="checked: allCompleted" />
+    <label for="toggle-all">Mark all as complete</label>
+
+    <ul id="todo-list" data-bind="foreach: todos">
+      <!-- item -->
+      <li data-bind="css: { done: done, editing: editing }">
+        <div class="view" data-bind="event: { dblclick: $root.editItem }">
+          <input class="toggle" type="checkbox" data-bind="checked: done" />
+          <label data-bind="text: content"></label>
+          <a class="destroy" href="#" data-bind="click: $root.remove"></a>
+        </div>
+        <input
+          class="edit"
+          type="text"
+          data-bind="value: content, valueUpdate: 'afterkeydown', enterKey: $root.stopEditing, selectAndFocus: editing, event: { blur: $root.stopEditing }"
+        />
+      </li>
+    </ul>
+  </section>
 </div>
 ```
 
@@ -131,16 +135,16 @@ KnockoutJS解释viewmodel作为数据和操作的代表，它能够在ui上执�
 // our main ViewModel
     var ViewModel = function ( todos ) {
         var self = this;
- 
+
     // map array of passed in todos to an observableArray of Todo objects
     self.todos = ko.observableArray(
     ko.utils.arrayMap( todos, function ( todo ) {
         return new Todo( todo.content, todo.done );
     }));
- 
+
     // store the new todo value being entered
     self.current = ko.observable();
- 
+
     // add a new todo, when enter key is pressed
     self.add = function ( data, event ) {
         var newTodo, current = self.current().trim();
@@ -150,27 +154,27 @@ KnockoutJS解释viewmodel作为数据和操作的代表，它能够在ui上执�
             self.current("");
         }
     };
- 
+
     // remove a single todo
     self.remove = function ( todo ) {
         self.todos.remove( todo );
     };
- 
+
     // remove all completed todos
     self.removeCompleted = function () {
         self.todos.remove(function (todo) {
             return todo.done();
         });
     };
- 
+
     // writeable computed observable to handle marking all complete/incomplete
     self.allCompleted = ko.computed({
- 
+
         // always return true/false based on the done flag of all todos
         read:function () {
             return !self.remainingCount();
         },
- 
+
         // set all todos to the written value (true/false)
         write:function ( newValue ) {
             ko.utils.arrayForEach( self.todos(), function ( todo ) {
@@ -179,7 +183,7 @@ KnockoutJS解释viewmodel作为数据和操作的代表，它能够在ui上执�
             });
         }
     });
- 
+
     // edit an item
     self.editItem = function( item ) {
         item.editing( true );
@@ -191,10 +195,10 @@ KnockoutJS解释viewmodel作为数据和操作的代表，它能够在ui上执�
 
 ```js
 // Define an initially an empty array
-var myObservableArray = ko.observableArray();
- 
+var myObservableArray = ko.observableArray()
+
 // Add a value to the array and notify our observers
-myObservableArray.push( 'A new todo item' );
+myObservableArray.push('A new todo item')
 ```
 
 如果感兴趣，我们能够从上面的TodoMVC查看完整的Knockout.js代办应用程序 。
@@ -240,7 +244,12 @@ mvvm促进更容易并行ui的开发，以及构建驱动它的块。
 KnockoutJS默认有一个数据绑定提供器，它搜索任何带有data-bind属性的元素，比如，像下面的案例：
 
 ```js
-<input id="new-todo" type="text" data-bind="value: current, valueUpdate: 'afterkeydown', enterKey: add" placeholder="What needs to be done?"/>
+<input
+  id="new-todo"
+  type="text"
+  data-bind="value: current, valueUpdate: 'afterkeydown', enterKey: add"
+  placeholder="What needs to be done?"
+/>
 ```
 
 当提供器定位到一个带有这个属性的元素，它会解析它，并以把它变进一个使用当前数据上下文的绑定对象。这个是KnockoutJS一直工作的方式，允许我们给元素声明地添加绑定。KnockoutJS绑定数据在那层。
@@ -261,12 +270,12 @@ getBindings：返回一个代表应用到当前数据上下文的绑定的对象
 
 ```js
 var ourBindingProvider = {
-  nodeHasBindings: function( node ) {
-      // returns true/false
+  nodeHasBindings: function (node) {
+    // returns true/false
   },
- 
-  getBindings: function( node, bindingContext ) {
-      // returns a binding object
+
+  getBindings: function (node, bindingContext) {
+    // returns a binding object
   }
-};
+}
 ```
