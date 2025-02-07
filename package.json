@@ -7,9 +7,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "engines": {
-    "node": "22.2.0"
-  },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "postinstall": "simple-git-hooks",
