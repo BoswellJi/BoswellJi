@@ -210,6 +210,10 @@
 
 - [操作系统术语](./operating-system/term.md)
 
+## AI
+
+- [AI辅助编程: github copilot](./ai/AI辅助编程.md)
+
 ## Books
 
 ### JavaScript
