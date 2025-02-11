@@ -1,0 +1,27 @@
+{
+  "name": "@boswell/cell-vue-for-vite",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    // "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "start": "cell serve",
+    "build": "cell build"
+  },
+  "dependencies": {
+    "@celljs/core": "^3.4.2",
+    "@celljs/vue": "^3.4.2",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@celljs/cli": "^3.4.2",
+    "@celljs/cli-service": "^3.4.2",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/tsconfig": "^0.7.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.1.0",
+    "vue-tsc": "^2.2.0"
+  }
+}
