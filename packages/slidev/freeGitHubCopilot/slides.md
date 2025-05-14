@@ -5,7 +5,7 @@ theme: seriph
 # like them? see https://unsplash.com/collections/94734566/slidev
 # background: https://cover.sli.dev
 # some information about your slides (markdown enabled)
-title: 小程序构建优化工作报告
+title: GitHub Copilot
 class: text-center
 # https://sli.dev/features/drawing
 drawings:
@@ -16,7 +16,7 @@ transition: slide-left
 mdc: true
 ---
 
-# 免费的GitHub Copilot
+# GitHub Copilot
 
 ---
 layout: center
@@ -43,9 +43,7 @@ layout: center
 
 <h1 class="text-center"> 免费/付费 </h1>
 
-免费：每月可以获得2000次代码补全，每月获得50次聊天请求
-
-付费：
+<img src="./images/2.png" class="h-[500px] block" />
 
 ---
 layout: center
@@ -73,7 +71,7 @@ layout: center
 
 # 跨多个文件迭代大的更改
 
-1. 启动ai驱动的代码编辑会话：`Copilot Edits带来了Copilot Chat的会话流和快速反馈从内联聊天一起在一个体验。有一个持续的，多回合的聊天对话在一边，同时受益于内联代码建议。`
+1. 启动ai驱动的代码编辑会话：`通过使用自然语言快速迭代多个文件的代码更改。选择要编辑的文件，提供相关的上下文和提示，Copilot会建议代码编辑。`
 
 ![](https://code.visualstudio.com/assets/docs/copilot/copilot-edits/copilot-edits-view-edits-in-file.png)
 
@@ -207,10 +205,9 @@ layout: center
 
 # 提高生产力
 
-4. 语义搜索结果：`除了基于搜索文本的语义相关的匹配外，Search视图还列出了文件中的精确文本匹配。`
+4. 语义搜索结果：`你不仅可以看到与你的搜索词完全匹配的结果，还可以看到那些在语义上与搜索词相关的结果。这种搜索方式不仅仅依赖于字面上的匹配，还考虑了词语的含义和上下文，从而提供更智能和相关的搜索结果。`
 
-![](https://code.visualstudio.com/assets/docs/copilot/overview/semantic-search-results.png)
-
+<img src="https://code.visualstudio.com/assets/docs/copilot/overview/semantic-search-results.png" class="h-[400px] block m-auto" />
 
 ---
 
