@@ -6,7 +6,6 @@ theme: seriph
 background: ./images/bg.png
 # some information about your slides (markdown enabled)
 title: Flutter 38~49课总结
-class: text-center
 # https://sli.dev/features/drawing
 drawings:
   persist: false
@@ -16,6 +15,7 @@ transition: slide-left
 mdc: true
 selectable: true
 lineNumbers: true
+aspectRatio: 16/9
 ---
 
 # Flutter 38~49课总结
