@@ -1,6 +1,6 @@
 ---
 # You can also start simply with 'default'
-theme: seriph
+theme: bricks
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
 # background: https://cover.sli.dev
@@ -15,11 +15,16 @@ transition: slide-left
 mdc: true
 background: rgba(255,255,255,1)
 selectable: true
+lineNumbers: true
 ---
+
+<div class="text-center">
 
 # Prisma ORM
 
 ## 全栈最后一公里（前端版）
+
+</div>
 
 ---
 layout: center
@@ -28,8 +33,37 @@ layout: center
 # 概念
 
 <div class="text-[30px] text-left">
-Prisma 是一个开源的，<span v-mark.box.red="1">下一代的</span> <span v-mark.box.red="1"> Node.js </span> 和 <span v-mark.box.red="1">TypeScript </span> ORM（对象关系映射）工具，用于简化数据库访问和管理。它通过抽象底层 SQL，提供<span v-mark.box.red="1">直观的类型安全 API</span>，让开发者更高效地操作数据库，支持 PostgreSQL、MySQL、SQLite、MongoDB（实验性）等<span v-mark.box.red="1">多种数据库</span>。
+Prisma 是一个开源的，<span v-mark.box.red="1">下一代的</span> Node.js  和 TypeScript ORM（对象关系映射）工具，用于简化数据库访问和管理。它通过抽象底层 SQL，提供<span v-mark.box.red="1">直观的类型安全 API</span>， <span v-mark.box.red="1">让开发者更高效</span>地操作数据库，支持 PostgreSQL、MySQL、SQLite、MongoDB（实验性）等多种数据库。
 </div>
+
+---
+layout: two-cols
+---
+
+# 下一代
+
+- 怎么了就下一代了？
+
+<v-click at="2">
+
+- <span v-mark.highlight.yellow="1">Prisma ORM 的主要目标是提高应用开发者在使用数据库时的工作效率,再次考虑生产力和控制之间的权衡。</span>
+</v-click>
+
+::right::
+<v-click at="1">
+
+# Vite
+
+
+<img src="./images/8.png" />
+</v-click>
+
+---
+
+# 趋势图
+
+<img class="w-[100%] block" src="https://prisma.nodejs.cn/assets/images/prisma-makes-devs-productive-b18ac4ab360d4e3d2b48cfe1b4218b99.png" />
+
 
 ---
 layout: two-cols
@@ -48,8 +82,6 @@ layout: two-cols
 <br />
 <br />
 
-<br />
-
 ## 1、适用于大多数的数据库和框架
 
 <br />
@@ -62,15 +94,18 @@ layout: two-cols
 
 <br />
 
-## 4、完全类型安全的原始 SQL
+## 4、类型安全的原始 SQL
 
+<br />
+
+## 5、Prisma Studio
 
 ---
 layout: two-cols
 ---
 
 <div class="w-[100%] h-[100%] flex justify-center items-center ml-[-50px]">
-  <img src="./images/2.png" />
+  <img src="./images/2.png"  />
 </div>
 
 ::right::
@@ -82,7 +117,7 @@ layout: two-cols
 <br />
 <br />
 
-## Prisma ORM 与流行工具的兼容性确保了没有技术栈的锁定，更低的集成成本和平稳的过渡。所以你可以不受限制地灵活发展。
+## Prisma ORM 与流行工具的兼容性确保了没有技术栈的锁定，更低的集成成本和平稳的过渡。所以你可以<span v-mark.underline.red="1">不受限制地灵活发展</span>。
 
 
 ---
@@ -90,7 +125,7 @@ layout: two-cols
 # 框架
 
 <div class="w-[100%] h-[100%] flex justify-center items-center ">
-  <img src="./images/3.png" />
+  <img src="./images/3.png"/>
 </div>
 
 ---
@@ -120,6 +155,29 @@ layout: two-cols
 <div class="text-[30px]">
 Prisma 使用一种名为 <span v-mark.underline.red="1"> Prisma Schema </span>的专用语言来描述数据模型，这种模型不仅是数据库结构的抽象，还能自动生成类型安全的数据库访问 API
 </div>
+
+---
+
+# 数据模型的组成部分
+
+<img src="./images/9.png" />
+
+---
+
+# 如何定义数据模型
+
+1. 手动定义
+
+```bash
+prisma migrate dev --name xxx
+```
+
+2. 自动同步
+
+```bash
+prisma db pull
+```
+
  
 ---
 layout: two-cols
@@ -137,8 +195,14 @@ layout: two-cols
 <br />
 
 <div class="text-[30px]">
-<span v-mark.underline.red="1">Prisma Client</span> 是一个为您的模式量身定制的查询构建器。我们将它的 API 设计得非常直观，既适合 SQL 老手，也适合数据库新手。自动完成功能可以帮助您在不需要文档的情况下找出查询
+<span v-mark.underline.red="1">Prisma Client</span> 是一个为您的模式<span v-mark.underline.red="1">量身定制的查询构建器</span>。我们将它的 API 设计得非常直观，既适合 SQL 老手，也适合数据库新手。自动完成功能可以帮助您在不需要文档的情况下找出查询
 </div>
+
+---
+
+# 生成流程
+
+<img src="https://www.prisma.io/docs/assets/images/prisma-client-generation-workflow-3b42c24d27aef3025f2eb4ffc4644642.png" />
 
 ---
 layout: two-cols
@@ -150,14 +214,57 @@ layout: two-cols
 
 ::right::
 
-# 完全类型安全的原始 SQL
+# 类型安全的原始 SQL
 
 <br />
 <br />
 
 <div class="text-[30px]">
-直接对数据库执行 SQL 查询，而不会失去 Prisma 的类型检查和自动完成的好处。TypedSQL 利用 Prisma Client 的功能来编写在<span v-mark.box.red="1">编译时进行类型检查</span>的原始 SQL 查询。
+TypedSQL 是 Prisma ORM 的一个新特性，它允许您在 .sql 文件中编写查询，同时仍然享受 Prisma Client 的出色开发体验。
 </div>
+
+---
+
+# 编译时类型检查
+
+<img src="./images/10.png" class="h-[100%]" />
+
+---
+
+# 生成prisma client
+
+```bash
+prisma generate --sql
+```
+
+---
+layout: two-cols
+---
+
+<div class="w-[90%] h-[100%] flex justify-center items-center">
+  <img src="https://cdn.sanity.io/images/p2zxqf70/production/60e52dab36faf74231ad30690380497c23ce1c98-507x243.svg" />
+</div>
+
+::right::
+
+# 可视化数据库浏览器
+
+<br />
+<br />
+
+<div class="text-[30px]">
+Prisma Studio 是在你的 Prisma 项目中探索和操作数据的最简单的方法。通过浏览表、过滤、分页、遍历关系和安全地编辑数据来了解您的数据。
+</div>
+
+---
+
+# web版数据库管理系统
+
+```bash
+npx prisma studio
+```
+
+<img src="https://www.prisma.io/docs/assets/images/02-open-model-542f0b9c9aba1a85069cd946b216fc9b.png" class="h-[100%]" />
 
 ---
 
@@ -197,12 +304,13 @@ layout: two-cols
 <div class="w-[100%] h-[100%] flex     text-[30px] flex-col">
 
 <v-click>
-@prisma/client： <span v-mark.highlight.yellow="1"> Prisma Client 是一个自动生成的、类型安全的查询生成器，专为当前的数据库定制。</span>
+prisma: <span v-mark.highlight.yellow="1">Prisma 命令行界面（CLI）是从命令行与 Prisma 项目交互的主要方式。</span>
 </v-click>
 
 <v-click>
-prisma: <span v-mark.highlight.yellow="2">Prisma 命令行界面（CLI）是从命令行与 Prisma 项目交互的主要方式。</span>
+@prisma/client： <span v-mark.highlight.yellow="2"> Prisma Client 是一个自动生成的、类型安全的查询生成器，专为当前的数据库定制。</span>
 </v-click>
+
 
 </div>
 
@@ -211,26 +319,47 @@ prisma: <span v-mark.highlight.yellow="2">Prisma 命令行界面（CLI）是从�
 # 初始化 prisma orm 配置 
 
 
-<div class="w-[100%] h-[100%] flex     text-[30px] flex-col">
+<div class="w-[100%] h-[100%] flex   text-[30px] flex-col mt-[50px]">
 
 ```bash
-prisma init --datasource-provider mysql
+npx prisma init --datasource-provider mysql
 ```
 
-<img class="h-[80%]" src="./images/5.png" />
 </div>
+
+---
+
+# 初始化 prisma orm 配置
+
+<img class="h-[80%]" src="./images/5.png" />
+
 
 ---
 
 # .env文件的配置
 
-1. <div class="text-[20px] text-nowrap" v-mark.highlight.yellow="0">mysql://USER:PASSWORD@HOST:PORT/DATABASE?KEY1=VALUE&KEY2=VALUE&KEY3=VALUE</div>
+1. <div class="text-[20px] text-nowrap mt-[50px]" v-mark.highlight.yellow="0">mysql://USER:PASSWORD@HOST:PORT/DATABASE?KEY1=VALUE&KEY2=VALUE&KEY3=VALUE</div>
 
-2. 
-```prisma
+2. schema.prisma
+```prisma {1,2,3,4}
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  role      Role     @default(USER)
+  posts     Post[]
+  comments  Comment[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 ```
 
@@ -240,7 +369,7 @@ datasource db {
 
 <div class="w-[100%] h-[100%] flex     text-[30px] flex-col">
 
-```prisma
+```prisma {10,11,12,13,14,15,16,17,18,19,20,21}
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -272,8 +401,63 @@ model User {
 npx prisma migrate dev --name init
 ```
 
+---
 
-<img class="h-[80%] w-[100%]" src="./images/6.png" />
+# 创建数据库迁移(初始化)
+
+
+```sql
+-- CreateTable
+CREATE TABLE `Post` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
+    `title` VARCHAR(255) NOT NULL,
+    `content` VARCHAR(191) NULL,
+    `published` BOOLEAN NOT NULL DEFAULT false,
+    `authorId` INTEGER NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `Profile` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `bio` VARCHAR(191) NULL,
+    `userId` INTEGER NOT NULL,
+
+    UNIQUE INDEX `Profile_userId_key`(`userId`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `User` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `email` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NULL,
+
+    UNIQUE INDEX `User_email_key`(`email`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `Post` ADD CONSTRAINT `Post_authorId_fkey` FOREIGN KEY (`authorId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Profile` ADD CONSTRAINT `Profile_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+
+```
+
+---
+
+# 创建数据库迁移(表新增字段)
+
+```sql
+-- AlterTable
+ALTER TABLE `city` ADD COLUMN `JobRole` CHAR(20) NOT NULL DEFAULT '';
+
+```
 
 ---
 
@@ -283,7 +467,47 @@ npx prisma migrate dev --name init
 npx prisma generate
 ```
 
+---
+
+# 生成 Prisma Client 
+
 <img class="h-[80%] w-[100%]" src="./images/7.png" />
+
+---
+
+# 数据库编程
+
+```ts  
+import { PrismaClient } from '@/generated/prisma';
+import { a } from '@/generated/prisma/sql';
+
+const prisma = new PrismaClient();
+
+@Controller('mysql')
+export class MySqlController {
+  @Post('allUsers')
+  async getAllUsers() {
+      const allUsers = await prisma.city.findMany({
+        include: { country: true },
+      });
+      await prisma.$disconnect();
+      return allUsers;
+  }
+
+  @Post('list')
+  async getList() {
+    const usersWithPostCounts = await prisma.$queryRawTyped(a());
+    console.log(usersWithPostCounts);
+  }
+}
+
+```
+
+---
+
+# 类型安全
+
+<img class="h-[100%]" src="./images/12.png" />
 
 ---
 
@@ -293,25 +517,28 @@ npx prisma generate
 
 <v-click>
 
-1. `.env`文件需要在每个环境下各存一份,或者在服务器上的项目环境变量中写入手动写入
+- `.env`文件需要在每个环境下各存一份
+  - 多个 .env 文件
+  - 在 schema.prisma 中使用条件逻辑
+  - 在 docker-compose.yml 中注入环境变量：
+  - 在部署时通过命令行或 CI/CD 工具覆盖 .env 中的值
+  
 
 </v-click>
 
 <v-click>
 
-2. `npx prisma migrate dev`命令的危险性
+- `npx prisma migrate dev`命令的危险性
 
 </v-click>
 
 <v-click>
 
-3. `prisma schema`中`model`太大，可以使用`Multi-file Prisma schema`
+- `prisma schema`中`model`太大，可以使用`Multi-file Prisma schema`
 
 </v-click>
 
 </div>
-
-
 
 
 

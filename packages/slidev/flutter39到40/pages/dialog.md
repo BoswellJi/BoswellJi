@@ -25,11 +25,20 @@ layout: two-cols
 
 # AlertDialog
 
+* 一个`Material Design`设计系统下的警告对话框，警告对话框（也称为基本对话框）通知用户需要确认的情况。
 
---- 
+
+---
+layout: two-cols
+---
 
 # SimpleDialog，SimpleDialogOption
 
+* `SimpleDialog`一个`Material Design`设计系统下的一个简单的对话框,它为用户提供几个选项之间的选择。一个简单的对话框有一个可选的标题，显示在选项的上方。
+
+::right::
+
+<img src="../images/sample-dialog.png" />
 
 ---
 
