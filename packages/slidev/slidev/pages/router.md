@@ -16,23 +16,11 @@ layout: two-cols
     -  基本路由 
     -  命名路由
 
-::right::
-
-![](../images/route.png)
-
-
----
-layout: section
----
 
 # 基本路由
 
 ## 常规方式跳转
 
-
----
-layout: two-cols
----
 
 ## 路由跳转
 
@@ -61,22 +49,15 @@ class FirstRoute extends StatelessWidget {
 
 ```
 
-::right::
 
 ## 重要Wedgit
 
-<div class="flex justify-center ml-[20px] mt-[100px]">
 
 * Navigator： 一个小部件，它管理一组具有堆栈规则的子小部件。
 * MaterialPageRoute: 一个模式路由，用一个平台自适应的过渡取代整个屏幕
 * SecondRoute: 指定跳转的页面类
 
-</div>
 
-
----
-layout: two-cols
----
 
 ## 路由返回
 
@@ -101,7 +82,6 @@ class SecondRoute extends StatelessWidget {
 }
 ```
 
-::right::
 
 ## 重要Wedgit
 
@@ -112,9 +92,6 @@ class SecondRoute extends StatelessWidget {
 </div>
 
 
----
-layout: two-cols
----
 
 ## 路由跳转传值
 
@@ -138,8 +115,6 @@ layout: two-cols
           ),
         );
 ```
-
-::right::
 
 ## 重要Widget
 
@@ -168,17 +143,10 @@ layout: two-cols
   );
 ```
 
----
-layout: section
----
-
 # 命名路由
 
 ## 顾名思义，有名字的路由
 
----
-layout: two-cols
----
 
 ## 路由定义
 
@@ -197,7 +165,6 @@ void main() {
 }
 ```
 
-::right::
 
 ## 路由跳转
 
@@ -233,8 +200,6 @@ Navigator.pushNamed(
 );
 ```
 
----
-
 # 路由替换 
 
 - 即将跳转的路由来替换当前的路由
@@ -245,7 +210,6 @@ Navigator.pushNamed(
 Navigator.of(context).pushReplacementNamed('/registerSecond');
 ```
 
----
 
 # 返回到根路由 
 

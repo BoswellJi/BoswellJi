@@ -1,6 +1,4 @@
----
-transition: slide-left
----
+
 
 # PageView
 
