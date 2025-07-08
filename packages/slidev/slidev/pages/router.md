@@ -1,7 +1,3 @@
----
-transition: slide-left
-layout: two-cols
----
 
 # Flutter中的路由
 
@@ -125,7 +121,6 @@ class SecondRoute extends StatelessWidget {
 
 </div>
 
----
 
 ## 路由返回传值
 
@@ -179,8 +174,6 @@ body: Center(
       ),
 ```
 
-
----
 
 ## 命名路由传参
 
