@@ -13,7 +13,8 @@ class _AnimatedListSampleState extends State<AnimatedListSample> {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
   late ListModel<int> _list;
   int? _selectedItem;
-  late int _nextItem; // The next item inserted when the user presses the '+' button.
+  late int
+      _nextItem; // The next item inserted when the user presses the '+' button.
 
   @override
   void initState() {
@@ -27,7 +28,8 @@ class _AnimatedListSampleState extends State<AnimatedListSample> {
   }
 
   // Used to build list items that haven't been removed.
-  Widget _buildItem(BuildContext context, int index, Animation<double> animation) {
+  Widget _buildItem(
+      BuildContext context, int index, Animation<double> animation) {
     return CardItem(
       animation: animation,
       item: _list[index],
@@ -47,7 +49,8 @@ class _AnimatedListSampleState extends State<AnimatedListSample> {
   /// completed (even though it's gone as far as this ListModel is concerned).
   /// The widget will be used by the [AnimatedListState.removeItem] method's
   /// [AnimatedRemovedItemBuilder] parameter.
-  Widget _buildRemovedItem(int item, BuildContext context, Animation<double> animation) {
+  Widget _buildRemovedItem(
+      int item, BuildContext context, Animation<double> animation) {
     return CardItem(
       animation: animation,
       item: item,
@@ -57,7 +60,8 @@ class _AnimatedListSampleState extends State<AnimatedListSample> {
 
   // Insert the "next item" into the list model.
   void _insert() {
-    final int index = _selectedItem == null ? _list.length : _list.indexOf(_selectedItem!);
+    final int index =
+        _selectedItem == null ? _list.length : _list.indexOf(_selectedItem!);
     _list.insert(index, _nextItem);
     _nextItem++;
   }
@@ -74,38 +78,36 @@ class _AnimatedListSampleState extends State<AnimatedListSample> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('AnimatedList'),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.add_circle),
-              onPressed: _insert,
-              tooltip: 'insert a new item',
-            ),
-            IconButton(
-              icon: const Icon(Icons.remove_circle),
-              onPressed: _remove,
-              tooltip: 'remove the selected item',
-            ),
-          ],
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: AnimatedList(
-            key: _listKey,
-            initialItemCount: _list.length,
-            itemBuilder: _buildItem,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('AnimatedList'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.add_circle),
+            onPressed: _insert,
+            tooltip: 'insert a new item',
           ),
+          IconButton(
+            icon: const Icon(Icons.remove_circle),
+            onPressed: _remove,
+            tooltip: 'remove the selected item',
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: AnimatedList(
+          key: _listKey,
+          initialItemCount: _list.length,
+          itemBuilder: _buildItem,
         ),
       ),
     );
   }
 }
 
-typedef RemovedItemBuilder<T> =
-    Widget Function(T item, BuildContext context, Animation<double> animation);
+typedef RemovedItemBuilder<T> = Widget Function(
+    T item, BuildContext context, Animation<double> animation);
 
 /// Keeps a Dart [List] in sync with an [AnimatedList].
 ///
@@ -117,8 +119,11 @@ typedef RemovedItemBuilder<T> =
 /// mutate the list must make the same changes to the animated list in terms
 /// of [AnimatedListState.insertItem] and [AnimatedListState.removeItem].
 class ListModel<E> {
-  ListModel({required this.listKey, required this.removedItemBuilder, Iterable<E>? initialItems})
-    : _items = List<E>.from(initialItems ?? <E>[]);
+  ListModel(
+      {required this.listKey,
+      required this.removedItemBuilder,
+      Iterable<E>? initialItems})
+      : _items = List<E>.from(initialItems ?? <E>[]);
 
   final GlobalKey<AnimatedListState> listKey;
   final RemovedItemBuilder<E> removedItemBuilder;
@@ -134,7 +139,8 @@ class ListModel<E> {
   E removeAt(int index) {
     final E removedItem = _items.removeAt(index);
     if (removedItem != null) {
-      _animatedList!.removeItem(index, (BuildContext context, Animation<double> animation) {
+      _animatedList!.removeItem(index,
+          (BuildContext context, Animation<double> animation) {
         return removedItemBuilder(removedItem, context, animation);
       });
     }

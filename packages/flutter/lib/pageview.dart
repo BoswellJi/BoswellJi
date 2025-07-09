@@ -6,11 +6,9 @@ class PageViewExampleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text('PageView Sample')),
-        body: const PageViewExample(),
-      ),
+    return Scaffold(
+      appBar: AppBar(title: const Text('PageView Sample')),
+      body: const PageViewExample(),
     );
   }
 }
@@ -22,7 +20,8 @@ class PageViewExample extends StatefulWidget {
   State<PageViewExample> createState() => _PageViewExampleState();
 }
 
-class _PageViewExampleState extends State<PageViewExample> with TickerProviderStateMixin {
+class _PageViewExampleState extends State<PageViewExample>
+    with TickerProviderStateMixin {
   late PageController _pageViewController;
   late TabController _tabController;
   int _currentPageIndex = 0;
@@ -91,8 +90,14 @@ class _PageViewExampleState extends State<PageViewExample> with TickerProviderSt
   bool get _isOnDesktopAndWeb =>
       kIsWeb ||
       switch (defaultTargetPlatform) {
-        TargetPlatform.macOS || TargetPlatform.linux || TargetPlatform.windows => true,
-        TargetPlatform.android || TargetPlatform.iOS || TargetPlatform.fuchsia => false,
+        TargetPlatform.macOS ||
+        TargetPlatform.linux ||
+        TargetPlatform.windows =>
+          true,
+        TargetPlatform.android ||
+        TargetPlatform.iOS ||
+        TargetPlatform.fuchsia =>
+          false,
       };
 }
 
