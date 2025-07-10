@@ -1,5 +1,7 @@
 # Flutter 38~49课总结
 
+## Flutter中一切皆Widget
+
 ## Flutter中的路由
 
 - Flutter为在屏幕之间导航和处理深度链接提供了一个完整的系统。
@@ -53,13 +55,28 @@ class FirstRoute extends StatelessWidget {
 
 ### 重要Wedgit
 
-- Navigator： 一个小部件，它管理一组具有堆栈规则的子小部件。
-- MaterialPageRoute: 一个模式路由，用一个平台自适应的过渡取代整个屏幕
+- Navigator：通过`stack`规则来管理一组`Widget`。
+
+```dart
+@optionalTypeArgs
+Future<T?> push<T extends Object?>( BuildContext context, Route<T> route )
+```
+
+- MaterialPageRoute: 根据平台和参数提供不同的过渡动画：
+  - Android：默认从右侧滑入，退出时从右侧滑出。
+  - iOS：默认从底部滑入（类似模态对话框），退出时从底部滑出。
+  - 设置 fullscreenDialog: true：在 Android 和 iOS 上均使用从底部滑入的动画。
+
+```dart
+Inheritance
+Object Route<T> OverlayRoute<T> TransitionRoute<T> ModalRoute<T> PageRoute<T> MaterialPageRoute
+```
+
 - SecondRoute: 指定跳转的页面类
 
 ### 路由返回
 
-```dart {height:'120px'}
+```dart
 class SecondRoute extends StatelessWidget {
   const SecondRoute({super.key});
 
@@ -80,29 +97,27 @@ class SecondRoute extends StatelessWidget {
 }
 ```
 
-### 重要Wedgit
-
-- Navigator： 一个小部件，它管理一组具有堆栈规则的子小部件。
-
 ### 路由跳转传值
 
 ```dart
- // 方式一：
- Navigator.push(
+// 方式一：
+Navigator.push(
   context,
   MaterialPageRoute(
-    builder: (context) => DetailScreen(todo: todos[index]),
+    builder: (context) => DetailScreen(todo: '参数'),
   ),
 );
 
- // 方式二：
- Navigator.push(
+// 方式二：
+Navigator.push(
   context,
   MaterialPageRoute(
     builder: (context) => const DetailScreen(),
-    settings: RouteSettings(arguments: todos[index]),
+    settings: RouteSettings(arguments: '参数'),
   ),
 );
+
+// 接受页面从构造函数参数获取
 ```
 
 ### 重要Widget
@@ -186,7 +201,6 @@ Navigator.pushNamed(
 ### 路由替换
 
 - 即将跳转的路由来替换当前的路由
-
 - pushReplacementNamed
 
 ```dart
@@ -201,13 +215,21 @@ Navigator.of(context).pushReplacementNamed('/registerSecond');
 ```dart
 Navigator.of(context).pushAndRemoveUntil(
   MaterialPageRoute(builder: (BuildContext context) {
-  return const Tabs();
+  return const MyHomePage();
 }), (route) => false);
 ```
 
+```dart
+@optionalTypeArgs
+Future<T?> pushAndRemoveUntil<T extends Object?>( BuildContext context, Route<T> newRoute, RoutePredicate predicate )
+```
+
+- newRoute：要导航到的目标路由，通常使用 MaterialPageRoute、CupertinoPageRoute 或自定义路由。
+- predicate：一个返回布尔值的回调函数，用于判断哪些路由需要被保留。Flutter 会从当前路由开始逐个检查历史路由，直到找到第一个满足 predicate 返回 true 的路由，然后移除该路由之前的所有路由。
+
 ## Dialog
 
-- <span v-mark.box.red="1">Dialog 是一种用于在当前页面上显示临时 UI 的组件</span>，通常用于向用户呈现重要信息、获取确认或收集少量输入。它会创建一个浮动在当前内容之上的模态窗口，吸引用户的注意力并阻止背景交互，直到被关闭。
+- Dialog 是一种用于在当前页面上显示临时 UI 的组件，通常用于向用户呈现重要信息、获取确认或收集少量输入。它会创建一个浮动在当前内容之上的模态窗口，吸引用户的注意力并阻止背景交互，直到被关闭。
 - 具象弹框：
   - AlertDialog
   - SimpleDialog
@@ -661,108 +683,49 @@ Key 的子类应该是 LocalKey 或 GlobalKey 的子类。
 ![alt text](./images/image-2.png)
 
 ```dart
-class AnimatedListSample extends StatefulWidget {
-  const AnimatedListSample({super.key});
+import 'package:flutter/material.dart';
 
+class AnimatedListPage extends StatefulWidget {
+  const AnimatedListPage({super.key});
   @override
-  State<AnimatedListSample> createState() => _AnimatedListSampleState();
+  State<AnimatedListPage> createState() => _AnimatedListPageState();
 }
 
-class _AnimatedListSampleState extends State<AnimatedListSample> {
-  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
-  late ListModel<int> _list;
-  int? _selectedItem;
-  late int _nextItem; // The next item inserted when the user presses the '+' button.
-
+class _AnimatedListPageState extends State<AnimatedListPage> {
+  final globalKey = GlobalKey<AnimatedListState>();
+  List<String> list = ["第一条数据", "第二条数据"];
   @override
   void initState() {
+  // TODO: implement initState
     super.initState();
-    _list = ListModel<int>(
-      listKey: _listKey,
-      initialItems: <int>[0, 1, 2],
-      removedItemBuilder: _buildRemovedItem,
-    );
-    _nextItem = 3;
-  }
-
-  // Used to build list items that haven't been removed.
-  Widget _buildItem(BuildContext context, int index, Animation<double> animation) {
-    return CardItem(
-      animation: animation,
-      item: _list[index],
-      selected: _selectedItem == _list[index],
-      onTap: () {
-        setState(() {
-          _selectedItem = _selectedItem == _list[index] ? null : _list[index];
-        });
-      },
-    );
-  }
-
-  /// The builder function used to build items that have been removed.
-  ///
-  /// Used to build an item after it has been removed from the list. This method
-  /// is needed because a removed item remains visible until its animation has
-  /// completed (even though it's gone as far as this ListModel is concerned).
-  /// The widget will be used by the [AnimatedListState.removeItem] method's
-  /// [AnimatedRemovedItemBuilder] parameter.
-  Widget _buildRemovedItem(int item, BuildContext context, Animation<double> animation) {
-    return CardItem(
-      animation: animation,
-      item: item,
-      // No gesture detector here: we don't want removed items to be interactive.
-    );
-  }
-
-  // Insert the "next item" into the list model.
-  void _insert() {
-    final int index = _selectedItem == null ? _list.length : _list.indexOf(_selectedItem!);
-    _list.insert(index, _nextItem);
-    _nextItem++;
-  }
-
-  // Remove the selected item from the list model.
-  void _remove() {
-    if (_selectedItem != null) {
-      _list.removeAt(_list.indexOf(_selectedItem!));
-      setState(() {
-        _selectedItem = null;
-      });
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('AnimatedList'),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.add_circle),
-              onPressed: _insert,
-              tooltip: 'insert a new item',
-            ),
-            IconButton(
-              icon: const Icon(Icons.remove_circle),
-              onPressed: _remove,
-              tooltip: 'remove the selected item',
-            ),
-          ],
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: AnimatedList(
-            key: _listKey,
-            initialItemCount: _list.length,
-            itemBuilder: _buildItem,
-          ),
-        ),
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          list.add("这是一个数据");
+          globalKey.currentState!.insertItem(list.length - 1);
+        },
+        child: const Icon(Icons.add),
       ),
+      appBar: AppBar(
+        title: const Text("AppBar组件"),
+      ),
+      body: AnimatedList(
+          key: globalKey,
+          initialItemCount: list.length,
+          itemBuilder: (context, index, animation) {
+            return FadeTransition(
+              opacity: animation,
+              child: ListTile(
+                  title: Text(list[index]), trailing: Icon(Icons.delete)),
+            );
+          }),
     );
   }
 }
-
 ```
 
 ### insertItem
@@ -841,7 +804,7 @@ class _AnimatedContainerExampleState extends State<AnimatedContainerExample> {
 能够参与的动画过程叫做显示动画。通过`AnimationController`控制动画的暂停，播放，倒放等
 
 1. ScaleTransition
-2. PositionedTransition
+2. PositionedTransition：Positioned 的动画版本采用了特定的`Animation<RelativeRect>`在动画的整个生命周期内将子对象的位置从起始位置转换到结束位置。
 3. SizeTransition
 
 ```dart
