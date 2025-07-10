@@ -1,14 +1,15 @@
 # Flutter 38~49课总结
 
-## Flutter中一切皆Widget
+**1. Flutter中一切皆Widget**
+
+**2. Widget即对象**
 
 ## Flutter中的路由
 
 - Flutter为在屏幕之间导航和处理深度链接提供了一个完整的系统。
 - 在 Flutter 中，屏 (screen) 和 页面 (page) 都叫做 路由 (route)，在下文中统称为“路由 (route)”。
 - 在Flutter中通过Navigator组件管理路由导航。
-- 并提供了管理堆栈的方法。
-
+- 提供了管理堆栈的方法。
   - Navigator.push
   - Navigator.pop
 
@@ -369,20 +370,6 @@ SimpleDialog 中使用的一个选项
 
 ![alt text](./images/image-13.png)
 
-### 自定义Dialog
-
-内置的`Dialog`有自己的固定布局模板，无法做更多的自定义。
-
-1. 直接使用`Dialog Widget`开发自定义对话框
-
-![alt text](./images/image-15.png)
-
-![alt text](./images/image-16.png)
-
-2. 所以我们需要通过继承`Dialog`类来实现自定义`Dialog`。
-
-![alt text](./images/image-14.png)
-
 ### 用法
 
 ```dart
@@ -441,6 +428,21 @@ class BottomSheetExample extends StatelessWidget {
   }
 }
 ```
+
+### 自定义Dialog
+
+内置的`Dialog`有自己的固定布局模板，无法做更多的自定义。
+
+1. 直接使用`Dialog Widget`开发自定义对话框
+
+![alt text](./images/image-15.png)
+
+![alt text](./images/image-16.png)
+
+2. 我们需要通过继承`Dialog`类来实现自定义`Dialog`。
+
+![alt text](./images/image-14.png)
+
 
 ### 弹出自定义Dialog
 
