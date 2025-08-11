@@ -78,6 +78,7 @@
 
 - [flutter 简介](./flutter/readme.md)
 - [flutter 38~49课总结](./flutter/38~49课总结/index.md)
+- [flutter 51~57课总结](./flutter/51~57课总结/index.md)
 
 ## Uniapp
 
