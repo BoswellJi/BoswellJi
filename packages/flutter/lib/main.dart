@@ -3,6 +3,7 @@ import 'package:flutter_application_1_temp/animatedContainer.dart';
 import 'package:flutter_application_1_temp/animatedList.dart';
 import 'package:flutter_application_1_temp/pageview.dart';
 import 'package:flutter_application_1_temp/scaleTransition.dart';
+import 'package:flutter_application_1_temp/stateManagement.dart';
 import 'third.dart';
 import 'second.dart';
 import 'first.dart';
@@ -20,6 +21,7 @@ void main() {
         '/animatedList': (context) => const AnimatedListSample(),
         '/animatedContainer': (context) => const AnimatedContainerExampleApp(),
         '/scaleTransition': (context) => const ScaleTransitionExampleApp(),
+        '/stateManagement': (context) => const StateManagementExampleApp(),
       },
     ),
   );

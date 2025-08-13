@@ -74,6 +74,13 @@ class FirstScreen extends StatelessWidget {
             },
             child: const Text('scaleTransition 显示动画 演示'),
           ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/stateManagement');
+            },
+            child: const Text('stateManagement GetX 状态管理'),
+          ),
         ]));
   }
 }
