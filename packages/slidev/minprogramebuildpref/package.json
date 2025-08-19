@@ -1,5 +1,5 @@
 {
-  "name": "@slidev/mini-program-build-optimization",
+  "name": "@slidev/minprogramebuildpref",
   "type": "module",
   "private": true,
   "scripts": {
