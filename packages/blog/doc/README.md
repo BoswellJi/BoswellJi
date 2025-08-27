@@ -46,6 +46,10 @@
 - [vue2.x 知识点](./vue/vue2.x知识点/index.md)
 - [vue 警告](./vue/warning.md)
 
+## Nuxt
+
+- [Nuxt 全栈框架](./nuxt/readme.md)
+
 ## React
 
 - [reactv18.0 发布](./react/reactv18.0.md)
