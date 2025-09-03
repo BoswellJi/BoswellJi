@@ -48,8 +48,6 @@
 
 ## Nuxt
 
-- [Nuxt 全栈框架](./nuxt/readme.md)
-
 ## React
 
 - [reactv18.0 发布](./react/reactv18.0.md)
@@ -315,6 +313,8 @@
 
 - [旅仓PC前端架构设计与实现](./ppt/旅仓PC前端架构设计与实现.md)
 - [微前端基本原理概述](./ppt/微前端基本原理概述.md)
+- [旅仓PC路由改造](./ppt/旅仓PC路由改造.md)
+- [Nuxt 全栈框架新技术调研](./ppt/Nuxt全栈框架新技术调研.md)
 
 ## Thought
 
