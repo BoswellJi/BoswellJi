@@ -1,12 +1,11 @@
 ---
 # You can also start simply with 'default'
-theme: default
+theme: bricks
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
 # background: https://cover.sli.dev
 # some information about your slides (markdown enabled)
-title: Nuxt 介绍
-class: text-center
+title: Nuxt 全栈框架新技术调研
 # https://sli.dev/features/drawing
 drawings:
   persist: false
@@ -14,10 +13,23 @@ drawings:
 transition: slide-left
 # enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
+background: rgba(255,255,255,1)
+selectable: true
 lineNumbers: true
 ---
 
-# 什么是 Nuxt ?
+<div class="text-center">
+
+# Nuxt 全栈框架新技术调研
+
+</div>
+
+---
+layout: center
+---
+
+# 概念
+
 
 ---
 layout: center
