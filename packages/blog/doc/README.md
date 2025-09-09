@@ -1,10 +1,6 @@
-# Boswell
+Hello everyone, this is Boswell Ji. If you want to know me, please look [here](./personal-profile/boswell.md).
 
-## [Personal Profile](./personal-profile/boswell.md)
-
-<a href="/MyBlog/image/boswell.pdf" download="boswell.pdf">下载</a>
-
-## Javascript
+## JavaScript
 
 - [js 设计模式翻译](https://github.com/BoswellJi/BoswellJi/blob/master/books/javascript/javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/readme.md)
 - [js 异步模式快速指南翻译](./js/async.md)
@@ -13,7 +9,7 @@
 - [js Date](./js/date.md)
 - [js 警告](./js/warning.md)
 
-## Typescript
+## TypeScript
 
 - [ts 简介](./ts/readme.md)
 - [ts 类型系统](./ts/类型系统.md)
@@ -45,8 +41,6 @@
 - [vue2.x 原理](./vue/vue2.x内部机制.md)
 - [vue2.x 知识点](./vue/vue2.x知识点/index.md)
 - [vue 警告](./vue/warning.md)
-
-## Nuxt
 
 ## React
 
@@ -315,6 +309,7 @@
 - [微前端基本原理概述](./ppt/微前端基本原理概述.md)
 - [旅仓PC路由改造](./ppt/旅仓PC路由改造.md)
 - [Nuxt 全栈框架新技术调研](./ppt/Nuxt全栈框架新技术调研.md)
+- [Flutter 布局](./ppt/Flutter布局分享/readme.md)
 
 ## Thought
 

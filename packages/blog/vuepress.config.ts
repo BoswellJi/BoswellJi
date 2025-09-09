@@ -6,7 +6,7 @@ export default defineUserConfig({
   bundler: viteBundler(),
   base: '/MyBlog/',
   lang: 'en-US',
-  title: 'Hello, Boswell!',
+  title: 'Hello, Boswell',
   description: "Boswell's blog",
   theme: defaultTheme()
 })
