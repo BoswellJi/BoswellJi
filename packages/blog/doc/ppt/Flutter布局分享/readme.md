@@ -171,11 +171,11 @@ Stack(
 
 - Row
 
-定义： Stack 是层叠布局的 “容器”，负责管理所有子 Widget 的堆叠规则，自身不具备定位能力。
+定义： 弹性布局的容器，以水平方向显示其子项的小部件。
 
-- column
+- Column
 
-定义： Positioned 必须作为 Stack 的直接子 Widget，用于精确控制子 Widget 在 Stack 中的位置，通过距离 Stack 边缘的偏移量定位。
+定义： 弹性布局的容器，以垂直方向显示其子项的小部件。
 
 - Expanded
 

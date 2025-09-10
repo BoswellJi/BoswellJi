@@ -15,25 +15,25 @@ class UILayOut extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, '/flowlayout');
               },
               child: const Text('流式布局'),
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, '/postitionlayout');
               },
-              child: const Text('表格布局'),
+              child: const Text('层叠布局'),
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, '/flexlayout');
               },
               child: const Text('弹性布局'),
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, '/gridlayout');
               },
               child: const Text('网格布局'),
             ),

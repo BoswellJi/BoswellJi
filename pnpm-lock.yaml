@@ -431,6 +431,9 @@ importers:
       '@slidev/theme-seriph':
         specifier: latest
         version: 0.25.0
+      slidev-theme-academic:
+        specifier: ^2.1.0
+        version: 2.1.0(postcss@8.5.6)(rollup@4.44.2)(vite@5.4.19(@types/node@18.19.117)(less@4.3.0)(sass@1.89.2)(terser@5.43.1))
       vue:
         specifier: ^3.4.38
         version: 3.5.17(typescript@5.8.3)
@@ -4811,6 +4814,10 @@ packages:
   '@slidev/theme-seriph@0.25.0':
     resolution: {integrity: sha512-PnFQbn4I70+/cVie5iAr0Im6sYvnwjkO7Yj5KonTyJZFFJFytckLTrD3ijft/J4cRnz7OmSzTyQKNX1FN/x0YQ==}
     engines: {node: '>=14.0.0', slidev: '>=v0.47.0'}
+
+  '@slidev/types@0.29.2':
+    resolution: {integrity: sha512-8S7WCO1WTjFpjxIZxEgb+tn5XumpCAFcBVT01BI4N7g8rPYpWzMxKym/kSysCfti/VAYjtyX5ztx/HEzwtMiUw==}
+    engines: {node: '>=14.0.0'}
 
   '@slidev/types@0.47.5':
     resolution: {integrity: sha512-X67V4cCgM0Sz50bP8GbVzmiL8DHC2IXvdKcsN7DlxHyf+/T4d9GveeGukwha5Fx3MuYeGZWKag7TFL2ZY4w54A==}
@@ -16908,6 +16915,10 @@ packages:
     resolution: {integrity: sha512-bSiSngZ/jWeX93BqeIAbImyTbEihizcwNjFoRUIY/T1wWQsfsm2Vw1agPKylXvQTU7iASGdHhyqRlqQzfz+Htg==}
     engines: {node: '>=18'}
 
+  slidev-theme-academic@2.1.0:
+    resolution: {integrity: sha512-C1pbu9+6mv01ZMX+HJnagO10ZqDpd3yNthWOmEviKRytjs0K9Vsue+30W9fmB72wxbVpfGpRFRWU94WFzEJDIw==}
+    engines: {node: '>=18.0.0', slidev: '>=0.47.0'}
+
   snapdragon-node@2.1.1:
     resolution: {integrity: sha512-O27l4xaMYt/RSQ5TR3vpWCAB5Kb/czIcqUFOM/C4fYcLnbZUc1PkjTAMjof2pBWaSTwOUd6qUHcFGVGj7aIwnw==}
     engines: {node: '>=0.10.0'}
@@ -24518,6 +24529,8 @@ snapshots:
       '@slidev/types': 0.47.5
       codemirror-theme-vars: 0.1.2
       prism-theme-vars: 0.2.5
+
+  '@slidev/types@0.29.2': {}
 
   '@slidev/types@0.47.5': {}
 
@@ -41569,6 +41582,17 @@ snapshots:
     dependencies:
       ansi-styles: 6.2.1
       is-fullwidth-code-point: 5.0.0
+
+  slidev-theme-academic@2.1.0(postcss@8.5.6)(rollup@4.44.2)(vite@5.4.19(@types/node@18.19.117)(less@4.3.0)(sass@1.89.2)(terser@5.43.1)):
+    dependencies:
+      '@slidev/types': 0.29.2
+      unocss: 0.62.4(postcss@8.5.6)(rollup@4.44.2)(vite@5.4.19(@types/node@18.19.117)(less@4.3.0)(sass@1.89.2)(terser@5.43.1))
+    transitivePeerDependencies:
+      - '@unocss/webpack'
+      - postcss
+      - rollup
+      - supports-color
+      - vite
 
   snapdragon-node@2.1.1:
     dependencies:

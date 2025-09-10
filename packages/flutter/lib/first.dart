@@ -21,7 +21,8 @@ class FirstScreen extends StatelessWidget {
             },
             child: const Text(
               'UI 布局',
-              softWrap: true,
+              softWrap: false,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
           ElevatedButton(
