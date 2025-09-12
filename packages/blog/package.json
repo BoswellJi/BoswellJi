@@ -14,7 +14,8 @@
   "devDependencies": {
     "@vuepress/bundler-vite": "next",
     "@vuepress/theme-default": "next",
-    "vuepress": "next",
-    "vue": "^3.4.15"
+    "sass-embedded": "^1.92.1",
+    "vue": "^3.4.15",
+    "vuepress": "next"
   }
 }

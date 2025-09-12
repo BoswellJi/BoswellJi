@@ -5,9 +5,9 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch @boswell/blog",
+      "name": "Launch @slidev/nuxtinfo",
       "request": "launch",
-      "runtimeArgs": ["--filter", "@boswell/blog", "dev"],
+      "runtimeArgs": ["--filter", "@slidev/nuxtinfo", "dev"],
       "runtimeExecutable": "pnpm",
       "skipFiles": ["<node_internals>/**"],
       "type": "node"

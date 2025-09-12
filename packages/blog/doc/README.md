@@ -42,6 +42,10 @@ Hello everyone, this is Boswell Ji. If you want to know me, please look [here](.
 - [vue2.x 知识点](./vue/vue2.x知识点/index.md)
 - [vue 警告](./vue/warning.md)
 
+## Nuxt
+
+- [Nuxt 全栈框架新技术调研](./nuxt/Nuxt%E5%85%A8%E6%A0%88%E6%A1%86%E6%9E%B6%E6%96%B0%E6%8A%80%E6%9C%AF%E8%B0%83%E7%A0%94.md)
+
 ## React
 
 - [reactv18.0 发布](./react/reactv18.0.md)
@@ -60,6 +64,7 @@ Hello everyone, this is Boswell Ji. If you want to know me, please look [here](.
 - [core concept](./microfrontend/core.md)
 - [qiankun](./microfrontend/qiankun.md)
 - [single-spa](./microfrontend/single-spa.md)
+- [微前端基本原理概述](./microfrontend/微前端基本原理概述.md)
 
 ## WX Platform
 
@@ -75,6 +80,7 @@ Hello everyone, this is Boswell Ji. If you want to know me, please look [here](.
 - [flutter 简介](./flutter/readme.md)
 - [flutter 38~49课总结](./flutter/38~49课总结/index.md)
 - [flutter 51~57课总结](./flutter/51~57课总结/index.md)
+- [Flutter 布局](./ppt/Flutter布局分享/readme.md)
 
 ## Uniapp
 
@@ -212,6 +218,23 @@ Hello everyone, this is Boswell Ji. If you want to know me, please look [here](.
 
 - [AI辅助编程: github copilot](./ai/AI辅助编程.md)
 
+
+
+## Share
+
+- [旅仓PC前端架构设计与实现](./ppt/旅仓PC前端架构设计与实现/index.md)
+- [旅仓PC路由改造](./ppt/旅仓PC路由改造/index.md)
+
+
+## Thought
+
+- [对编程语言的思考](./thought/readme.md)
+
+## SuZhou
+
+- [攻略](./suzhou/202308.md)
+
+
 ## Books
 
 ### JavaScript
@@ -244,11 +267,12 @@ Hello everyone, this is Boswell Ji. If you want to know me, please look [here](.
 - [English-grammar-guide](https://github.com/BoswellJi/BoswellJi/tree/master/books/english/English-grammar-guide)
 - [english-grammar-in-use](https://github.com/BoswellJi/BoswellJi/tree/master/books/english/english-grammar-in-use)
 
+
 ## English
 
 - [语法架构](./english/readme.md)
 
-### 成分
+### Constituent
 
 - [主语](./english/成分/主语.md)
 - [谓语](./english/成分/谓语.md)
@@ -257,7 +281,7 @@ Hello everyone, this is Boswell Ji. If you want to know me, please look [here](.
 - [定语](./english/成分/定语.md)
 - [状语](./english/成分/状语.md)
 
-### 词性
+### Part Of Speech
 
 - [代词](./english/词性/代词.md)
 - [动词](./english/词性/动词.md)
@@ -270,7 +294,7 @@ Hello everyone, this is Boswell Ji. If you want to know me, please look [here](.
 - [数词](./english/词性/数词.md)
 - [形容词](./english/词性/形容词.md)
 
-### 句子
+### Sentence
 
 - [并列句](./english/句子/并列句.md)
 - [定语从句](./english/句子/定语从句.md)
@@ -283,7 +307,7 @@ Hello everyone, this is Boswell Ji. If you want to know me, please look [here](.
 - [主谓双宾](./english/句子/主谓双宾.md)
 - [主系表](./english/句子/主系表.md)
 
-### 特殊句式
+### Special Sentence Pattern
 
 - [比较结构](./english/特殊句式/比较结构.md)
 - [插入语](./english/特殊句式/插入语.md)
@@ -299,22 +323,7 @@ Hello everyone, this is Boswell Ji. If you want to know me, please look [here](.
 - [虚拟语气](./english/特殊句式/虚拟语气.md)
 - [there-be](./english/特殊句式/there-be.md)
 
-### 翻译
+### translation
 
 - [翻译技巧](./english/翻译/readme.md)
 
-## Share
-
-- [旅仓PC前端架构设计与实现](./ppt/旅仓PC前端架构设计与实现.md)
-- [微前端基本原理概述](./ppt/微前端基本原理概述.md)
-- [旅仓PC路由改造](./ppt/旅仓PC路由改造.md)
-- [Nuxt 全栈框架新技术调研](./ppt/Nuxt全栈框架新技术调研.md)
-- [Flutter 布局](./ppt/Flutter布局分享/readme.md)
-
-## Thought
-
-- [对编程语言的思考](./thought/readme.md)
-
-## SuZhou
-
-- [攻略](./suzhou/202308.md)

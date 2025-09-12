@@ -28,10 +28,10 @@
 
      - 首先进行前后端分离，让前端拥有前端项目的主动权，独立设计，独立开发，独立部署（面向`业务`与`HTTP API`）。解放前端与后端开发阶段的藕断丝连，大家各自职责分明，并行开发。
 
-       ![图片](../static/lvcang/lvcang3.jpg)
+       ![图片](../../static/lvcang/lvcang3.jpg)
        <div style="text-align:center;color:#999">(前后端分离之前)</div>
 
-       ![图片](../static/lvcang/lvcang4.jpg)
+       ![图片](../../static/lvcang/lvcang4.jpg)
        <div style="text-align:center;color:#999">(前后端分离之后：这也是现代化前端开发的基本开发范式)</div>
 
    - 前端项目架构设计
@@ -60,7 +60,7 @@
 
      - 架构图
 
-       ![图片](../static/lvcang/lvcang5.jpg)
+       ![图片](../../static/lvcang/lvcang5.jpg)
         <div style="text-align:center;color:#999">(前端架构图)</div>
 
      - 遇到的一点小问题
@@ -86,8 +86,8 @@
      - 通过编写`vite`插件，在构建的生命周期钩子中，将对应产物`.html`写入到对应的`C#`模板中，同样静态资源`css,js,图片`都放到`asp.net`存放的静态文件的文件夹下，c#项目中文件新增删除需要再解决方案的配置文件中体现。我们做了脚本自动改写。
 
      <div style="text-align:center;margin:10px 0;">
-        <img src="../static/lvcang/lvcang1.png" />
-        <img src="../static/lvcang/lvcang2.png" />
+        <img src="../../static/lvcang/lvcang1.png" />
+        <img src="../../static/lvcang/lvcang2.png" />
      </div>
 
 3. 运行时跑在老服务器上
