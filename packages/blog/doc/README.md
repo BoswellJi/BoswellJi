@@ -44,7 +44,7 @@ Hello everyone, this is Boswell Ji. If you want to know me, please look [here](.
 
 ## Nuxt
 
-- [Nuxt 全栈框架新技术调研](./nuxt/Nuxt%E5%85%A8%E6%A0%88%E6%A1%86%E6%9E%B6%E6%96%B0%E6%8A%80%E6%9C%AF%E8%B0%83%E7%A0%94.md)
+- [Nuxt 全栈框架新技术调研](./nuxt/Nuxt全栈框架/Nuxt全栈框架新技术调研.md)
 
 ## React
 
@@ -80,7 +80,7 @@ Hello everyone, this is Boswell Ji. If you want to know me, please look [here](.
 - [flutter 简介](./flutter/readme.md)
 - [flutter 38~49课总结](./flutter/38~49课总结/index.md)
 - [flutter 51~57课总结](./flutter/51~57课总结/index.md)
-- [Flutter 布局](./ppt/Flutter布局分享/readme.md)
+- [Flutter 布局](./flutter/Flutter布局分享/readme.md)
 
 ## Uniapp
 
@@ -218,13 +218,10 @@ Hello everyone, this is Boswell Ji. If you want to know me, please look [here](.
 
 - [AI辅助编程: github copilot](./ai/AI辅助编程.md)
 
-
-
 ## Share
 
 - [旅仓PC前端架构设计与实现](./ppt/旅仓PC前端架构设计与实现/index.md)
 - [旅仓PC路由改造](./ppt/旅仓PC路由改造/index.md)
-
 
 ## Thought
 
@@ -233,7 +230,6 @@ Hello everyone, this is Boswell Ji. If you want to know me, please look [here](.
 ## SuZhou
 
 - [攻略](./suzhou/202308.md)
-
 
 ## Books
 
@@ -266,7 +262,6 @@ Hello everyone, this is Boswell Ji. If you want to know me, please look [here](.
 
 - [English-grammar-guide](https://github.com/BoswellJi/BoswellJi/tree/master/books/english/English-grammar-guide)
 - [english-grammar-in-use](https://github.com/BoswellJi/BoswellJi/tree/master/books/english/english-grammar-in-use)
-
 
 ## English
 
@@ -326,4 +321,3 @@ Hello everyone, this is Boswell Ji. If you want to know me, please look [here](.
 ### translation
 
 - [翻译技巧](./english/翻译/readme.md)
-
