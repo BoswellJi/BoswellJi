@@ -1,0 +1,9 @@
+{
+  "editor.formatOnSave": true,
+  "[dart]": {
+    "editor.formatOnSave": true
+  },
+  "[yaml]": {
+    "editor.formatOnSave": true
+  }
+}

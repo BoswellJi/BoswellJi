@@ -11,7 +11,32 @@ class FirstScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text('首页')),
-        body: Column(children: [
+        body: Wrap(children: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              fixedSize: const Size(100, 40),
+            ),
+            onPressed: () {
+              Navigator.pushNamed(context, '/uilayout');
+            },
+            child: const Text(
+              'UI 布局',
+              softWrap: false,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/pageView');
+            },
+            child: const Text('PageView 演示'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/animatedContainer');
+            },
+            child: const Text('animatedContainer 隐式动画 演示'),
+          ),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
@@ -21,7 +46,6 @@ class FirstScreen extends StatelessWidget {
             },
             child: const Text('普通导航，跳转第二页'),
           ),
-          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
@@ -33,54 +57,33 @@ class FirstScreen extends StatelessWidget {
             },
             child: const Text('普通导航，跳转第二页，携带参数'),
           ),
-          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
               Navigator.pushNamed(context, '/third');
             },
             child: const Text('命名导航，跳转第三页'),
           ),
-          const SizedBox(height: 20),
-          const DialogExample(),
-          const SizedBox(height: 20),
-          const SimpleExample(),
-          const SizedBox(height: 20),
-          const BottomSheetExample(),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/pageView');
-            },
-            child: const Text('PageView 演示'),
-          ),
-          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
               Navigator.pushNamed(context, '/animatedList');
             },
             child: const Text('AnimatedList 演示'),
           ),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/animatedContainer');
-            },
-            child: const Text('animatedContainer 隐式动画 演示'),
-          ),
-          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
               Navigator.pushNamed(context, '/scaleTransition');
             },
             child: const Text('scaleTransition 显示动画 演示'),
           ),
-          const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
               Navigator.pushNamed(context, '/stateManagement');
             },
             child: const Text('stateManagement GetX 状态管理'),
           ),
+          const DialogExample(),
+          const SimpleExample(),
+          const BottomSheetExample(),
         ]));
   }
 }
