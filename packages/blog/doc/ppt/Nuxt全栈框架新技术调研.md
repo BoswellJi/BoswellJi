@@ -192,3 +192,26 @@ your-nuxt-project/          # 项目根目录
 - CSS 支持：内置 SCSS、PostCSS，支持全局样式（assets/css）和组件样式隔离（scoped）。
 
 - TypeScript 友好：默认支持 TS，类型提示完善。
+
+---
+
+
+
+
+统一约定：
+
+- 基于文件的路由系统
+- 基于文件的 api 接口
+- 组件自动引入（按需）
+- 组合式函数自动引入 （按需）
+- 客户端唯一和服务端唯一组件
+- 端到端的 TypeScript 支持
+
+
+生态系统：
+
+- 丰富的模块和插件（如 PWA、内容管理、认证等）
+
+![alt text](image-6.png)
+
+- 
