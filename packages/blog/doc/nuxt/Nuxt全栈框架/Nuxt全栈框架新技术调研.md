@@ -144,7 +144,7 @@ your-nuxt-project/          # 项目根目录
 
 ## Nuxt 核心价值
 
-### Nuxt 提供多种渲染模式，不同场景需求：
+### Nuxt 提供多种渲染模式
 
 - 服务端渲染（SSR）：
   - 每次请求时，服务端动态生成 HTML 并返回，SEO 友好、首屏加载快。
@@ -158,12 +158,6 @@ your-nuxt-project/          # 项目根目录
 - 客户端渲染（CSR）：
   - 兼容传统 SPA 模式，适合纯交互型应用，像后台管理系统。
 
-### 文件即路由
-
-- pages/ 目录下的 Vue 文件自动生成路由（如 pages/user.vue → 路由 /user）；
-- api/ 目录下的文件自动成为 API 接口（如 api/user.js → 接口 /api/user）。
-- routes/ 目录下的文件自动成为路由（如 routes/user.js → 路由 /user）。
-
 ### 工程化增强
 
 - 自动导入：组件（components 目录）、工具函数（composables 目录）无需 import 即可直接使用。
@@ -174,9 +168,9 @@ your-nuxt-project/          # 项目根目录
 
 - TypeScript 友好：默认支持 TS，类型提示完善。
 
----
+- 热重载：开发时修改文件，浏览器，服务器自动刷新，提升开发效率。
 
-统一约定：
+### 统一约定
 
 - 基于文件的路由系统
 - 基于文件的 api 接口
@@ -185,8 +179,10 @@ your-nuxt-project/          # 项目根目录
 - 客户端唯一和服务端唯一组件
 - 端到端的 TypeScript 支持
 
-生态系统：
+### 生态系统：
 
-- 丰富的模块和插件（如 PWA、内容管理、认证等）
+- 前端开发可以复用Vue生态（Vue 3 + Vue Router + Pinia）
 
-![](./image-6.png)
+- 框架本身丰富的模块和插件生态（如 数据库、内容管理、认证等）
+
+  ![](./image-6.png)
