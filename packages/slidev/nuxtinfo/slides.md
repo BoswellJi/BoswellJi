@@ -31,10 +31,7 @@ layout: center
 # 什么是 Nuxt
 
  
-Nuxt.js 是一个基于 <span v-mark.highlight.red="1">Vue.js 组件化</span> 的、<span v-mark.highlight.red="1">多渲染模式</span>的、<span v-mark.highlight.red="1">约定优于配置原则</span>的Web开发框架。
-
-
-<div class="text-center" v-click="2"> <span v-mark.highlight.red="2">一个功能强大的 HTML字符串 渲染引擎，服务端主要用来做 API 的聚合(BFF Backend for frontend)。</span></div>
+Nuxt 是一个基于 <span v-mark.highlight.red="1">Vue.js 组件化</span> 的、<span v-mark.highlight.red="1">多渲染模式</span>的、<span v-mark.highlight.red="1">约定优于配置原则</span>的全栈开发框架。就像一个功能强大的 `HTML字符串` 渲染引擎。
 
 ---
 
@@ -84,7 +81,7 @@ Nuxt.js 是一个基于 <span v-mark.highlight.red="1">Vue.js 组件化</span> �
 
 <div class="h-[100%] overflow-scroll">
 
-```text
+```text {all|4-7|8-11|12-15|16-18|19-22|23-25|27-38|39-42|43-50|57-59}
 your-nuxt-project/          # 项目根目录
 ├── .nuxt/                  # Nuxt 开发时自动生成的临时文件（构建缓存、编译产物，无需手动修改）
 ├── .output/                # 生产构建输出目录（SSR/混合渲染模式，包含服务端代码和客户端静态资源）
@@ -161,13 +158,9 @@ your-nuxt-project/          # 项目根目录
 
 # Nuxt 核心价值
 
-<div class="flex flex-col justify-center items-center h-full">
-
 1. Nuxt 提供多种渲染模式提高页面渲染性能
 2. 工程化能力增强提高开发体验
 3. 复用 Vue 生态系统
-
-</div>
 
 ---
 
@@ -179,18 +172,62 @@ your-nuxt-project/          # 项目根目录
 - 静态站点生成（SSG）：
   - 构建时预先生成所有页面的静态 HTML，部署后直接返回，极致加载速度。
 
-- 混合渲染（Nuxt 3 新增）：
-  - 同一项目中，部分页面用 SSR（如用户中心），部分用 SSG（如首页），按需选择最优模式。
-
 - 客户端渲染（CSR）：
   - 兼容传统 SPA 模式，适合纯交互型应用，像后台管理系统。
+
+- 混合渲染（Nuxt 3 新增）：
+  - 同一项目中，部分页面用 SSR（如用户中心），部分用 SSG（如首页），按需选择最优模式。
 
 - <del>流式渲染（Streaming SSR）：  </del>
 
 
 ---
 
+# 服务端渲染（SSR）
+
+<img src="https://nuxt.com/assets/docs/concepts/rendering/ssr.svg" />
+
+---
+
+# 客户端渲染（CSR）
+
+<img src="https://nuxt.com/assets/docs/concepts/rendering/csr.svg" />
+
+---
+
+# 混合渲染（Nuxt 3 新增）
+
+```ts
+// nuxt.config.ts
+
+export default defineNuxtConfig({
+  routeRules: {
+    // Homepage pre-rendered at build time
+    '/': { prerender: true },
+    // Products page generated on demand, revalidates in background, cached until API response changes
+    '/products': { swr: true },
+    // Product pages generated on demand, revalidates in background, cached for 1 hour (3600 seconds)
+    '/products/**': { swr: 3600 },
+    // Blog posts page generated on demand, revalidates in background, cached on CDN for 1 hour (3600 seconds)
+    '/blog': { isr: 3600 },
+    // Blog post page generated on demand once until next deployment, cached on CDN
+    '/blog/**': { isr: true },
+    // Admin dashboard renders only on client-side
+    '/admin/**': { ssr: false },
+    // Add cors headers on API routes
+    '/api/**': { cors: true },
+    // Redirects legacy urls
+    '/old-page': { redirect: '/new-page' }
+  }
+})
+
+```
+
+---
+
 # 工程化增强
+
+- <span v-mark.highlight.red="1">基于文件的路由</span>
 
 - <span v-mark.highlight.red="1">自动导入：组件（components 目录）、工具函数（composables 目录）无需 import 即可直接使用。</span>
 
@@ -203,16 +240,128 @@ your-nuxt-project/          # 项目根目录
 - 热重载：开发时修改文件，浏览器，服务器自动刷新，提升开发效率。
 
 ---
+layout: two-cols
+---
+
+# 基于文件的路由
+
+
+```text {5-15}
+├── middleware/             # 路由中间件（控制页面跳转权限，分全局/页面/组级别）
+│   ├── auth.global.ts      # 全局中间件（所有页面跳转前执行，需加 .global 后缀）
+│   └── admin.ts            # 页面级中间件（仅指定页面使用，如 admin 相关页面）
+├── node_modules/           # 项目依赖包（npm/yarn/pnpm 安装，无需手动修改）
+├── pages/                  # 页面组件目录（文件即路由，自动生成 vue-router 路由表）
+│   ├── index.vue           # 首页（对应路由 /）
+│   ├── about.vue           # 关于页（对应路由 /about）
+│   ├── blog/               # 博客模块页面
+│   │   ├── index.vue       # 博客列表页（对应路由 /blog）
+│   │   └── [slug].vue      # 博客详情页（动态路由，对应 /blog/xxx）
+│   ├── admin/              # 后台管理页面
+│   │   ├── index.vue       # 后台首页（/admin）
+│   │   └── products/       # 商品管理页面
+│   │       ├── index.vue   # 商品列表（/admin/products）
+│   │       └── [id].vue    # 商品编辑页（/admin/products/123）
+│   └── api/                # 客户端 API 路由（仅 Nuxt 2，Nuxt 3 移至 server/api）
+├── public/                 # 静态资源根目录（无需编译，直接复制到输出目录）
+
+```
+
+::right::
+
+# 编译产物
+
+```json
+{
+  "routes": [
+    {
+      "path": "/about",
+      "component": "pages/about.vue"
+    },
+    {
+      "path": "/",
+      "component": "pages/index.vue"
+    },
+    {
+      "path": "/posts/:id",
+      "component": "pages/posts/[id].vue"
+    }
+  ]
+}
+```
+
+---
+
+# 自动导入-框架内部
+
+### vue:
+
+```vue {all|2}
+<script setup lang="ts">
+const count = ref(1)  
+</script>
+
+```
+
+### nuxt:
+
+```vue {all|2}
+<script setup lang="ts">
+const { data, refresh, status } = await useFetch('/api/hello')
+</script>
+
+```
+
+---
+
+# 自动导入-项目内部
+
+### 内置自动导入文件夹
+
+1. app/components/ 
+2. app/composables/ 
+3. app/utils/ 
+
+### 自定义自动导入文件夹
+
+```ts
+imports: {
+  // Auto-import pinia stores defined in `~/stores`
+  dirs: ['stores']
+}
+```
+
+---
+
+# TypeScript 友好
+
+### 端到端的类型提示
+
+![alt text](./image-5.png)
+
+---
 
 # 复用 Vue 生态系统
 
 - Vue 3 支持：Nuxt 3 基于 Vue 3，享受最新特性（组合式 API、Teleport、Suspense）。
 - Vue Router 集成：自动生成路由表，支持动态路由、嵌套路由。
-- Pinia 状态管理：官方推荐的状态管理库，轻量且易用
-- 丰富插件生态：支持 Vue 插件（如 Vuex、Vue I18n、Vue Meta）。
+- 丰富插件生态：支持 Vue 插件（如 Vuex、Vue I18n）。
 - 兼容 Vue 生态库：大部分 Vue 组件库（如 Vuetify、Element Plus）均可直接使用。
 
---- 
+
+---
+
+# 强大的devtools-展示项目信息
+
+<img src="./image-6.png"/>
+
+---
+
+# 强大的devtools-可视化的路由切换
+
+<img src="./image-7.png"/>
+
+<!-- --- 
 
 # 关于 Celljs
 
@@ -222,7 +371,7 @@ your-nuxt-project/          # 项目根目录
 - 没有单元测试
 - 基于Webpack构建
 - Java技术背景
-- 没有知名大佬坐镇
+- 没有知名大佬坐镇 -->
 
 ---
 layout: center
