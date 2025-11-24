@@ -11,8 +11,6 @@
     "node": ">=20.10.0"
   },
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
-    "postinstall": "simple-git-hooks",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "simple-git-hooks": {

@@ -1,4 +1,4 @@
-Hello everyone, this is Boswell Ji. If you want to know me, please look [here](./personal-profile/boswell.md).
+<!-- Hello everyone, this is Boswell Ji. If you want to know me, please look [here](./personal-profile/boswell.md). -->
 
 ## JavaScript
 
@@ -64,6 +64,7 @@ Hello everyone, this is Boswell Ji. If you want to know me, please look [here](.
 - [core concept](./microfrontend/core.md)
 - [qiankun](./microfrontend/qiankun.md)
 - [single-spa](./microfrontend/single-spa.md)
+- [wujie](./microfrontend/wujie.md)
 - [微前端基本原理概述](./microfrontend/微前端基本原理概述.md)
 
 ## WX Platform
@@ -154,7 +155,7 @@ Hello everyone, this is Boswell Ji. If you want to know me, please look [here](.
 - [页面性能衡量标准](./performance/readme.md)
 - [内存管理](./performance/memory/readme.md)
 - [cpu 计算](./performance/cpu/readme.md)
-- [资源加载](./performance/load/readme.md)
+- [资源加载](./performance/load/list/readme.md)
 
 ## Engineering
 
