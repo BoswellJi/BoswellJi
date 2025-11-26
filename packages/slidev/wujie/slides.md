@@ -46,6 +46,25 @@ layout: center
 
 
 ---
+layout: two-cols 
+---
+
+# 微前端的三大核心模块
+
+<img src="./image-1.png" class="w-[100%]"/>
+
+::right::
+
+<div class="flex flex-col justify-center h-[100%]">
+
+- 基座应用：作为「容器 + 调度中心」，提供全局路由、公共配置，通过 加载器 管理所有子应用
+- 加载器：基座的核心子模块，是「基座与子应用的桥梁」
+- 子应用：独立的业务模块
+
+</div>
+
+
+---
 layout: center
 ---
 
@@ -56,32 +75,16 @@ layout: center
 <div v-click="3">3. 隔离运行: 微应用的 JS、CSS 不会污染全局环境，运行时状态互不干扰（如全局变量、事件监听、样式冲突）；</div>
 <div v-click="4">4. 用户体验一致: 尽管技术栈不同，微应用间的路由切换、样式风格、交互逻辑需保持统一，让用户感知不到「拆分」</div>
 
-
----
-layout: two-cols子应用子应用
 ---
 
-# 微前端的三大核心模块
-
-![alt text](./image-1.png)
-
-::right::
-
-test
-
-
----
-layout: center
----
-
-# 微前端的应用场景有哪些
-
+# 适合使用微前端的场景
 
 - 大型复杂应用的拆分
 - 多团队协作开发
 - 技术栈多样化
 - 渐进式迁移
 
+<img src="./image-2.png" class="display w-[70%] mt-[50px] absolute bottom-0 right-0"/>
 
 ---
 layout: center
@@ -94,6 +97,22 @@ layout: center
 - qiankun
 - wujie
 - module-federation
+
+---
+
+# iframe
+
+iframe 是 HTML 中的一个内联框架元素，核心作用是在当前页面中嵌入另一个独立的 HTML 文档（可来自同一域名或跨域名），形成「页面嵌套页面」的效果。嵌入的文档拥有独立的 DOM、BOM、CSS 样式环境和 JavaScript 执行上下文，与父页面完全隔离，互不干扰。
+
+
+<div>
+
+ ### 优点
+
+ - 非常简单，使用没有任何心智负担
+ - web应用隔离的非常完美，无论是js、css、dom都完全隔离开来
+
+</div>
 
 ---
 layout: center
