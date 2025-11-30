@@ -1,78 +1,52 @@
-# Nuxt 全栈框架
+<div class="text-center">
 
-## 纯Vue.js项目的问题
+# Nuxt 全栈框架新技术调研
 
-- SEO 问题：SPA 页面内容由 JS 动态生成，搜索引擎引擎难以抓取，导致搜索引擎排名低。
-- 首加载体验：首次次加载需下载完整 JS 包，首屏白屏时间长。
-- 路由配置繁琐：需手动维护 vue-router 的路由表，文件增减时容易漏配。
-- 服务端能力缺失：纯前端 Vue 难以直接操作数据库、处理敏感逻辑（如用户认证）。
+</div>
 
-## 什么是Nuxt
+## 什么是 Nuxt
 
-Nuxt.js 是一个基于 Vue.js 的全栈框架，用于构建服务端渲染（SSR）和静态网站生成（SSG）的应用程序。它提供了一套完整的开发工具和最佳实践，使得开发者能够更高效地构建高性能的 Web 应用。Nuxt.js 的核心理念是 **“约定优于配置”**，通过约定的目录结构和配置，简化了开发流程。
+Nuxt 是一个基于 <span>Vue.js 组件化</span> 的、<span>多渲染模式</span>的、<span>约定优于配置原则</span>的全栈开发框架。就像一个功能强大的 `HTML字符串` 渲染引擎。
 
-_“约定优于配置” 是一种软件设计原则，强调通过预定义的约定来简化配置过程。Nuxt.js 采用这种理念，通过约定的目录结构和文件命名，减少了开发者需要手动配置的内容。例如，页面组件放在 `pages` 目录下，路由会自动生成，无需手动配置路由文件。这种方式不仅提高了开发效率，还降低了出错的可能性。_
+## Vue.js 组件化
 
-## Nuxt.js项目架构图
+<div>组件允许我们将 UI 拆分为独立且可重用的部分，并单独考虑每个部分。应用程序通常被组织成嵌套组件树：</div>
 
-```text
-┌─────────────────────────────────────────────────────────────────────┐
-│                         客户端（浏览器）                              │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────────┐  │
-│  │  页面组件        │  │  公共组件        │  │  客户端交互逻辑      │  │
-│  │  (pages/*.vue)   │  │  (components/*)  │  │  (composables/*.ts) │  │
-│  └────────┬────────┘  └────────┬────────┘  └──────────┬────────────┘  │
-│           │                    │                      │               │
-│           ▼                    ▼                      ▼               │
-│  ┌─────────────────────────────────────────────────────────────┐     │
-│  │                  客户端框架核心（Vue 3 + Nuxt 运行时）        │     │
-│  │  - 路由管理（自动路由 + 动态路由）                           │     │
-│  │  - 水合过程（Hydration）：激活服务端渲染的 DOM 交互           │     │
-│  │  - 状态管理（Pinia / useState）                             │     │
-│  │  - 数据请求（useFetch / useAsyncData）                       │     │
-│  └────────────────────────────────────────────────────────────┘     │
-└──────────────────────────────────────────────────────────────────────┘
-                             |    ▲
-                             |    |
-                             |    |
-                             ▼    |
-┌─────────────────────────────────────────────────────────────────────┐
-│                         服务端（Node.js）              │
-│                                                                     │
-│  ┌─────────────────────────────────────────────────────────────┐   │
-│  │                  服务端入口（Nitro 引擎）                    │   │
-│  │  - 处理请求路由分发（客户端页面 / 服务端 API）                │   │
-│  │  - 渲染模式控制（SSR / SSG / CSR / 混合渲染）                │   │
-│  │  - 中间件执行（服务端中间件 + 路由中间件）                   │   │
-│  └────────┬──────────────────────────────┬────────────────────┘   │
-│           │                              │                         │
-│           ▼                              ▼                         │
-│  ┌─────────────────────┐        ┌─────────────────────────────┐   │
-│  │  服务端页面渲染      │        │  服务端 API / 逻辑          │   │
-│  │  （SSR / SSG 核心）  │        │  （server/ 目录）           │   │
-│  │  - 服务端解析 Vue 组件 │        │  ┌─────────────────────┐   │   │
-│  │  - 生成完整 HTML 输出  │        │  │  API 路由           │   │   │
-│  │  - 预获取页面数据      │        │  │  (server/api/*.js)   │   │   │
-│  └─────────────────────┘        │  ├─────────────────────┤   │   │
-│                                 │  │  服务端中间件       │   │   │
-│                                 │  │  (server/middleware)│   │   │
-│                                 │  ├─────────────────────┤   │   │
-│                                 │  │  数据库交互         │   │   │
-│                                 │  │  （Prisma / 其他ORM）│   │   │
-│                                 │  └─────────────────────┘   │   │
-│                                 └─────────────────────────────┘   │
-│                                                                     │
-│  ┌─────────────────────┐  ┌─────────────────────┐  ┌─────────────┐ │
-│  │  静态资源处理        │  │  配置文件           │  │  工具函数    │ │
-│  │  (public/ / assets/) │  │  (nuxt.config.ts)   │  │  (utils/*)  │ │
-│  └─────────────────────┘  └─────────────────────┘  └─────────────┘ │
-└─────────────────────────────────────────────────────────────────────┘
+![alt text](./image-2.png)
 
-```
+## 多渲染模式
 
-## 目录结构
+- 服务端渲染（SSR）
 
-```text
+- 静态站点生成（SSG）
+
+- 混合渲染（Nuxt 3 新增）
+
+- 客户端渲染（CSR）
+
+- <del>流式渲染（Streaming SSR） </del>
+
+## 约定优于配置原则
+
+<div>
+
+_“约定优于配置” 是一种软件设计原则，强调通过预定义的约定来简化配置过程。Nuxt.js 采用这种理念，通过约定的目录结构和文件命名，减少了开发者需要手动配置的内容。_
+
+</div>
+
+例如，页面组件放在 `pages` 目录下，路由会自动生成，无需手动配置路由文件。这种方式不仅提高了开发效率，还降低了出错的可能性 。
+
+<div class="flex flex-col justify-center items-center h-full">
+
+![alt text](./image-3.png)
+
+</div>
+
+## Nuxt 目录结构
+
+<div class="h-[100%] overflow-scroll">
+
+```text {all|4-7|8-11|12-15|16-18|19-22|23-25|27-38|39-42|43-50|57-59}
 your-nuxt-project/          # 项目根目录
 ├── .nuxt/                  # Nuxt 开发时自动生成的临时文件（构建缓存、编译产物，无需手动修改）
 ├── .output/                # 生产构建输出目录（SSR/混合渲染模式，包含服务端代码和客户端静态资源）
@@ -143,9 +117,15 @@ your-nuxt-project/          # 项目根目录
 └── tsconfig.json           # TypeScript 配置文件（类型检查、编译选项）
 ```
 
+</div>
+
 ## Nuxt 核心价值
 
-### Nuxt 提供多种渲染模式
+1. Nuxt 提供多种渲染模式提高页面渲染性能
+2. 工程化能力增强提高开发体验
+3. 复用 Vue 生态系统
+
+## Nuxt 提供多种渲染模式提高页面渲染性能
 
 - 服务端渲染（SSR）：
   - 每次请求时，服务端动态生成 HTML 并返回，SEO 友好、首屏加载快。
@@ -153,37 +133,173 @@ your-nuxt-project/          # 项目根目录
 - 静态站点生成（SSG）：
   - 构建时预先生成所有页面的静态 HTML，部署后直接返回，极致加载速度。
 
-- 混合渲染（Nuxt 3 新增）：
-  - 同一项目中，部分页面用 SSR（如用户中心），部分用 SSG（如首页），按需选择最优模式。
-
 - 客户端渲染（CSR）：
   - 兼容传统 SPA 模式，适合纯交互型应用，像后台管理系统。
 
-### 工程化增强
+- 混合渲染（Nuxt 3 新增）：
+  - 同一项目中，部分页面用 SSR（如用户中心），部分用 SSG（如首页），按需选择最优模式。
+
+- <del>流式渲染（Streaming SSR）： </del>
+
+## 服务端渲染（SSR）
+
+<img src="https://nuxt.com/assets/docs/concepts/rendering/ssr.svg" />
+
+## 客户端渲染（CSR）
+
+<img src="https://nuxt.com/assets/docs/concepts/rendering/csr.svg" />
+
+## 混合渲染（Nuxt 3 新增）
+
+```ts
+// nuxt.config.ts
+
+export default defineNuxtConfig({
+  routeRules: {
+    // Homepage pre-rendered at build time
+    '/': { prerender: true },
+    // Products page generated on demand, revalidates in background, cached until API response changes
+    '/products': { swr: true },
+    // Product pages generated on demand, revalidates in background, cached for 1 hour (3600 seconds)
+    '/products/**': { swr: 3600 },
+    // Blog posts page generated on demand, revalidates in background, cached on CDN for 1 hour (3600 seconds)
+    '/blog': { isr: 3600 },
+    // Blog post page generated on demand once until next deployment, cached on CDN
+    '/blog/**': { isr: true },
+    // Admin dashboard renders only on client-side
+    '/admin/**': { ssr: false },
+    // Add cors headers on API routes
+    '/api/**': { cors: true },
+    // Redirects legacy urls
+    '/old-page': { redirect: '/new-page' }
+  }
+})
+```
+
+## 工程化增强
+
+- 基于文件的路由
 
 - 自动导入：组件（components 目录）、工具函数（composables 目录）无需 import 即可直接使用。
+
+- TypeScript 友好：默认支持 TS，类型提示完善。
 
 - 代码分割：自动按页面分割 JS 包，减少首次加载体积。
 
 - CSS 支持：内置 SCSS、PostCSS，支持全局样式（assets/css）和组件样式隔离（scoped）。
 
-- TypeScript 友好：默认支持 TS，类型提示完善。
-
 - 热重载：开发时修改文件，浏览器，服务器自动刷新，提升开发效率。
 
-### 统一约定
+## 基于文件的路由
 
-- 基于文件的路由系统
-- 基于文件的 api 接口
-- 组件自动引入（按需）
-- 组合式函数自动引入 （按需）
-- 客户端唯一和服务端唯一组件
-- 端到端的 TypeScript 支持
+```text
+├── middleware/             # 路由中间件（控制页面跳转权限，分全局/页面/组级别）
+│   ├── auth.global.ts      # 全局中间件（所有页面跳转前执行，需加 .global 后缀）
+│   └── admin.ts            # 页面级中间件（仅指定页面使用，如 admin 相关页面）
+├── node_modules/           # 项目依赖包（npm/yarn/pnpm 安装，无需手动修改）
+├── pages/                  # 页面组件目录（文件即路由，自动生成 vue-router 路由表）
+│   ├── index.vue           # 首页（对应路由 /）
+│   ├── about.vue           # 关于页（对应路由 /about）
+│   ├── blog/               # 博客模块页面
+│   │   ├── index.vue       # 博客列表页（对应路由 /blog）
+│   │   └── [slug].vue      # 博客详情页（动态路由，对应 /blog/xxx）
+│   ├── admin/              # 后台管理页面
+│   │   ├── index.vue       # 后台首页（/admin）
+│   │   └── products/       # 商品管理页面
+│   │       ├── index.vue   # 商品列表（/admin/products）
+│   │       └── [id].vue    # 商品编辑页（/admin/products/123）
+│   └── api/                # 客户端 API 路由（仅 Nuxt 2，Nuxt 3 移至 server/api）
+├── public/                 # 静态资源根目录（无需编译，直接复制到输出目录）
 
-### 生态系统：
+```
 
-- 前端开发可以复用Vue生态（Vue 3 + Vue Router + Pinia）
+## 编译产物
 
-- 框架本身丰富的模块和插件生态（如 数据库、内容管理、认证等）
+```json
+{
+  "routes": [
+    {
+      "path": "/about",
+      "component": "pages/about.vue"
+    },
+    {
+      "path": "/",
+      "component": "pages/index.vue"
+    },
+    {
+      "path": "/posts/:id",
+      "component": "pages/posts/[id].vue"
+    }
+  ]
+}
+```
 
-  ![](./image-6.png)
+## 自动导入-框架内部
+
+### vue:
+
+```vue
+<script setup lang="ts">
+const count = ref(1)
+</script>
+```
+
+### nuxt:
+
+```vue
+<script setup lang="ts">
+const { data, refresh, status } = await useFetch('/api/hello')
+</script>
+```
+
+## 自动导入-项目内部
+
+### 内置自动导入文件夹
+
+1. app/components/
+2. app/composables/
+3. app/utils/
+
+### 自定义自动导入文件夹
+
+```ts
+imports: {
+  // Auto-import pinia stores defined in `~/stores`
+  dirs: ['stores']
+}
+```
+
+## TypeScript 友好
+
+### 端到端的类型提示
+
+![alt text](./image-5.png)
+
+## 复用 Vue 生态系统
+
+- Vue 3 支持：Nuxt 3 基于 Vue 3，享受最新特性（组合式 API、Teleport、Suspense）。
+- Vue Router 集成：自动生成路由表，支持动态路由、嵌套路由。
+- 丰富插件生态：支持 Vue 插件（如 Vuex、Vue I18n）。
+- 兼容 Vue 生态库：大部分 Vue 组件库（如 Vuetify、Element Plus）均可直接使用。
+
+<img src="./image-6.png"/>
+
+## 强大的devtools-展示项目信息
+
+<img src="./image-8.png"/>
+
+## 强大的devtools-可视化的路由切换
+
+<img src="./image-7.png"/>
+
+<!-- ---
+
+# 关于 Celljs
+
+- 社区太冷了
+- 只存在中文社区
+- 资料少且滞后
+- 没有单元测试
+- 基于Webpack构建
+- Java技术背景
+- 没有知名大佬坐镇 -->
