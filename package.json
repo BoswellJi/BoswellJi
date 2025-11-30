@@ -2,22 +2,23 @@
   "version": "1.0.0",
   "private": true,
   "description": "个人练习",
-  "packageManager": "pnpm@9.1.2",
   "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "engines": {
-    "node": ">=20.10.0"
-  },
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
-    "postinstall": "simple-git-hooks",
+    "clean": "npm workspaces exec -- rm -rf node_modules && rm -rf node_modules",
+    "clean:all": "npm run clean && rm -rf package-lock.json packages/*/package-lock.json",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "simple-git-hooks": {
-    "commit-msg": "node scripts/verifyCommit.js"
+    "commit-msg": "node build/verifyCommit.js"
   },
+  "workspaces": [
+    "packages/*",
+    "slidev/*",
+    "vscode/*"
+  ],
   "devDependencies": {
     "conventional-changelog-cli": "^4.1.0",
     "eslint": "^8.56.0",
