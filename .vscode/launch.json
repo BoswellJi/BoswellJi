@@ -4,13 +4,6 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
-    {
-      "name": "Launch @slidev/nuxtinfo",
-      "request": "launch",
-      "runtimeArgs": ["--filter", "@slidev/nuxtinfo", "dev"],
-      "runtimeExecutable": "pnpm",
-      "skipFiles": ["<node_internals>/**"],
-      "type": "node"
-    }
+    
   ]
 }
