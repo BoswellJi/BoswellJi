@@ -3,5 +3,8 @@
   "singleQuote": true,
   "printWidth": 80,
   "trailingComma": "none",
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "proseWrap": "preserve",
+  "markdownTablePrettify": false,
+  "commentLineGap": false
 }

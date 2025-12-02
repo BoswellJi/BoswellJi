@@ -18,6 +18,7 @@ background: ./bg.png
 ---
 
 # wujie(无界)
+
 ## 极致的微前端框架
 
 ---
@@ -37,17 +38,16 @@ timeline
 ```
 
 ---
-layout: center
----
+
+## layout: center
 
 # 什么是微前端
 
 ### 将<span v-mark.highlight.yellow="0">微服务</span>的思想拓展到前端的一种<span v-mark.highlight.yellow="0">新兴架构</span>，背后主要思想是将一个单体项目，拆解为多个较小的部分，以便多个相对独立的团队进行分工写作。
 
+---
 
----
-layout: two-cols 
----
+## layout: two-cols
 
 # 微前端的三大核心模块
 
@@ -63,10 +63,9 @@ layout: two-cols
 
 </div>
 
+---
 
----
-layout: center
----
+## layout: center
 
 # 微前端的设计原则
 
@@ -87,8 +86,8 @@ layout: center
 <img src="./image-2.png" class="display w-[70%] mt-[50px] absolute bottom-0 right-0"/>
 
 ---
-layout: center
----
+
+## layout: center
 
 # 主流的微前端方案有哪些
 
@@ -104,14 +103,18 @@ layout: center
 
 iframe 是 HTML 中的一个内联框架元素，核心作用是在当前页面中嵌入另一个独立的 HTML 文档（可来自同一域名或跨域名），形成「页面嵌套页面」的效果。嵌入的文档拥有独立的 DOM、BOM、CSS 样式环境和 JavaScript 执行上下文，与父页面完全隔离，互不干扰。
 
-
-<div>
-
- ### 优点
-
- - 非常简单，使用没有任何心智负担
- - web应用隔离的非常完美，无论是js、css、dom都完全隔离开来
-
+<div class="flex">
+  <div>
+    <div class="text-[20px] font-bold">优点</div>
+    <div>非常简单，使用没有任何心智负担</div>
+    <div>web应用隔离的非常完美，无论是js、css、dom都完全隔离开来</div>
+  </div>
+  <div>
+    <div class="text-[20px] font-bold">缺点</div>
+    <div>路由状态丢失，刷新一下，iframe的url状态就丢失了</div>
+    <div>dom割裂严重，弹窗只能在iframe内部展示，无法覆盖全局</div>
+    <div>web应用之间通信非常困难</div>
+  </div>
 </div>
 
 ---
@@ -127,7 +130,6 @@ layout: center
 - 应用切换没有清理成本
 - 子应用保活
 
-
 ---
 layout: center
 ---
@@ -138,21 +140,21 @@ layout: center
 - css 沙箱：web component
 
 ---
-layout: center
----
+
+## layout: center
 
 # 基于wujie的系统架构
 
 <div class=" flex items-center justify-center h-[100%] w-[100%]">
   <div class=" flex items-center justify-center h-[100%] w-[70%]">
 
-  ![alt text](./image.png)
+![alt text](./image.png)
 
   </div>
 </div>
 
 ---
-layout: center
----
+
+## layout: center
 
 [Presentation Slides for Developers](https://sli.dev)
