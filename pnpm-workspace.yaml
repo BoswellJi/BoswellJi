@@ -1,0 +1,6 @@
+packages:
+  - 'packages/*'
+  -  "slidev/*"
+  - "vscode/*"
+  - "vue/*"
+  - "myblog"

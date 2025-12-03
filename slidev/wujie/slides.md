@@ -157,10 +157,12 @@ single-spa 是 最早（2017 年开源）的微前端核心框架，核心定位
 </div>
 
 ---
+layout: center
+---
 
 # wujie
 
-核心采用 WebComponent + iframe 的创新架构，主打零侵入接入、原生级隔离与高性能体验，能轻松实现多技术栈子应用的集成，尤其适合旧系统迁移和多团队协作的大型项目
+### 核心采用 WebComponent + iframe 的创新架构，主打零侵入接入、原生级隔离与高性能体验，能轻松实现多技术栈子应用的集成，尤其适合旧系统迁移和多团队协作的大型项目
 
 ---
 
@@ -212,6 +214,143 @@ layout: center
 layout: center
 ---
 
+# 如何创建一个iframe
+
+```html
+<iframe
+  src="https://example.com"
+  width="600"
+  height="400"
+  style="border:none;"
+></iframe>
+```
+
+```js
+const iframe = document.createElement('iframe');
+iframe.src = 'https://example.com';
+iframe.width = '600';
+iframe.height = '400';
+
+document.body.appendChild(iframe);
+```
+
+---
+layout: center
+---
+
+![alt text](./image-4.png)
+
+---
+layout: center
+---
+
+![alt text](./image-5.png)
+
+---
+layout: center
+---
+
+![alt text](./image-7.png)
+
+---
+layout: center
+---
+
+![alt text](./image-8.png)
+
+
+---
+layout: center
+---
+
+# Proxy 对象
+
+### Proxy 是 ES6 引入的元编程（Meta Programming）对象，核心作用是为目标对象（如对象、数组、函数）创建一个「代理层」，拦截并自定义目标对象的基础操作（如属性访问、赋值、删除、函数调用等），无需修改目标对象本身即可实现逻辑增强。
+
+---
+layout: center
+---
+
+```js
+(function(window, self, global, location) {
+  console.log('This is running inside the iframe sandbox');
+}).bind(window.__WUJIE.proxy)(
+  window.__WUJIE.proxy,
+  window.__WUJIE.proxy,
+  window.__WUJIE.proxy,
+  window.__WUJIE.proxyLocation,
+);
+```
+
+---
+layout: center
+---
+
+# css 沙箱
+
+## web component ：Web 组件是一套不同技术的集合，允许开发者创建可重用的自定义元素，并在网页和 Web 应用中使用这些元素。Web 组件主要由四个核心技术组成：
+<br />
+
+- 自定义元素（Custom Elements）：允许开发者定义自己的 HTML 标签及其行为。
+- <span v-mark.highlight.yellow="0"> Shadow DOM：为自定义元素提供封装的 DOM 和样式，防止样式和脚本冲突。</span>
+- HTML 模板（HTML Templates）：定义可重用的 HTML 结构。
+
+---
+layout: center
+---
+
+```html
+  <user-card></user-card>
+  <script>
+    class UserCard extends HTMLElement {
+      constructor() {
+        super();
+        const shadow = this.attachShadow({ mode: 'open' });
+        const style = document.createElement('style');
+        style.textContent = `
+          .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            width: 200px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+          }`;
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <img class="avatar" src="${this.getAttribute('avatar')}" />
+          <div class="name">${this.getAttribute('name')}</div>`;
+        shadow.appendChild(style);
+        shadow.appendChild(card);
+      }
+    }
+    
+    customElements.define('user-card', UserCard);
+  </script>
+```
+
+---
+layout: center
+---
+
+![alt text](./image-13.png)
+
+---
+layout: center
+---
+
+![alt text](./image-14.png)
+
+---
+layout: center
+---
+
+![alt text](./image-15.png)
+
+---
+layout: center
+---
+
 # 基于wujie的系统架构
 
 <div class=" flex items-center justify-center h-[100%] w-[100%]">
@@ -221,6 +360,156 @@ layout: center
 
   </div>
 </div>
+
+---
+
+# 微前端框架集成与开发
+
+1. 安装依赖
+
+```bash
+npm install wujie-vue3 --save
+```
+
+2. 在基座应用中集成 wujie
+
+```js
+setupApp({
+  name: "samanage",
+  url: import.meta.env.VITE_APP1_URL,
+  alive: true
+});
+```
+
+3. 展示子应用
+
+```html 
+<template>
+	<WujieVue v-if="multPlatformUrl" width="100%" height="100%" name="samanage" :url="multPlatformUrl" :fetch="fetchSelf"></WujieVue>
+</template>
+```
+
+---
+
+# 问题解决
+
+1. 开发环境的代理服务处理： 开发环境本地`localhost`域名主应用，加载`预发或者qa环境`子应用存在跨域，所以要通过构建工具配置代理服务解决跨域问题。
+
+![alt text](./image-16.png)
+
+---
+
+# 页面加载为携带http header 标识
+
+```ts
+const fetchSelf = async (url: string, options: RequestInit) => {
+	return fetch(url, {
+		...options,
+    redirect: 'manual',
+		headers: {
+			'x-sa-admin': 'sam'
+		},
+	}).then((res) => {
+    if(res.type==='opaqueredirect'){
+      Session.clear();
+      oaLogin();
+      return;
+    }
+    return res;
+  }).catch((err) => {
+    console.error('Fetch error:', err);
+    throw err;
+  });
+};
+```
+
+---
+
+# 问题解决
+
+-  子应用下载有权限验证
+
+在测试过程中发现，多平台系统的导出下载功能都是通过http协议的能力实现的，通过配置的Content-Type确定文件类型，Content-Disposition确定下载行为。前端实现方式为链接跳转，浏览器的http客户端下载，导致在微前端架构下无法将子系统的自定义头字段x-sa-admin:sam带上鉴权用户身份，下载失败。
+
+```js
+async function downloadFile(url, filename) {
+  try {
+    // 1. 发起 fetch 请求（可携带 headers 如认证信息）
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'x-sa-admin': 'sam', // 如有权限验证
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`请求失败：${response.status}`);
+    }
+
+    // 2. 将响应转为 Blob 对象（自动识别 MIME 类型）
+    const blob = await response.blob();
+
+    // 3. 生成临时 URL
+    const objectUrl = URL.createObjectURL(blob);
+
+    // 4. 创建 <a> 标签触发下载
+    const a = document.createElement('a');
+    a.href = objectUrl;
+    a.download = filename || 'download'; // 文件名（可从后端响应头获取）
+    document.body.appendChild(a);
+    a.click();
+
+    // 5. 清理资源
+    document.body.removeChild(a);
+    URL.revokeObjectURL(objectUrl); // 释放 Blob URL 占用的内存
+
+  } catch (error) {
+    console.error('下载失败：', error);
+  }
+}
+```
+
+---
+
+# 问题解决
+
+- 子系统（多平台管理系统）文件上传组件文件上传失败
+
+新的微前端系统架构中，子系统需要将所有的请求都携带上http header 标识，页面加载，接口请求等等，文件上传组件的请求并没有统一封装，都散落在各个页面中，没进行新架构的兼容处理。
+
+因为文件上传组件都散落在各个页面当中，为了避免下次维护开发时的失误，所以将其进行封装，统一开发维护
+
+---
+
+# 问题解决
+
+- 同域名系统下token冲突
+
+因部门内部多个系统都是直接挂在同域名https://apprd.t.17usoft.com下的二级目录下的，比如crm(crm管理平台),samanage(多平台系统)，saadmin(sa系统)等等，都是同域名下的，同时系统都是出自一个前端开发框架，导致对于token的处理一致，都是存储到cookie当中，当多个系统互相打开时，其他系统会因为token错误重新登录，返回其他系统后会出现同样问题，包括localStroge,sessionStroge等等都存在相同问题。
+
+
+1. 我们将所有的cookie，localStroge，sessionStroge等等操作原本硬编码到代码里的方式统一放到单独文件模块中进行管理，给其加上系统命名前缀做区分。
+2. 为了防止失误，封装通过TS类型约束，一个运行时检查，防止误用。
+
+
+
+---
+
+# 问题解决
+
+- 融合后的整体页面兼容性检查与调整等
+
+<img class="h-[85%]" src="./image-17.png" />
+
+---
+
+# 问题解决
+
+- elelment-plus popover弹框组件在微前端框架wujie中定位偏移
+
+微前端框架wujie中,为了隔离子应用之前的运行环境，js运行在iframe中，css运行在shadow dom中，导致fixed定位的元素的位置计算是根据iframe的位置进行定位，但iframe又只是真个页面的一部分，当shadow dom中的元素使用iframe中计算的位置设置就会出现偏差。
+
+因为fixed固定定位是相对于浏览器窗口定位的，所以我们只要将fixed定位的元素通过css 样式权重的方式将元素样式强制设置成absolute决定定位的方式，因为absolute定位是相对于带有relative相对定位的父元素的定位的，只要在body元素上设置relative定位即可修正问题
 
 ---
 layout: center

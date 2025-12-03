@@ -14,13 +14,6 @@
   "simple-git-hooks": {
     "commit-msg": "node build/verifyCommit.js"
   },
-  "workspaces": [
-    "packages/*",
-    "slidev/*",
-    "vscode/*",
-    "vue/*",
-    "myblog"
-  ],
   "devDependencies": {
     "conventional-changelog-cli": "^4.1.0",
     "eslint": "^8.56.0",
