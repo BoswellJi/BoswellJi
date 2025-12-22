@@ -26,9 +26,9 @@ colorSchema: 'light'
       <div class="flex flex-col gap-4 w-1/2 text-[30px]">
         <ul>
           <li>专项背景</li>
-          <li>方案目标</li>
+          <li>实现目标</li>
           <li>技术方案</li>
-          <li>问题解决</li>
+          <li>问题总结</li>
         </ul>
       </div>
     </div>
@@ -40,12 +40,25 @@ layout: section
 
 ## 专项背景
 
-<br/>
+<br />
 
 <div class="w-[80%]">
-  <div>1. sa活动后台和多平台管理系统都是SA管理后台的一部分，面向同一业务部门，理应存在于一个系统中。现在独立存在，导致业务流程复杂。</div>
+  <v-click>
+    <div>1. 上段时间移交过来的<span v-mark.highlight.pink="0">SA项目</span> </div>
+  </v-click>
+  <br />
+  <v-click>
+  <div>2. <span v-mark.highlight.yellow="0">多平台管理系统</span>属于老项目，技术栈较为陈旧（比如VUE2版本），依赖长久未更新。 不利于项目后续开发维护，<span v-mark.highlight.yellow="0">提高项目可持续性</span>，以及开发人员对技术的更新换代的要求，<span v-mark.highlight.yellow="0">提高大家积极性。</span></div>
+  </v-click>
+  <br />
+  <v-click>
+  <div>3. 我们通过新技术栈开发了新的SA活动后台作为补充，在项目<span v-mark.highlight.blue="0">稳定运行的前提下</span>，渐进的迁移老项目。</div>
+  </v-click>
+  <br />
+  <v-click>
+  <div>4. <span v-mark.highlight.red="0">sa活动后台</span>和<span v-mark.highlight.red="0">多平台管理系统</span>都是SA管理后台的一部分，面向同一业务部门，理应存在于一个系统中。现在独立存在，导致业务流程复杂。</div>
+  </v-click>
   <br/>
-  <div>2. 多平台管理系统属于老项目，技术栈较为陈旧（比如VUE2版本），依赖长久未更新。 而sa活动后台使用了较新的技术栈，存在技术不兼容的问题。</div>
 </div>
 
 ---
@@ -68,16 +81,32 @@ layout: section
 layout: section
 ---
 
-# 方案目标
+# 实现目标
 
 <div class="w-[80%]">
-  <div>1. 将多平台管理系统的功能无缝集成到中sa活动系统，确保业务流程顺畅，提升业务体验，提高工作效率。</div>
+  <v-click>
+    <div>1. 将多平台管理系统的功能<span v-mark.highlight.red="0">无缝集成</span>到中sa活动系统，确保业务流程顺畅，提升业务体验，提高工作效率。</div>
+  </v-click>
   <br/>
-  <div>2. 统一前端技术栈，逐步升级多平台管理系统的技术栈。</div>
+
+  <v-click>
+    <div>2. 升级SA多平台管理系统的技术栈。</div>
+  </v-click>
   <br/>
-  <div>3. 统一后台菜单权限与登录信息共享，提升系统的整体一致性与安全性。</div>
+
+  <v-click>
+    <div>3. 避免对系统全量重构，确保系统平稳渐进过渡。</div>
+  </v-click>
   <br/>
-  <div>4. 避免对系统全量重构，确保系统平稳渐进过渡。</div>
+
+  <v-click>
+  <div>4. 统一后台菜单权限与登录信息共享，提升系统的整体一致性。</div>
+  </v-click>
+  <br/>
+
+  <v-click>
+  <div>5. 技术无关性，不同系统使用不同的技术栈进行开发和维护，提升技术灵活性。</div>
+  </v-click>
 </div>
 
 
@@ -194,7 +223,7 @@ image: ./image-20.png
 layout: section
 ---
 
-# 解决问题
+# 问题总结
 
 ---
 
