@@ -13,7 +13,7 @@
     "build": "tsc --build",
     "build:watch": "tsc --build --watch",
     "build:clean": "tsc --build --clean",
-    "build:love": "pnpm --filter @boswell/nuxt generate"
+    "build:love": "pnpm i && pnpm --filter @boswell/nuxt generate"
   },
   "simple-git-hooks": {
     "commit-msg": "node build/verifyCommit.js"
