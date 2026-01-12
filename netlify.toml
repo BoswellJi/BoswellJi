@@ -1,5 +1,0 @@
-[build]
-command = "pnpm build:love"
-publish = "packages/nuxt/dist"
-[functions]
-directory = "netlify/functions" # 函数目录
