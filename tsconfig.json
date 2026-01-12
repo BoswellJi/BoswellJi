@@ -1,0 +1,20 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/algorithm" },
+    { "path": "./packages/astro" },
+    { "path": "./packages/babel" },
+    { "path": "./packages/nestjs" },
+    { "path": "./packages/nodejs" },
+    { "path": "./packages/nuxt" },
+    { "path": "./packages/rollup" },
+    { "path": "./packages/rspack" },
+    { "path": "./packages/typescript" },
+    { "path": "./packages/vite" },
+    { "path": "./packages/webpack" },
+    { "path": "./vscode/plugin2" },
+    { "path": "./vscode/plugin3" },
+    { "path": "./vue/vue3-spa" },
+    { "path": "./vue/vue3-mpa" }
+  ]
+}

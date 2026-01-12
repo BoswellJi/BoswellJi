@@ -10,24 +10,23 @@
     "esModuleInterop": true,
     "allowJs": true,
     "baseUrl": ".",
-    "types": [
-    ],
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "types": [],
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "types/**/*.d.ts"
-, "src/commonjs2.js", "src/commonjs1.js"  ]
+    "types/**/*.d.ts",
+    "src/commonjs2.js",
+    "src/commonjs1.js"
+  ]
 }

@@ -9,7 +9,11 @@
   "scripts": {
     "clean": "npm workspaces exec -- rm -rf node_modules && rm -rf node_modules",
     "clean:all": "npm run clean && rm -rf package-lock.json packages/*/package-lock.json",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "build": "tsc --build",
+    "build:watch": "tsc --build --watch",
+    "build:clean": "tsc --build --clean",
+    "build:love": "pnpm --filter @boswell/nuxt generate"
   },
   "simple-git-hooks": {
     "commit-msg": "node build/verifyCommit.js"
@@ -23,5 +27,5 @@
     "simple-git-hooks": "^2.9.0",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1"
-  } 
+  }
 }
