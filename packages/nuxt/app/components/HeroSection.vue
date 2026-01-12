@@ -93,7 +93,7 @@
 import { ref, computed, onMounted } from 'vue';
 
 // 修改这里为你们真正开始的日期
-const startDate = new Date('2023-01-01');
+const startDate = new Date('2025-05-24');
 
 const daysTogether = ref(0);
 
