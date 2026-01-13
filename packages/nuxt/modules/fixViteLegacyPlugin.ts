@@ -1,4 +1,5 @@
 import { defineNuxtModule } from '@nuxt/kit';
+import { Sequelize } from 'sequelize';
 
 export default defineNuxtModule({
   setup(_option, nuxt) {

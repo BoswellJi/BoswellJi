@@ -15,7 +15,6 @@ const getScript = () => {
 };
 
 export default defineNuxtConfig({
-  ssr: false,
   app: {
     baseURL: '/',
     head: {
@@ -45,5 +44,4 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  build: {},
 });

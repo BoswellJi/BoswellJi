@@ -1,7 +1,12 @@
 {
+  "extends": "./.nuxt/tsconfig.json",
   // https://nuxt.com/docs/guide/concepts/typescript
-  "compilerOptions": {},
-  "files": [],
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
   "references": [
     {
       "path": "./.nuxt/tsconfig.app.json"
