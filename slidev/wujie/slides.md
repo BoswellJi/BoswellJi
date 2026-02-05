@@ -1,12 +1,11 @@
 ---
 # You can also start simply with 'default'
-theme: seriph
+theme: mokkapps
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
 # background: https://cover.sli.dev
 # some information about your slides (markdown enabled)
 title: wujie
-class: text-center
 # https://sli.dev/features/drawing
 drawings:
   persist: false
@@ -14,7 +13,6 @@ drawings:
 transition: slide-left
 # enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
-background: ./bg.png
 ---
 
 # wujie(无界)
@@ -38,12 +36,12 @@ timeline
 ```
 
 ---
-layout: center
----
 
 # 什么是微前端
 
-### 将<span v-mark.highlight.yellow="0">微服务</span>的思想拓展到前端的一种<span v-mark.highlight.yellow="0">新兴架构</span>，背后主要思想是将一个单体项目，拆解为多个较小的部分，以便多个相对独立的团队进行分工写作。
+<br />
+
+将<span v-mark.highlight.yellow="1">微服务</span>的思想拓展到前端的一种<span v-mark.highlight.yellow="1">新兴架构</span>，背后主要思想是将一个单体项目，拆解为多个较小的部分，以便多个相对独立的团队进行分工写作。
 
 ---
 layout: two-cols
@@ -64,14 +62,15 @@ layout: two-cols
 </div>
 
 ---
-layout: center
----
 
 # 微前端的设计原则
-
+<br />
 <div v-click="1">1. 技术栈无关：基座不限制微应用的技术栈，微应用可使用 React、Vue 等任意框架，甚至无框架</div>
+<br />
 <div v-click="2">2. 独立开发 / 部署: 每个微应用是独立的代码库，有自己的 CI/CD 流程，发布不依赖其他微应用；</div>
+<br />
 <div v-click="3">3. 隔离运行: 微应用的 JS、CSS 不会污染全局环境，运行时状态互不干扰（如全局变量、事件监听、样式冲突）；</div>
+<br />
 <div v-click="4">4. 用户体验一致: 尽管技术栈不同，微应用间的路由切换、样式风格、交互逻辑需保持统一，让用户感知不到「拆分」</div>
 
 ---
@@ -85,8 +84,6 @@ layout: center
 
 <img src="./image-2.png" class="display w-[70%] mt-[50px] absolute bottom-0 right-0"/>
 
----
-layout: center
 ---
 
 # 主流的微前端方案有哪些
@@ -157,8 +154,6 @@ single-spa 是 最早（2017 年开源）的微前端核心框架，核心定位
 </div>
 
 ---
-layout: center
----
 
 # wujie
 
@@ -184,8 +179,6 @@ layout: center
   - 子应用执行性能和原生一致，子应用实例instance运行在iframe的window上下文中，避免with(proxyWindow){code}这样指定代码执行上下文导致的性能下降，但是多了实例化iframe的一次性的开销，可以通过 preload 提前实例化
   - 体积比较轻量，借助iframe和webcomponent来实现沙箱，有效的减小了代码量
 
----
-layout: center
 ---
 
 # wujie的运行机制
@@ -292,7 +285,7 @@ layout: center
 <br />
 
 - 自定义元素（Custom Elements）：允许开发者定义自己的 HTML 标签及其行为。
-- <span v-mark.highlight.yellow="0"> Shadow DOM：为自定义元素提供封装的 DOM 和样式，防止样式和脚本冲突。</span>
+- <span v-mark.highlight.yellow="1"> Shadow DOM：为自定义元素提供封装的 DOM 和样式，防止样式和脚本冲突。</span>
 - HTML 模板（HTML Templates）：定义可重用的 HTML 结构。
 
 ---
@@ -399,7 +392,9 @@ setupApp({
 
 ---
 
-# 页面加载为携带http header 标识
+# 问题解决
+
+- 页面加载为携带http header 标识
 
 ```ts
 const fetchSelf = async (url: string, options: RequestInit) => {

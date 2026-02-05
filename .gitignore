@@ -5,6 +5,10 @@ dist
 .cache
 .temp
 
+# TypeScript build info
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
 # Dependency directories
 npm-debug.log*
 yarn-debug.log*
