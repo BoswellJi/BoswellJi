@@ -45,6 +45,7 @@
 ## Nuxt
 
 - [Nuxt 全栈框架新技术调研](./nuxt/Nuxt全栈框架/Nuxt全栈框架新技术调研.md)
+- [基于Nuxt的C端应用脚手架](./nuxt/基于Nuxt的C端应用脚手架/index.md)
 
 ## React
 
@@ -218,6 +219,10 @@
 ## Operating System
 
 - [操作系统术语](./operating-system/term.md)
+
+## Database
+
+- [Sequlize ORM](./database/Sequelize.md)
 
 ## AI
 
