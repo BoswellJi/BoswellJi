@@ -331,3 +331,8 @@
 ### translation
 
 - [翻译技巧](./english/翻译/readme.md)
+
+## Patent
+
+- [基于Monorepo架构的全栈开发脚手架](./patent/基于Monorepo架构的全栈开发脚手架/readme.md)
+- [基于Nuxt的C端应用脚手架](./patent/基于Nuxt的C端应用脚手架/readme.md)
