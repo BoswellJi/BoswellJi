@@ -46,6 +46,7 @@
 
 - [Nuxt 全栈框架新技术调研](./nuxt/Nuxt全栈框架/Nuxt全栈框架新技术调研.md)
 - [基于Nuxt的C端应用脚手架](./nuxt/基于Nuxt的C端应用脚手架/index.md)
+- [H3 框架技术分享](./nuxt/h3/index.md)
 
 ## React
 
