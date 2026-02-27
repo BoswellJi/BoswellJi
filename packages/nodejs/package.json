@@ -4,14 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "nodejs": "node"
+    "nodejs": "node",
+    "h3": "listhen -w ./h3/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "h3": "1.15.5",
     "jimp": "^0.16.1",
     "jsqr": "^1.4.0",
+    "listhen": "^1.9.0",
     "miniprogram-ci": "^2.0.8",
     "mysql": "^2.18.1",
     "pdf2json": "^2.0.0",
