@@ -14,10 +14,20 @@
     "build": "tsc --build",
     "build:watch": "tsc --build --watch",
     "build:clean": "tsc --build --clean",
-    "build:love": "pnpm i && pnpm --filter @boswell/nuxt generate"
+    "postinstall": "simple-git-hooks"
   },
   "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged",
     "commit-msg": "node build/verifyCommit.js"
+  },
+  "lint-staged": {
+    "*.{js,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "eslint --fix",
+      "prettier --parser=typescript --write"
+    ]
   },
   "devDependencies": {
     "conventional-changelog-cli": "^4.1.0",
