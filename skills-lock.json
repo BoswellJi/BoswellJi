@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "skills": {
+    "nuxt": {
+      "source": "antfu/skills",
+      "sourceType": "github",
+      "computedHash": "6f5456948b35c0c0005424098eaf28ebbba1bbd92a3f3268466fe7d85e9e3789"
+    },
+    "pnpm": {
+      "source": "antfu/skills",
+      "sourceType": "github",
+      "computedHash": "d473204df25defd08a7d47b55c6d124b41ebde440b774995952b65223d0d8d6f"
+    },
+    "slidev": {
+      "source": "antfu/skills",
+      "sourceType": "github",
+      "computedHash": "cd861b9f16624eefbe30de4b52f1d7c636a695bc0bd2b4965ba7295cf7afdfad"
+    }
+  }
+}

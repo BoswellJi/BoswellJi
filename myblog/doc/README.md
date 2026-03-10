@@ -197,6 +197,7 @@
 
 - [架构简介](./architecture/readme.md)
 - [框架的共性](./architecture/framework.md)
+- [插件机制](./architecture/plugin/index.md)
 
 ## Development Mode
 
