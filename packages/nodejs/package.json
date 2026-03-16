@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "nodejs": "node",
-    "h3": "listhen -w ./h3/index.ts"
+    "h3:index": "listhen -w ./h3/index.ts",
+    "h3:request": "listhen -w ./h3/request.ts",
+    "h3:response": "listhen -w ./h3/response.ts",
+    "h3:router": "listhen -w ./h3/router.ts",
+    "h3:node": "node ./h3/node.js",
+    "h3:deno": "deno run --allow-net ./h3/deno.js"
   },
   "keywords": [],
   "author": "",
