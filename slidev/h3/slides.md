@@ -569,11 +569,17 @@ router.get(
 
 ---
 
-# 组合函数
+# 组合式开发（组合优于继承）
 
 <div class=" h-[70%] flex flex-col items-center justify-center gap-4">
 以“函数为基本单元”，通过轻量、灵活的组合方式拼装出完整的 HTTP 处理逻辑，把通用逻辑拆成独立的 “小函数”，再按需组合到业务中，既保证代码复用性，又让逻辑清晰可控。
 </div>
+
+---
+
+# 官方提示
+
+<img src="./image-9.png" alt="Node.js Architecture Diagram" class="h-[80%] mx-auto" />
 
 ---
 

@@ -1,4 +1,4 @@
-import { createApp, createRouter, defineEventHandler } from 'h3'
+import { createApp, createRouter, defineEventHandler, useBase } from 'h3'
 
 export const app = createApp()
 
@@ -39,5 +39,28 @@ const router = createRouter()
       return 'HEAD: hello world'
     })
   )
+
+router.add(
+  '/testadd',
+  defineEventHandler(() => {
+    return 'TESTADD: hello world'
+  })
+)
+
+router.use(
+  '/testuse',
+  defineEventHandler(() => {
+    return 'TESTUSE: hello world'
+  })
+)
+
+const apiRouter = createRouter().get(
+  '/hello',
+  defineEventHandler(event => {
+    return 'Hello API!'
+  })
+)
+
+router.use('/api/**', useBase('/api', apiRouter.handler))
 
 app.use(router)
