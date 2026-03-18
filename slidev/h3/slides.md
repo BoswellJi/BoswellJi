@@ -13,6 +13,7 @@ drawings:
 transition: slide-left
 # enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
+selectable: true
 ---
 
 # H3
@@ -23,8 +24,12 @@ mdc: true
 
 # 为什么叫H3？
 
+<div class=" h-[70%] flex flex-col items-center justify-center gap-4">
+
 - 是一个专注于处理HTTP的框架。
-- HTTP的简写,H(TTP)的第3个字母是3。
+- HTTP的简写, <span v-mark.highlight.yellow="1">H(TTP) + 3个字母是3</span>。
+
+</div>
 
 ---
 
@@ -479,6 +484,9 @@ createServer(toNodeListener(app)).listen(process.env.PORT || 3000);
 <div class=" h-[70%] flex flex-col items-center justify-center gap-4">
 
 ```js
+import {  createRouter } from 'h3'
+const router = createRouter();
+
 router.get(
   "/hello",
   defineEventHandler((event) => {
@@ -497,6 +505,10 @@ router.get(
 <div class=" h-[70%] flex flex-col items-center justify-center gap-4">
 
 ```js
+import {  createRouter } from 'h3'
+
+const router = createRouter()
+
 router
   .get(
     "/hello",
@@ -522,6 +534,10 @@ router
 <div class=" h-[70%] flex flex-col items-center justify-center gap-4">
 
 ```js
+import {  createRouter } from 'h3'
+
+const router = createRouter()
+
 router.get(
   "/hello/:name",
   defineEventHandler((event) => {
@@ -539,6 +555,10 @@ router.get(
 <div class=" h-[70%] flex flex-col items-center justify-center gap-4">
 
 ```js
+import {  createRouter } from 'h3'
+
+const router = createRouter()
+
 router.get(
   "/hello/*",
   defineEventHandler((event) => {
@@ -556,6 +576,10 @@ router.get(
 <div class=" h-[70%] flex flex-col items-center justify-center gap-4">
 
 ```js
+import {  createRouter } from 'h3'
+
+const router = createRouter()
+
 router.get(
   "/hello/**",
   defineEventHandler((event) => {
@@ -579,7 +603,7 @@ router.get(
 
 # 官方提示
 
-<img src="./image-9.png" alt="Node.js Architecture Diagram" class="h-[80%] mx-auto" />
+<img src="./image-9.png" alt="Node.js Architecture Diagram" class=" mx-auto" />
 
 ---
 
@@ -588,6 +612,8 @@ router.get(
 <div class=" h-[70%] flex  items-end justify-center gap-4">
 
 ```js
+import { createApp, createRouter, defineEventHandler, getQuery, getRequestHeader } from "h3";
+
 const router = createRouter().get(
   "/user-agent",
   defineEventHandler((event) => {
@@ -614,6 +640,8 @@ const router = createRouter().get(
 <div class=" h-[70%] flex  items-end justify-center gap-4">
 
 ```js
+import { createApp, createRouter, defineEventHandler,  setResponseHeader, getResponseHeaders } from "h3";
+
 const router = createRouter().get(
   "/user-agent",
   defineEventHandler((event) => {
@@ -640,7 +668,7 @@ const router = createRouter().get(
 # 适配器
 
 <div class=" h-[70%] flex flex-col items-center justify-center gap-4">
-通过抽象层适配不同运行时的API差异，保持核心代码一致，开发者无需关心底层细节
+通过抽象层适配不同运行时的API差异，保持核心代码一致，开发者无需关心底层细节。
 </div>
 
 ---
