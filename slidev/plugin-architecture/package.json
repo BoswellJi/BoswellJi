@@ -1,0 +1,15 @@
+{
+  "name": "@slidev/plugin",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "latest",
+    "slidev-theme-mokkapps": "latest",
+    "vue": "latest"
+  }
+}
