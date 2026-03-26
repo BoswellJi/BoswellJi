@@ -1,10 +1,10 @@
 ---
 # try also 'default' to start simple
-theme: seriph
+theme: mokkapps
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
 # some information about your slides (markdown enabled)
-title: Nuxt C端脚手架结项
+title: Nuxt 移动端脚手架结项
 info: |
   ## Slidev Starter Template
   Presentation slides for developers.
@@ -23,20 +23,21 @@ mdc: true
 duration: 35min
 ---
 
-# Nuxt C端脚手专项架结项
+# Nuxt 移动端脚手架结项
 
----
-layout: center
+
 ---
 
 # 背景
 
-基于对C端应用的页面渲染性能以及交互体验的提升需求，以及在技术社区流行全栈开发的趋势下，前端开发从传统的单页应用（SPA）向更高性能的解决方案转变。Nuxt作为Vue.js的服务端渲染框架，提供了多种渲染模式，包括静态生成（SSG）和服务器端渲染（SSR），为C端应用提供了灵活的选择。
+&nbsp;&nbsp;&nbsp;&nbsp;
 
-1. 首页白屏时间过长，影响用户体验。
-2. 页面渲染无法一气呵成（先加载js渲染页面，在通过js加载接口数据）。
-3. 页面只有一种渲染模式，无法根据不同场景选择合适的渲染方式。
-4. SEO优化不足，影响搜索引擎排名和流量。
+基于对移动端应用的<span v-mark.highlight.red="1">页面渲染性能的提升需求</span>，以及在<span v-mark.highlight.red="1">技术社区流行服务端渲染开发的趋势下</span>，前端开发从传统的单页应用（SPA）向更高性能的解决方案转变。Nuxt作为Vue.js的服务端渲染框架，提供了多种渲染模式，包括静态生成（SSG）和服务器端渲染（SSR），为移动端应用提供了灵活的选择。
+
+- 首页白屏时间过长，影响用户体验。
+- 页面渲染无法一气呵成（<span v-mark.highlight.red="1">先加载js渲染页面，在通过js加载接口数据</span>）。
+- 页面只有一种渲染模式，<span v-mark.highlight.red="1">无法根据不同场景选择合适的渲染方式</span>。
+- SEO优化不足，影响搜索引擎排名和流量。
 
 ---
 layout: center
@@ -44,14 +45,14 @@ layout: center
 
 # 目标
 
-开发一个基于Nuxt框架的C端应用脚手架，集成了多种常用功能和公司内部工具集成，旨在帮助开发者快速启动和构建现代C端Web应用工程。
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+开发一个<span v-mark.highlight.red="1">基于Nuxt框架的移动端应用脚手架</span>，集成了常用开发功能和公司内部工具，旨在帮助开发者快速启动和构建现代移动端Web应用工程。
 
 
 ---
 
-# 特性
-
-## 前端
+# 特性 - 前端
 
 <div class="flex justify-between ">
 <div>
@@ -82,9 +83,7 @@ layout: center
 
 ---
 
-# 特性
-
-## 后端
+# 特性 - 后端
 
 <div class="flex justify-between ">
 <div>
@@ -106,9 +105,7 @@ layout: center
 
 ---
 
-# 特性
-
-## AI Coding
+# 特性 - AI Coding
 
 <div class="flex justify-between ">
 <div>
@@ -116,6 +113,7 @@ layout: center
 1. 接入Nuxt MCP
 2. 接入Nuxt Agent skills 
 3. 新增脚手架 Agent skills
+4. AGENTS.md文档
 
 </div>
 
@@ -128,9 +126,7 @@ layout: center
 
 ---
 
-# 特性
-
-## 工程处理
+# 特性 - 工程处理
 
 1. eslint。
 2. prettier。
@@ -164,20 +160,23 @@ layout: center
 
 # 集成Tailwind CSS 原子化css开发框架
 
-通过postcss插件集成Tailwind CSS，提供丰富的原子化CSS类，简化样式开发，提高开发效率。
+- Tailwind CSS，提供丰富的原子化CSS类，简化样式开发，提高开发效率。
+- less：css 编程。
 
 ---
 
 # 集成Vant UI组件库
 
+&nbsp;&nbsp;&nbsp;&nbsp;
+
 提供丰富的UI组件，提升开发效率和用户体验。
 
-1. @vant/nuxt
-2. vant
 
 ---
 
 # 集成Pinia状态管理库
+
+&nbsp;&nbsp;&nbsp;&nbsp;
 
 1. 官方推荐
 2. 过往项目有使用经验
@@ -203,7 +202,7 @@ layout: center
 
 ---
 
-# 集成Sentry（仅前端）
+# 集成Sentry
 
 接入Sentry SDK，提供错误监控和性能追踪功能，帮助开发者及时发现和解决应用中的问题，提升应用的稳定性和性能。
 
@@ -467,7 +466,6 @@ nuxt/
 ├─ nuxt.config.ts
 ├─ tsconfig.json
 ├─ sentry.client.config.ts
-├─ sentry.server.config.ts
 ├─ package.json
 └─ package-lock.json
 ```
