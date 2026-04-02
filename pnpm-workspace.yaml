@@ -2,4 +2,4 @@ packages:
   - packages/*
   - slidev/*
   - vscode/*
-  - myblog
+  - blog

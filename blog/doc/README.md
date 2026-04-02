@@ -338,3 +338,4 @@
 
 - [基于Monorepo架构的全栈开发脚手架](./patent/基于Monorepo架构的全栈开发脚手架/readme.md)
 - [基于Nuxt的C端应用脚手架](./patent/基于Nuxt的C端应用脚手架/readme.md)
+- [插件化的架构设计与实现](./patent/插件化的架构设计与实现/readme.md)
