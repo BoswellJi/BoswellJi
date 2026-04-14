@@ -1,4 +1,4 @@
-## 插件化的架构设计与实现
+## 基于Plug-in架构的系统设计与实现
 
 ## 一、术语：请对本领域的技术词语进行解释说明，如果有英文要给出中文注释或解释
 
@@ -101,7 +101,7 @@
 
 1. index.ts：插件的入口文件，用于导出插件的页面、组件、功能库，以及初始化分销渠道的样式、脚本以及初始化数据。
 2. pages：分销渠道的页面，例如专属登录页等。
-3. script：分销渠道的脚本，例如平台 SDK。
+3. script：分销渠道的脚本，例如平台JS SDK。
 4. style：分销渠道的样式，例如主题色、字体等。
 5. components：分销渠道需要定制开发的 Vue 组件。
 6. directives：分销渠道需要提供的特定 Vue 指令。
@@ -113,77 +113,81 @@
 
 上述流程图展示了本方案在终端侧的插件化处理流程。首先，用户在终端发起访问请求并进入 core 层的 H5 页面，core 层负责承载与渠道无关的基础页面结构和通用业务入口。随后，core 层将当前页面所需的能力请求传递至适配器层，由适配器层统一接收并处理。
 
-适配器层首先执行渠道判断，用于识别当前访问环境所属的目标渠道；在完成渠道识别后，适配器层进一步执行插件初始化过程，并根据识别结果对 UI 组件和业务逻辑进行适配，使核心页面在不修改自身代码的前提下获得对应渠道所需的界面能力与业务能力。
+适配器层首先执行渠道判断，用于识别当前访问环境所属的目标渠道；在完成渠道识别后，适配器层进一步执行插件初始化过程，这个过程中会将插件需要依赖的资源加载完成，例如，样式，脚本，数据等。
 
-在适配完成后，适配器层将请求路由至对应的渠道插件。不同渠道分别对应插件 1、插件 2 至插件 n，各插件中封装该渠道专属的页面、组件、样式、脚本以及能力库。这样，当终端用户访问同一套 core 页面时，系统能够通过适配器层自动加载目标插件，并输出对应渠道的定制化页面与功能，从而实现核心系统与渠道差异逻辑的解耦，并提升后续新增插件时的扩展效率。
+并根据识别结果对 UI 组件和业务逻辑进行适配，使核心页面在不修改自身代码的前提下获得对应渠道所需的界面能力与业务能力。
+
+在适配完成后，适配器层将请求路由至对应的渠道插件。不同渠道分别对应插件 1、插件 2 至插件 n，各插件中封装该渠道的页面、组件、样式、脚本以及能力库。
+
+这样，当终端用户访问同一套 core 页面时，系统能够通过适配器层自动加载目标插件，并输出对应渠道的定制化页面与功能，从而实现核心系统与渠道差异逻辑的解耦，并提升后续新增插件时的扩展效率。
 
 ## 目录结构
 
 ```text
-├─ .editorconfig
-├─ .eslintignore
-├─ .eslintrc.yml
-├─ .prettierignore
-├─ .prettierrc.yml
-├─ package-lock.json
-├─ package.json
-├─ postcss.config.js
-├─ README.md
-├─ src
-│  ├─ assets
-│  ├─ common
-│  │  ├─ components
-│  │  ├─ constant
-│  │  ├─ less
-│  │  └─ utils
-│  ├─ enums
-│  ├─ hooks
-│  ├─ pages
-│  ├─ adapter
-│  │  ├─ business
+├─ .editorconfig            # 编辑器配置文件
+├─ .eslintignore            # ESLint 忽略配置文件
+├─ .eslintrc.yml            # ESLint 配置文件
+├─ .prettierignore          # Prettier 忽略配置文件
+├─ .prettierrc.yml          # Prettier 配置文件
+├─ package-lock.json        # npm 锁定文件
+├─ package.json             # npm 包配置文件
+├─ postcss.config.js        # PostCSS 配置文件
+├─ README.md                # 项目说明文件
+├─ src                      # 项目源代码目录
+│  ├─ assets                # 静态资源目录
+│  ├─ common                # 公共模块目录
+│  │  ├─ components         # 公共组件目录
+│  │  ├─ constant           # 常量目录
+│  │  ├─ less               # 公共样式目录
+│  │  └─ utils              # 工具函数目录
+│  ├─ enums                 # 枚举目录
+│  ├─ hooks                 # 自定义 Hook 目录
+│  ├─ pages                 # 页面目录
+│  ├─ adapter               # 适配器目录
+│  │  ├─ business           # 业务适配模块
 │  │  │  └─ index.ts
-│  │  ├─ components
+│  │  ├─ components             # 组件适配模块
 │  │  │  └─ index.vue
 │  │  └─ index.ts
-│  ├─ plugins
-│  │  ├─ bcm
-│  │  │  ├─ components
+│  ├─ plugins                   # 插件目录
+│  │  ├─ bcm                    # 分销商 A 的插件
+│  │  │  ├─ components          # 组件目录
 │  │  │  │  └─ navbar
 │  │  │  │     └─ index.vue
-│  │  │  ├─ directives
+│  │  │  ├─ directives          # 指令目录
 │  │  │  │  └─ index.ts
 │  │  │  ├─ index.ts
-│  │  │  ├─ lib
+│  │  │  ├─ lib                 # 能力库目录
 │  │  │  │  ├─ index.ts
-│  │  │  ├─ pages
+│  │  │  ├─ pages               # 页面目录
 │  │  │  │  └─ auth
 │  │  │  │     ├─ App.vue
-│  │  │  └─ styles
-│  │  │     └─ theme.less
-│  │  ├─ default
-│  │  │  ├─ components
+│  │  │  └─ styles              # 样式目录
+│  │  │     └─ theme.less       # 主题样式
+│  │  ├─ default                # 默认插件
+│  │  │  ├─ components          # 组件目录
 │  │  │  │  └─ index.vue
-│  │  │  ├─ directives
+│  │  │  ├─ directives          # 指令目录
 │  │  │  │  └─ index.ts
 │  │  │  ├─ index.ts
-│  │  │  ├─ lib
+│  │  │  ├─ lib                 # 能力库目录
 │  │  │  │  └─ index.ts
-│  │  │  ├─ pages
+│  │  │  ├─ pages               # 页面目录
 │  │  │  │  └─ index.vue
-│  │  │  └─ styles
-│  │  │     └─ theme.less
-│  │  └─ type.ts
-│  └─ types
-├─ tailwind.config.js
-├─ tsconfig.json
-└─ vite.config.ts
+│  │  │  └─ styles              # 样式目录
+│  │  │     └─ theme.less       # 主题样式
+│  │  └─ type.ts                # 类型定义文件
+│  └─ types                     # 类型定义目录
+├─ tailwind.config.js           # Tailwind CSS 配置文件
+├─ tsconfig.json                # TypeScript 配置文件
+└─ vite.config.ts               # Vite 配置文件
 
 ```
      
 
 ## 六、第五项的技术手段产生了什么技术效果（通常为克服了第四项所指出的技术问题）。
 
-   通过上述方式，可以将不同分销渠道的功能根据类型，组件，页面，功能库等都写到对应的插件当中去，将不同分销渠道的逻辑隔离开来，避免代码混杂，提高代码的可读性和维护性。
+   通过上述方式，可以将不同分销渠道的功能根据类型，组件，页面，功能库等都开发到对应的插件当中去，将不同分销渠道的逻辑隔离开来，避免代码混杂，提高代码的可读性和维护性。
    
    同时，当需要新增分销渠道时，仅需开发对应的新插件，实现对应的功能，而无需修改核心 H5 分销系统代码，从而提高系统的扩展性。
 
@@ -192,3 +196,4 @@
 1. Vue.js Plugin：https://vuejs.org/guide/reusability/plugins.html
 2. Nuxt.js Module：https://nuxt.com/docs/4.x/guide/modules/getting-started
 3. Pinia Plugin：https://pinia.vuejs.org/core-concepts/plugins.html
+4. 从VS Code看优秀插件系统的设计思路: https://cloud.tencent.com/developer/article/2324807
