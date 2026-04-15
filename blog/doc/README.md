@@ -339,4 +339,4 @@
 - [基于Monorepo架构的全栈开发脚手架](./patent/基于Monorepo架构的全栈开发脚手架/readme.md)
 - [基于Nuxt的C端应用脚手架](./patent/基于Nuxt的C端应用脚手架/readme.md)
 - [基于Plug-in架构的系统设计与实现](./patent/基于Plug-in架构的系统设计与实现/readme.md)
-- [基于Micro-Frontend架构的系统设计与实现](./patent/基于Micro-Frontend架构的系统设计与实现/readme.md)
+- [基于Micro-Frontend架构的系统重构设计方案](./patent/基于Micro-Frontend架构的系统重构设计方案/readme.md)
