@@ -1,0 +1,19 @@
+{
+  "name": "matrix",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Matrix 登录与 Cookie 解析（TS + CDP WebSocket，无额外依赖",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "matrix": "./bin/matrix"
+  },
+  "scripts": {
+    "preinstall": "node scripts/check-env.js",
+    "postinstall": "chmod +x bin/matrix bin/matrix.cjs && node scripts/postinstall.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.11"
+  }
+}
