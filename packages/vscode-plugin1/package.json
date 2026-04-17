@@ -1,0 +1,53 @@
+{
+  "name": "@vscode/plugin1",
+  "displayName": "json2tscopy",
+  "description": "将剪贴板中的 JSON 转换为 TypeScript 接口定义。（Ctrl+Alt+V）",
+  "version": "0.0.1",
+  "publisher": "Boswell",
+  "author": {
+    "name": "Boswell"
+  },
+  "engines": {
+    "vscode": "^1.84.2"
+  },
+  "activationEvents": [],
+  "icon": "images/json2tsIcon.png",
+  "categories": [
+    "Programming Languages"
+  ],
+  "galleryBanner": {
+    "color": "#007ACC",
+    "theme": "light"
+  },
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "convert.json2ts",
+        "title": "将剪贴板中的 JSON 转换为 TypeScript 接口"
+      },
+      {
+        "command": "rest.json2ts",
+        "title": "将 REST 接口返回的 JSON 转换为 TypeScript 接口"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "convert.json2ts",
+        "key": "ctrl+alt+V"
+      },
+      {
+        "command": "rest.json2ts",
+        "key": "ctrl+alt+X"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "tsc -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.84.2",
+    "typescript": "^5.3.2"
+  }
+}
