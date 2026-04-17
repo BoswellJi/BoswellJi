@@ -48,6 +48,7 @@
 - [基于Nuxt的C端应用脚手架](./nuxt/基于Nuxt的C端应用脚手架/index.md)
 - [H3 框架技术分享](./nuxt/h3/index.md)
 - [Nitro 框架技术分享](./nuxt/Nitro/readme.md)
+- [Nuxt Content 模块技术分享](./nuxt/Nuxt-Content/readme.md)
 
 ## React
 
@@ -229,7 +230,8 @@
 
 ## AI
 
-- [AI辅助编程: github copilot](./ai/AI辅助编程.md)
+- [AI辅助编程: github copilot](./ai/github-copilot-chat.md)
+- [AI辅助编程: github copilot cli](./ai/github-copilot-cli.md)
 
 ## Share
 
