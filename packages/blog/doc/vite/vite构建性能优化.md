@@ -14,7 +14,7 @@
 
 ## 优化
 
-### 升级vite5.0.1到vite8.0.12
+### vite的大版本升级vite5.0.1到vite8.0.12
 
 优化前：
 
@@ -35,28 +35,86 @@
 4. vite8默认的css转换插件lightcss不支持老旧预发，切换到postcss
 
 
+
 ### 构建流程编排
 
-优化前：
+将构建流程划分为5部分：common, dev, qa, stage, prod
 
-1. 当前构建流程中会生成sourcemap文件，并上传到托管的sentry服务器，后删除sourcemap文件。
-2. 潜在问题，暴漏sourcemap文件，等于暴漏项目源代码。
-3. 需要开启vite的sourcemap功能，是一个耗时操作。
-4. 执行时造成浏览器卡死。
+common: 包含基础的构建插件。
 
-优化后：
+dev: 包含开发环境的构建插件。
 
-1. 重新划分不同构建环境vite插件配置，新增upload命令，单独用于处理sentry插件的任务。
-2. 避免sourcemap文件泄露。
-3. 生产构建关闭sourcemap功能，优化构建时长。
+qa: 包含预发环境的构建插件。
 
-![alt text](image-2.png)
+stage: 包含预发环境的构建插件。
 
-缺点：
+prod: 包含生产环境的构建插件。
 
-1. 手动执行，容易遗忘。不算紧急。
 
-### 删除测试页面
+我们项目中主要设计到两个插件做编排：
+
+1. @vitejs/plugin-legacy
+
+vite构建产物默认兼容的浏览器标准为`baseline-widely-available`：
+
+```
+Chrome >=111
+Edge >=111
+Firefox >=114
+Safari >=16.4
+```
+
+该功能已经建立，可以在许多设备和浏览器版本上运行。它已经在浏览器上可用了至少两年半（30个月），被称为Widely available。
+
+通过vite的构建配置`build.target`，可以指定构建js产物版本为es2015。所以vite本身的构建产物默认最低版本为es2015。
+
+2018
+
+```
+Chrome >=64
+Firefox >=67
+Safari >=11.1
+Edge >=79
+```
+
+所以，如果我们想要构建兼容es2015以前的产物，就需要这个插件，这些兼目标代表着es5.通过babel工具进行转换。
+
+2016
+
+```
+chrome < 61
+iOS < 10.3
+```
+
+这个插件有个特点，会将所有源代码打出来的chunck都会生成一份对应的legacy版本,以及modern版本的chunck。
+
+```
+edge>=105
+firefox>=106
+chrome>=105
+safari>=16.4
+chromeAndroid>=105
+iOS>=16.4
+```
+
+综上所述，当前项目为了兼容老旧环境，产物会生成两份chunck,构建耗时增加。所以将其从qa环境移除，可以加速开发速度以及功能性，业务流程测试。因为预发环境需要和生产环境保持一致，避免上线不稳定，所以无法去除。
+
+2. @sentry/vite-plugin
+
+作用：
+
+用于上传sentry需要的项目的sourcemap文件，方便异常监控拿到错误信息的准确代码位置，对应的源代码中的几行几列。
+
+问题：
+
+1. 插件需要构建工具开启 sourcemap 功能。是个耗时操作，同时还需要上传sourcemap文件到sentry,且是个串行操作。
+2. sentry上传服务器不区分环境，所以每次构建其实会破坏线上的sourcemap文件的完整映射能力。
+
+做法：
+
+1. 内部环境下，可以通过开启vconsole控制台。
+2. qa与stage环境插件不参与构建，同时关闭sourcemap功能，只有生产环境下参与构建。
+
 
 ### 文件（图片、字体）资源处理
 
@@ -68,11 +126,13 @@
 
 
 
-## 杂项
+### 杂项
 
-### 分包优化
+#### 分包优化
 
-### 删除无用依赖
+#### 删除测试页面
+
+#### 删除无用依赖
 
 1. @vitest/coverage-c8
 2. @vue/test-utils
@@ -91,6 +151,6 @@
 15. html2canvas
 16. @vue/tsconfig
 
-### 升级eslint及其生态
+#### 升级eslint及其生态
 
 
