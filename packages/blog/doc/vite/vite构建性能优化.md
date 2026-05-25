@@ -16,23 +16,27 @@
 
 ### vite的大版本升级vite5.0.1到vite8.0.12
 
-优化前：
+- 从当前使用的vite版本是5.0.1，升级到vite8.0.12版本。
 
-1. 当前使用的vite版本是5.0.1。
-2. vite5.x版本生产构建用的是rollup。
+- 一同升级vite插件，同时确保插件与vite的兼容性，兼顾每个插件的对等依赖的vite版本。
 
-优化后：
+  - @vitejs/plugin-vue2
+  - @sentry/vite-plugin
+  - vite-plugin-commonjs
+  
 
-1. 升级到vite8.0.12版本。
-2. vite8.x版本生产构建用的是rolldown。
-3. 一同升级vite插件。
+- vite5.x版本生产构建用的是rollup，js版本的打包器，vite8.x版本生产构建用的是rolldown。
 
-- @vitejs/plugin-vue2
-- @sentry/vite-plugin
-- @vitejs/plugin-vue2
-- vite-plugin-commonjs
+- css压缩兼容问题
 
-4. vite8默认的css转换插件lightcss不支持老旧预发，切换到postcss
+  - vite8默认css压缩工具为lightcss,与Vue框架的/deep/穿透选择器不兼容，将压缩器回退到esbuild
+
+- css非标准样式引起的构建警告
+
+  - display:box， 2009 年最早期的草案语法
+  - 已被现代标准取代：display: flex 已经成为 W3C 的正式推荐标准
+
+- 跟进技术迭代.
 
 
 
@@ -107,8 +111,8 @@ iOS>=16.4
 
 问题：
 
-1. 插件需要构建工具开启 sourcemap 功能。是个耗时操作，同时还需要上传sourcemap文件到sentry,且是个串行操作。
-2. sentry上传服务器不区分环境，所以每次构建其实会破坏线上的sourcemap文件的完整映射能力。
+1. 插件需要构建工具开启 sourcemap 功能。是个耗时操作，同时还需要上传sourcemap文件到sentry。
+2. sentry上传服务器不区分环境，所以每次构建会破坏线上的sourcemap文件的完整映射能力。
 
 做法：
 
@@ -116,21 +120,68 @@ iOS>=16.4
 2. qa与stage环境插件不参与构建，同时关闭sourcemap功能，只有生产环境下参与构建。
 
 
-### 文件（图片、字体）资源处理
+<!-- ### 文件（图片、字体）资源处理
 
-1. 将字体文件，图片文件，等资源文件，移动到public目录下,避免构建工具处理。
+优化前：
 
-### vite 插件优化
+1. 放在项目的assets目录下的图片，字体文件等静态资源，构建工具会对其进行处理优化，例如文件生成hash码，压缩等等。
 
-关闭`@vitejs/plugin-legacy`插件`renderModernChunks`，避免构建时生成现代浏览器的代码。
+优化后：
+
+1. 移动到public目录下,避免构建工具处理，直接拷贝文件到目标文件夹下，开销极小。
+2. 为后续上传cdn做准备. -->
+
+### @vitejs/plugin-legacy 插件优化
+
+优化前：
+
+1. 该插件会生成两份chunck,一份modern版本，一份legacy版本，构建耗时增加。
+
+优化后：
+
+1. 关闭`@vitejs/plugin-legacy`插件`renderModernChunks`，避免构建时生成现代浏览器的代码。
+
+### 关闭 reportCompressedSize 功能，
+
+优化前：
+
+1. 构建时会计算每个输出文件的gzip压缩后的大小，并在构建完成后生成一个报告，显示每个文件的原始大小、gzip压缩后的大小以及压缩率。
+
+优化后：
+
+1. 关闭`reportCompressedSize`功能，避免构建时计算gzip压缩后的文件大小。
 
 
+![alt text](image-3.png)
 
 ### 杂项
 
 #### 分包优化
 
-#### 删除测试页面
+1. 静态导入路由转换为动态导入路由，减少首屏加载的js体积。
+
+![alt text](image-4.png)
+![alt text](image-5.png)
+
+2. 将一些第三方库（如echarts）进行分包，减少首屏加载的js体积，同时进行有效的缓存
+
+![alt text](image-6.png)。
+
+#### 部分项目cjs模块进行esm模块重构
+
+优化前：
+
+1. 项目中存在一些cjs模块，构建工具需要对其进行转换为esm模块，再交给打包工具。
+
+优化后：
+
+1. 动态酒景所有cjs模块进行esm模块重构，减少构建时的转换成本。
+2. 后续可以将cjs模块转esm模块插件移除，减少构建时的插件数量。
+
+#### 删除无效页面
+
+1. 测试页，空页面等
+
 
 #### 删除无用依赖
 
@@ -151,6 +202,8 @@ iOS>=16.4
 15. html2canvas
 16. @vue/tsconfig
 
-#### 升级eslint及其生态
+#### 升级eslint及其插件
 
+1. eslint升级到9.0.0版本，配置文件扁平化，告别复杂的遍历目录树去查找和合并。
+2. 并行支持多线程并行检查，代码检查的耗时能大幅缩短。
 
