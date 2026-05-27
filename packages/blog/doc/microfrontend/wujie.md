@@ -98,4 +98,4 @@ setupApp({
 
 ## 基于wujie的系统架构
 
-![alt text](image-10.png)
+![alt text](./image-10.png)

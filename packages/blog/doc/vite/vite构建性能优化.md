@@ -1,31 +1,40 @@
-# 旅仓 H5 Vite 构建性能优化
+---
+sidebar: false
+navbar: false
+---
 
-<br />
+# 旅仓 H5 Vite 构建性能优化
 
 ## 背景
 
-### 1. 构建时长
+### 构建时长较长
 
-![](data:image/png;base64,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)
+![alt text](image-8.png)
 
-### 2. 浏览器卡死
+### 部署平台导致浏览器卡死
+
+### 预发构建破坏生产source map, 导致生产环境异常无法定位
+
+修改后的文件hash不一致，导致生产环境的source map无法正确映射到源代码，无法定位异常位置。
 
 <br />
 
 ## 优化
 
-### vite的大版本升级vite5.0.1到vite8.0.12
+### vite 相关优化
+
+#### vite的大版本升级vite5.0.1到vite8.0.12
 
 - 从当前使用的vite版本是5.0.1，升级到vite8.0.12版本。
+
+  - vite5.x版本生产构建用的是rollup，js版本的打包器，vite8.x版本生产构建用的是rolldown。
+  - vite8.x的rolldown打包器的插件api与rollup的插件api兼容，插件无需修改。
 
 - 一同升级vite插件，同时确保插件与vite的兼容性，兼顾每个插件的对等依赖的vite版本。
 
   - @vitejs/plugin-vue2
   - @sentry/vite-plugin
   - vite-plugin-commonjs
-  
-
-- vite5.x版本生产构建用的是rollup，js版本的打包器，vite8.x版本生产构建用的是rolldown。
 
 - css压缩兼容问题
 
@@ -36,147 +45,114 @@
   - display:box， 2009 年最早期的草案语法
   - 已被现代标准取代：display: flex 已经成为 W3C 的正式推荐标准
 
+  ![alt text](image-7.png)
+
 - 跟进技术迭代.
 
+  - 更加精细化的分包控制。
 
+#### 关闭 reportCompressedSize 功能
 
-### 构建流程编排
-
-将构建流程划分为5部分：common, dev, qa, stage, prod
-
-common: 包含基础的构建插件。
-
-dev: 包含开发环境的构建插件。
-
-qa: 包含预发环境的构建插件。
-
-stage: 包含预发环境的构建插件。
-
-prod: 包含生产环境的构建插件。
-
-
-我们项目中主要设计到两个插件做编排：
-
-1. @vitejs/plugin-legacy
-
-vite构建产物默认兼容的浏览器标准为`baseline-widely-available`：
-
-```
-Chrome >=111
-Edge >=111
-Firefox >=114
-Safari >=16.4
-```
-
-该功能已经建立，可以在许多设备和浏览器版本上运行。它已经在浏览器上可用了至少两年半（30个月），被称为Widely available。
-
-通过vite的构建配置`build.target`，可以指定构建js产物版本为es2015。所以vite本身的构建产物默认最低版本为es2015。
-
-2018
-
-```
-Chrome >=64
-Firefox >=67
-Safari >=11.1
-Edge >=79
-```
-
-所以，如果我们想要构建兼容es2015以前的产物，就需要这个插件，这些兼目标代表着es5.通过babel工具进行转换。
-
-2016
-
-```
-chrome < 61
-iOS < 10.3
-```
-
-这个插件有个特点，会将所有源代码打出来的chunck都会生成一份对应的legacy版本,以及modern版本的chunck。
-
-```
-edge>=105
-firefox>=106
-chrome>=105
-safari>=16.4
-chromeAndroid>=105
-iOS>=16.4
-```
-
-综上所述，当前项目为了兼容老旧环境，产物会生成两份chunck,构建耗时增加。所以将其从qa环境移除，可以加速开发速度以及功能性，业务流程测试。因为预发环境需要和生产环境保持一致，避免上线不稳定，所以无法去除。
-
-2. @sentry/vite-plugin
-
-作用：
-
-用于上传sentry需要的项目的sourcemap文件，方便异常监控拿到错误信息的准确代码位置，对应的源代码中的几行几列。
-
-问题：
-
-1. 插件需要构建工具开启 sourcemap 功能。是个耗时操作，同时还需要上传sourcemap文件到sentry。
-2. sentry上传服务器不区分环境，所以每次构建会破坏线上的sourcemap文件的完整映射能力。
-
-做法：
-
-1. 内部环境下，可以通过开启vconsole控制台。
-2. qa与stage环境插件不参与构建，同时关闭sourcemap功能，只有生产环境下参与构建。
-
-
-<!-- ### 文件（图片、字体）资源处理
-
-优化前：
-
-1. 放在项目的assets目录下的图片，字体文件等静态资源，构建工具会对其进行处理优化，例如文件生成hash码，压缩等等。
-
-优化后：
-
-1. 移动到public目录下,避免构建工具处理，直接拷贝文件到目标文件夹下，开销极小。
-2. 为后续上传cdn做准备. -->
-
-### @vitejs/plugin-legacy 插件优化
-
-优化前：
-
-1. 该插件会生成两份chunck,一份modern版本，一份legacy版本，构建耗时增加。
-
-优化后：
-
-1. 关闭`@vitejs/plugin-legacy`插件`renderModernChunks`，避免构建时生成现代浏览器的代码。
-
-### 关闭 reportCompressedSize 功能，
-
-优化前：
 
 1. 构建时会计算每个输出文件的gzip压缩后的大小，并在构建完成后生成一个报告，显示每个文件的原始大小、gzip压缩后的大小以及压缩率。
 
-优化后：
-
-1. 关闭`reportCompressedSize`功能，避免构建时计算gzip压缩后的文件大小。
+2. 关闭`reportCompressedSize`功能，避免构建时计算gzip压缩后的文件大小。
 
 
 ![alt text](image-3.png)
+
+#### 图片、字体、视频等大文件静态资源处理
+
+1. 放在项目的assets目录下的静态资源，构建工具会对其进行处理优化，例如文件生成hash码，压缩等等。
+
+2. 其中可能会存在尺寸较大的文件，字体，视频等，构建工具处理这些文件会增加构建时间。
+
+3. 类似静态，大文件通常作为外部模块，只是提供引用，将其外置利用cdn进行加载。
+
+
+### 构建流程编排优化
+
+为避免所有环境共用同一套复杂配置，我们将构建流程按环境拆分为五类：common、dev、qa、stage、prod。
+
+- common：基础通用配置和插件，所有环境共享。
+- dev：本地开发专用配置，主要用于加速热重载与本地调试。
+- qa：测试验证环境，主要用于功能与业务流程验收。
+- stage：准生产环境，尽量保持与 prod 一致，用于上线前验收。
+- prod：生产环境配置，开启完整优化和上报流程。
+
+这种分层编排的好处是：
+
+- 不同环境只加载必要插件，避免 dev/qa/stage 承担 prod 一样的成本。
+- 可以把体积、兼容和监控三类开销做精细化控制。
+- 保证 prod 环境的构建输出稳定，同时让测试和开发构建更轻量。
+
+项目中我们重点优化了两个与环境编排相关的插件：
+
+1. @vitejs/plugin-legacy
+
+- 该插件用于生成兼容旧浏览器的 legacy bundle。它会同时输出 modern 和 legacy 两套 chunk，导致构建时间和产物体积显著增加。
+- Vite 本身默认产物目标为 `baseline-widely-available`，对应现代浏览器：
+  ```
+  Chrome >=111
+  Edge >=111
+  Firefox >=114
+  Safari >=16.4
+  ```
+- 只有要兼容低于 ES2015 的旧浏览器时，才需要 legacy 插件。否则默认即可产出现代 bundle。
+- 优化策略：
+  - dev/qa 环境关闭 `@vitejs/plugin-legacy`，避免重复生成 legacy chunk。
+  - prod 环境根据业务兼容要求决定是否开启，否则优先禁用。
+  - 若必须支持老旧浏览器，可只在 stage/prod 环境开启，并且尽量精简 legacy 兼容目标。
+
+2. @sentry/vite-plugin
+
+- 该插件负责上传 Sentry 所需的 sourcemap，便于线上异常定位。
+- 问题在于：
+  - 打开 sourcemap 会增加构建时间；
+  - 每次构建都上传 sourcemap，会产生额外网络开销；
+  - 非生产构建上传 sourcemap，可能干扰线上映射文件管理。
+- 优化策略：
+  - 仅在 prod 环境开启 `@sentry/vite-plugin` 和 `build.sourcemap`。
+  - dev/qa/stage 环境关闭 sourcemap 上传，减少构建负担。
+  - 内部排查阶段可以使用 vconsole / 本地调试方案，而不依赖线上 sourcemap 上传。
+
+通过这套环境分层的编排方案，我们让构建流程更符合“各环境只做必要工作的原则”，从而显著降低 dev/qa/stage 的构建成本，同时保留 prod 的稳定性和监控能力。
+
+### vite 插件相关优化
+
+#### @vitejs/plugin-legacy 插件优化
+
+1. 该插件会生成两份chunck,一份modern版本，一份legacy版本，构建耗时增加。
+
+2. 关闭`@vitejs/plugin-legacy`插件`renderModernChunks`，避免构建时生成现代浏览器的代码。
+
+
+### 重构
+
+#### 部分项目cjs模块进行esm模块重构
+
+
+1. 项目中存在一些cjs模块，构建工具通过`vite-plugin-commonjs`插件对其进行转换为esm模块，再交给打包工具完成cjs与esm模块的交互。
+
+2. 动态酒景项目所有cjs模块进行esm模块重构，减少构建时的转换成本。
+
+3. 后续可以将cjs模块转esm模块插件移除，减少构建时的插件数量。
+
 
 ### 杂项
 
 #### 分包优化
 
-1. 静态导入路由转换为动态导入路由，减少首屏加载的js体积。
+1. 静态导入路由转换为动态导入路由（路由懒加载改造），减少首屏加载的js体积，同时进行有效的缓存。
 
 ![alt text](image-4.png)
 ![alt text](image-5.png)
 
-2. 将一些第三方库（如echarts）进行分包，减少首屏加载的js体积，同时进行有效的缓存
+2. 将一些第三方库进行分包，减少首屏加载的js体积，同时进行有效的缓存
+
 
 ![alt text](image-6.png)。
 
-#### 部分项目cjs模块进行esm模块重构
-
-优化前：
-
-1. 项目中存在一些cjs模块，构建工具需要对其进行转换为esm模块，再交给打包工具。
-
-优化后：
-
-1. 动态酒景所有cjs模块进行esm模块重构，减少构建时的转换成本。
-2. 后续可以将cjs模块转esm模块插件移除，减少构建时的插件数量。
 
 #### 删除无效页面
 
@@ -195,15 +171,35 @@ iOS>=16.4
 8. @rushstack/eslint-patch
 9. postcss-html
 10. postcss-scss
-11. @rushstack/eslint-patch
-12. @typescript-eslint/eslint-plugin
-13. eslint-plugin-tsdoc
-14. eslint-plugin-prettier
-15. html2canvas
-16. @vue/tsconfig
+11. @typescript-eslint/eslint-plugin
+12. eslint-plugin-tsdoc
+13. eslint-plugin-prettier
+14. html2canvas
+15. @vue/tsconfig
 
 #### 升级eslint及其插件
 
 1. eslint升级到9.0.0版本，配置文件扁平化，告别复杂的遍历目录树去查找和合并。
 2. 并行支持多线程并行检查，代码检查的耗时能大幅缩短。
+3. 提升编辑器的使用体验，减少编辑器卡顿的情况。
 
+## 成果
+
+### qa环境构建时长优化
+
+![alt text](image-10.png)
+
+### stage环境构建时长优化
+
+![alt text](image-11.png)
+
+### prod环境构建时长优化
+
+![alt text](image-12.png)
+
+### 技术升级
+
+- 升级vite版本，跟进技术迭代。
+- 升级eslint版本，提升编辑器的使用体验。
+
+### qa与stage环境构建时浏览器不在被卡住
