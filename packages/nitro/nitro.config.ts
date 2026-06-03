@@ -4,5 +4,16 @@ import { defineNitroConfig } from 'nitropack/config'
 export default defineNitroConfig({
   compatibilityDate: 'latest',
   srcDir: 'server',
-  imports: false
+  imports: false,
+  experimental: {
+    websocket: true,
+    tasks: true,
+    database: true
+  },
+  storage: {
+    db: {
+      driver: 'fs',
+      base: './data/db'
+    }
+  }
 })

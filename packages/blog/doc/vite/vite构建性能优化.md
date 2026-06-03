@@ -5,17 +5,19 @@ navbar: false
 
 # 旅仓 H5 Vite 构建性能优化
 
-## 背景
+## 问题
 
-### 构建时长较长
+### 1. 构建时长较长
 
-![alt text](image-8.png)
+![alt text](./image-8.png)
 
-### 部署平台导致浏览器卡死
+### 2. 部署平台构建流程中 @sentry/vite-plugin 插件的执行导致浏览器卡死
 
-### 预发构建破坏生产source map, 导致生产环境异常无法定位
+### 3. 预发构建破坏生产source map, 导致生产环境异常无法定位
 
 修改后的文件hash不一致，导致生产环境的source map无法正确映射到源代码，无法定位异常位置。
+
+### 4. 构建工具脱节
 
 <br />
 
@@ -23,7 +25,7 @@ navbar: false
 
 ### vite 相关优化
 
-#### vite的大版本升级vite5.0.1到vite8.0.12
+#### 1. vite的大版本升级vite5.0.1到vite8.0.12
 
 - 从当前使用的vite版本是5.0.1，升级到vite8.0.12版本。
 
@@ -45,13 +47,13 @@ navbar: false
   - display:box， 2009 年最早期的草案语法
   - 已被现代标准取代：display: flex 已经成为 W3C 的正式推荐标准
 
-  ![alt text](image-7.png)
+  ![alt text](./image-7.png)
 
 - 跟进技术迭代.
 
   - 更加精细化的分包控制。
 
-#### 关闭 reportCompressedSize 功能
+#### 2. 关闭 reportCompressedSize 功能
 
 
 1. 构建时会计算每个输出文件的gzip压缩后的大小，并在构建完成后生成一个报告，显示每个文件的原始大小、gzip压缩后的大小以及压缩率。
@@ -59,9 +61,9 @@ navbar: false
 2. 关闭`reportCompressedSize`功能，避免构建时计算gzip压缩后的文件大小。
 
 
-![alt text](image-3.png)
+![alt text](./image-3.png)
 
-#### 图片、字体、视频等大文件静态资源处理
+#### 3. 图片、字体、视频等大文件静态资源处理
 
 1. 放在项目的assets目录下的静态资源，构建工具会对其进行处理优化，例如文件生成hash码，压缩等等。
 
@@ -120,7 +122,7 @@ navbar: false
 
 ### vite 插件相关优化
 
-#### @vitejs/plugin-legacy 插件优化
+#### 1. @vitejs/plugin-legacy 插件优化
 
 1. 该插件会生成两份chunck,一份modern版本，一份legacy版本，构建耗时增加。
 
@@ -129,7 +131,7 @@ navbar: false
 
 ### 重构
 
-#### 部分项目cjs模块进行esm模块重构
+#### 1. 部分项目cjs模块进行esm模块重构
 
 
 1. 项目中存在一些cjs模块，构建工具通过`vite-plugin-commonjs`插件对其进行转换为esm模块，再交给打包工具完成cjs与esm模块的交互。
@@ -141,25 +143,25 @@ navbar: false
 
 ### 杂项
 
-#### 分包优化
+#### 1. 分包优化
 
 1. 静态导入路由转换为动态导入路由（路由懒加载改造），减少首屏加载的js体积，同时进行有效的缓存。
 
-![alt text](image-4.png)
-![alt text](image-5.png)
+![alt text](./image-4.png)
+![alt text](./image-5.png)
 
 2. 将一些第三方库进行分包，减少首屏加载的js体积，同时进行有效的缓存
 
 
-![alt text](image-6.png)。
+![alt text](./image-6.png)。
 
 
-#### 删除无效页面
+#### 2. 删除无效页面
 
 1. 测试页，空页面等
 
 
-#### 删除无用依赖
+#### 3. 删除无用依赖
 
 1. @vitest/coverage-c8
 2. @vue/test-utils
@@ -177,29 +179,39 @@ navbar: false
 14. html2canvas
 15. @vue/tsconfig
 
-#### 升级eslint及其插件
+#### 4. 升级eslint及其插件
 
 1. eslint升级到9.0.0版本，配置文件扁平化，告别复杂的遍历目录树去查找和合并。
 2. 并行支持多线程并行检查，代码检查的耗时能大幅缩短。
 3. 提升编辑器的使用体验，减少编辑器卡顿的情况。
 
-## 成果
+## 优化成果
 
-### qa环境构建时长优化
+#### 1. 性能数据对比表
+| 环境   | 优化前构建时长 | 优化后构建时长 | 提升幅度 |
+|--------|----------------|----------------|----------|
+| QA     | 4m56s          | 46.21s左右        | ≈84%   |
+| Stage  | 4m56s         | 3m6s左右        | ≈37%   |
+| Prod   | 4m56s          | 3m16s左右       | ≈33%   |
 
-![alt text](image-10.png)
+> 注：以上数据为多次构建的平均值，具体时长可能因代码规模和机器性能略有差异
 
-### stage环境构建时长优化
+#### 2. QA 环境构建时长优化
+![alt text](./image-10.png)
 
-![alt text](image-11.png)
+#### 3. Stage 环境构建时长优化
+![alt text](./image-11.png)
 
-### prod环境构建时长优化
+#### 4. 生产环境构建时长优化
+![alt text](./image-12.png)
 
-![alt text](image-12.png)
-
-### 技术升级
+#### 5. 技术升级
 
 - 升级vite版本，跟进技术迭代。
 - 升级eslint版本，提升编辑器的使用体验。
 
-### qa与stage环境构建时浏览器不在被卡住
+#### 6. qa与stage环境构建时浏览器不在被卡住
+
+6.1 通过进一步拆分vite的sentry插件到本地运行，可以解决这个问题，但是构建流程割裂且易于遗忘，不推荐。
+
+#### 7. 只会在生产环境下构建生产source map,避免代码映射异常
