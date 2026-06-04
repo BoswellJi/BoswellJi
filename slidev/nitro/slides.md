@@ -723,6 +723,146 @@ Nitro提供了一个构建在存储层之上的缓存系统，通过避免重复
 
 ---
 
+# Stale-While-Revalidate（简称 SWR）
+
+<div class="grid grid-cols-2 gap-6">
+  <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-500">
+    <div class="text-3xl  text-blue-600">定义</div>
+    <div class="text-xl font-bold  text-black-600">是一种高级的缓存策略，它的核心思想可以用一句话概括：“先用旧缓存保证极速响应，同时在后台悄悄更新新数据。”</div>
+  </div>
+  <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-500">
+    <div class="text-3xl   text-blue-600">HTTP 缓存头</div>
+    <div class="text-xl font-bold  text-black-600">SWR 最早是作为 HTTP 响应头 Cache-Control 的一个扩展属性被提出来的。</div>
+  </div>
+</div>
+
+<div class="grid grid-cols-2 gap-6">
+  <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-500">
+    <div class="text-3xl   text-blue-600">框架</div>
+    <div class="text-xl font-bold   text-black-600">单纯依赖 HTTP 协议层的缓存暴露出了一些局限性（例如：CDN 无法精确控制接口缓存，且即使后台拿到了最新数据，也无法主动触发前端页面的重新渲染）。因此，SWR 被抽象成了一种通用的编程策略，下沉到了应用代码层</div>
+  </div>
+</div>
+
+---
+
+# 多样化的缓存触发方式
+
+<div class="grid grid-cols-3 gap-6 mt-8">
+  <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-blue-500">
+    <div class="text-3xl mb-4 text-blue-600">📦</div>
+    <div class="text-xl font-bold mb-3 text-black-600">路由级缓存（Route Rules）</div>
+  </div>
+
+  <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-green-500">
+    <div class="text-3xl mb-4 text-green-600">⚡</div>
+    <div class="text-xl font-bold mb-3 text-black-600">函数级缓存（Cached Functions）</div>
+  </div>
+
+  <div class="bg-white rounded-xl shadow-lg p-6 border-t-4 border-purple-500">
+    <div class="text-3xl mb-4 text-purple-600">🚀</div>
+    <div class="text-xl font-bold mb-3 text-black-600">事件处理器缓存（Cached Event Handlers）</div>
+  </div>
+</div>
+
+---
+
+# 路由级缓存（Route Rules）
+
+### 该特性使您能够直接在主配置文件中基于glob模式添加缓存路由。这对于应用程序的一部分具有全局缓存策略尤其有用。
+
+<pre class="mt-[20px]">
+export default defineNitroConfig({
+  routeRules: {
+    "/blog/**": { cache: { maxAge: 60 * 60 } },
+  },
+});
+
+</pre>
+
+---
+
+# 函数级缓存（Cached Functions）
+
+### 对于非路由的业务逻辑或第三方 API 调用，可以使用 cachedFunction 将耗时的操作包装起来。只要传入的参数相同，就会优先返回缓存结果
+
+<pre class="mt-[20px]">
+export const cachedGHStars = defineCachedFunction(async (repo: string) => {
+  const data: any = await $fetch(`https://api.github.com/repos/${repo}`)
+
+  return data.stargazers_count
+}, {
+  maxAge: 60 * 60,
+  name: 'ghStars',
+  getKey: (repo: string) => repo
+})
+
+</pre>
+
+---
+
+# 事件处理器缓存（Cached Event Handlers）
+
+### 在处理具体的 API 请求时，可以使用 cachedEventHandler 将整个响应结果缓存起来。
+
+<pre class="mt-[20px]">
+// Cache an API handler
+export default defineCachedEventHandler((event) => {
+  // My event handler
+}, { maxAge: 60 * 60 /* 1 hour */ });
+</pre>
+
+---
+layout: quote
+---
+
+# Fetch
+
+Nitro提供了一个内置的Fetch API，可用于从服务器端点或其他来源获取数据。它建立在ofetch之上。
+
+
+---
+
+# 基本用法
+
+```ts
+import { Repo } from '~/types'
+
+export default defineEventHandler(async (event) => {
+  const data = await $fetch('/api/users')
+  const data = await $fetch<Repo[]>('https://api.github.com/markdown', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: {
+      text: 'Hello **world**!'
+    }
+  })
+
+  return data
+})
+```
+
+<div v-click="1">
+1. <span v-mark.highlight.yellow="1">Repo[]:</span> 通过传入范型参数，可以指定返回的数据的类型，避免类型错误。
+</div>
+
+<div v-click="2">
+2. <span v-mark.highlight.yellow="2">$fetch('/api/users'): </span> 通过传入 API 路径，可以获取指定的 API 数据。本质是函数调用，不会发起请求
+</div>
+
+
+---
+layout: quote
+---
+
+# Assets
+
+Nitro提供了一个内置的Fetch API，可用于从服务器端点或其他来源获取数据。它建立在ofetch之上。
+
+---
+
+
 # 资源链接
 
 - **官网**: https://nitro.unjs.io
