@@ -9,7 +9,10 @@
   "license": "ISC",
   "scripts": {
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "postinstall": "simple-git-hooks"
+    "postinstall": "simple-git-hooks",
+    "format:md": "prettier --write \"**/*.md\" --ignore-unknown",
+    "format:md:check": "prettier --check \"**/*.md\" --ignore-unknown",
+    "format:all": "prettier --write . --ignore-unknown"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged",
@@ -22,6 +25,9 @@
     "*.ts?(x)": [
       "eslint --fix ",
       "prettier --parser=typescript --write"
+    ],
+    "*.md": [
+      "prettier --write --prose-wrap preserve"
     ]
   },
   "devDependencies": {

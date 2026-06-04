@@ -1,3 +1,49 @@
-dist
-packages/slidev
-*.md
+# Dependencies
+node_modules/
+slidev/
+
+# Build output
+dist/
+build/
+.output/
+
+# Git files
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Package manager
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# Slidev
+*.excalidraw
+*.drawio
+*.svg
+*.png
+*.jpg
+*.jpeg
+*.gif
