@@ -1,0 +1,53 @@
+{
+  "version": 3,
+  "overrides": {},
+  "routes": [
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/ws",
+      "dest": "/ws"
+    },
+    {
+      "src": "/websocket",
+      "dest": "/websocket"
+    },
+    {
+      "src": "/storge",
+      "dest": "/storge"
+    },
+    {
+      "src": "/sse",
+      "dest": "/sse"
+    },
+    {
+      "src": "/nitro-utils",
+      "dest": "/nitro-utils"
+    },
+    {
+      "src": "/index1",
+      "dest": "/index1"
+    },
+    {
+      "src": "/hello",
+      "dest": "/hello"
+    },
+    {
+      "src": "/h3-utils",
+      "dest": "/h3-utils"
+    },
+    {
+      "src": "/db",
+      "dest": "/db"
+    },
+    {
+      "src": "/api/hello",
+      "dest": "/api/hello"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/__fallback"
+    }
+  ]
+}
