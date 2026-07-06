@@ -7,12 +7,9 @@ sidebar: false
 
 ## 一、Nitro 是什么
 
-Nitro 是一个跨平台的，轻量级，高性能的服务端引擎。可以简单理解成一：服务端开发框架 + 构建工具 + 运行时适配。
+Nitro 是一个跨运行时，轻量级，高性能的服务端引擎。可以简单理解成：服务端开发框架 + 运行时适配 + 构建工具 。
 
-
-### 跨平台
-
-服务端运行时，例如：
+### 服务端运行时
 
 - 物理机部署：Node.js，deno等等
 - edge 平台：Cloudflare Workers，Vercel Edge Functions，Netlify Edge Handlers等等
@@ -39,7 +36,7 @@ Nitro 是一个跨平台的，轻量级，高性能的服务端引擎。可以�
 
 Nitro 解决的核心问题不是“多一个服务端开发框架”，而是：**如何让一套服务端代码尽可能以统一方式开发，并运行在不同平台上。**
 
-## 三、Nitro 的技术定位
+<!-- ## 三、Nitro 的技术定位
 
 Nitro 不是传统意义上的后端框架，也不是纯的 HTTP 服务器封装。
 
@@ -49,9 +46,9 @@ Nitro 不是传统意义上的后端框架，也不是纯的 HTTP 服务器封�
 2. 运行时层：提供统一的请求处理模型和服务端能力抽象（存储，缓存，数据库等）
 3. 输出层：根据目标平台构建出最终可运行的产物
 
-所以 Nitro 和很多传统框架最大的区别在于，它不是只关心“代码怎么执行”，还关心“代码最后要输出到哪里运行”。
+所以 Nitro 和很多传统框架最大的区别在于，它不是只关心“代码怎么执行”，还关心“代码最后要输出到哪里运行”。 -->
 
-## 四、Nitro 的核心设计思想
+## 三、Nitro 的核心设计思想
 
 ### 1. 统一请求处理模型
 
@@ -90,7 +87,7 @@ nitro
 
 Nitro 的一个核心工程目标是把平台差异尽量收敛到框架内部，而不是扩散到业务代码层。也就是说，开发者应该主要围绕统一接口写代码，而不是在业务中到处判断当前运行在 Node、Serverless 还是 Edge。
 
-## 五、Nitro 能做什么
+## 四、Nitro 能做什么
 
 从项目实践看，Nitro 适合承担这些职责：
 
@@ -112,7 +109,7 @@ Nitro 的一个核心工程目标是把平台差异尽量收敛到框架内部�
 - 缓存数据
 - 返回前端真正需要的数据结构
 
-## 六、Nitro 和传统后端框架的区别
+## 五、Nitro 和传统后端框架的区别
 
 如果拿 Nitro 和 Express、Koa、Fastify 这类框架做对比，可以抓住一个核心点：
 
@@ -123,8 +120,6 @@ Nitro 的一个核心工程目标是把平台差异尽量收敛到框架内部�
 - Express/Koa 重点是如何在 Node 里组织中间件和处理请求
 - Fastify 重点是高性能、插件体系和 Node 服务治理
 - Nitro 重点是统一开发模型、构建产物和多平台部署适配
-
-这并不意味着 Nitro 一定比传统框架更强，而是它解决的问题不完全一样。
 
 如果你的场景是：
 
@@ -142,7 +137,7 @@ Nitro 的一个核心工程目标是把平台差异尽量收敛到框架内部�
 
 那 Nitro 的价值会更明显。
 
-## 七、Nitro 的核心特性
+## 六、Nitro 的核心特性
 
 ### 1. 路由能力
 
@@ -178,10 +173,7 @@ Nitro 提供了一个构建在存储层之上的缓存系统。缓存接口请�
 
 ```ts
 // 请求结果缓存一个小时
-export default defineCachedEventHandler((event) => {
-
-
-}, { maxAge: 60 * 60  });
+export default defineCachedEventHandler(event => {}, { maxAge: 60 * 60 });
 ```
 
 ### 5. KV存储
@@ -190,11 +182,11 @@ Nitro 还提供了一个抽象的存储接口，开发者可以通过它来读�
 
 ```ts
 // Default storage is in memory
-await useStorage().setItem('test:foo', { hello: 'world' })
-await useStorage().getItem('test:foo')
+await useStorage().setItem("test:foo", { hello: "world" });
+await useStorage().getItem("test:foo");
 
 // You can also specify the base in useStorage(base)
-await useStorage('test').setItem('foo', { hello: 'world' })
+await useStorage("test").setItem("foo", { hello: "world" });
 ```
 
 驱动配置：
@@ -203,15 +195,15 @@ await useStorage('test').setItem('foo', { hello: 'world' })
 export default defineNitroConfig({
   storage: {
     redis: {
-      driver: 'redis',
+      driver: "redis"
       /* redis connector options */
     },
     db: {
-      driver: 'fs',
-      base: './data/db'
+      driver: "fs",
+      base: "./data/db"
     }
   }
-})
+});
 ```
 
 ### 6. 数据库
@@ -221,8 +213,7 @@ Nitro 提供了内置的轻量级 SQL 数据库层。开发者可以在上面构
 - 内置 SQLite 驱动
 - 也支持自定义数据库驱动
 - 支持集成Orm框架
-- 多环境配置数据库链接 
-
+- 多环境配置数据库链接
 
 ### 代码分割
 
@@ -231,7 +222,6 @@ Nitro 支持把服务端代码分割成多个模块，按需加载。这对于�
 - 减少初始加载时间
 - 优化内存使用
 - 提高运行效率
-
 
 ### 6. 构建与部署适配能力
 
@@ -282,7 +272,7 @@ Nitro 非常适合的场景。BFF 的核心诉求通常不是复杂领域建模�
 
 当团队主要由前端工程师驱动，而又需要一定服务端能力时，Nitro 的学习成本和组织方式通常更友好。因为它强调的是统一约定、目录化组织和现代工程化体验，而不是传统后端体系里大量概念。
 
-## 九、Nitro 不适合什么项目
+<!-- ## 九、Nitro 不适合什么项目
 
 Nitro 通常不作为以下场景的首选：
 
@@ -305,4 +295,4 @@ Nitro 的核心运行机制为：
 2. Nitro 在构建阶段会把这些代码打包成符合目标平台要求的产物
 3. 运行时，Nitro 会提供一个统一的请求处理模型，开发者编写的处理函数会被适配到这个模型上
 4. 根据部署平台的不同，Nitro 会把请求分发到对应的处理 函数，并提供统一的工具接口来处理请求和响应
-5. 业务代码尽量不关心底层平台差异，而是围绕 Nitro 提供的统一接口来编写逻辑
+5. 业务代码尽量不关心底层平台差异，而是围绕 Nitro 提供的统一接口来编写逻辑 -->

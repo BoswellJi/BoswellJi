@@ -12,15 +12,15 @@ pnpm --filter <package-name> <script>
 
 ### Common Package Commands
 
-| Package | Dev | Build | Test | Lint |
-|---------|-----|-------|------|------|
-| blog | `pnpm --filter blog dev` | `pnpm --filter blog build` | - | - |
-| nuxt | `pnpm --filter @boswell/nuxt dev` | `pnpm --filter @boswell/nuxt build` | - | `pnpm --filter @boswell/nuxt lint` |
-| nestjs | `pnpm --filter @boswell/nestjs start:dev` | `pnpm --filter @boswell/nestjs build` | `pnpm --filter @boswell/nestjs test` | `pnpm --filter @boswell/nestjs lint` |
-| react | `pnpm --filter @boswell/react start` | `pnpm --filter @boswell/react build` | `pnpm --filter @boswell/react test` | - |
-| vite | `pnpm --filter vite dev` | `pnpm --filter vite build` | - | - |
-| webpack | `pnpm --filter @boswell/webpack dev` | `pnpm --filter @boswell/webpack build` | - | `pnpm --filter @boswell/webpack fix` |
-| nitro | `pnpm --filter @boswell/nitro dev` | `pnpm --filter @boswell/nitro build` | - | - |
+| Package | Dev                                       | Build                                  | Test                                 | Lint                                 |
+| ------- | ----------------------------------------- | -------------------------------------- | ------------------------------------ | ------------------------------------ |
+| blog    | `pnpm --filter blog dev`                  | `pnpm --filter blog build`             | -                                    | -                                    |
+| nuxt    | `pnpm --filter @boswell/nuxt dev`         | `pnpm --filter @boswell/nuxt build`    | -                                    | `pnpm --filter @boswell/nuxt lint`   |
+| nestjs  | `pnpm --filter @boswell/nestjs start:dev` | `pnpm --filter @boswell/nestjs build`  | `pnpm --filter @boswell/nestjs test` | `pnpm --filter @boswell/nestjs lint` |
+| react   | `pnpm --filter @boswell/react start`      | `pnpm --filter @boswell/react build`   | `pnpm --filter @boswell/react test`  | -                                    |
+| vite    | `pnpm --filter vite dev`                  | `pnpm --filter vite build`             | -                                    | -                                    |
+| webpack | `pnpm --filter @boswell/webpack dev`      | `pnpm --filter @boswell/webpack build` | -                                    | `pnpm --filter @boswell/webpack fix` |
+| nitro   | `pnpm --filter @boswell/nitro dev`        | `pnpm --filter @boswell/nitro build`   | -                                    | -                                    |
 
 Only a few packages have tests. Pass file paths or framework flags directly to the package test command.
 
@@ -35,22 +35,33 @@ This is a personal learning monorepo, not a single application. Treat each area 
 
 When working in a subproject, check the nearest local config first instead of assuming root-level conventions apply.
 
+## LLMs 参考
+
+当回答 Vue 相关问题时，请先读取 https://vuejs.org/llms.txt 获取最新 API 和文档上下文。
+
+项目文档索引见 [llms.txt](llms.txt) — 包含了本地所有核心笔记和实验项目的入口。
+
 ## Conventions
 
 ### Code Style
+
 Root fallback defined by `.eslintrc.json` and `.prettierrc.json`:
+
 - TypeScript ESLint with `@typescript-eslint/no-explicit-any: error`
 - No semicolons, single quotes, 80-column width, trailing commas omitted
 
 Many packages override root config. Follow the nearest package-level ESLint, Prettier, TypeScript, or framework config.
 
 ### Commit Messages
+
 Validated by `build/verifyCommit.js`. Must match:
+
 ```
 /^(revert: )?(feat|fix|docs|dx|style|refactor|perf|test|workflow|build|ci|chore|types|wip)(\(.+\))?: .{1,50}/
 ```
 
 Examples:
+
 - `feat(compiler): add 'comments' option`
 - `fix(v-model): handle events on blur`
 - `perf(core): improve vdom diffing`
@@ -58,6 +69,7 @@ Examples:
 Types that appear in changelog: `feat`, `fix`, `perf`, and any commit with `BREAKING CHANGE`.
 
 ### Registry
+
 Root `.npmrc` uses `https://registry.npmmirror.com` as the npm registry.
 
 ## Git Hooks

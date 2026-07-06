@@ -6,6 +6,10 @@ Hello everyone, this is Boswell Ji. If you want to know me, please look [here](.
 - [AI辅助编程: github copilot cli](./ai/github-copilot-cli.md)
 - [旅游线路智能推荐系统](./ai/agent1/旅游线路智能推荐系统.md)
 
+## Agent
+
+- [pi ](./agent/pi/index.md)
+
 ## Angular
 
 - [你想要买一本关于 angular 内部机制的书吗？](./angular/book.md)

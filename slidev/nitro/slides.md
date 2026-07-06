@@ -1,16 +1,7 @@
 ---
-theme: mokkapps
-title: Nitro
-logo: https://nitro.unjs.io/icon.png
-transition: fade
-background: https://source.unsplash.com/collection/94734566/1920x1080
-mdc: true
+transition: slide-left
 selectable: true
-colorSchema: light
-fonts:
-  sans: 'Inter'
-  serif: 'Noto Serif'
-  mono: 'Fira Code'
+layout: center
 ---
 
 # Nitro

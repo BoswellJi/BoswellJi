@@ -1,0 +1,101 @@
+# BoswellJi 个人技术笔记与实验
+
+> 一个 pnpm workspace monorepo，包含前端技术笔记、框架源码分析、项目实验等。
+> 所有笔记位于 `packages/blog/doc/` 下，实验代码位于 `packages/*` 中。
+
+## Vue
+
+- [Vue 2.x 内部机制](packages/blog/doc/vue/vue2.x内部机制.md): Vue 2.x 源码分析 — 响应式、模板编译、Virtual DOM
+  - [VNode](packages/blog/doc/vue/vue2.x知识点/vnode.md): 虚拟节点实现
+  - [Diff 算法](packages/blog/doc/vue/vue2.x知识点/diff.md): 核心 diff 过程详解
+  - [Patch](packages/blog/doc/vue/vue2.x知识点/patch.md): 打补丁机制
+  - [Renderer](packages/blog/doc/vue/vue2.x知识点/renderer.md): 渲染器实现
+  - [Runtime](packages/blog/doc/vue/vue2.x知识点/runtime.md): 运行时机制
+  - [Watcher](packages/blog/doc/vue/vue2.x知识点/watcher.md): 响应式依赖追踪
+  - [Keep-alive](packages/blog/doc/vue/vue2.x知识点/keep-alive.md): 缓存组件实现
+  - [Slot](packages/blog/doc/vue/vue2.x知识点/slot.md): 插槽机制
+  - [Mixin](packages/blog/doc/vue/vue2.x知识点/mixin.md): 混入原理
+  - [Vuex](packages/blog/doc/vue/vue2.x知识点/vuex.md): 状态管理源码
+  - [Router](packages/blog/doc/vue/vue2.x知识点/router.md): 路由机制
+  - [Custom Renderer](packages/blog/doc/vue/vue2.x知识点/custom-renderer.md): 自定义渲染器
+  - [H 函数](packages/blog/doc/vue/vue2.x知识点/h.md): 虚拟 DOM 创建函数
+  - [HOC](packages/blog/doc/vue/vue2.x知识点/hoc.md): 高阶组件
+  - [Component](packages/blog/doc/vue/vue2.x知识点/component.md): 组件系统
+  - [Option](packages/blog/doc/vue/vue2.x知识点/option.md): 选项合并
+  - [Animation](packages/blog/doc/vue/vue2.x知识点/animation.md): 动画系统
+- [Vue 3.x 内部机制](packages/blog/doc/vue/vue3.x内部机制.md): Vue 3.x 源码分析 — Composition API、Proxy 响应式
+- [Vue StartPort 内部机制](packages/blog/doc/vue/vue-startport内部机制.md): Vue 启动挂载流程
+- [工具链原生化](packages/blog/doc/vue/工具链原生化/index.md): Vue 工具链原生化的探索
+- [Vue Warning 汇总](packages/blog/doc/vue/warning.md): 常见警告信息解析
+
+## React
+
+- [React 知识体系](packages/blog/doc/react/): React 源码分析、Hooks、Fiber 架构等
+
+## Vite
+
+- [Vite 知识体系](packages/blog/doc/vite/): Vite 构建工具原理与实践
+- [Vite 构建性能优化](packages/blog/doc/vite/vite构建性能优化.md): 构建性能优化方案
+
+## Webpack
+
+- [Webpack 知识体系](packages/blog/doc/webpack/): Webpack 打包原理与配置
+
+## Node.js
+
+- [Node.js 知识体系](packages/blog/doc/nodejs/): Node.js 后端技术笔记
+
+## TypeScript
+
+- [TS 知识体系](packages/blog/doc/ts/): TypeScript 类型系统深入学习
+
+## 工程化
+
+- [工程化](packages/blog/doc/engineering/): 前端工程化实践
+- [Monorepo](packages/blog/doc/monorepo/): Monorepo 管理策略
+
+## 架构
+
+- [架构设计](packages/blog/doc/architecture/): 前端架构模式
+  - [框架设计](packages/blog/doc/architecture/framework.md): 框架设计思路
+  - [插件机制](packages/blog/doc/architecture/plugin/index.md): 插件架构
+
+## 性能
+
+- [性能优化](packages/blog/doc/performance/): 前端性能优化方案
+
+## 浏览器
+
+- [浏览器原理](packages/blog/doc/browser/): 浏览器渲染、事件循环等
+
+## CSS
+
+- [CSS 知识体系](packages/blog/doc/css/): CSS 布局、动画等
+
+## 其他话题
+
+- [Nuxt](packages/blog/doc/nuxt/): Nuxt SSR 框架
+- [NestJS](packages/blog/doc/nestjs): NestJS 后端框架笔记
+- [数据库](packages/blog/doc/database/): 数据库相关
+- [Git](packages/blog/doc/git/): Git 使用技巧
+- [设计模式](packages/blog/doc/design-pattern/): 设计模式学习
+- [数据结构](packages/blog/doc/data-structure/): 数据结构学习
+- [微前端](packages/blog/doc/microfrontend/): 微前端架构
+- [AI](packages/blog/doc/ai/): AI 编程工具使用
+
+## 实验项目
+
+- [@boswell/langchain](packages/langchain/): LangChain TypeScript 学习项目
+- [@boswell/nestjs](packages/nestjs/): NestJS 后端项目
+- [@boswell/nitro](packages/nitro/): Nitro 服务端项目
+- [@boswell/nuxt](packages/nuxt/): Nuxt 全栈项目
+- [@boswell/react](packages/react/): React 项目
+- [Slidev 演示](slidev/): Slidev 演示文稿集合
+
+## Slidev
+
+- [Nitro Slidev](slidev/nitro/): Nitro 主题演示文稿
+
+## Resources
+
+- [CLAUDE.md](CLAUDE.md): 项目指引与构建命令
