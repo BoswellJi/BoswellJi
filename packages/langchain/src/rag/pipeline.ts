@@ -57,7 +57,11 @@ export class RagPipeline {
     // 1. 加载文档
     console.log('\n📄 === 加载文档 ===');
     const docs = await loadDocuments(inputPath);
-    if (docs.length === 0) return;
+    if (docs.length === 0) {
+      throw new Error(
+        `路径 "${inputPath}" 下未找到支持的文档文件（支持 .md, .txt, .pdf）`
+      );
+    }
 
     // 2. 分块
     console.log('\n✂️ === 文本分块 ===');

@@ -70,11 +70,25 @@ function scanDirectory(
   recursive: boolean
 ): string[] {
   const files: string[] = [];
-  const entries = readdirSync(dirPath);
+
+  let entries: string[];
+  try {
+    entries = readdirSync(dirPath);
+  } catch (error) {
+    console.warn(`[Loader] 无法读取目录: ${dirPath}`, error);
+    return files;
+  }
 
   for (const entry of entries) {
     const fullPath = join(dirPath, entry);
-    const stat = statSync(fullPath);
+
+    let stat;
+    try {
+      stat = statSync(fullPath);
+    } catch {
+      // 跳过无法访问的文件/目录（如断开的符号链接、权限不足等）
+      continue;
+    }
 
     if (stat.isDirectory()) {
       if (recursive) {
