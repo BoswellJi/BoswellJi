@@ -16,7 +16,15 @@ export interface LoaderOptions {
   extensions?: string[];
 }
 
-const DEFAULT_EXTENSIONS = ['.md', '.txt', '.pdf'];
+const DEFAULT_EXTENSIONS = [
+  '.md', '.txt', '.pdf',
+  '.ts', '.js', '.mjs', '.cjs', '.mts', '.cts',
+  '.json', '.yaml', '.yml', '.toml', '.xml',
+  '.html', '.css', '.scss',
+  '.py', '.java', '.go', '.rs',
+  '.sh', '.bat', '.ps1',
+  '.env', '.env.example',
+];
 
 /**
  * 读取文本文件内容
@@ -44,7 +52,29 @@ async function parseFile(filePath: string): Promise<Document | null> {
   try {
     switch (ext) {
       case '.md':
-      case '.txt': {
+      case '.txt':
+      case '.ts':
+      case '.js':
+      case '.mjs':
+      case '.cjs':
+      case '.mts':
+      case '.cts':
+      case '.json':
+      case '.yaml':
+      case '.yml':
+      case '.toml':
+      case '.xml':
+      case '.html':
+      case '.css':
+      case '.scss':
+      case '.py':
+      case '.java':
+      case '.go':
+      case '.rs':
+      case '.sh':
+      case '.bat':
+      case '.ps1':
+      case '.env': {
         const content = readTextFile(filePath);
         return { content, metadata: { source: filePath, type: ext.slice(1) } };
       }

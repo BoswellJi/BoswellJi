@@ -59,7 +59,7 @@ export class RagPipeline {
     const docs = await loadDocuments(inputPath);
     if (docs.length === 0) {
       throw new Error(
-        `路径 "${inputPath}" 下未找到支持的文档文件（支持 .md, .txt, .pdf）`
+        `路径 "${inputPath}" 下未找到支持的文档文件`
       );
     }
 
