@@ -76,8 +76,8 @@ export class VectorStore {
     }
 
     for (let i = 0; i < chunks.length; i++) {
-      const chunk = chunks[i];
-      const embedding = embeddings[i];
+      const chunk = chunks[i]!;
+      const embedding = embeddings[i]!;
 
       const stored: StoredChunk = {
         id: this.nextId++,
@@ -112,7 +112,7 @@ export class VectorStore {
   private cosineSimilarity(a: number[], b: number[]): number {
     let dotProduct = 0;
     for (let i = 0; i < a.length; i++) {
-      dotProduct += a[i] * b[i];
+      dotProduct += a[i]! * b[i]!;
     }
     // 余弦值范围 [-1, 1]，返回 [0, 1] 范围的相似度
     return (dotProduct + 1) / 2;
@@ -136,7 +136,7 @@ export class VectorStore {
       const similarity = this.cosineSimilarity(normalizedQuery, normalizedVec);
       // 距离 = 1 - 相似度，与 sqlite-vec 的 distance 语义一致（越小越相关）
       return {
-        id: this.chunks[index].id,
+        id: this.chunks[index]!.id,
         distance: 1 - similarity,
       };
     });

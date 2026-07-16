@@ -62,7 +62,11 @@ export class DeepSeekEmbeddings {
    */
   async embedQuery(text: string): Promise<number[]> {
     const results = await this.embedDocuments([text]);
-    return results[0];
+    const result = results[0];
+    if (!result) {
+      throw new Error('Embedding API 返回空结果');
+    }
+    return result;
   }
 
   /**

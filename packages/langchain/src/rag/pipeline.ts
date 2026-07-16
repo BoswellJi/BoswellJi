@@ -77,7 +77,7 @@ export class RagPipeline {
 
     // 检测并调整向量维度
     if (embeddings.length > 0) {
-      const actualDim = embeddings[0].length;
+      const actualDim = embeddings[0]!.length;
       if (actualDim !== this.vectorStore.getDimension()) {
         console.log(`检测到向量维度: ${actualDim}，调整存储维度`);
         this.vectorStore.setDimension(actualDim);
