@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAG 知识库问答</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; height: 100vh; display: flex; overflow: hidden; }
+
+    /* 侧边栏 */
+    .sidebar { width: 280px; background: #1a1a2e; color: #eee; padding: 20px; display: flex; flex-direction: column; flex-shrink: 0; height: 100vh; overflow-y: auto; }
+    .sidebar h1 { font-size: 18px; margin-bottom: 8px; }
+    .sidebar p { font-size: 12px; color: #999; margin-bottom: 20px; }
+    .stats-card { background: rgba(255,255,255,0.08); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+    .stats-card h3 { font-size: 12px; color: #999; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+    .stat-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 14px; }
+    .stat-row span:last-child { font-weight: 600; color: #4fc3f7; }
+    .sources-list { font-size: 12px; max-height: 120px; overflow-y: auto; margin-top: 8px; }
+    .sources-list li { padding: 2px 0; color: #aaa; list-style: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    .sidebar-btn { width: 100%; padding: 10px; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all .2s; margin-top: 8px; }
+    .btn-index { background: #4fc3f7; color: #1a1a2e; }
+    .btn-index:hover { background: #29b6f6; }
+    .btn-clear { background: transparent; color: #ef5350; border: 1px solid #ef5350; }
+    .btn-clear:hover { background: rgba(239,83,80,0.1); }
+
+    .index-section { margin-top: auto; }
+    .index-section h3 { font-size: 12px; color: #999; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+    .index-input { width: 100%; padding: 8px 10px; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; background: rgba(255,255,255,0.06); color: #eee; font-size: 13px; outline: none; margin-top: 4px; }
+    .index-input:focus { border-color: #4fc3f7; }
+    .index-input::placeholder { color: #666; }
+
+    /* 主内容区 */
+    .main { flex: 1; display: flex; flex-direction: column; min-width: 0; height: 100vh; }
+    .chat-header { padding: 16px 24px; background: #fff; border-bottom: 1px solid #e0e0e0; flex-shrink: 0; }
+    .chat-header h2 { font-size: 16px; color: #555; }
+    .chat-header h2 span { color: #1a1a2e; }
+
+    .chat-messages { flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 16px; scroll-behavior: smooth; }
+    .chat-messages::after { content: ''; flex-shrink: 0; height: 1px; }
+    .message { max-width: 85%; padding: 12px 16px; border-radius: 12px; line-height: 1.6; font-size: 14px; white-space: pre-wrap; overflow-wrap: break-word; word-break: break-word; }
+    .message.user { background: #e3f2fd; align-self: flex-end; border-bottom-right-radius: 4px; }
+    .message.assistant { background: #fff; align-self: flex-start; border-bottom-left-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    .message.error { background: #ffebee; align-self: flex-start; color: #c62828; }
+    .message.loading { background: transparent; align-self: flex-start; color: #999; }
+    .message .sources { margin-top: 12px; padding-top: 12px; border-top: 1px solid #eee; font-size: 12px; color: #888; }
+    .message .sources li { list-style: none; padding: 2px 0; overflow: hidden; text-overflow: ellipsis; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .message.loading span { animation: blink 1.2s infinite; }
+
+    .chat-input-area { padding: 16px 24px; background: #fff; border-top: 1px solid #e0e0e0; display: flex; gap: 12px; flex-shrink: 0; }
+    .chat-input { flex: 1; padding: 10px 16px; border: 1px solid #ddd; border-radius: 24px; font-size: 14px; outline: none; transition: border-color .2s; }
+    .chat-input:focus { border-color: #4fc3f7; }
+    .chat-send { padding: 8px 20px; background: #1a1a2e; color: #fff; border: none; border-radius: 24px; cursor: pointer; font-size: 14px; transition: background .2s; }
+    .chat-send:hover { background: #16213e; }
+    .chat-send:disabled { background: #999; cursor: not-allowed; }
+
+    .toast { position: fixed; bottom: 24px; right: 24px; padding: 12px 24px; border-radius: 8px; color: #fff; font-size: 14px; opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 100; }
+    .toast.show { opacity: 1; }
+    .toast.success { background: #43a047; }
+    .toast.error { background: #e53935; }
+  </style>
+</head>
+<body>
+
+  <!-- 侧边栏 -->
+  <aside class="sidebar">
+    <h1>📚 RAG 知识库</h1>
+    <p>基于 DeepSeek + BGE 嵌入的本地文档问答系统</p>
+
+    <div class="stats-card">
+      <h3>统计信息</h3>
+      <div class="stat-row"><span>📄 文档来源</span><span id="stat-docs">-</span></div>
+      <div class="stat-row"><span>🧩 文档块</span><span id="stat-chunks">-</span></div>
+      <ul class="sources-list" id="stat-sources"></ul>
+    </div>
+
+    <button class="sidebar-btn btn-index" id="btn-refresh">🔄 刷新统计</button>
+
+    <div class="index-section">
+      <h3>索引文档</h3>
+      <input class="index-input" id="index-path" placeholder="输入文件或目录路径..." />
+      <button class="sidebar-btn btn-index" id="btn-index">📥 索引</button>
+      <button class="sidebar-btn btn-clear" id="btn-clear">🗑️ 清空向量库</button>
+    </div>
+  </aside>
+
+  <!-- 主内容 -->
+  <div class="main">
+    <div class="chat-header">
+      <h2>💬 <span>RAG 问答</span></h2>
+    </div>
+
+    <div class="chat-messages" id="chat-messages">
+      <div class="message assistant">👋 你好！这是一个基于本地文档的知识库问答系统。请先在左侧索引文档，然后向我提问。</div>
+    </div>
+
+    <div class="chat-input-area">
+      <input class="chat-input" id="question-input" placeholder="输入你的问题..." />
+      <button class="chat-send" id="btn-send">发送</button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const API_BASE = ''
+
+    // DOM 引用
+    const chatMessages = document.getElementById('chat-messages')
+    const questionInput = document.getElementById('question-input')
+    const btnSend = document.getElementById('btn-send')
+    const btnRefresh = document.getElementById('btn-refresh')
+    const btnIndex = document.getElementById('btn-index')
+    const btnClear = document.getElementById('btn-clear')
+    const indexPath = document.getElementById('index-path')
+    const statDocs = document.getElementById('stat-docs')
+    const statChunks = document.getElementById('stat-chunks')
+    const statSources = document.getElementById('stat-sources')
+    const toast = document.getElementById('toast')
+
+    /** 滚动到底部（平滑滚动） */
+    function scrollToBottom(smooth = true) {
+      chatMessages.scrollTo({
+        top: chatMessages.scrollHeight,
+        behavior: smooth ? 'smooth' : 'instant',
+      })
+    }
+
+    /** 显示 Toast 提示 */
+    function showToast(msg, type = 'success') {
+      toast.textContent = msg
+      toast.className = `toast ${type} show`
+      setTimeout(() => toast.classList.remove('show'), 3000)
+    }
+
+    /** 添加纯文本消息 */
+    function addMessage(content, role = 'assistant') {
+      const div = document.createElement('div')
+      div.className = `message ${role}`
+      div.textContent = content
+      chatMessages.appendChild(div)
+      requestAnimationFrame(() => scrollToBottom())
+      return div
+    }
+
+    /** 添加带来源的 AI 回答消息 */
+    function addAnswerMessage(answer, sources) {
+      const div = document.createElement('div')
+      div.className = 'message assistant'
+
+      const answerText = document.createTextNode(answer)
+      div.appendChild(answerText)
+
+      if (sources && sources.length > 0) {
+        const srcDiv = document.createElement('div')
+        srcDiv.className = 'sources'
+        srcDiv.innerHTML = '<strong>📚 参考来源:</strong>'
+        const ul = document.createElement('ul')
+        for (const s of sources) {
+          const li = document.createElement('li')
+          li.textContent = `${s.chunk.source} (${(s.relevanceScore * 100).toFixed(0)}%)`
+          ul.appendChild(li)
+        }
+        srcDiv.appendChild(ul)
+        div.appendChild(srcDiv)
+      }
+
+      chatMessages.appendChild(div)
+      requestAnimationFrame(() => scrollToBottom())
+      return div
+    }
+
+    function setLoading(loading) {
+      btnSend.disabled = loading
+      btnSend.textContent = loading ? '回答中...' : '发送'
+      questionInput.disabled = loading
+    }
+
+    /** 加载统计信息 */
+    async function loadStats() {
+      try {
+        const res = await fetch(`${API_BASE}/api/stats`)
+        const stats = await res.json()
+        statDocs.textContent = stats.totalDocuments ?? 0
+        statChunks.textContent = stats.totalChunks ?? 0
+        statSources.innerHTML = ''
+        if (stats.sources && stats.sources.length > 0) {
+          const shown = stats.sources.slice(0, 5)
+          for (const src of shown) {
+            const li = document.createElement('li')
+            li.textContent = `📄 ${src.split(/[\\/]/).pop()}`
+            li.title = src
+            statSources.appendChild(li)
+          }
+          if (stats.sources.length > 5) {
+            const li = document.createElement('li')
+            li.textContent = `... 还有 ${stats.sources.length - 5} 个`
+            li.style.color = '#666'
+            statSources.appendChild(li)
+          }
+        } else {
+          statSources.innerHTML = '<li style="color:#666">暂无文档</li>'
+        }
+      } catch (e) {
+        console.error('loadStats error', e)
+        statDocs.textContent = 'ERR'
+        statChunks.textContent = 'ERR'
+      }
+    }
+
+    /** 发送问题 */
+    async function askQuestion(question) {
+      if (!question.trim()) return
+
+      addMessage(question, 'user')
+      questionInput.value = ''
+      setLoading(true)
+
+      try {
+        const res = await fetch(`${API_BASE}/api/ask`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question }),
+        })
+
+        const data = await res.json()
+
+        if (!res.ok) {
+          addMessage(`❌ ${data.error || '请求失败'}`, 'error')
+        } else if (data.answer) {
+          addAnswerMessage(data.answer, data.sources)
+        } else {
+          addMessage('❌ 服务器返回异常', 'error')
+        }
+      } catch (e) {
+        addMessage(`❌ 网络错误: ${e.message}`, 'error')
+      } finally {
+        setLoading(false)
+        questionInput.focus()
+      }
+    }
+
+    /** 索引文档 */
+    async function indexDocs(path) {
+      btnIndex.disabled = true
+      btnIndex.textContent = '索引中...'
+      try {
+        const res = await fetch(`${API_BASE}/api/index`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ path }),
+        })
+        const data = await res.json()
+        if (res.ok) {
+          showToast(`✅ ${data.message} — ${data.stats.totalChunks} 个文档块`)
+          await loadStats()
+        } else {
+          showToast(`❌ ${data.error}`, 'error')
+        }
+      } catch (e) {
+        showToast(`❌ 网络错误: ${e.message}`, 'error')
+      } finally {
+        btnIndex.disabled = false
+        btnIndex.textContent = '📥 索引'
+      }
+    }
+
+    /** 清空向量库 */
+    async function clearStore() {
+      if (!confirm('确定要清空向量库吗？此操作不可撤销。')) return
+      try {
+        const res = await fetch(`${API_BASE}/api/clear`, { method: 'POST' })
+        const data = await res.json()
+        if (res.ok) {
+          showToast('✅ 向量库已清空')
+          await loadStats()
+        } else {
+          showToast(`❌ ${data.error}`, 'error')
+        }
+      } catch (e) {
+        showToast(`❌ 网络错误: ${e.message}`, 'error')
+      }
+    }
+
+    // 事件绑定
+    btnSend.addEventListener('click', () => askQuestion(questionInput.value))
+    questionInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault()
+        askQuestion(questionInput.value)
+      }
+    })
+    btnRefresh.addEventListener('click', loadStats)
+    btnClear.addEventListener('click', clearStore)
+    btnIndex.addEventListener('click', () => {
+      const path = indexPath.value.trim()
+      if (!path) {
+        showToast('请输入要索引的文件或目录路径', 'error')
+        return
+      }
+      indexDocs(path)
+    })
+
+    // 初始化
+    loadStats()
+    questionInput.focus()
+  </script>
+</body>
+</html>

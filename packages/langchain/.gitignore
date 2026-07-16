@@ -1,3 +1,6 @@
 node_modules
 dist
 *.tsbuildinfo
+
+# vector store data
+rag-store.json

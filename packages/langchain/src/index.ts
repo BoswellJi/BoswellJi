@@ -2,7 +2,8 @@ import { ChatDeepSeek } from '@langchain/deepseek';
 
 const model = new ChatDeepSeek({
   model: 'deepseek-v4-flash',
-  apiKey: 'sk-tp-pJx7nPPpry0uLDtgzUNvTkRK8nIMyKT57ajBCzmanPL1pHty',
+  apiKey:
+    process.env.DEEPSEEK_API_KEY
 });
 
 const aiMsg = await model.invoke([
@@ -14,3 +15,4 @@ const aiMsg = await model.invoke([
 ]);
 
 console.log(aiMsg.content);
+
