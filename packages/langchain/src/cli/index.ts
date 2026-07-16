@@ -2,7 +2,7 @@
 
 import { Command } from 'commander';
 import { createInterface } from 'node:readline/promises';
-import { RagPipeline } from './pipeline.js';
+import { RagPipeline } from '../rag/pipeline.js';
 
 function createReadline() {
   return createInterface({
@@ -70,6 +70,7 @@ program
 
       console.log('💬 交互式问答模式 (输入 "exit" 退出)\n');
 
+      // eslint-disable-next-line no-constant-condition
       while (true) {
         const question = await rl.question('🙋 请输入问题: ');
 
