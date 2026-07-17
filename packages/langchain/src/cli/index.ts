@@ -26,14 +26,14 @@ program
   .description('索引文档到向量库')
   .argument('<path>', '文档文件或目录路径')
   .option('-d, --db <path>', '向量数据库路径', 'rag-store.json')
-  .option('--chunk-size <number>', '文本分块大小', '1000')
-  .option('--chunk-overlap <number>', '块重叠字符数', '200')
+  .option('--max-chunk-size <number>', '段落组最大字符数', '2000')
+  .option('--min-chunk-size <number>', '段落组最小字符数', '300')
   .action(async (inputPath, options) => {
     try {
       const pipeline = new RagPipeline(options.db);
       await pipeline.index(inputPath, {
-        chunkSize: Number(options.chunkSize),
-        chunkOverlap: Number(options.chunkOverlap),
+        maxChunkSize: Number(options.maxChunkSize),
+        minChunkSize: Number(options.minChunkSize),
       });
       pipeline.close();
       console.log('\n✅ 索引完成！');

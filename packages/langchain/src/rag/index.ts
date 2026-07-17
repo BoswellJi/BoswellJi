@@ -8,7 +8,7 @@
 export { loadDocuments } from './loader.js';
 export type { Document, LoaderOptions } from './loader.js';
 
-export { RecursiveCharacterSplitter } from './splitter.js';
+export { SemanticParagraphSplitter } from './splitter.js';
 export type { Chunk, SplitterOptions } from './splitter.js';
 
 export { DeepSeekEmbeddings } from './embeddings.js';

@@ -1,5 +1,5 @@
 import { loadDocuments } from './loader.js';
-import { RecursiveCharacterSplitter } from './splitter.js';
+import { SemanticParagraphSplitter } from './splitter.js';
 import { DeepSeekEmbeddings } from './embeddings.js';
 import { VectorStore } from './vectorStore.js';
 import { Retriever } from './retriever.js';
@@ -9,10 +9,10 @@ import type { RetrievedChunk } from './retriever.js';
 export interface IndexOptions {
   /** 文档存储路径 */
   dbPath?: string;
-  /** 文本分块大小 */
-  chunkSize?: number;
-  /** 块重叠字符数 */
-  chunkOverlap?: number;
+  /** 段落组最大字符数（默认 2000），超过此值会尝试按句子拆分 */
+  maxChunkSize?: number;
+  /** 段落组最小字符数（默认 300），低于此值会尝试与相邻组合并 */
+  minChunkSize?: number;
 }
 
 export interface QueryOptions {
@@ -33,14 +33,14 @@ const DEFAULT_DB_PATH = 'rag-store.json';
  */
 export class RagPipeline {
   private embeddings: DeepSeekEmbeddings;
-  private splitter: RecursiveCharacterSplitter;
+  private splitter: SemanticParagraphSplitter;
   private vectorStore: VectorStore;
   private retriever: Retriever;
   private llm: RagLlm;
 
   constructor(dbPath = DEFAULT_DB_PATH) {
     this.embeddings = new DeepSeekEmbeddings();
-    this.splitter = new RecursiveCharacterSplitter();
+    this.splitter = new SemanticParagraphSplitter();
     // 先建 store，后续根据实际 embedding 维度调整
     this.vectorStore = new VectorStore(dbPath, 1024);
     this.retriever = new Retriever(this.embeddings, this.vectorStore);
@@ -52,7 +52,7 @@ export class RagPipeline {
    * 加载 → 分块 → 嵌入 → 存储
    */
   async index(inputPath: string, options: IndexOptions = {}): Promise<void> {
-    const { chunkSize, chunkOverlap } = options;
+    const { maxChunkSize, minChunkSize } = options;
 
     // 1. 加载文档
     console.log('\n📄 === 加载文档 ===');
@@ -64,11 +64,11 @@ export class RagPipeline {
     }
 
     // 2. 分块
-    console.log('\n✂️ === 文本分块 ===');
-    if (chunkSize || chunkOverlap) {
-      this.splitter = new RecursiveCharacterSplitter({
-        chunkSize: chunkSize ?? 1000,
-        chunkOverlap: chunkOverlap ?? 200,
+    console.log('\n✂️ === 按语义段落分块 ===');
+    if (maxChunkSize || minChunkSize) {
+      this.splitter = new SemanticParagraphSplitter({
+        maxChunkSize: maxChunkSize ?? 2000,
+        minChunkSize: minChunkSize ?? 300,
       });
     }
     const chunks = this.splitter.splitDocuments(docs);

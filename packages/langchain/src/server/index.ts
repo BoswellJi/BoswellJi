@@ -69,7 +69,7 @@ app.post('/api/ask', async (req, res) => {
  */
 app.post('/api/index', async (req, res) => {
   try {
-    const { path, chunkSize, chunkOverlap } = req.body
+    const { path, maxChunkSize, minChunkSize } = req.body
 
     if (!path || typeof path !== 'string') {
       res.status(400).json({ error: '缺少 path 参数' })
@@ -78,8 +78,8 @@ app.post('/api/index', async (req, res) => {
 
     const p = getPipeline()
     await p.index(path, {
-      chunkSize: typeof chunkSize === 'number' ? chunkSize : undefined,
-      chunkOverlap: typeof chunkOverlap === 'number' ? chunkOverlap : undefined,
+      maxChunkSize: typeof maxChunkSize === 'number' ? maxChunkSize : undefined,
+      minChunkSize: typeof minChunkSize === 'number' ? minChunkSize : undefined,
     })
 
     const stats = p.getStats()
