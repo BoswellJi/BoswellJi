@@ -336,6 +336,7 @@ Hello everyone, this is Boswell Ji. If you want to know me, please look [here](.
 - [vue2.x 原理](./vue/vue2.x内部机制.md)
 - [vue2.x 知识点](./vue/vue2.x知识点/index.md)
 - [vue 警告](./vue/warning.md)
+- [element-plus 2.13.2 版本下的表单验证失效](./vue/element-plus%202.13.2%20版本下的表单验证失效/index.md)
 
 ## Vite
 

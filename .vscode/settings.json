@@ -1,8 +1,5 @@
 {
   "editor.formatOnSave": true,
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true,
-  "typescript.preferences.includePackageJsonAutoImports": "on",
-  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
-  "json.schemaDownload.enable": true
+  "json.schemaDownload.enable": true,
+  "js/ts.tsdk.path": "node_modules/typescript/lib"
 }

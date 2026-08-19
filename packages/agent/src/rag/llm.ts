@@ -1,11 +1,13 @@
-import { ChatDeepSeek } from '@langchain/deepseek';
+import { ChatOpenAI } from '@langchain/openai';
 import type { RetrievedChunk } from './retriever.js';
 
 export interface LlmOptions {
-  /** DeepSeek 模型名称 */
+  /** 模型名称 */
   model?: string;
   /** API Key */
   apiKey?: string;
+  /** API 基础 URL */
+  baseUrl?: string;
   /** 温度参数 */
   temperature?: number;
   /** 最大 Token 数 */
@@ -13,8 +15,9 @@ export interface LlmOptions {
 }
 
 const DEFAULT_OPTIONS: Required<LlmOptions> = {
-  model: 'deepseek-v4-flash',
-  apiKey: process.env.DEEPSEEK_API_KEY ?? '',
+  model: 'mimo-v2.5-pro',
+  apiKey: process.env.LLM_API_KEY ?? '',
+  baseUrl: process.env.LLM_BASE_URL ?? 'https://api.openai.com/v1',
   temperature: 0.3,
   maxTokens: 4096,
 };
@@ -40,10 +43,10 @@ const RAG_SYSTEM_PROMPT = `你是一个基于本地文档的智能问答助手�
 
 /**
  * LLM 问答模块
- * 使用 DeepSeek Chat 模型进行检索增强生成
+ * 使用 OpenAI 兼容接口进行检索增强生成
  */
 export class RagLlm {
-  private model: ChatDeepSeek;
+  private model: ChatOpenAI;
   private options: Required<LlmOptions>;
 
   constructor(options: LlmOptions = {}) {
@@ -51,19 +54,22 @@ export class RagLlm {
 
     if (!this.options.apiKey) {
       throw new Error(
-        '未配置 DEEPSEEK_API_KEY。请设置环境变量或在 .env 文件中配置。'
+        '未配置 LLM_API_KEY。请设置环境变量或在 .env 文件中配置。'
       );
     }
     this.model = this.createModel();
   }
 
   /**
-   * 创建 DeepSeek Chat 模型实例
+   * 创建 ChatOpenAI 模型实例
    */
-  private createModel(): ChatDeepSeek {
-    return new ChatDeepSeek({
+  private createModel(): ChatOpenAI {
+    return new ChatOpenAI({
       model: this.options.model,
       apiKey: this.options.apiKey,
+      configuration: {
+        baseURL: this.options.baseUrl,
+      },
       temperature: this.options.temperature,
       maxTokens: this.options.maxTokens,
     });

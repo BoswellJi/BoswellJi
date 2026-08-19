@@ -8,7 +8,10 @@ declare module 'pdf-parse' {
     version: string;
   }
 
-  function pdfParse(dataBuffer: Buffer, options?: Record<string, unknown>): Promise<PDFData>;
+  function pdfParse(
+    dataBuffer: Buffer,
+    options?: Record<string, unknown>
+  ): Promise<PDFData>;
 
   export default pdfParse;
 }

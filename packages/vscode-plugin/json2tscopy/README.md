@@ -63,14 +63,14 @@ pnpm run compile
 
 ```json
 {
-	"id": 1,
-	"name": "Boswell",
-	"active": true,
-	"tags": ["ts", "vscode"],
-	"profile": {
-		"age": 18,
-		"city": "Suzhou"
-	}
+  "id": 1,
+  "name": "Boswell",
+  "active": true,
+  "tags": ["ts", "vscode"],
+  "profile": {
+    "age": 18,
+    "city": "Suzhou"
+  }
 }
 ```
 
@@ -83,16 +83,16 @@ pnpm run compile
 
 ```ts
 export interface Profile {
-	age: number;
-	city: string;
+  age: number;
+  city: string;
 }
 
 export interface RootObject {
-	id: number;
-	name: string;
-	active: boolean;
-	tags: string[];
-	profile: Profile;
+  id: number;
+  name: string;
+  active: boolean;
+  tags: string[];
+  profile: Profile;
 }
 ```
 
@@ -108,10 +108,10 @@ export interface RootObject {
 
 ## 命令列表
 
-| 命令 ID | 命令标题 | 快捷键 |
-| --- | --- | --- |
-| `convert.json2ts` | 将剪贴板中的 JSON 转换为 TypeScript 接口 | `Ctrl + Alt + V` |
-| `rest.json2ts` | 将 REST 接口返回的 JSON 转换为 TypeScript 接口 | `Ctrl + Alt + X` |
+| 命令 ID           | 命令标题                                       | 快捷键           |
+| ----------------- | ---------------------------------------------- | ---------------- |
+| `convert.json2ts` | 将剪贴板中的 JSON 转换为 TypeScript 接口       | `Ctrl + Alt + V` |
+| `rest.json2ts`    | 将 REST 接口返回的 JSON 转换为 TypeScript 接口 | `Ctrl + Alt + X` |
 
 ## 转换规则
 

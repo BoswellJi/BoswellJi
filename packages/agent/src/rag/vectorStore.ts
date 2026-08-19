@@ -71,7 +71,7 @@ export class VectorStore {
   insertChunks(chunks: Chunk[], embeddings: number[][]): void {
     if (chunks.length !== embeddings.length) {
       throw new Error(
-        `文档块数量 (${chunks.length}) 与向量数量 (${embeddings.length}) 不匹配`,
+        `文档块数量 (${chunks.length}) 与向量数量 (${embeddings.length}) 不匹配`
       );
     }
 
@@ -124,7 +124,7 @@ export class VectorStore {
    */
   search(
     queryEmbedding: number[],
-    topK = 5,
+    topK = 5
   ): Array<{ id: number; distance: number }> {
     if (this.chunks.length === 0) return [];
 
@@ -227,7 +227,7 @@ export class VectorStore {
       this.dirty = false;
 
       console.log(
-        `[VectorStore] 已加载 ${this.chunks.length} 个文档块，${this.vectors.length} 个向量`,
+        `[VectorStore] 已加载 ${this.chunks.length} 个文档块，${this.vectors.length} 个向量`
       );
     } catch (error) {
       console.error(`[VectorStore] 加载失败，将使用空存储:`, error);

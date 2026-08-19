@@ -28,8 +28,7 @@ const DEFAULT_BASE_URL = 'https://api.siliconflow.cn/v1';
 const DEFAULT_MODEL = 'BAAI/bge-m3';
 
 function getApiKey(): string {
-  const key =
-    process.env.EMBEDDING_API_KEY ?? process.env.DEEPSEEK_API_KEY;
+  const key = process.env.EMBEDDING_API_KEY ?? process.env.LLM_API_KEY;
   if (!key) {
     throw new Error(
       '未找到 Embedding API Key。请设置 EMBEDDING_API_KEY 环境变量，或在 .env 文件中配置。'

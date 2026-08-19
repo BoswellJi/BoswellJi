@@ -120,9 +120,7 @@ export class SemanticParagraphSplitter {
   private splitIntoParagraphs(text: string): string[] {
     // 将文本按一个或多个空行拆分为段落
     const rawParagraphs = text.split(/\n\s*\n/);
-    return rawParagraphs
-      .map((p) => p.trim())
-      .filter((p) => p.length > 0);
+    return rawParagraphs.map((p) => p.trim()).filter((p) => p.length > 0);
   }
 
   /**
@@ -155,7 +153,10 @@ export class SemanticParagraphSplitter {
       }
 
       // 当前段落加入后超过上限 → 先保存当前组
-      if (currentSize + para.length > this.options.maxChunkSize && currentGroup.length > 0) {
+      if (
+        currentSize + para.length > this.options.maxChunkSize &&
+        currentGroup.length > 0
+      ) {
         groups.push(currentGroup.join('\n\n'));
         currentGroup = [];
         currentSize = 0;
@@ -168,10 +169,7 @@ export class SemanticParagraphSplitter {
     // 处理剩余的组
     if (currentGroup.length > 0) {
       // 如果最后一组太小且前面有组，合并到前一组
-      if (
-        groups.length > 0 &&
-        currentSize < this.options.minChunkSize
-      ) {
+      if (groups.length > 0 && currentSize < this.options.minChunkSize) {
         const lastGroup = groups.pop()!;
         groups.push(`${lastGroup}\n\n${currentGroup.join('\n\n')}`);
       } else {
@@ -195,7 +193,10 @@ export class SemanticParagraphSplitter {
     for (const part of parts) {
       if (!part.trim()) continue;
 
-      if (current.length + part.length > this.options.maxChunkSize && current.length > 0) {
+      if (
+        current.length + part.length > this.options.maxChunkSize &&
+        current.length > 0
+      ) {
         result.push(current.trim());
         current = part;
       } else {

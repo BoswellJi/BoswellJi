@@ -12,7 +12,8 @@
     "postinstall": "simple-git-hooks",
     "format:md": "prettier --write \"**/*.md\" --ignore-unknown",
     "format:md:check": "prettier --check \"**/*.md\" --ignore-unknown",
-    "format:all": "prettier --write . --ignore-unknown"
+    "format:all": "prettier --write . --ignore-unknown",
+    "blog": "pnpm --filter @boswell/blog dev"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged",
