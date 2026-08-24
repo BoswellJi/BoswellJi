@@ -1,6 +1,6 @@
 {
   "$schema": "https://www.schemastore.org/package.json",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "个人练习",
   "type": "module",
