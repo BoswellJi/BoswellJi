@@ -1,3 +1,19 @@
 packages:
   - packages/*
   - slidev/*
+allowBuilds:
+  '@nestjs/core': false
+  '@parcel/watcher': false
+  '@swc/core': false
+  better-sqlite3: false
+  core-js: false
+  core-js-pure: false
+  esbuild: false
+  less: false
+  playwright-chromium: false
+  protobufjs: false
+  puppeteer: false
+  sharp: false
+  simple-git-hooks: true
+  unrs-resolver: false
+  vue-demi: false
