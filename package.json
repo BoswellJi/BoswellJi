@@ -1,6 +1,6 @@
 {
   "$schema": "https://www.schemastore.org/package.json",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "private": true,
   "description": "Personal practice",
   "type": "module",
