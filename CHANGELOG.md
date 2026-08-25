@@ -1,4 +1,12 @@
+# Changelog
 
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [1.0.1](https://github.com/BoswellJi/BoswellJi/compare/v1.0.0...v1.0.1) (2026-08-25)
+
+### Features
+
+* 添加 ai apprd plugin ([3d64c2d](https://github.com/BoswellJi/BoswellJi/commit/3d64c2d0d6cd85a52086d33113df9f8db8ad0184))
 # [1.0.0](https://github.com/BoswellJi/BoswellJi/compare/v0.1.1...v1.0.0) (2026-08-25)
 
 ## [0.1.1](https://github.com/BoswellJi/BoswellJi/compare/v0.1.0...v0.1.1) (2026-08-25)
