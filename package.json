@@ -1,6 +1,6 @@
 {
   "$schema": "https://www.schemastore.org/package.json",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": true,
   "description": "Personal practice",
   "type": "module",
@@ -8,7 +8,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "release": "commit-and-tag-version",
+    "release": "commit-and-tag-version --releaseAs minor",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -r 0",
     "format:md": "prettier --write \"**/*.md\" --ignore-unknown",
     "format:md:check": "prettier --check \"**/*.md\" --ignore-unknown",
@@ -43,6 +43,5 @@
     "prettier": "^3.1.1",
     "simple-git-hooks": "^2.9.0",
     "typescript": "^5.9.3"
-  },
-  "packageManager": "pnpm@11.23.0+sha512.f00082e5b283a199b74e079da28d155c008fe232f44c8a06ea7ddfa014ecf719fc362f790ecc67b28106ddac2afb24c49a9a079159da560b2ce7d1e98efd11af"
+  }
 }
