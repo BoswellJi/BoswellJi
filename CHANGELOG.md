@@ -1,4 +1,8 @@
+# Changelog
 
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [0.0.6](https://github.com/BoswellJi/BoswellJi/compare/v0.0.5...v0.0.6) (2026-08-25)
 ## [0.0.5](https://github.com/BoswellJi/BoswellJi/compare/v0.0.4...v0.0.5) (2026-08-25)
 
 ### Features
