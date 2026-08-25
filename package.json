@@ -1,6 +1,6 @@
 {
   "$schema": "https://www.schemastore.org/package.json",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "description": "Personal practice",
   "type": "module",
@@ -8,9 +8,9 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "release:major": "commit-and-tag-version --releaseAs major --skip.changelog",
-    "release:minor": "commit-and-tag-version --releaseAs minor --skip.changelog",
-    "release:patch": "commit-and-tag-version --releaseAs patch --skip.changelog",
+    "release:major": "commit-and-tag-version --release-as major --skip.changelog",
+    "release:minor": "commit-and-tag-version --release-as minor --skip.changelog",
+    "release:patch": "commit-and-tag-version --release-as patch --skip.changelog",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -r 0",
     "format:md": "prettier --write \"**/*.md\" --ignore-unknown",
     "format:md:check": "prettier --check \"**/*.md\" --ignore-unknown",
