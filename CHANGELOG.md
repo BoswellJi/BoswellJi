@@ -1,4 +1,10 @@
 
+## [1.0.7](https://github.com/BoswellJi/BoswellJi/compare/v1.0.6...v1.0.7) (2026-08-25)
+
+### Bug Fixes
+
+* 代码格式在git编辑器中不一致 ([6894c56](https://github.com/BoswellJi/BoswellJi/commit/6894c5632e5c98149b869fb4612712cb2a90a443))
+
 ## [1.0.6](https://github.com/BoswellJi/BoswellJi/compare/v1.0.5...v1.0.6) (2026-08-25)
 
 ## [1.0.5](https://github.com/BoswellJi/BoswellJi/compare/v1.0.4...v1.0.5) (2026-08-25)
