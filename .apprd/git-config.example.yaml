@@ -1,0 +1,29 @@
+# project-git 配置示例（插件种子）
+# /ad-init 会复制到【工作区】.apprd/git-config.example.yaml 与 git-config.yaml（若缺失）
+# 请编辑工作区 .apprd/git-config.yaml，填写真实 repos[].remote / branch；path 通常可省略。
+#
+# 约定（不可配置）：工作区根 = 打开的 IDE 根；默认 path = projects/<remote叶子名>。
+# remote 统一：git@<主机名>:<路径>.git；叶子名 = 冒号后路径的最后一段（去掉 .git）。
+# name 可选：会话 / --repos 简称（单段、唯一）；不参与目录推导。
+# 多个 remote 叶子名相同时，必须为冲突条目显式配置 path: projects/<目录>；禁止 path: . 。
+# 勿写 workspace_root / workspace_root_name / projects_dir / agents_md / id。
+# /ad-setup 固定生成 AGENTS.md，并双写同内容 CLAUDE.md（根 + 各子仓）。
+
+repos:
+  - name: api
+    remote: git@git.example.com:org/my-api.git
+    branch: main
+
+  - name: web
+    remote: git@git.example.com:org/my-web.git
+    branch: develop
+
+  # 叶子名冲突时示例（两仓 remote 最后一段都是 service 时须显式 path）：
+  # - name: svc-a
+  #   remote: git@git.example.com:team-a/service.git
+  #   path: projects/team-a-service
+  #   branch: main
+  # - name: svc-b
+  #   remote: git@git.example.com:team-b/service.git
+  #   path: projects/team-b-service
+  #   branch: main

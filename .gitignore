@@ -34,3 +34,12 @@ pnpm-debug.log*
 *.sln
 *.sw?
 *.malagu
+
+# >>> apprd-managed
+.apprd/logs/
+.codegraph/
+.claude/
+.codex/
+.cursor/
+projects/
+# <<< apprd-managed

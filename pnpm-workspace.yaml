@@ -14,6 +14,7 @@ allowBuilds:
   protobufjs: false
   puppeteer: false
   sharp: false
-  simple-git-hooks: true
+  simple-git-hooks: false
   unrs-resolver: false
   vue-demi: false
+  '@boswell/nuxt': false

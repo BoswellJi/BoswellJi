@@ -1,0 +1,10 @@
+# project-git 配置（工作区登记表）
+# 请编辑 repos[].remote / branch，填写真实值；path 通常可省略（默认 projects/<remote叶子名>）。
+# remote 统一：git@<主机名>:<路径>.git；叶子名 = 冒号后路径的最后一段（去掉 .git）。
+# 禁止 path: . ；多仓叶子名冲突时须显式 path。
+# /ad-setup 固定生成 AGENTS.md，并双写同内容 CLAUDE.md（根 + 各子仓）。
+
+repos:
+  - name: boswell
+    remote: git@github.com:BoswellJi/BoswellJi.git
+    branch: master
