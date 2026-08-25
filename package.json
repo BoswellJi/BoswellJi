@@ -2,7 +2,7 @@
   "$schema": "https://www.schemastore.org/package.json",
   "version": "0.0.4",
   "private": true,
-  "description": "个人练习",
+  "description": "Personal practice",
   "type": "module",
   "keywords": [],
   "author": "",
